@@ -6,6 +6,16 @@
 # https://azure.microsoft.com/en-us/documentation/articles/virtual-network-deploy-multinic-arm-ps/
 # https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-manage-dns-in-vnet/
 
+################################################################################
+# NAMES
+
+
+
+
+
+
+################################################################################
+# AZURE LOGIN AND SUBSCRIPTION INFORMATION
 #login
 $acct = Login-AzureRmAccount
 $acct
@@ -15,25 +25,34 @@ $SubId = Get-AzureRmSubscription | Select-Object -Property SubscriptionId
 $SubscriptionName = Get-AzureRmSubscription | Select-Object -Property SubscriptionName
 $SubId
 
-# new resource group
+
+
+################################################################################
+# CREATE RESOURCE GROUPS
+# resource group 
 $AzureRmResourceGroupName='VCHDSAzureRmResourceGroup'
+# new resource group
 New-AzureRmResourceGroup -Name $AzureRmResourceGroup -Location canadacentral
 
 
 ################################################################################
+# CREATE VIRTUAL NETWORK AND SUBNETS
 # https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-create-vnet-arm-ps/
 
-# new virtual network
+# virtual network
 $VNetName='VCHDSVNet'
+# new virtual network
 New-AzureRmVirtualNetwork -ResourceGroupName $AzureRmResourceGroupName -Name $VNetName -AddressPrefix 192.168.0.0/16 -Location canadacentral   
 # get virtual network
 $VNet = Get-AzureRmVirtualNetwork -ResourceGroupName $AzureRmResourceGroupName -Name $VNetName
 
-# add subnet inside VCHDSVNet
-$SubNetProdSP='VCHDSSubNetProdSP'
-Add-AzureRmVirtualNetworkSubnetConfig -Name $SubNetProdSP -VirtualNetwork $VNet -AddressPrefix 192.168.1.0/24
-# add subnet inside VCHDSVNet
+# subnet for data warehouse
 $SubNetProdDW='VCHDSSubNetProdDW'
+# add subnet inside VCHDSVNet
+Add-AzureRmVirtualNetworkSubnetConfig -Name $SubNetProdSP -VirtualNetwork $VNet -AddressPrefix 192.168.1.0/24
+# subnet for SharePoint front end
+$SubNetProdSP='VCHDSSubNetProdSP'
+# add subnet inside VCHDSVNet
 Add-AzureRmVirtualNetworkSubnetConfig -Name $SubNetProdDW -VirtualNetwork $VNet -AddressPrefix 192.168.2.0/24
 
 # save changes to azure
