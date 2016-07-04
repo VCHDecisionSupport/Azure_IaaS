@@ -13,4 +13,15 @@ $SubId
 
 Select-AzureSubscription -SubscriptionId $SubId.SubscriptionId  -Default $SubscriptionName.SubscriptionName
 
-Get-AzureVMImage -Verbose
+param (
+    [string]$WorkLoad = 100, 
+    [string]$OsImageNameName = $env:computername, 
+    [string]$Ip = $env:computername, 
+    [string]$OsStorageAccountName = $env:computername, 
+    [string]$OsStorageSize = $env:computername, 
+    [string]$DataStorageAccountName = $env:computername, 
+    [string]$DataStorageSize = $env:computername, 
+    [string]$Location = $env:computername, 
+    [string]$username = $(throw "-username is required."),
+    [string]$password = $( Read-Host -asSecureString "Input password" )
+)

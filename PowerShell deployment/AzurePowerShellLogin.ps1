@@ -9,3 +9,4 @@ $acct
 $SubId = Get-AzureRmSubscription | Select-Object -Property SubscriptionId
 $SubscriptionName = Get-AzureRmSubscription | Select-Object -Property SubscriptionName
 $SubId
+
