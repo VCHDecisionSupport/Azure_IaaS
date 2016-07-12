@@ -7,9 +7,6 @@
     [Parameter(Mandatory=$true)][string]$SubNetName,
     [Parameter(Mandatory=$true)][string]$StaticIp,
     [Parameter(Mandatory=$true)][string]$StorageAccountName
-    [Parameter(Mandatory=$true)][string]$PublisherName="MicrosoftWindowsServer",
-    [Parameter(Mandatory=$true)][string]$OfferName="WindowsServer",
-    [Parameter(Mandatory=$true)][string]$SkuName="2008-R2-SP1"
 )
 
 #############################################################################################################
@@ -35,10 +32,10 @@ If($IsSignedIn -eq $false)
     Write-Host "signin to Azure"
     Login-AzureRmAccount
 }
-# # hardcoded Vm settings
-# $PublisherName="MicrosoftWindowsServer"
-# $OfferName="WindowsServer"
-# $SkuName="2008-R2-SP1"
+# hardcoded Vm settings
+$PublisherName="MicrosoftWindowsServer"
+$OfferName="WindowsServer"
+$SkuName="2008-R2-SP1"
 
 Write-Host "Checking parameter object names"
 $rg=Get-AzureRmResourceGroup -Name $ResourceGroupName

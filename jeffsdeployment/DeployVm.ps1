@@ -1,17 +1,28 @@
 ﻿param (
-    [Parameter(Mandatory=$true)][string]$WorkLoadName,
+    [Parameter()][string]$PublisherName="MicrosoftWindowsServer",
+    [Parameter()][string]$OfferName="WindowsServer",
+    [Parameter()][string]$SkuName="2008-R2-SP1",
     [Parameter()][int]$VmId = "1",
+    [Parameter(Mandatory=$true)][string]$WorkLoadName,
     [Parameter(Mandatory=$true)][string]$VMSize,
     [Parameter(Mandatory=$true)][string]$ResourceGroupName,
     [Parameter(Mandatory=$true)][string]$VNetName,
     [Parameter(Mandatory=$true)][string]$SubNetName,
     [Parameter(Mandatory=$true)][string]$StaticIp,
     [Parameter(Mandatory=$true)][string]$StorageAccountName
-    [Parameter(Mandatory=$true)][string]$PublisherName="MicrosoftWindowsServer",
-    [Parameter(Mandatory=$true)][string]$OfferName="WindowsServer",
-    [Parameter(Mandatory=$true)][string]$SkuName="2008-R2-SP1"
 )
-
+Write-Host ('-----------------------------------------------')
+Write-Host ('PublisherName: {0}' -f $PublisherName)
+Write-Host ('OfferName: {0}' -f $OfferName)
+Write-Host ('SkuName: {0}' -f $SkuName)
+Write-Host ('VmId: {0}' -f $VmId)
+Write-Host ('WorkLoadName: {0}' -f $WorkLoadName)
+Write-Host ('VMSize: {0}' -f $VMSize)
+Write-Host ('ResourceGroupName: {0}' -f $ResourceGroupName)
+Write-Host ('VNetName: {0}' -f $VNetName)
+Write-Host ('SubNetName: {0}' -f $SubNetName)
+Write-Host ('StaticIp: {0}' -f $StaticIp)
+Write-Host ('StorageAccountName: {0}' -f $StorageAccountName)
 #############################################################################################################
 # browse Virtual Machine availablilty:
 
@@ -21,6 +32,7 @@
 # Get-AzureRmVMImageSku -Location $Location -PublisherName $PublisherName -Offer $offerName
 # Get-AzureRmVMSize -Location $Location
 #############################################################################################################
+
 $Error.Clear()
 Get-AzureRmContext -ErrorAction Continue
 $IsSignedIn=$true
