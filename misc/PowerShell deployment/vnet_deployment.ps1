@@ -8,22 +8,25 @@
 
 ################################################################################
 # NAMES
-# resource group 
+# resource group    
 $AzureRmResourceGroupName='VCHDSAzureRmResourceGroup'
 # data center location
 $Location='canadacentral'
 # virtual network
 $VNetName='VCHDSVNet'
 # AddressPrefix for VCHDSVNet
+# 192.168.0.0 - 192.168.255.255 or 65,536 IPs
 $VNetAddressPrefix='192.168.0.0/16'
 # subnet for data warehouse
 $SubNetProdDW='VCHDSSubNetProdDW'
 # AddressPrefix for VCHDSSubNetProdDW
+# 192.168.0.0 - 192.168.0.255 or 256 IPs
 $SubNetProdDWAddressPrefix='192.168.1.0/24'
 # subnet for SharePoint front end
 $SubNetProdSP='VCHDSSubNetProdSP'
 # AddressPrefix for VCHDSSubNetProdSP
-$SubNetProdSPAddressPrefix='192.168.1.1/24'
+# 192.168.1.0 - 192.168.1.255 or 256 IPs
+$SubNetProdSPAddressPrefix='192.168.1.0/24'
 # Network Security Group Name for VCHDSSubNetProdSP
 $NetworkSecurityGroupNameFE="VCHDSNSG-FrontEnd"
 # Network Security Group Name for VCHDSSubNetProdDW

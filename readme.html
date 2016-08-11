@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#azure-deployment-decisions">Azure Deployment Decisions</a></li>
+<li><a href="#other-useful-documentation">Other useful documentation:</a></li>
+</ul>
+</div>
+<h1 id="azure-deployment-decisions">Azure Deployment Decisions</h1>
+<ul>
+<li><p>Azure's <em>Resource Manager</em> <strong>Deployment Model</strong> was used rather than the legacy <em>Classic</em> because new Azure features will only be available via <em>Resource Manager</em> and VMs and other <a href="https://azure.microsoft.com/en-us/documentation/articles/azure-classic-rm/#why-does-this-matter">resources created with one model can't necessarily interoperate with resources created using a different deployment.</a><sup id="a00"><a href="#f00">00</a></sup></p></li>
+<li>Domain Controller not nessisary since all VMs and role instances will be deployed to same Virtual Network and they don't need to communicate to any on premises computers <a href="https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-name-resolution-for-vms-and-role-instances/">Azure provided name resolution</a> will work.<sup id="a3"><a href="#f3">3</a></sup></li>
+<li><p><strong>Virtual Networks</strong> must be deployed before the VMs because VMs can only be bound to vnet when they are deployed.<sup id="a2"><a href="#f2">2</a></sup></p></li>
+<li>IPs in Virtual Network are grouped into <strong>subnets</strong> according to their workload and access they resource require
+<ul>
+<li>where ever possible <strong>network security groups</strong> are applied to subnets rather than single <strong>network interface cards</strong></li>
+<li>this simplifies the design of <strong>access control lists</strong> since they are applied multiple VM <strong>network interface cards</strong> at once <sup id="a4"><a href="#f4">4</a></sup></li>
+</ul></li>
+<li><p>V this is brilliant information</p></li>
+</ul>
+<p>this is brilliant information</p>
+<p>this is brilliant information</p>
+<p>this is brilliant information</p>
+<p>this is brilliant information</p>
+<p>this is brilliant information</p>
+<p>this is brilliant information</p>
+<p>this is brilliant information</p>
+<p>this is brilliant information</p>
+<p>this is brilliant information</p>
+<p>this is brilliant information</p>
+<p>this is brilliant information</p>
+<p>this is brilliant information</p>
+<p>this is brilliant information</p>
+<p>this is brilliant information</p>
+<p>this is brilliant information</p>
+<p>this is brilliant information</p>
+<p>this is brilliant information</p>
+<p>this is brilliant information</p>
+<p>this is brilliant information</p>
+<p>this is brilliant information</p>
+<p>this is brilliant information</p>
+<p>this is brilliant information</p>
+<p>this is brilliant information</p>
+<p>this is brilliant information</p>
+<p>this is brilliant information</p>
+<p><b id="f1">1</b> <a href="">See here.</a> <a href="#a1">↩</a></p>
+<p><b id="f2">2</b> <a href="https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-overview/#strongnotestrong-1">See here.</a> <a href="#a2">↩</a></p>
+<p><b id="f3">3</b> When/if named resolved communication with vnet or to on-premises then a dedicated Domain Controller server will be added to our vnet but communication within vnet would still be handled by Azure. Communication between Vms and instance roles within a vnet would reference different names than those used by communication from outside vnet? Those the same Azure VM would have one name to other Azure VMs in the same vnet and another name to on premises connections. <a href="#a3">↩</a></p>
+<p><b id="f4">4</b> <a href="https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/#subnets">See here.</a> <a href="#a4">↩</a></p>
+<p><b id="f00">00</b> <a href="https://azure.microsoft.com/en-us/documentation/articles/resource-group-overview/#the-benefits-of-using-resource-manager">See here.</a> <a href="#a00">↩</a></p>
+<h1 id="other-useful-documentation">Other useful documentation:</h1>
+<p><a href="https://azure.microsoft.com/en-us/documentation/articles/cloud-services-sizes-specs/">Azure VM sizing</a></p>
+<p><a href="https://azure.microsoft.com/en-us/documentation/articles/dns-getstarted-create-dnszone/">Create DNS Zone</a></p>
+<p><a href="https://azure.microsoft.com/en-us/documentation/articles/active-directory-new-forest-virtual-machine/">Install a new Active Directory forest on an Azure virtual network</a></p>
+</body>
+</html>
