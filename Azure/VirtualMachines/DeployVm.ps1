@@ -102,7 +102,7 @@ $vm = Set-AzureRmVMBootDiagnostics -VM $vm -ResourceGroupName $ResourceGroupName
 Write-Host ("Deploying Virtual Machine: {0}" -f $VMName)
 New-AzureRmVM -ResourceGroupName $ResourceGroupName -Location $location -VM $vm
     
-Write-Host ("Virtual Machine {0} Created (runtime: {1}." -f $VMName, $elapsed.Elapsed.ToString())
+Write-Host ("Virtual Machine {0} Created (runtime: {1})." -f $VMName, $elapsed.Elapsed.ToString())
 }
 # Split-Path "C:\Users\gcrowell\Documents\GITHUB\Azure\PowerShell deployment\VirtualMachine\DeployVm.ps1" | cd
 # .\DeployVm.ps1 -WorkLoadName "thisworksgreat" -VMSize "Standard_A3" -ResourceGroupName "VCHDSAzureRmResourceGroup" -StorageAccountName "vchstdstorageacct" -SubNetName "VCHDSSubNetProdSP" -VNetName "VCHDSVNet" -StaticIp "192.168.1.105"

@@ -8,7 +8,7 @@ $storageAccountName = "vchdsstorageacct"
 
 $subnetName = "sp-subnet"
 $workLoadName = "SharePoint"
-$vmSize="Standard_A3"
+$vmSize="Standard_A6"
 
 
 $VmIp = "192.168.1.10"

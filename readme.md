@@ -27,6 +27,20 @@ As a bad ass I want Azure resources to accommadate:
 - Best practices were followed to establish [**naming conventions**](https://azure.microsoft.com/en-us/documentation/articles/guidance-naming-conventions/) for all resources in the VNet.  If Azure is adopted as permanent dev/test enviroment the subscription should adhere to these recommendations.
 	* [**tags**](https://azure.microsoft.com/en-us/documentation/articles/resource-group-using-tags/#powershell) categorize disparate resources accross different Resource Groups so that they can managed (eg. de/re-allocated) together.  Tags also provide clarity in bills by identitfying high-cost tags.
 	
+## Software Installation (SQL and SharePoint); Licencing and MSDN Questions
+
+- Azure provides VM images with various version combinations<sup id="a5">[5](#f5)</sup> of Windows Server and SQL Server preinstalled that could **simplify software installation** and **clarify billing** ([see here for information about **Bring Your Own Licence (BYOL)**](https://azure.microsoft.com/en-gb/documentation/articles/virtual-machines-windows-sql-server-iaas-overview/#option-2-deploy-a-sql-vm-byol):
+	* SQL2008R2SP3-WS2008R2SP1
+	* SQL2008R2SP3-WS2012
+	* SQL2012SP3-WS2012R2
+	* SQL2012SP3-WS2012R2-BYOL
+	* SQL2014SP1-WS2012R2
+	* SQL2014SP1-WS2012R2-BYOL
+	* SQL2016-WS2012R2
+	* SQL2016-WS2012R2-BYOL
+	* SQL2016RC3-WS2012R2
+- These images include the installation media on the `C:/` drive of the VM so configuration adjustments could be made as needed.
+
 
 
 
@@ -100,6 +114,8 @@ this is brilliant information
 [Azure VM sizing](https://azure.microsoft.com/en-us/documentation/articles/cloud-services-sizes-specs/)
 
 [Create DNS Zone](https://azure.microsoft.com/en-us/documentation/articles/dns-getstarted-create-dnszone/)
+
+[Manage VMs with PowerShell](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-windows-ps-manage/)
 
 [Install a new Active Directory forest on an Azure virtual network](https://azure.microsoft.com/en-us/documentation/articles/active-directory-new-forest-virtual-machine/)
 
