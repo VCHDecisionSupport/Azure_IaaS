@@ -8,8 +8,8 @@ As a bad ass I want Azure resources to accommadate:
 
 - Azure's _Resource Manager_ **Deployment Model** was used rather than the legacy _Classic_ because new Azure features will only be available via _Resource Manager_ and VMs and other [resources created with one model can't necessarily interoperate with resources created using a different deployment.](https://azure.microsoft.com/en-us/documentation/articles/azure-classic-rm/#why-does-this-matter)<sup id="a00">[00](#f00)</sup>
 
-
 - Domain Controller not nessisary since all VMs and role instances will be deployed to same Virtual Network and they don't need to communicate to any on premises computers [Azure provided name resolution](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-name-resolution-for-vms-and-role-instances/) will work.<sup id="a3">[3](#f3)</sup>
+
 - **Virtual Networks** must be deployed before the VMs because VMs can only be bound to vnet when they are deployed.<sup id="a2">[2](#f2)</sup>
 
 - IPs in Virtual Network are grouped into **subnets** according to their workload and access they resource require
@@ -17,6 +17,10 @@ As a bad ass I want Azure resources to accommadate:
 	* this simplifies the design of **access control lists** since they are applied multiple VM **network interface cards** at once <sup id="a4">[4](#f4)</sup>
 
 - Best practices were followed to establish [**naming conventions**](https://azure.microsoft.com/en-us/documentation/articles/guidance-naming-conventions/) for all resources in the VNet.  If Azure is adopted as permanent dev/test enviroment the subscription should adhere to these recommendations.
+	* [**tags**](https://azure.microsoft.com/en-us/documentation/articles/resource-group-using-tags/#powershell) categorize disparate resources accross different Resource Groups so that they can managed (eg. de/re-allocated) together.  Tags also provide clarity in bills by identitfying high-cost tags.
+	
+
+
 
 this is brilliant information
 

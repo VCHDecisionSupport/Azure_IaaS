@@ -18,12 +18,12 @@ $VNetName='VCHDSVNet'
 # 192.168.0.0 - 192.168.255.255 or 65,536 IPs
 $VNetAddressPrefix='192.168.0.0/16'
 # subnet for data warehouse
-$SubNetProdDW='VCHDSSubNetProdDW'
+$SubNetProdDW='VCHDSSubNetDW'
 # AddressPrefix for VCHDSSubNetProdDW
 # 192.168.0.0 - 192.168.0.255 or 256 IPs
 $SubNetProdDWAddressPrefix='192.168.1.0/24'
 # subnet for SharePoint front end
-$SubNetProdSP='VCHDSSubNetProdSP'
+$SubNetProdSP='VCHDSSubNetSP'
 # AddressPrefix for VCHDSSubNetProdSP
 # 192.168.1.0 - 192.168.1.255 or 256 IPs
 $SubNetProdSPAddressPrefix='192.168.1.0/24'
