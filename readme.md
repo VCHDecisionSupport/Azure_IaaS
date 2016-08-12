@@ -6,9 +6,17 @@ As a bad ass I want Azure resources to accommadate:
 
 # Azure Deployment Decisions
 
+- Allow access to Azure resouces through a _single permanent static IP address_ a [**Jumpbox** style architecture that followed](https://azure.microsoft.com/en-us/documentation/articles/guidance-compute-3-tier-vm/).  
+	* IMTS only needs to open access from on-premises vch.ca domain to single IP address
+	* Management of VMs is done is Remote Desktop to the Jumpbox VM (whose IP address IMTS has granted vch access to).  From Jumpbox users remote into other VMs in the deployment
+
+![](https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/guidance-compute-3-tier-vm/20160811062725/compute-n-tier.png "Jumpbox Architecture diagram")
+
+- Domain Controller may not nessisary since all VMs and role instances will be deployed to same Virtual Network and they don't need to communicate to any on premises computers [Azure provided name resolution](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-name-resolution-for-vms-and-role-instances/) will work.<sup id="a3">[3](#f3)</sup>
+
 - Azure's _Resource Manager_ **Deployment Model** was used rather than the legacy _Classic_ because new Azure features will only be available via _Resource Manager_ and VMs and other [resources created with one model can't necessarily interoperate with resources created using a different deployment.](https://azure.microsoft.com/en-us/documentation/articles/azure-classic-rm/#why-does-this-matter)<sup id="a00">[00](#f00)</sup>
 
-- Domain Controller not nessisary since all VMs and role instances will be deployed to same Virtual Network and they don't need to communicate to any on premises computers [Azure provided name resolution](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-name-resolution-for-vms-and-role-instances/) will work.<sup id="a3">[3](#f3)</sup>
+
 
 - **Virtual Networks** must be deployed before the VMs because VMs can only be bound to vnet when they are deployed.<sup id="a2">[2](#f2)</sup>
 

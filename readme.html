@@ -22,8 +22,19 @@
 </ul>
 <h1 id="azure-deployment-decisions">Azure Deployment Decisions</h1>
 <ul>
+<li>Allow access to Azure resouces through a <em>single permanent static IP address</em> a <a href="https://azure.microsoft.com/en-us/documentation/articles/guidance-compute-3-tier-vm/"><strong>Jumpbox</strong> style architecture that followed</a>.
+<ul>
+<li>IMTS only needs to open access from on-premises vch.ca domain to single IP address</li>
+<li>Management of VMs is done is Remote Desktop to the Jumpbox VM (whose IP address IMTS has granted vch access to). From Jumpbox users remote into other VMs in the deployment</li>
+</ul></li>
+</ul>
+<div class="figure">
+<img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/guidance-compute-3-tier-vm/20160811062725/compute-n-tier.png" title="oh hi there" />
+
+</div>
+<ul>
+<li><p>Domain Controller may not nessisary since all VMs and role instances will be deployed to same Virtual Network and they don't need to communicate to any on premises computers <a href="https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-name-resolution-for-vms-and-role-instances/">Azure provided name resolution</a> will work.<sup id="a3"><a href="#f3">3</a></sup></p></li>
 <li><p>Azure's <em>Resource Manager</em> <strong>Deployment Model</strong> was used rather than the legacy <em>Classic</em> because new Azure features will only be available via <em>Resource Manager</em> and VMs and other <a href="https://azure.microsoft.com/en-us/documentation/articles/azure-classic-rm/#why-does-this-matter">resources created with one model can't necessarily interoperate with resources created using a different deployment.</a><sup id="a00"><a href="#f00">00</a></sup></p></li>
-<li><p>Domain Controller not nessisary since all VMs and role instances will be deployed to same Virtual Network and they don't need to communicate to any on premises computers <a href="https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-name-resolution-for-vms-and-role-instances/">Azure provided name resolution</a> will work.<sup id="a3"><a href="#f3">3</a></sup></p></li>
 <li><p><strong>Virtual Networks</strong> must be deployed before the VMs because VMs can only be bound to vnet when they are deployed.<sup id="a2"><a href="#f2">2</a></sup></p></li>
 <li>IPs in Virtual Network are grouped into <strong>subnets</strong> according to their workload and access they resource require
 <ul>
