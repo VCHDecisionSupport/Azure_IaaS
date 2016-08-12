@@ -72,24 +72,34 @@ $VMName=$WorkLoadName+"Vm"+$VmId
 $NicName=$VMName+"Nic"
 $PublicIpName=$VMName+"Pip"
 $OsDiskName=$VMName+"OsDisk"
+#$BootDiagDiskName=$VMName+"BootDiagDisk"
+
+$os_disk_uri = $storage_account.PrimaryEndpoints.Blob.ToString() + "vhds/" + $OsDiskName  + ".vhd"
+#$bootdiag_disk_uri = $storage_account.PrimaryEndpoints.Blob.ToString() + "vhds/" + $BootDiagDiskName  + ".vhd"
 
 Write-Host ("Configuring Network Interface Card: {0}" -f $NicName)
 $subnet=$vnet.Subnets | Where-Object {$_.Name -eq $SubNetName}
-$public_ip = New-AzureRmPublicIpAddress -Name $PublicIpName -ResourceGroupName $ResourceGroupName -Location $location -AllocationMethod Dynamic
+$public_ip = New-AzureRmPublicIpAddress -Name $PublicIpName -ResourceGroupName $ResourceGroupName -Location $location -AllocationMethod Static
 $nsg=$subnet.NetworkSecurityGroup
 $nic=New-AzureRmNetworkInterface -Name $NicName -ResourceGroupName $ResourceGroupName -Location $location -SubnetId $subnet.Id -PublicIpAddressId $public_ip.Id -PrivateIpAddress $StaticIp -NetworkSecurityGroupId $nsg.Id
 
 Write-Host ("Configuring Virtual Machine: {0}" -f $VMName)
 $vm = New-AzureRmVMConfig -VMName $vmName -VMSize $vmSize
-$cred = Get-Credential -UserName "gcrowell_sa" -Message "Type the name and password of the local administrator account."
+
+$username = "Floater1"
+$securePassword = ConvertTo-SecureString -String $username -AsPlainText -Force
+$cred = New-Object -TypeName System.Management.Automation.PSCredential ($username, $securePassword)
+#$cred = Get-Credential -UserName "Floater1" -Message "Type the name and password of the local administrator account."
+
 $vm = Set-AzureRmVMOperatingSystem -VM $vm -Windows -ComputerName $vmName -Credential $cred -ProvisionVMAgent -EnableAutoUpdate 
 $vm = Set-AzureRmVMSourceImage -VM $vm -PublisherName $PublisherName -Offer $OfferName -Skus $skuName -Version "latest"
 $vm = Add-AzureRmVMNetworkInterface -VM $vm -Id $nic.Id 
-$os_disk_uri = $storage_account.PrimaryEndpoints.Blob.ToString() + "vhds/" + $OsDiskName  + ".vhd"
+
 $vm = Set-AzureRmVMOSDisk -VM $vm -Name $OsDiskName -VhdUri $os_disk_uri -CreateOption fromImage
+$vm = Set-AzureRmVMBootDiagnostics -VM $vm -ResourceGroupName $ResourceGroupName -StorageAccountName $StorageAccountName -Enable
 
 Write-Host ("Deploying Virtual Machine: {0}" -f $VMName)
-New-AzureRmVM -ResourceGroupName $ResourceGroupName -Location $location -VM $vm -Debug
+New-AzureRmVM -ResourceGroupName $ResourceGroupName -Location $location -VM $vm
 Write-Host ("Virtual Machine {0} Created." -f $VMName)
 }
 # Split-Path "C:\Users\gcrowell\Documents\GITHUB\Azure\PowerShell deployment\VirtualMachine\DeployVm.ps1" | cd

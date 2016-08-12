@@ -3,16 +3,16 @@ $dataCentre = "canadacentral"
 $vnetName = "vchds-vnet"
 $subnetName = "jb-subnet"
 $addressPrefix = "192.168.0.0/24"
-$VmIp = "192.168.0.10"
 $networkSecurityGroupName = "jb-subnet-nsg"
-$vmSize="Standard_A3"
-$workLoadName = "JumpBox"
+
 
 $Error.Clear()
 Get-AzureRmContext -ErrorAction Continue
 $IsSignedIn=$true
-foreach ($eacherror in $Error) {
-    if ($eacherror.Exception.ToString() -like "*Run Login-AzureRmAccount to login.*") {
+foreach ($eacherror in $Error) 
+{
+    if ($eacherror.Exception.ToString() -like "*Run Login-AzureRmAccount to login.*") 
+    {
         $IsSignedIn=$false
     }
 }
@@ -58,6 +58,3 @@ Set-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name $subnetName -A
 # save changes
 Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
 
-New-Vm -WorkLoadName $workLoadName -VMSize $vmSize -ResourceGroupName $resourceGroupName -StorageAccountName $StorageAccountName -SubNetName $subnetName -VNetName $vnetName -StaticIp $VmIp
-
-    
