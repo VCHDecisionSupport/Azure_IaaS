@@ -45,7 +45,7 @@ If($vnet.SubnetsText.Contains($subnetName))
 
 # add subnet inside vnet
 $subnet = Add-AzureRmVirtualNetworkSubnetConfig -Name $subnetName -VirtualNetwork $VNet -AddressPrefix $addressPrefix
-# block from internet to subnet
+# allow remote desktop from internet 
 $rdprule = New-AzureRmNetworkSecurityRuleConfig -Name rdp-rule -Description "Allow RDP" `
     -Access Allow -Protocol Tcp -Direction Inbound -Priority 100 `
     -SourceAddressPrefix Internet -SourcePortRange * `
