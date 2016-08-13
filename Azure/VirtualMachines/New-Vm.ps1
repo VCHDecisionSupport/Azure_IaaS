@@ -36,10 +36,12 @@ $VMName=$WorkLoadName+"Vm"+$VmId
 $NicName=$VMName+"Nic"
 $PublicIpName=$VMName+"Pip"
 $OsDiskName=$VMName+"OsDisk"
+$dnsName="{0}.canadacentral.cloudapp.azure.com" -f $VMName.ToLower()
 Write-Host ('VMName: {0}' -f $VMName)
 Write-Host ('NicName: {0}' -f $NicName)
 Write-Host ('PublicIpName: {0}' -f $PublicIpName)
 Write-Host ('OsDiskName: {0}' -f $OsDiskName)
+Write-Host ('DNS Name: {0}' -f $dnsName)
 Write-Host ('-----------------------------------------------')
 #############################################################################################################
 # browse Virtual Machine availablilty:
@@ -118,7 +120,8 @@ $vm = Set-AzureRmVMBootDiagnostics -VM $vm -ResourceGroupName $ResourceGroupName
 Write-Host ("Deploying Virtual Machine: {0}" -f $VMName)
 New-AzureRmVM -ResourceGroupName $ResourceGroupName -Location $location -VM $vm
     
-Write-Host ("Virtual Machine {0} Created at {1} with runtime: {2})." -f $VMName, "public ip address", $elapsed.Elapsed.ToString())
+Write-Host ("Virtual Machine {0} Created at {1} with runtime: {2})." -f $VMName, $public_ip.IpAddress, $elapsed.Elapsed.ToString())
+Start-Process "$env:windir\system32\mstsc.exe" -ArgumentList "/v:$dnsName.canadacentral.cloudapp.azure.com"
 }
 # Split-Path "C:\Users\gcrowell\Documents\GITHUB\Azure\PowerShell deployment\VirtualMachine\DeployVm.ps1" | cd
 # .\DeployVm.ps1 -WorkLoadName "thisworksgreat" -VMSize "Standard_A3" -ResourceGroupName "VCHDSAzureRmResourceGroup" -StorageAccountName "vchstdstorageacct" -SubNetName "VCHDSSubNetProdSP" -VNetName "VCHDSVNet" -StaticIp "192.168.1.105"
