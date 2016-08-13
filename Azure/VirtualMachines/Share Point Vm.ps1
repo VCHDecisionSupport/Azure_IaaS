@@ -15,14 +15,14 @@ $subnetName = "sp-subnet"
 
 $VmIp = "192.168.1.10"
 $VmId = 1
-New-Vm -WorkLoadName $workLoadName -VMSize $vmSize -ResourceGroupName $resourceGroupName -StorageAccountName $StorageAccountName -SubNetName $subnetName -VNetName $vnetName -StaticIp $VmIp -VmId $VmId
+New-Vm -WorkLoadName $workLoadName -VMSize $vmSize -ResourceGroupName $resourceGroupName -StorageAccountName $StorageAccountName -SubNetName $subnetName -VNetName $vnetName -StaticIp $VmIp -VmId $VmId -SkuName $skuName -PublisherName $publisherName -OfferName $offerName
 
 
 $VmIp = "192.168.1.20"
 $VmId = 2
-New-Vm -WorkLoadName $workLoadName -VMSize $vmSize -ResourceGroupName $resourceGroupName -StorageAccountName $StorageAccountName -SubNetName $subnetName -VNetName $vnetName -StaticIp $VmIp -VmId $VmId
+New-Vm -WorkLoadName $workLoadName -VMSize $vmSize -ResourceGroupName $resourceGroupName -StorageAccountName $StorageAccountName -SubNetName $subnetName -VNetName $vnetName -StaticIp $VmIp -VmId $VmId -SkuName $skuName -PublisherName $publisherName -OfferName $offerName
 
 
 $VmIp = "192.168.1.30"
 $VmId = 3
-New-Vm -WorkLoadName $workLoadName -VMSize $vmSize -ResourceGroupName $resourceGroupName -StorageAccountName $StorageAccountName -SubNetName $subnetName -VNetName $vnetName -StaticIp $VmIp -VmId $VmId
+New-Vm -WorkLoadName $workLoadName -VMSize $vmSize -ResourceGroupName $resourceGroupName -StorageAccountName $StorageAccountName -SubNetName $subnetName -VNetName $vnetName -StaticIp $VmIp -VmId $VmId -SkuName $skuName -PublisherName $publisherName -OfferName $offerName

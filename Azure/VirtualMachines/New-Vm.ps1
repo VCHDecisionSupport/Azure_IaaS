@@ -11,10 +11,12 @@ param (
     [Parameter(Mandatory=$true)][string]$ResourceGroupName,
     [Parameter(Mandatory=$true)][string]$VNetName,
     [Parameter(Mandatory=$true)][string]$SubNetName,
-    [Parameter(Mandatory=$true)][string]$StaticIp,
+    [Parameter(Mandatory=$true)][string]$PrivateIp,
     [Parameter(Mandatory=$true)][string]$StorageAccountName
 )
 $elapsed = [System.Diagnostics.Stopwatch]::StartNew()
+Write-Host ('-----------------------------------------------')
+Write-Host ('input parameters:')
 Write-Host ('-----------------------------------------------')
 Write-Host ('PublisherName: {0}' -f $PublisherName)
 Write-Host ('OfferName: {0}' -f $OfferName)
@@ -25,8 +27,20 @@ Write-Host ('VMSize: {0}' -f $VMSize)
 Write-Host ('ResourceGroupName: {0}' -f $ResourceGroupName)
 Write-Host ('VNetName: {0}' -f $VNetName)
 Write-Host ('SubNetName: {0}' -f $SubNetName)
-Write-Host ('StaticIp: {0}' -f $StaticIp)
+Write-Host ('PrivateIp: {0}' -f $PrivateIp)
 Write-Host ('StorageAccountName: {0}' -f $StorageAccountName)
+Write-Host ('-----------------------------------------------')
+Write-Host ('component names:')
+Write-Host ('-----------------------------------------------')
+$VMName=$WorkLoadName+"Vm"+$VmId
+$NicName=$VMName+"Nic"
+$PublicIpName=$VMName+"Pip"
+$OsDiskName=$VMName+"OsDisk"
+Write-Host ('VMName: {0}' -f $VMName)
+Write-Host ('NicName: {0}' -f $NicName)
+Write-Host ('PublicIpName: {0}' -f $PublicIpName)
+Write-Host ('OsDiskName: {0}' -f $OsDiskName)
+Write-Host ('-----------------------------------------------')
 #############################################################################################################
 # browse Virtual Machine availablilty:
 
@@ -56,10 +70,9 @@ If($IsSignedIn -eq $false)
 # $OfferName="WindowsServer"
 # $SkuName="2008-R2-SP1"
 
-Write-Host "Checking parameter object names"
+Write-Host "Validating parameters"
 $rg=Get-AzureRmResourceGroup -Name $ResourceGroupName
 $location=$rg.Location
-Write-Host $location
 $vnet=Get-AzureRmVirtualNetwork -Name $VNetName -ResourceGroupName $ResourceGroupName
 # $nic=Get-AzureRmNetworkInterface -Name $NicName -ResourceGroupName $ResourceGroupName
 $storage_account=Get-AzureRmStorageAccount -Name $StorageAccountName -ResourceGroupName $ResourceGroupName
@@ -79,11 +92,13 @@ $OsDiskName=$VMName+"OsDisk"
 $os_disk_uri = $storage_account.PrimaryEndpoints.Blob.ToString() + "vhds/" + $OsDiskName  + ".vhd"
 #$bootdiag_disk_uri = $storage_account.PrimaryEndpoints.Blob.ToString() + "vhds/" + $BootDiagDiskName  + ".vhd"
 
+Write-Host ("Configuring Public Static IP address")
+$public_ip = New-AzureRmPublicIpAddress -Name $PublicIpName -ResourceGroupName $ResourceGroupName -Location $location -AllocationMethod Static -DomainNameLabel $vmName.ToLower()
+
 Write-Host ("Configuring Network Interface Card: {0}" -f $NicName)
 $subnet=$vnet.Subnets | Where-Object {$_.Name -eq $SubNetName}
-$public_ip = New-AzureRmPublicIpAddress -Name $PublicIpName -ResourceGroupName $ResourceGroupName -Location $location -AllocationMethod Static -DomainNameLabel $vmName
 $nsg=$subnet.NetworkSecurityGroup
-$nic=New-AzureRmNetworkInterface -Name $NicName -ResourceGroupName $ResourceGroupName -Location $location -SubnetId $subnet.Id -PublicIpAddressId $public_ip.Id -PrivateIpAddress $StaticIp -NetworkSecurityGroupId $nsg.Id
+$nic=New-AzureRmNetworkInterface -Name $NicName -ResourceGroupName $ResourceGroupName -Location $location -SubnetId $subnet.Id -PublicIpAddressId $public_ip.Id -PrivateIpAddress $PrivateIp -NetworkSecurityGroupId $nsg.Id
 
 Write-Host ("Configuring Virtual Machine: {0}" -f $VMName)
 $vm = New-AzureRmVMConfig -VMName $vmName -VMSize $vmSize
@@ -103,7 +118,7 @@ $vm = Set-AzureRmVMBootDiagnostics -VM $vm -ResourceGroupName $ResourceGroupName
 Write-Host ("Deploying Virtual Machine: {0}" -f $VMName)
 New-AzureRmVM -ResourceGroupName $ResourceGroupName -Location $location -VM $vm
     
-Write-Host ("Virtual Machine {0} Created (runtime: {1})." -f $VMName, $elapsed.Elapsed.ToString())
+Write-Host ("Virtual Machine {0} Created at {1} with runtime: {2})." -f $VMName, "public ip address", $elapsed.Elapsed.ToString())
 }
 # Split-Path "C:\Users\gcrowell\Documents\GITHUB\Azure\PowerShell deployment\VirtualMachine\DeployVm.ps1" | cd
 # .\DeployVm.ps1 -WorkLoadName "thisworksgreat" -VMSize "Standard_A3" -ResourceGroupName "VCHDSAzureRmResourceGroup" -StorageAccountName "vchstdstorageacct" -SubNetName "VCHDSSubNetProdSP" -VNetName "VCHDSVNet" -StaticIp "192.168.1.105"
