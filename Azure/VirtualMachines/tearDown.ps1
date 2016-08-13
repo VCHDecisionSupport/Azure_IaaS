@@ -1,11 +1,28 @@
 ﻿#todo: function to drop all child resources attached to a VM so it can be redeployed later
 #todo: extend to drop subnets
 
+
+$Error.Clear()
+Get-AzureRmContext -ErrorAction Continue
+$IsSignedIn=$true
+foreach ($eacherror in $Error) {
+    if ($eacherror.Exception.ToString() -like "*Run Login-AzureRmAccount to login.*") {
+        $IsSignedIn=$false
+    }
+}
+$Error.Clear()
+If($IsSignedIn -eq $false)
+{
+    Write-Host "signin to Azure"
+    Login-AzureRmAccount
+}
+
 $resourceGroupName = "vchds-root-rg"
 $dataCentre = "canadacentral"
 $vnetName = "vchds-vnet"
 $addressPrefix = "192.168.0.0/16"
 $storageAccountName = "vchdsstorageacct"
+
 
 $vnet = Get-AzureRmVirtualNetwork -Name $vnetName -ResourceGroupName $resourceGroupName
 

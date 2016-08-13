@@ -1,9 +1,10 @@
 ﻿function New-Vm
 {
 param (
-    [Parameter()][string]$PublisherName="MicrosoftWindowsServer",
-    [Parameter()][string]$OfferName="WindowsServer",
-    [Parameter()][string]$SkuName="2008-R2-SP1",
+    [Parameter(Mandatory=$true)][string]$PublisherName,
+    #[ValidateSet("Low", "Average", "High")]
+    [Parameter(Mandatory=$true)][string]$OfferName,
+    [Parameter(Mandatory=$true)][string]$SkuName,
     [Parameter()][int]$VmId = "1",
     [Parameter(Mandatory=$true)][string]$WorkLoadName,
     [Parameter(Mandatory=$true)][string]$VMSize,
@@ -80,7 +81,7 @@ $os_disk_uri = $storage_account.PrimaryEndpoints.Blob.ToString() + "vhds/" + $Os
 
 Write-Host ("Configuring Network Interface Card: {0}" -f $NicName)
 $subnet=$vnet.Subnets | Where-Object {$_.Name -eq $SubNetName}
-$public_ip = New-AzureRmPublicIpAddress -Name $PublicIpName -ResourceGroupName $ResourceGroupName -Location $location -AllocationMethod Static
+$public_ip = New-AzureRmPublicIpAddress -Name $PublicIpName -ResourceGroupName $ResourceGroupName -Location $location -AllocationMethod Static -DomainNameLabel $vmName
 $nsg=$subnet.NetworkSecurityGroup
 $nic=New-AzureRmNetworkInterface -Name $NicName -ResourceGroupName $ResourceGroupName -Location $location -SubnetId $subnet.Id -PublicIpAddressId $public_ip.Id -PrivateIpAddress $StaticIp -NetworkSecurityGroupId $nsg.Id
 

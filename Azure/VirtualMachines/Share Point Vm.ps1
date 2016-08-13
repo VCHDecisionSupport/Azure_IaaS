@@ -3,12 +3,14 @@
 $resourceGroupName = "vchds-root-rg"
 $dataCentre = "canadacentral"
 $vnetName = "vchds-vnet"
-$addressPrefix = "192.168.0.0/16"
 $storageAccountName = "vchdsstorageacct"
 
-$subnetName = "sp-subnet"
 $workLoadName = "SharePoint"
 $vmSize="Standard_A6"
+$skuName = "2008-R2-SP1"
+$publisherName = "MicrosoftWindowsServer"
+$offerName = "WindowsServer"
+$subnetName = "sp-subnet"
 
 
 $VmIp = "192.168.1.10"

@@ -11,7 +11,9 @@
 <div id="TOC">
 <ul>
 <li><a href="#epic">Epic</a></li>
-<li><a href="#azure-deployment-decisions">Azure Deployment Decisions</a></li>
+<li><a href="#azure-deployment-decisions">Azure Deployment Decisions</a><ul>
+<li><a href="#software-installation-sql-and-sharepoint-licencing-and-msdn-questions">Software Installation (SQL and SharePoint); Licencing and MSDN Questions</a></li>
+</ul></li>
 <li><a href="#other-useful-documentation">Other useful documentation:</a></li>
 </ul>
 </div>
@@ -28,12 +30,15 @@
 <li>Management of VMs is done is Remote Desktop to the Jumpbox VM (whose IP address IMTS has granted vch access to). From Jumpbox users remote into other VMs in the deployment</li>
 </ul></li>
 </ul>
-<div class="figure">
-<img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/guidance-compute-3-tier-vm/20160811062725/compute-n-tier.png" title="Jumpbox Architecture diagram" />
-
-</div>
+<p><a href="https://azure.microsoft.com/en-us/documentation/articles/guidance-compute-3-tier-vm/"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/guidance-compute-3-tier-vm/20160811062725/compute-n-tier.png" title="3-Tier Architecture with Jumpbox (click to see tutorial)" /></a></p>
 <ul>
-<li><p>Domain Controller may not nessisary since all VMs and role instances will be deployed to same Virtual Network and they don't need to communicate to any on premises computers <a href="https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-name-resolution-for-vms-and-role-instances/">Azure provided name resolution</a> will work.<sup id="a3"><a href="#f3">3</a></sup></p></li>
+<li>Domain Controller may not nessisary since all VMs and role instances will be deployed to same Virtual Network and they don't need to communicate to any on premises computers <a href="https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-name-resolution-for-vms-and-role-instances/">Azure provided name resolution</a> will work.<sup id="a3"><a href="#f3">3</a></sup>
+<ul>
+<li>this doesn't solve need to have mock users accounts are manage permissions:
+<ul>
+<li><strong>how does a Domain Controller interact with Network Security Groups?</strong></li>
+</ul></li>
+</ul></li>
 <li><p>Azure's <em>Resource Manager</em> <strong>Deployment Model</strong> was used rather than the legacy <em>Classic</em> because new Azure features will only be available via <em>Resource Manager</em> and VMs and other <a href="https://azure.microsoft.com/en-us/documentation/articles/azure-classic-rm/#why-does-this-matter">resources created with one model can't necessarily interoperate with resources created using a different deployment.</a><sup id="a00"><a href="#f00">00</a></sup></p></li>
 <li><p><strong>Virtual Networks</strong> must be deployed before the VMs because VMs can only be bound to vnet when they are deployed.<sup id="a2"><a href="#f2">2</a></sup></p></li>
 <li>IPs in Virtual Network are grouped into <strong>subnets</strong> according to their workload and access they resource require
@@ -44,6 +49,25 @@
 <li>Best practices were followed to establish <a href="https://azure.microsoft.com/en-us/documentation/articles/guidance-naming-conventions/"><strong>naming conventions</strong></a> for all resources in the VNet. If Azure is adopted as permanent dev/test enviroment the subscription should adhere to these recommendations.
 <ul>
 <li><a href="https://azure.microsoft.com/en-us/documentation/articles/resource-group-using-tags/#powershell"><strong>tags</strong></a> categorize disparate resources accross different Resource Groups so that they can managed (eg. de/re-allocated) together. Tags also provide clarity in bills by identitfying high-cost tags.</li>
+</ul></li>
+</ul>
+<h2 id="software-installation-sql-and-sharepoint-licencing-and-msdn-questions">Software Installation (SQL and SharePoint); Licencing and MSDN Questions</h2>
+<ul>
+<li>Azure provides VM images with various version combinations<sup id="a5"><a href="#f5">5</a></sup> of Windows Server and SQL Server preinstalled that could <strong>simplify software installation</strong> and <strong>clarify billing</strong> (<a href="https://azure.microsoft.com/en-gb/documentation/articles/virtual-machines-windows-sql-server-iaas-overview/#option-2-deploy-a-sql-vm-byol">see here for information about <strong>Bring Your Own Licence (BYOL)</strong></a>:
+<ul>
+<li>SQL2008R2SP3-WS2008R2SP1</li>
+<li>SQL2008R2SP3-WS2012</li>
+<li>SQL2012SP3-WS2012R2</li>
+<li>SQL2012SP3-WS2012R2-BYOL</li>
+<li>SQL2014SP1-WS2012R2</li>
+<li>SQL2014SP1-WS2012R2-BYOL</li>
+<li>SQL2016-WS2012R2</li>
+<li>SQL2016-WS2012R2-BYOL</li>
+<li>SQL2016RC3-WS2012R2</li>
+</ul></li>
+<li>These images include the installation media on the <code>C:/</code> drive of the VM so configuration adjustments could be made as needed.
+<ul>
+<li>It's not clear whether or not VM images would work for our SharePoint needs or whether BYOL is available</li>
 </ul></li>
 </ul>
 <p>this is brilliant information</p>
