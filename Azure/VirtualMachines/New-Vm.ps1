@@ -120,7 +120,7 @@ $vm = Set-AzureRmVMBootDiagnostics -VM $vm -ResourceGroupName $ResourceGroupName
 Write-Host ("Deploying Virtual Machine: {0}" -f $VMName)
 New-AzureRmVM -ResourceGroupName $ResourceGroupName -Location $location -VM $vm
     
-Write-Host ("Virtual Machine {0} deployed at pip:{1} with runtime: {2}.\nAttemping Remote Desktop connection . . ." -f $VMName, $public_ip.IpAddress, $elapsed.Elapsed.ToString())
+Write-Host ("Virtual Machine {0} deployed at pip:{1} with runtime: {2}.  Attemping Remote Desktop connection . . ." -f $VMName, $public_ip.IpAddress, $elapsed.Elapsed.ToString())
 Start-Process "$env:windir\system32\mstsc.exe" -ArgumentList "/v:$dnsName"
 }
 # Split-Path "C:\Users\gcrowell\Documents\GITHUB\Azure\PowerShell deployment\VirtualMachine\DeployVm.ps1" | cd

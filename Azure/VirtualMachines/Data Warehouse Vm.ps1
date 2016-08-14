@@ -13,7 +13,7 @@ $offerName = "RServer-WS2012R2"
 $subnetName = "dw-subnet"
 
 
-$VmIp = "192.168.2.10"
+$VmIp = "192.168.1.10"
 $VmId = 1
 New-Vm -WorkLoadName $workLoadName -VMSize $vmSize -ResourceGroupName $resourceGroupName -StorageAccountName $StorageAccountName -SubNetName $subnetName -VNetName $vnetName -PrivateIp $VmIp -VmId $VmId -SkuName $skuName -PublisherName $publisherName -OfferName $offerName
 

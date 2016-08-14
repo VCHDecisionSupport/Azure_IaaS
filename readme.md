@@ -1,8 +1,17 @@
-# Epic
+# Deployed VM FQDN Names
 
-As a bad ass I want Azure resources to accommadate:
+- jumpboxvm1.canadacentral.cloudapp.azure.com
+- dwvm1.canadacentral.cloudapp.azure.com
+- sharepointvm1.canadacentral.cloudapp.azure.com
+- sharepointvm2.canadacentral.cloudapp.azure.com
+- sharepointvm3.canadacentral.cloudapp.azure.com
 
-- Share Point deployment
+# Remoting into VMs
+
+1. Remote into Jumpbox VM from local PC
+ - use FQDN
+2. Remote from Jumpbox VM to any other VM
+ - use host name (ie vm name)
 
 # Azure Deployment Decisions
 
