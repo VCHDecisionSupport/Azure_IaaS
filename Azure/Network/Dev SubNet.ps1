@@ -1,4 +1,6 @@
-﻿$resourceGroupName = "vchds-root-rg"
+﻿# not used
+
+$resourceGroupName = "vchds-root-rg"
 $dataCentre = "canadacentral"
 $vnetName = "vchds-vnet"
 $subnetName = "dev-subnet"

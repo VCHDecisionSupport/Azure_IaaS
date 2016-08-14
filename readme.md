@@ -9,7 +9,7 @@
 # Remoting into VMs
 
 1. Remote into Jumpbox VM from local PC
- - use FQDN
+ - use FQDN (since underlying IP may change if/when VMs are redeployed)
 2. Remote from Jumpbox VM to any other VM
  - use host name (ie vm name)
 
