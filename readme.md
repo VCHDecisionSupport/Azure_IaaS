@@ -1,3 +1,5 @@
+[Agile Story Board for Azure](https://waffle.io/VCHDecisionSupport/SP-on-Azure)
+
 # Deployed VM FQDN Names
 
 - jumpboxvm1.canadacentral.cloudapp.azure.com
@@ -10,6 +12,7 @@
 
 1. Remote into Jumpbox VM from local PC
  - use FQDN (since underlying IP may change if/when VMs are redeployed)
+ - make sure they've been turned on
 2. Remote from Jumpbox VM to any other VM
  - use host name (ie vm name)
 
