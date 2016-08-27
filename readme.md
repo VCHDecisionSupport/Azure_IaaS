@@ -1,12 +1,41 @@
-# [Click here for Agile Story Board for Azure](https://waffle.io/VCHDecisionSupport/SP-on-Azure)
+[Click here for Agile Story Board for Azure](https://waffle.io/VCHDecisionSupport/SP-on-Azure)
 
-# Deployed VM FQDN Names
+# VCH Decision Support
 
-- jumpboxvm1.canadacentral.cloudapp.azure.com
-- dwvm1.canadacentral.cloudapp.azure.com
-- sharepointvm1.canadacentral.cloudapp.azure.com
-- sharepointvm2.canadacentral.cloudapp.azure.com
-- sharepointvm3.canadacentral.cloudapp.azure.com
+## Virtual Network:
+**IP Range:** 192.168.0.0/16
+
+- __Jumpbox Subnet:__ **jb-subnet**
+	- 192.168.0.0/24
+	- jumpboxvm1.canadacentral.cloudapp.azure.com 
+		- _public ip:_ 13.88.245.188
+		- _private ip:_ 192.168.0.10
+		- _size:_ Standard A3 (4 cores, 7 GB memory)
+- __SharePoint Subnet:__ **sp-subnet**
+	- 192.168.1.0/24
+	- sharepointvm1.canadacentral.cloudapp.azure.com 
+		- _pip:_ 13.88.241.86
+		- _private ip:_ 192.168.1.10
+		- _size:_ Standard A6 (4 cores, 28 GB memory)
+	- sharepointvm2.canadacentral.cloudapp.azure.com 
+		- _pip:_ 13.88.242.152
+		- _private ip:_ 192.168.1.20
+		- _size:_ Standard A6 (4 cores, 28 GB memory)
+- __Data Warehouse Subnet:__ **dw-subnet**
+	- 192.168.2.0/24
+	- dwvm1.canadacentral.cloudapp.azure.com 
+		- _pip:_ 13.88.243.124
+		- _private ip:_ 192.168.2.10
+		- _size:_ Standard A6 (4 cores, 28 GB memory)
+- __ADDC Subnet:__ **addc-subnet**
+	- 192.168.5.0/24
+	- _VM FQDN:_ addcvm1.canadacentral.cloudapp.azure.com 
+		- _pip:_ 13.88.250.230
+		- _private ip:_ 192.168.5.10
+		- _size:_ Standard A3 (4 cores, 7 GB memory)
+- __Dev Subnet:__ **dev-subnet**
+	- 192.168.3.0/24
+
 
 # Remoting into VMs
 
@@ -18,24 +47,36 @@
 
 # Azure Deployment Decisions
 
+- There are three categories of "cloud" deployments:
+	- software as a service (SaaS) eg. Office365
+	- platform as a service (SaaS) eg. SQL Server (IMTS-DS model, no control/access to underlying network/VM/OS)
+	- infrastructure as a service (IaaS) eg. Virtual Network/Virtual Machines (HSBC-IMTS model, no control/access to underlying physical hardware)
+
 - Allow access to Azure resouces through a _single permanent static IP address_ a [**Jumpbox** style architecture that followed](https://azure.microsoft.com/en-us/documentation/articles/guidance-compute-3-tier-vm/).  
-	* IMTS only needs to open **access from on-premises vch.ca domain to single IP address**
+	* IMTS only needs to open **access from on-premises vch.ca domain to single Azure NIC IP address**
 	* Management of VMs is done is Remote Desktop to the Jumpbox VM (whose IP address IMTS has granted vch access to).  From Jumpbox users remote into other VMs in the Virtual Network
 
 [![](https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/guidance-compute-3-tier-vm/20160811062725/compute-n-tier.png "3-Tier Architecture with Jumpbox (click to see tutorial)")](https://azure.microsoft.com/en-us/documentation/articles/guidance-compute-3-tier-vm/)
 
-- Domain Controller may not nessisary since all VMs and role instances will be deployed to same Virtual Network and they don't need to communicate to any on premises computers [Azure provided name resolution](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-name-resolution-for-vms-and-role-instances/) will work.<sup id="a3">[3](#f3)</sup>
-	* this doesn't solve need to have mock users accounts are manage permissions: 
-		- **how does a Domain Controller interact with Network Security Groups?**
+## Active Directory Domain Controller
+_active directory_ stores sensitive login and 
 
+[Azure provided name resolution](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-name-resolution-for-vms-and-role-instances/) does not meet our requirement to replicate/debug end-user experience of SharePoint (and Bonzai/AgilePoint)<sup id="a3">[3](#f3)</sup>.
+Custom Domain Controller will allow us to:
+
+- replicate the permissions of our real-world end-users with mock AD end-user accounts/signins
+- eventually (not currently planned/understood) sync on-premises AD with Azure VM ADDC **(there are important security and privacy implications with connecting/syncing Azure resources with VCH on premises resources)**
+
+**Dcpromo.exe** [depricated in favour of PS based deployment](https://technet.microsoft.com/windows-server-docs/identity/ad-ds/deploy/install-a-new-windows-server-2012-active-directory-forest--level-200-)
+
+## Other Deployment Details
+
+- Our subscription is limited to 20 cores ([see Virtual Network Section for Allocation](#virtual-network))
 - Azure's _Resource Manager_ **Deployment Model** was used rather than the legacy _Classic_ because new Azure features will only be available via _Resource Manager_ and VMs and other [resources created with one model can't necessarily interoperate with resources created using a different deployment.](https://azure.microsoft.com/en-us/documentation/articles/azure-classic-rm/#why-does-this-matter)<sup id="a00">[00](#f00)</sup>
-
 - **Virtual Networks** must be deployed before the VMs because VMs can only be bound to vnet when they are deployed.<sup id="a2">[2](#f2)</sup>
-
 - IPs in Virtual Network are grouped into **subnets** according to their workload and access they resource require
 	* where ever possible **network security groups** are applied to subnets rather than single **network interface cards**
 	* this simplifies the design of **access control lists** since they are applied multiple VM **network interface cards** at once <sup id="a4">[4](#f4)</sup>
-
 - Best practices were followed to establish [**naming conventions**](https://azure.microsoft.com/en-us/documentation/articles/guidance-naming-conventions/) for all resources in the VNet.  If Azure is adopted as permanent dev/test enviroment the subscription should adhere to these recommendations.
 	* [**tags**](https://azure.microsoft.com/en-us/documentation/articles/resource-group-using-tags/#powershell) categorize disparate resources accross different Resource Groups so that they can managed (eg. de/re-allocated) together.  Tags also provide clarity in bills by identitfying high-cost tags.
 	
@@ -53,10 +94,7 @@
 	* SQL2016RC3-WS2012R2
 - These images include the installation media on the `C:/` drive of the VM so configuration adjustments could be made as needed.
 	* It's not clear whether or not VM images would work for our SharePoint needs or whether BYOL is available
-
-
-
-
+`
 this is brilliant information
 
 this is brilliant information
@@ -128,7 +166,17 @@ this is brilliant information
 
 [Create DNS Zone](https://azure.microsoft.com/en-us/documentation/articles/dns-getstarted-create-dnszone/)
 
-[Manage VMs with PowerShell](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-windows-ps-manage/)
 
 [Install a new Active Directory forest on an Azure virtual network](https://azure.microsoft.com/en-us/documentation/articles/active-directory-new-forest-virtual-machine/)
 
+## PowerShell
+
+[Manage VMs with PowerShell](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-windows-ps-manage/)
+
+[Configure Remote Azure VM PowerShell Access with PowerShell](http://fabriccontroller.net/automatically-configuring-remote-powershell-for-windows-azure-virtual-machines-on-your-machine/)
+
+[Configure Remote Azure VM PowerShell Access](https://blogs.msdn.microsoft.com/mariok/2011/08/08/command-line-access-to-azure-vms-powershell-remoting/)
+
+[PowerShell script to Configure Secure Remote PowerShell Access to Windows Azure Virtual Machines](https://gallery.technet.microsoft.com/scriptcenter/Configures-Secure-Remote-b137f2fe)
+
+[Introduction to Remote PowerShell with Windows Azure](https://www.opsgility.com/blog/windows-azure-powershell-reference-guide/introduction-remote-powershell-with-windows-azure/)
