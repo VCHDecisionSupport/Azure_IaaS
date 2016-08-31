@@ -33,6 +33,7 @@ If($err.Count -gt 0)
     # create root resource group
     Write-Host "create resource group"
     New-AzureRmResourceGroup -Name $resourceGroupName -Location $dataCentre
+    # TODO: add tag for automation
 }
 
 # check if VNet exists
