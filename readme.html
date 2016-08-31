@@ -10,7 +10,7 @@
 <body>
 <div id="TOC">
 <ul>
-<li><a href="#deployed-vm-fqdn-names">Deployed VM FQDN Names</a><ul>
+<li><a href="#vch-decision-support">VCH Decision Support</a><ul>
 <li><a href="#virtual-network">Virtual Network:</a></li>
 </ul></li>
 <li><a href="#remoting-into-vms">Remoting into VMs</a></li>
@@ -25,7 +25,7 @@
 </ul>
 </div>
 <p><a href="https://waffle.io/VCHDecisionSupport/SP-on-Azure">Click here for Agile Story Board for Azure</a></p>
-<h1 id="deployed-vm-fqdn-names">Deployed VM FQDN Names</h1>
+<h1 id="vch-decision-support">VCH Decision Support</h1>
 <h2 id="virtual-network">Virtual Network:</h2>
 <p><strong>IP Range:</strong> 192.168.0.0/16</p>
 <ul>
@@ -96,13 +96,19 @@
 </ul>
 <h1 id="azure-deployment-decisions">Azure Deployment Decisions</h1>
 <ul>
+<li>There are three categories of &quot;cloud&quot; deployments:
+<ul>
+<li>software as a service (SaaS) eg. Office365</li>
+<li>platform as a service (SaaS) eg. SQL Server (IMTS-DS model, no control/access to underlying network/VM/OS)</li>
+<li>infrastructure as a service (IaaS) eg. Virtual Network/Virtual Machines (HSBC-IMTS model, no control/access to underlying physical hardware)</li>
+</ul></li>
 <li>Allow access to Azure resouces through a <em>single permanent static IP address</em> a <a href="https://azure.microsoft.com/en-us/documentation/articles/guidance-compute-3-tier-vm/"><strong>Jumpbox</strong> style architecture that followed</a>.
 <ul>
 <li>IMTS only needs to open <strong>access from on-premises vch.ca domain to single Azure NIC IP address</strong></li>
 <li>Management of VMs is done is Remote Desktop to the Jumpbox VM (whose IP address IMTS has granted vch access to). From Jumpbox users remote into other VMs in the Virtual Network</li>
 </ul></li>
 </ul>
-<p><a href="https://azure.microsoft.com/en-us/documentation/articles/guidance-compute-3-tier-vm/"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/guidance-compute-3-tier-vm/20160811062725/compute-n-tier.png" title="3-Tier Architecture with Jumpbox (click to see tutorial)" /></a></p>
+<p><a href="https://azure.microsoft.com/en-us/documentation/articles/guidance-compute-3-tier-vm/"><img src="https://raw.githubusercontent.com/VCHDecisionSupport/SP-on-Azure/master/SP-on-Azure.png" title="2 tier Architecture with Jumpbox (click to see tutorial)" /></a></p>
 <h2 id="active-directory-domain-controller">Active Directory Domain Controller</h2>
 <p><em>active directory</em> stores sensitive login and</p>
 <p><a href="https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-name-resolution-for-vms-and-role-instances/">Azure provided name resolution</a> does not meet our requirement to replicate/debug end-user experience of SharePoint (and Bonzai/AgilePoint)<sup id="a3"><a href="#f3">3</a></sup>. Custom Domain Controller will allow us to:</p>
@@ -142,10 +148,9 @@
 </ul></li>
 <li>These images include the installation media on the <code>C:/</code> drive of the VM so configuration adjustments could be made as needed.
 <ul>
-<li>It's not clear whether or not VM images would work for our SharePoint needs or whether BYOL is available</li>
+<li>It's not clear whether or not VM images would work for our SharePoint needs or whether BYOL is available ` this is brilliant information</li>
 </ul></li>
 </ul>
-<p>this is brilliant information</p>
 <p>this is brilliant information</p>
 <p>this is brilliant information</p>
 <p>this is brilliant information</p>
