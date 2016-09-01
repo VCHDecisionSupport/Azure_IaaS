@@ -49,3 +49,20 @@ foreach($vhds in $vhdss)
     Remove-AzureStorageBlob -Blob $vhds -Container "vhds" -Context $storageContext -Force
 }
 
+
+# try again
+$vnet=Get-AzureRmVirtualNetwork -ResourceGroupName $resourceGroupName -Name $vnetName
+$storageContext = (Get-AzureRmStorageAccount -ResourceGroupName $resourceGroupName).Context
+
+
+$vmName='Sharepointvm1'
+$vm=Get-AzureRmVm -ResourceGroupName $resourceGroupName -Name $vmName
+
+$nicName=$vm.NetworkInterfaceIDs[0].Split('/')[-1]
+$nic=Get-AzureRmNetworkInterface -ResourceGroupName $resourceGroupName -Name $nicName
+$pip=Get-AzureRmNetworkInterfaceIpConfig -NetworkInterface $nic
+$subnetName=$nic.IpConfigurations.Subnet.Id.Split('/')[-1]
+$subnet=$pip.Subnet
+($subnet.NetworkSecurityGroup).Subnets
+
+$vm.StorageProfile.OsDisk.Vhd
