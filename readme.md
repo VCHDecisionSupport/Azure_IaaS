@@ -94,7 +94,19 @@ Custom Domain Controller will allow us to:
 	* SQL2016RC3-WS2012R2
 - These images include the installation media on the `C:/` drive of the VM so configuration adjustments could be made as needed.
 	* It's not clear whether or not VM images would work for our SharePoint needs or whether BYOL is available
-`
+
+# Tear Down Sequence of Azure IaaS Deployment
+
+1. Remove VMs
+2. Remove NICs
+3. Remove PIPs
+4. Remove Subnets
+5. Remove NSGs
+6. Remove Virtual Networks
+7. Remove Storage Accounts
+8. Remove Resource Groups
+
+
 this is brilliant information
 
 this is brilliant information

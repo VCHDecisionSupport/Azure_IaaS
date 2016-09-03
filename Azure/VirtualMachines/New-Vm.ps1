@@ -89,10 +89,10 @@ $VMName=$WorkLoadName+"Vm"+$VmId
 $NicName=$VMName+"Nic"
 $PublicIpName=$VMName+"Pip"
 $OsDiskName=$VMName+"OsDisk"
-#$BootDiagDiskName=$VMName+"BootDiagDisk"
+$BootDiagDiskName=$VMName+"BootDiagDisk"
 
 $os_disk_uri = $storage_account.PrimaryEndpoints.Blob.ToString() + "vhds/" + $OsDiskName  + ".vhd"
-#$bootdiag_disk_uri = $storage_account.PrimaryEndpoints.Blob.ToString() + "vhds/" + $BootDiagDiskName  + ".vhd"
+$bootdiag_disk_uri = $storage_account.PrimaryEndpoints.Blob.ToString() + "vhds/" + $BootDiagDiskName  + ".vhd"
 
 Write-Host ("Configuring Public Static IP address")
 $public_ip = New-AzureRmPublicIpAddress -Name $PublicIpName -ResourceGroupName $ResourceGroupName -Location $location -AllocationMethod Static -DomainNameLabel $vmName.ToLower()
@@ -121,7 +121,7 @@ Write-Host ("Deploying Virtual Machine: {0}" -f $VMName)
 New-AzureRmVM -ResourceGroupName $ResourceGroupName -Location $location -VM $vm
     
 Write-Host ("Virtual Machine {0} deployed at pip:{1} with runtime: {2}.  Attemping Remote Desktop connection . . ." -f $VMName, $public_ip.IpAddress, $elapsed.Elapsed.ToString())
-Start-Process "$env:windir\system32\mstsc.exe" -ArgumentList "/v:$dnsName"
+# Start-Process "$env:windir\system32\mstsc.exe" -ArgumentList "/v:$dnsName"
 }
 # Split-Path "C:\Users\gcrowell\Documents\GITHUB\Azure\PowerShell deployment\VirtualMachine\DeployVm.ps1" | cd
 # .\DeployVm.ps1 -WorkLoadName "thisworksgreat" -VMSize "Standard_A3" -ResourceGroupName "VCHDSAzureRmResourceGroup" -StorageAccountName "vchstdstorageacct" -SubNetName "VCHDSSubNetProdSP" -VNetName "VCHDSVNet" -StaticIp "192.168.1.105"

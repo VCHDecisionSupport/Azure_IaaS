@@ -2,7 +2,7 @@ $resourceGroupName = "vchds-root-rg"
 $dataCentre = "canadacentral"
 $vnetName = "vchds-vnet"
 $subnetName = "sp-subnet"
-$addressPrefix = "192.168.1.0/24"
+$addressPrefix = "192.168.2.0/24"
 $networkSecurityGroupName = "sp-subnet-nsg"
 
 $Error.Clear()
@@ -45,12 +45,12 @@ If($vnet.SubnetsText.Contains($subnetName))
 # add subnet inside vnet
 $subnet = Add-AzureRmVirtualNetworkSubnetConfig -Name $subnetName -VirtualNetwork $VNet -AddressPrefix $addressPrefix
 # block from internet to subnet
-$rdprule = New-AzureRmNetworkSecurityRuleConfig -Name rdp-rule -Description "Allow RDP" `
-    -Access Allow -Protocol Tcp -Direction Inbound -Priority 100 `
+$wwwrule = New-AzureRmNetworkSecurityRuleConfig -Name rdp-rule -Description "Deny All Inbound Internet" `
+    -Access Deny -Protocol Tcp -Direction Inbound -Priority 100 `
     -SourceAddressPrefix Internet -SourcePortRange * `
-    -DestinationAddressPrefix * -DestinationPortRange 3389
+    -DestinationAddressPrefix * -DestinationPortRange *
 
-$nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName $resourceGroupName -Location $dataCentre -Name $networkSecurityGroupName -SecurityRules $rdprule
+$nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName $resourceGroupName -Location $dataCentre -Name $networkSecurityGroupName -SecurityRules $wwwrule
 
 Set-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name $subnetName -AddressPrefix $addressPrefix -NetworkSecurityGroup $nsg
 

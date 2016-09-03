@@ -55,7 +55,7 @@ $vnet=Get-AzureRmVirtualNetwork -ResourceGroupName $resourceGroupName -Name $vne
 $storageContext = (Get-AzureRmStorageAccount -ResourceGroupName $resourceGroupName).Context
 
 
-$vmName='Sharepointvm1'
+$vmName='JumpBoxvm1'
 $vm=Get-AzureRmVm -ResourceGroupName $resourceGroupName -Name $vmName
 
 $nicName=$vm.NetworkInterfaceIDs[0].Split('/')[-1]
@@ -66,3 +66,30 @@ $subnet=$pip.Subnet
 ($subnet.NetworkSecurityGroup).Subnets
 
 $vm.StorageProfile.OsDisk.Vhd
+
+Remove-AzureRmNetworkInterfaceIpConfig -Name $nicName -NetworkInterface $nic
+Remove-AzureRmNetworkInterface -ResourceGroupName $resourceGroupName -Name $nicName -Force
+
+
+
+
+
+
+$storageAccount=Get-AzureRmStorageAccount -ResourceGroupName $resourceGroupName
+
+
+$nicName
+
+Remove-AzureRmPublicIpAddress -ResourceGroupName $resourceGroupName -Name 'SharePointVm1Pip'
+
+
+$pipName='JumpBoxVm1Pip'
+$nsgName='jb-subnet-nsg'
+$subnetName='jb-subnet'
+Remove-AzureRmVM -Name $vmName -ResourceGroupName $resourceGroupName -Force
+Remove-AzureRmNetworkInterface -ResourceGroupName $resourceGroupName -Name $nicName -Force
+Remove-AzureRmPublicIpAddress -ResourceGroupName $resourceGroupName -Name $pipName -Force
+Remove-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name $subnetName
+Remove-AzureRmNetworkSecurityGroup -ResourceGroupName $resourceGroupName -Name $nsgName -Force
+Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
+Get-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name $subnetName

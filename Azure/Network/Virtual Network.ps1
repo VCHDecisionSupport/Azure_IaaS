@@ -3,7 +3,7 @@ $dataCentre = "canadacentral"
 $vnetName = "vchds-vnet"
 $addressPrefix = "192.168.0.0/16"
 $storageAccountName = "vchdsstorageacct"
-$storageAccountType = "Standard_GRS"
+$storageAccountType = "Standard_LRS"
 
 
 
