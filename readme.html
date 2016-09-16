@@ -11,7 +11,9 @@
 <div id="TOC">
 <ul>
 <li><a href="#vch-decision-support">VCH Decision Support</a><ul>
-<li><a href="#virtual-network">Virtual Network:</a></li>
+<li><a href="#virtual-network">Virtual Network:</a><ul>
+<li><a href="#deployed-virtual-machine-information">Deployed Virtual Machine Information</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#remoting-into-vms">Remoting into VMs</a></li>
 <li><a href="#azure-deployment-decisions">Azure Deployment Decisions</a><ul>
@@ -19,6 +21,7 @@
 <li><a href="#other-deployment-details">Other Deployment Details</a></li>
 <li><a href="#software-installation-sql-and-sharepoint-licencing-and-msdn-questions">Software Installation (SQL and SharePoint); Licencing and MSDN Questions</a></li>
 </ul></li>
+<li><a href="#tear-down-sequence-of-azure-iaas-deployment">Tear Down Sequence of Azure IaaS Deployment</a></li>
 <li><a href="#other-useful-documentation">Other useful documentation:</a><ul>
 <li><a href="#powershell">PowerShell</a></li>
 </ul></li>
@@ -27,52 +30,66 @@
 <p><a href="https://waffle.io/VCHDecisionSupport/SP-on-Azure">Click here for Agile Story Board for Azure</a></p>
 <h1 id="vch-decision-support">VCH Decision Support</h1>
 <h2 id="virtual-network">Virtual Network:</h2>
-<p><strong>IP Range:</strong> 192.168.0.0/16</p>
+<p><strong>IP Range:</strong> 192.168.0.0/16 <strong>Domain:</strong> vchds.ca</p>
+<h3 id="deployed-virtual-machine-information">Deployed Virtual Machine Information</h3>
 <ul>
 <li><strong>Jumpbox Subnet:</strong> <strong>jb-subnet</strong>
 <ul>
-<li>192.168.0.0/24</li>
-<li>jumpboxvm1.canadacentral.cloudapp.azure.com
+<li><em>subnet IP range:</em> 192.168.0.0/24</li>
+<li><em>VM FQDN:</em> jumpboxvm1.canadacentral.cloudapp.azure.com
 <ul>
-<li><em>public ip:</em> 13.88.245.188</li>
+<li><em>public ip:</em> 40.85.254.203</li>
 <li><em>private ip:</em> 192.168.0.10</li>
-<li><em>size:</em> Standard A3 (4 cores, 7 GB memory)</li>
-</ul></li>
-</ul></li>
-<li><strong>SharePoint Subnet:</strong> <strong>sp-subnet</strong>
-<ul>
-<li>192.168.1.0/24</li>
-<li>sharepointvm1.canadacentral.cloudapp.azure.com
-<ul>
-<li><em>pip:</em> 13.88.241.86</li>
-<li><em>private ip:</em> 192.168.1.10</li>
-<li><em>size:</em> Standard A6 (4 cores, 28 GB memory)</li>
-</ul></li>
-<li>sharepointvm2.canadacentral.cloudapp.azure.com
-<ul>
-<li><em>pip:</em> 13.88.242.152</li>
-<li><em>private ip:</em> 192.168.1.20</li>
-<li><em>size:</em> Standard A6 (4 cores, 28 GB memory)</li>
-</ul></li>
-</ul></li>
-<li><strong>Data Warehouse Subnet:</strong> <strong>dw-subnet</strong>
-<ul>
-<li>192.168.2.0/24</li>
-<li>dwvm1.canadacentral.cloudapp.azure.com
-<ul>
-<li><em>pip:</em> 13.88.243.124</li>
-<li><em>private ip:</em> 192.168.2.10</li>
-<li><em>size:</em> Standard A6 (4 cores, 28 GB memory)</li>
+<li><em>size:</em> Standard D2 v2 (2 cores, 7 GB memory)</li>
+<li><em>os:</em> Windows Server 2012 R2 Data Center</li>
 </ul></li>
 </ul></li>
 <li><strong>ADDC Subnet:</strong> <strong>addc-subnet</strong>
 <ul>
-<li>192.168.5.0/24</li>
+<li><em>subnet IP range:</em> 192.168.1.0/24</li>
 <li><em>VM FQDN:</em> addcvm1.canadacentral.cloudapp.azure.com
 <ul>
-<li><em>pip:</em> 13.88.250.230</li>
-<li><em>private ip:</em> 192.168.5.10</li>
-<li><em>size:</em> Standard A3 (4 cores, 7 GB memory)</li>
+<li><em>pip:</em> 13.88.250.151</li>
+<li><em>private ip:</em> 192.168.1.10</li>
+<li><em>size:</em> Standard D2 v2 (2 cores, 7 GB memory)</li>
+<li><em>os:</em> Windows Server 2012 R2 Data Center</li>
+</ul></li>
+</ul></li>
+<li><strong>SharePoint Subnet:</strong> <strong>sp-subnet</strong>
+<ul>
+<li><em>subnet IP range:</em> 192.168.2.0/24</li>
+<li><em>VM FQDN:</em> sharepointvm1.canadacentral.cloudapp.azure.com
+<ul>
+<li><em>pip:</em> 13.88.244.97</li>
+<li><em>private ip:</em> 192.168.2.10</li>
+<li><em>size:</em> Standard A6 (4 cores, 28 GB memory)</li>
+<li><em>os:</em> Windows Server 2008 R2 Data Center</li>
+</ul></li>
+<li><em>VM FQDN:</em> sharepointvm2.canadacentral.cloudapp.azure.com
+<ul>
+<li><em>pip:</em> 13.88.247.37<br />
+</li>
+<li><em>private ip:</em> 192.168.2.20</li>
+<li><em>size:</em> Standard A6 (4 cores, 28 GB memory)</li>
+<li><em>os:</em> Windows Server 2008 R2 Data Center</li>
+</ul></li>
+<li><em>VM FQDN:</em> sharepointvm3.canadacentral.cloudapp.azure.com
+<ul>
+<li><em>pip:</em> 40.85.251.59</li>
+<li><em>private ip:</em> 192.168.2.30</li>
+<li><em>size:</em> Standard A6 (4 cores, 28 GB memory)</li>
+<li><em>os:</em> Windows Server 2008 R2 Data Center</li>
+</ul></li>
+</ul></li>
+<li><strong>Data Warehouse Subnet:</strong> <strong>dw-subnet</strong>
+<ul>
+<li><em>subnet IP range:</em> 192.168.2.0/24</li>
+<li><em>VM FQDN:</em> dwvm1.canadacentral.cloudapp.azure.com
+<ul>
+<li><em>pip:</em> 52.233.25.11</li>
+<li><em>private ip:</em> 192.168.2.10</li>
+<li><em>size:</em> Standard A6 (4 cores, 28 GB memory)</li>
+<li><em>os:</em> Windows Server 2012 R2 Data Center</li>
 </ul></li>
 </ul></li>
 <li><strong>Dev Subnet:</strong> <strong>dev-subnet</strong>
@@ -108,7 +125,7 @@
 <li>Management of VMs is done is Remote Desktop to the Jumpbox VM (whose IP address IMTS has granted vch access to). From Jumpbox users remote into other VMs in the Virtual Network</li>
 </ul></li>
 </ul>
-<p><a href="https://azure.microsoft.com/en-us/documentation/articles/guidance-compute-3-tier-vm/"><img src="https://raw.githubusercontent.com/VCHDecisionSupport/SP-on-Azure/master/SP-on-Azure.png" title="2 tier Architecture with Jumpbox (click to see tutorial)" /></a></p>
+<p><a href="https://azure.microsoft.com/en-us/documentation/articles/guidance-compute-3-tier-vm/"><img src="https://raw.githubusercontent.com/VCHDecisionSupport/SP-on-Azure/master/SP-on-Azure.png" title="2 tier Architecture with Jumpbox by Renee Fung (click to see tutorial)" /></a></p>
 <h2 id="active-directory-domain-controller">Active Directory Domain Controller</h2>
 <p><em>active directory</em> stores sensitive login and</p>
 <p><a href="https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-name-resolution-for-vms-and-role-instances/">Azure provided name resolution</a> does not meet our requirement to replicate/debug end-user experience of SharePoint (and Bonzai/AgilePoint)<sup id="a3"><a href="#f3">3</a></sup>. Custom Domain Controller will allow us to:</p>
@@ -148,9 +165,21 @@
 </ul></li>
 <li>These images include the installation media on the <code>C:/</code> drive of the VM so configuration adjustments could be made as needed.
 <ul>
-<li>It's not clear whether or not VM images would work for our SharePoint needs or whether BYOL is available ` this is brilliant information</li>
+<li>It's not clear whether or not VM images would work for our SharePoint needs or whether BYOL is available</li>
 </ul></li>
 </ul>
+<h1 id="tear-down-sequence-of-azure-iaas-deployment">Tear Down Sequence of Azure IaaS Deployment</h1>
+<ol style="list-style-type: decimal">
+<li>Remove VMs</li>
+<li>Remove NICs</li>
+<li>Remove PIPs</li>
+<li>Remove Subnets</li>
+<li>Remove NSGs</li>
+<li>Remove Virtual Networks</li>
+<li>Remove Storage Accounts</li>
+<li>Remove Resource Groups</li>
+</ol>
+<p>this is brilliant information</p>
 <p>this is brilliant information</p>
 <p>this is brilliant information</p>
 <p>this is brilliant information</p>

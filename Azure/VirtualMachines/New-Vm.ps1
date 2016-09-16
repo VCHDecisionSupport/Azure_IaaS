@@ -5,13 +5,13 @@ param (
     #[ValidateSet("Low", "Average", "High")]
     [Parameter(Mandatory=$true)][string]$OfferName,
     [Parameter(Mandatory=$true)][string]$SkuName,
-    [Parameter()][int]$VmId = "1",
+    #[Parameter()][int]$VmId = "1",
     [Parameter(Mandatory=$true)][string]$WorkLoadName,
     [Parameter(Mandatory=$true)][string]$VMSize,
     [Parameter(Mandatory=$true)][string]$ResourceGroupName,
     [Parameter(Mandatory=$true)][string]$VNetName,
     [Parameter(Mandatory=$true)][string]$SubNetName,
-    [Parameter(Mandatory=$true)][string]$PrivateIp,
+    #[Parameter(Mandatory=$true)][string]$PrivateIp,
     [Parameter(Mandatory=$true)][string]$StorageAccountName
 )
 $elapsed = [System.Diagnostics.Stopwatch]::StartNew()
@@ -21,14 +21,25 @@ Write-Host ('-----------------------------------------------')
 Write-Host ('PublisherName: {0}' -f $PublisherName)
 Write-Host ('OfferName: {0}' -f $OfferName)
 Write-Host ('SkuName: {0}' -f $SkuName)
-Write-Host ('VmId: {0}' -f $VmId)
 Write-Host ('WorkLoadName: {0}' -f $WorkLoadName)
 Write-Host ('VMSize: {0}' -f $VMSize)
 Write-Host ('ResourceGroupName: {0}' -f $ResourceGroupName)
 Write-Host ('VNetName: {0}' -f $VNetName)
 Write-Host ('SubNetName: {0}' -f $SubNetName)
-Write-Host ('PrivateIp: {0}' -f $PrivateIp)
 Write-Host ('StorageAccountName: {0}' -f $StorageAccountName)
+Write-Host ('-----------------------------------------------')
+Write-Host ('generated paramters:')
+Write-Host ('-----------------------------------------------')
+$PrivateIp = (Get-NextIp -ResourceGroupName $ResourceGroupName -VNetName $VNetName -SubNetName $SubNetName)
+if($PrivateIp -eq $null)
+{
+    $NullPrivateIp = New-Object System.ArgumentNullException "$PrivateIp"
+    Throw $NullPrivateIp
+    return;
+} 
+Write-Host ('PrivateIp: {0}' -f $PrivateIp)
+$VmId = $PrivateIp.Split('.')[3]/10
+Write-Host ('VmId: {0}' -f $VmId)
 Write-Host ('-----------------------------------------------')
 Write-Host ('component names:')
 Write-Host ('-----------------------------------------------')
@@ -36,11 +47,13 @@ $VMName=$WorkLoadName+"Vm"+$VmId
 $NicName=$VMName+"Nic"
 $PublicIpName=$VMName+"Pip"
 $OsDiskName=$VMName+"OsDisk"
+$BootDiagDiskName=$VMName+"BootDiagDisk"
 $dnsName="{0}.canadacentral.cloudapp.azure.com" -f $VMName.ToLower()
 Write-Host ('VMName: {0}' -f $VMName)
 Write-Host ('NicName: {0}' -f $NicName)
 Write-Host ('PublicIpName: {0}' -f $PublicIpName)
 Write-Host ('OsDiskName: {0}' -f $OsDiskName)
+Write-Host ('BootDiagnosisDiskName: {0}' -f $OsDiskName)
 Write-Host ('DNS Name: {0}' -f $dnsName)
 Write-Host ('-----------------------------------------------')
 #############################################################################################################
@@ -85,17 +98,17 @@ If($null -in @($rg, $location, $vnet, $storage_account, $vm_size))
     Write-Host ("invalid parameter(s)")
 }
 
-$VMName=$WorkLoadName+"Vm"+$VmId
-$NicName=$VMName+"Nic"
-$PublicIpName=$VMName+"Pip"
-$OsDiskName=$VMName+"OsDisk"
-$BootDiagDiskName=$VMName+"BootDiagDisk"
+#$VMName=$WorkLoadName+"Vm"+$VmId
+#$NicName=$VMName+"Nic"
+#$PublicIpName=$VMName+"Pip"
+#$OsDiskName=$VMName+"OsDisk"
 
 $os_disk_uri = $storage_account.PrimaryEndpoints.Blob.ToString() + "vhds/" + $OsDiskName  + ".vhd"
 $bootdiag_disk_uri = $storage_account.PrimaryEndpoints.Blob.ToString() + "vhds/" + $BootDiagDiskName  + ".vhd"
 
 Write-Host ("Configuring Public Static IP address")
 $public_ip = New-AzureRmPublicIpAddress -Name $PublicIpName -ResourceGroupName $ResourceGroupName -Location $location -AllocationMethod Static -DomainNameLabel $vmName.ToLower()
+Write-Host ("Public Static IP address: {0}" -f $public_ip.IpAddress)
 
 Write-Host ("Configuring Network Interface Card: {0}" -f $NicName)
 $subnet=$vnet.Subnets | Where-Object {$_.Name -eq $SubNetName}
@@ -117,10 +130,14 @@ $vm = Add-AzureRmVMNetworkInterface -VM $vm -Id $nic.Id
 $vm = Set-AzureRmVMOSDisk -VM $vm -Name $OsDiskName -VhdUri $os_disk_uri -CreateOption fromImage
 $vm = Set-AzureRmVMBootDiagnostics -VM $vm -ResourceGroupName $ResourceGroupName -StorageAccountName $StorageAccountName -Enable
 
+$autoShutDown = "7pm -> 6am"
+Write-Host ("AutoShutdownSchedule: {0}" -f $autoShutDown)
+$automationTags = @(@{Name = "AutoShutdownSchedule"; Value = $autoShutDown})
 Write-Host ("Deploying Virtual Machine: {0}" -f $VMName)
-New-AzureRmVM -ResourceGroupName $ResourceGroupName -Location $location -VM $vm
+New-AzureRmVM -ResourceGroupName $ResourceGroupName -Location $location -VM $vm -Tags $automationTags
     
-Write-Host ("Virtual Machine {0} deployed at pip:{1} with runtime: {2}.  Attemping Remote Desktop connection . . ." -f $VMName, $public_ip.IpAddress, $elapsed.Elapsed.ToString())
+Write-Host ("Virtual Machine {0} deployed at pip:{1} with runtime: {2}." -f $VMName, $public_ip.IpAddress, $elapsed.Elapsed.ToString())
+#Write-Host ("Attemping Remote Desktop connection . . .")
 # Start-Process "$env:windir\system32\mstsc.exe" -ArgumentList "/v:$dnsName"
 }
 # Split-Path "C:\Users\gcrowell\Documents\GITHUB\Azure\PowerShell deployment\VirtualMachine\DeployVm.ps1" | cd

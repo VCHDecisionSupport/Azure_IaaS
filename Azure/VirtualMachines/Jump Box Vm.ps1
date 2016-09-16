@@ -11,8 +11,8 @@ $skuName = "2012-R2-Datacenter"
 $publisherName = "MicrosoftWindowsServer"
 $offerName = "WindowsServer"
 $subnetName = "jb-subnet"
-$VmIp = "192.168.0.10"
+#$VmIp = "192.168.0.10"
 
 
-New-Vm -WorkLoadName $workLoadName -VMSize $vmSize -ResourceGroupName $resourceGroupName -StorageAccountName $StorageAccountName -SubNetName $subnetName -VNetName $vnetName -PrivateIp $VmIp -SkuName $skuName -PublisherName $publisherName -OfferName $offerName
+New-Vm -WorkLoadName $workLoadName -VMSize $vmSize -ResourceGroupName $resourceGroupName -StorageAccountName $StorageAccountName -SubNetName $subnetName -VNetName $vnetName -SkuName $skuName -PublisherName $publisherName -OfferName $offerName
 # 40.85.248.216

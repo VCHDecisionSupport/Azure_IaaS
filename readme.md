@@ -4,35 +4,47 @@
 
 ## Virtual Network:
 **IP Range:** 192.168.0.0/16
+**Domain:** vchds.ca
 
+### Deployed Virtual Machine Information 
 - __Jumpbox Subnet:__ **jb-subnet**
-	- 192.168.0.0/24
-	- jumpboxvm1.canadacentral.cloudapp.azure.com 
-		- _public ip:_ 13.88.245.188
+	- _subnet IP range:_ 192.168.0.0/24
+	- _VM FQDN:_ jumpboxvm1.canadacentral.cloudapp.azure.com 
+		- _public ip:_ 40.85.254.203
 		- _private ip:_ 192.168.0.10
-		- _size:_ Standard A3 (4 cores, 7 GB memory)
-- __SharePoint Subnet:__ **sp-subnet**
-	- 192.168.1.0/24
-	- sharepointvm1.canadacentral.cloudapp.azure.com 
-		- _pip:_ 13.88.241.86
-		- _private ip:_ 192.168.1.10
-		- _size:_ Standard A6 (4 cores, 28 GB memory)
-	- sharepointvm2.canadacentral.cloudapp.azure.com 
-		- _pip:_ 13.88.242.152
-		- _private ip:_ 192.168.1.20
-		- _size:_ Standard A6 (4 cores, 28 GB memory)
-- __Data Warehouse Subnet:__ **dw-subnet**
-	- 192.168.2.0/24
-	- dwvm1.canadacentral.cloudapp.azure.com 
-		- _pip:_ 13.88.243.124
-		- _private ip:_ 192.168.2.10
-		- _size:_ Standard A6 (4 cores, 28 GB memory)
+        - _size:_ Standard D2 v2 (2 cores, 7 GB memory)
+        - _os:_ Windows Server 2012 R2 Data Center
 - __ADDC Subnet:__ **addc-subnet**
-	- 192.168.5.0/24
+	- _subnet IP range:_ 192.168.1.0/24
 	- _VM FQDN:_ addcvm1.canadacentral.cloudapp.azure.com 
-		- _pip:_ 13.88.250.230
-		- _private ip:_ 192.168.5.10
-		- _size:_ Standard A3 (4 cores, 7 GB memory)
+		- _pip:_ 13.88.250.151
+		- _private ip:_ 192.168.1.10
+		- _size:_ Standard D2 v2 (2 cores, 7 GB memory)
+        - _os:_ Windows Server 2012 R2 Data Center
+- __SharePoint Subnet:__ **sp-subnet**
+    - _subnet IP range:_ 192.168.2.0/24
+    - _VM FQDN:_ sharepointvm1.canadacentral.cloudapp.azure.com 
+        - _pip:_ 13.88.244.97
+        - _private ip:_ 192.168.2.10
+        - _size:_ Standard A6 (4 cores, 28 GB memory)
+        - _os:_ Windows Server 2008 R2 Data Center
+    - _VM FQDN:_ sharepointvm2.canadacentral.cloudapp.azure.com 
+        - _pip:_ 13.88.247.37   
+        - _private ip:_ 192.168.2.20
+        - _size:_ Standard A6 (4 cores, 28 GB memory)
+        - _os:_ Windows Server 2008 R2 Data Center
+    - _VM FQDN:_ sharepointvm3.canadacentral.cloudapp.azure.com 
+        - _pip:_ 40.85.251.59
+        - _private ip:_ 192.168.2.30
+        - _size:_ Standard A6 (4 cores, 28 GB memory)
+        - _os:_ Windows Server 2008 R2 Data Center
+- __Data Warehouse Subnet:__ **dw-subnet**
+    - _subnet IP range:_ 192.168.2.0/24
+    - _VM FQDN:_ dwvm1.canadacentral.cloudapp.azure.com 
+        - _pip:_ 52.233.25.11
+        - _private ip:_ 192.168.2.10
+        - _size:_ Standard A6 (4 cores, 28 GB memory)
+        - _os:_ Windows Server 2012 R2 Data Center
 - __Dev Subnet:__ **dev-subnet**
 	- 192.168.3.0/24
 
