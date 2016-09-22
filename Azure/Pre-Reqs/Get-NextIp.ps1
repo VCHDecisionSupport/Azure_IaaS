@@ -28,10 +28,3 @@ param (
     return($nextIp) 
 }
 
-$resourceGroupName = "vchds-root-rg"
-$vnetName = "vchds-vnet"
-$subnetName = "sp-subnet"
-
-
-$x=Get-NextIp -ResourceGroupName $resourceGroupName -VNetName $vnetName -SubNetName $subnetName
-$x

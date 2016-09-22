@@ -21,4 +21,4 @@ $storageAccountName = "vchdsstorageacct"
 $autoAcctName="vchds-auto"
 $subName="Microsoft Azure Sponsorship"
 $sub=Get-AzureRmSubscription -SubscriptionName $subName
-#Select-AzureRmSubscription -SubscriptionName $subName
+
