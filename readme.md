@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/VCHDecisionSupport/SP-on-Azure.png?label=ready&title=Ready)](https://waffle.io/VCHDecisionSupport/SP-on-Azure)
 [Click here for Agile Story Board for Azure](https://waffle.io/VCHDecisionSupport/SP-on-Azure)
 
 # VCH Decision Support
