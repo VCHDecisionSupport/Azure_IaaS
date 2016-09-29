@@ -16,7 +16,7 @@ If($IsSignedIn -eq $false)
 
 Write-Host "Setting env variables to deployment values"
 $env:subscriptionName="Microsoft Azure Sponsorship"
-$env:subscription=Get-AzureRmSubscription -SubscriptionName $env:subscriptionName
+#$env:subscription=Get-AzureRmSubscription -SubscriptionName $env:subscriptionName
 $env:dataCentre = "canadacentral"
 
 $env:resourceGroupName = "vchds-root-rg"
@@ -28,5 +28,5 @@ $env:storageAccountName = "vchdsstorageacct"
 
 $env:autoAccountName="vchds-auto"
 
-
-
+Select-AzureRmSubscription -SubscriptionName $env:subscriptionName
+Select-AzureSubscription -Default -SubscriptionName $env:subscriptionName
