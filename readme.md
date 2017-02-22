@@ -2,7 +2,7 @@
 [Click here for Agile Story Board for Azure](https://waffle.io/VCHDecisionSupport/SP-on-Azure)
 
 # VCH Decision Support
-
+<!-- 
 ## Virtual Network:
 **IP Range:** 192.168.0.0/16
 
@@ -54,7 +54,7 @@
         - <!-- _size -->:_ Standard A6 (4 cores, 28 GB memory)
         - _os:_ Windows Server 2012 R2 Data Center
 - __Dev Subnet:__ **dev-subnet**
-	- 192.168.3.0/24
+	- 192.168.3.0/24 -->
 
 
 # Remoting into VMs

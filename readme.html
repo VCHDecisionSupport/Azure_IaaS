@@ -10,11 +10,7 @@
 <body>
 <div id="TOC">
 <ul>
-<li><a href="#vch-decision-support">VCH Decision Support</a><ul>
-<li><a href="#virtual-network">Virtual Network:</a><ul>
-<li><a href="#deployed-virtual-machine-information">Deployed Virtual Machine Information</a></li>
-</ul></li>
-</ul></li>
+<li><a href="#vch-decision-support">VCH Decision Support</a></li>
 <li><a href="#remoting-into-vms">Remoting into VMs</a></li>
 <li><a href="#azure-deployment-decisions">Azure Deployment Decisions</a><ul>
 <li><a href="#active-directory-domain-controller">Active Directory Domain Controller</a></li>
@@ -27,31 +23,30 @@
 </ul></li>
 </ul>
 </div>
-<p><a href="https://waffle.io/VCHDecisionSupport/SP-on-Azure">Click here for Agile Story Board for Azure</a></p>
+<p><a href="https://waffle.io/VCHDecisionSupport/SP-on-Azure"><img src="https://badge.waffle.io/VCHDecisionSupport/SP-on-Azure.png?label=ready&amp;title=Ready" alt="Stories in Ready" /></a> <a href="https://waffle.io/VCHDecisionSupport/SP-on-Azure">Click here for Agile Story Board for Azure</a></p>
 <h1 id="vch-decision-support">VCH Decision Support</h1>
-<h2 id="virtual-network">Virtual Network:</h2>
-<p><strong>IP Range:</strong> 192.168.0.0/16 <strong>Domain:</strong> vchds.ca</p>
-<h3 id="deployed-virtual-machine-information">Deployed Virtual Machine Information</h3>
+<!-- 
+## Virtual Network:
+**IP Range:** 192.168.0.0/16
+
+**Domain:** vchds.ca
+
+### Deployed Virtual Machine Information 
+- __Jumpbox Subnet:__ **jb-subnet**
+    - _subnet IP range:_ 192.168.0.0/24
+    - _VM FQDN:_ jumpboxvm1.canadacentral.cloudapp.azure.com 
+        - _public ip:_ 40.85.254.203
+        - _private ip:_ 192.168.0.10
+        <!-- - _size:_ Standard D2 v2 (2 cores, 7 GB memory) -->
+<pre><code>    - _os:_ Windows Server 2012 R2 Data Center</code></pre>
 <ul>
-<li><strong>Jumpbox Subnet:</strong> <strong>jb-subnet</strong>
-<ul>
-<li><em>subnet IP range:</em> 192.168.0.0/24</li>
-<li><em>VM FQDN:</em> jumpboxvm1.canadacentral.cloudapp.azure.com
-<ul>
-<li><em>public ip:</em> 40.85.254.203</li>
-<li><em>private ip:</em> 192.168.0.10</li>
-<li><em>size:</em> Standard D2 v2 (2 cores, 7 GB memory)</li>
-<li><em>os:</em> Windows Server 2012 R2 Data Center</li>
-</ul></li>
-</ul></li>
 <li><strong>ADDC Subnet:</strong> <strong>addc-subnet</strong>
 <ul>
 <li><em>subnet IP range:</em> 192.168.1.0/24</li>
 <li><em>VM FQDN:</em> addcvm1.canadacentral.cloudapp.azure.com
 <ul>
 <li><em>pip:</em> 13.88.250.151</li>
-<li><em>private ip:</em> 192.168.1.10</li>
-<li><em>size:</em> Standard D2 v2 (2 cores, 7 GB memory)</li>
+<li><em>private ip:</em> 192.168.1.10 <!-- - _size:_ Standard D2 v2 (2 cores, 7 GB memory) --></li>
 <li><em>os:</em> Windows Server 2012 R2 Data Center</li>
 </ul></li>
 </ul></li>
@@ -70,14 +65,24 @@
 <li><em>pip:</em> 13.88.247.37<br />
 </li>
 <li><em>private ip:</em> 192.168.2.20</li>
-<li><em>size:</em> Standard A6 (4 cores, 28 GB memory)</li>
+<li><!-- _size -->
+:_ Standard A6 (4 cores, 28 GB memory)</li>
 <li><em>os:</em> Windows Server 2008 R2 Data Center</li>
 </ul></li>
 <li><em>VM FQDN:</em> sharepointvm3.canadacentral.cloudapp.azure.com
 <ul>
 <li><em>pip:</em> 40.85.251.59</li>
 <li><em>private ip:</em> 192.168.2.30</li>
-<li><em>size:</em> Standard A6 (4 cores, 28 GB memory)</li>
+<li><!-- _size -->
+:_ Standard A6 (4 cores, 28 GB memory)</li>
+<li><em>os:</em> Windows Server 2008 R2 Data Center</li>
+</ul></li>
+<li><em>VM FQDN:</em> sharepointvm4.canadacentral.cloudapp.azure.com
+<ul>
+<li><em>pip:</em> 52.233.29.44</li>
+<li><em>private ip:</em> 192.168.2.40</li>
+<li><!-- _size -->
+:_ Standard A6 (4 cores, 28 GB memory)</li>
 <li><em>os:</em> Windows Server 2008 R2 Data Center</li>
 </ul></li>
 </ul></li>
@@ -88,13 +93,14 @@
 <ul>
 <li><em>pip:</em> 52.233.25.11</li>
 <li><em>private ip:</em> 192.168.2.10</li>
-<li><em>size:</em> Standard A6 (4 cores, 28 GB memory)</li>
+<li><!-- _size -->
+:_ Standard A6 (4 cores, 28 GB memory)</li>
 <li><em>os:</em> Windows Server 2012 R2 Data Center</li>
 </ul></li>
 </ul></li>
 <li><strong>Dev Subnet:</strong> <strong>dev-subnet</strong>
 <ul>
-<li>192.168.3.0/24</li>
+<li>192.168.3.0/24 --&gt;</li>
 </ul></li>
 </ul>
 <h1 id="remoting-into-vms">Remoting into VMs</h1>
