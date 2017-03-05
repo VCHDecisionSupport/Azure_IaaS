@@ -23,7 +23,7 @@
 	* IMTS only needs to open **access from on-premises vch.ca domain to single Azure NIC IP address**
 	* Management of VMs is done is Remote Desktop to the Jumpbox VM (whose IP address IMTS has granted vch access to).  From Jumpbox users remote into other VMs in the Virtual Network
 
-[![](https://raw.githubusercontent.com/VCHDecisionSupport/SP-on-Azure/master/SP-on-Azure.png "2 tier Architecture with Jumpbox by Renee Fung (click to see tutorial)")](https://azure.microsoft.com/en-us/documentation/articles/guidance-compute-3-tier-vm/)
+[![](https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/Azure_IaaS.png "2 tier Architecture with Jumpbox by Renee Fung (click to see tutorial)")](https://azure.microsoft.com/en-us/documentation/articles/guidance-compute-3-tier-vm/)
 
 ## Active Directory Domain Controller
 _active directory_ stores sensitive login and 
