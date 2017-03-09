@@ -1,6 +1,6 @@
-$resourceGroupName = "vchds-root-rg"
-$dataCentre = "canadacentral"
-$vnetName = "vchds-vnet"
+$env:resourceGroupName = "vchds-root-rg"
+$env:dataCentre = "canadacentral"
+$env:vnetName = "vchds-vnet"
 $subnetName = "sp-subnet"
 $addressPrefix = "192.168.2.0/24"
 $networkSecurityGroupName = "sp-subnet-nsg"
@@ -23,7 +23,7 @@ If($IsSignedIn -eq $false)
 }
 
 # get virtual network
-$vnet = Get-AzureRmVirtualNetwork -ResourceGroupName $resourceGroupName -Name $vnetName 
+$vnet = Get-AzureRmVirtualNetwork -ResourceGroupName $env:resourceGroupName -Name $env:vnetName 
 
 # check is subnet exists
 If($vnet.SubnetsText.Contains($subnetName))
@@ -36,7 +36,7 @@ If($vnet.SubnetsText.Contains($subnetName))
         Write-Host "Remove NSG"
         # (Find-AzureRmResource -ResourceNameContains $networkSecurityGroupName).
         $nsgId = $subnet.NetworkSecurityGroup.Id
-        Remove-AzureRmNetworkSecurityGroup -Name $networkSecurityGroupName -ResourceGroupName $resourceGroupName -Force 
+        Remove-AzureRmNetworkSecurityGroup -Name $networkSecurityGroupName -ResourceGroupName $env:resourceGroupName -Force 
     }
     Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
 }
@@ -50,7 +50,7 @@ $wwwrule = New-AzureRmNetworkSecurityRuleConfig -Name rdp-rule -Description "Den
     -SourceAddressPrefix Internet -SourcePortRange * `
     -DestinationAddressPrefix * -DestinationPortRange *
 
-$nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName $resourceGroupName -Location $dataCentre -Name $networkSecurityGroupName -SecurityRules $wwwrule
+$nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName $env:resourceGroupName -Location $env:dataCentre -Name $networkSecurityGroupName -SecurityRules $wwwrule
 
 Set-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name $subnetName -AddressPrefix $addressPrefix -NetworkSecurityGroup $nsg
 

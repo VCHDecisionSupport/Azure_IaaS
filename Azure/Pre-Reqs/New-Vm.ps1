@@ -1,4 +1,4 @@
-﻿function New-Vm
+﻿function global:New-Vm
 {
 param (
     [Parameter(Mandatory=$true)][string]$PublisherName,
@@ -123,7 +123,23 @@ $securePassword = ConvertTo-SecureString -String $username -AsPlainText -Force
 $cred = New-Object -TypeName System.Management.Automation.PSCredential ($username, $securePassword)
 #$cred = Get-Credential -UserName "Floater1" -Message "Type the name and password of the local administrator account."
 
-$vm = Set-AzureRmVMOperatingSystem -VM $vm -Windows -ComputerName $vmName -Credential $cred -ProvisionVMAgent -EnableAutoUpdate 
+
+# $vm = Set-AzureRmVMOperatingSystem -VM $vm -Windows -ComputerName $vmName -Credential $cred -ProvisionVMAgent -EnableAutoUpdate 
+##############################################################################
+##############################################################################
+# 
+# Key Vault for Remote PowerShell
+# 
+##############################################################################
+##############################################################################
+$secretURL = (Get-AzureKeyVaultSecret -VaultName $env:keyVaultName -Name "somename").Id
+$vm = Set-AzureRmVMOperatingSystem -VM $vm -Windows -ComputerName $vmName -Credential $cred -ProvisionVMAgent -EnableAutoUpdate -WinRMHttp -WinRMHttps -WinRMCertificateUrl $secretURL
+$sourceVaultId = (Get-AzureRmKeyVault -ResourceGroupName $ResourceGroupName -VaultName $env:keyVaultName).ResourceId
+$CertificateStore = "My"
+$vm = Add-AzureRmVMSecret -VM $vm -SourceVaultId $sourceVaultId -CertificateStore $CertificateStore -CertificateUrl $secretURL
+##############################################################################
+##############################################################################
+
 $vm = Set-AzureRmVMSourceImage -VM $vm -PublisherName $PublisherName -Offer $OfferName -Skus $skuName -Version "latest"
 $vm = Add-AzureRmVMNetworkInterface -VM $vm -Id $nic.Id 
 
@@ -132,9 +148,10 @@ $vm = Set-AzureRmVMBootDiagnostics -VM $vm -ResourceGroupName $ResourceGroupName
 
 $autoShutDown = "7pm -> 6am"
 Write-Host ("AutoShutdownSchedule: {0}" -f $autoShutDown)
-$automationTags = @(@{Name = "AutoShutdownSchedule"; Value = $autoShutDown})
+# $automationTags = @(@{Name = "AutoShutdownSchedule"; Value = $autoShutDown})
 Write-Host ("Deploying Virtual Machine: {0}" -f $VMName)
-New-AzureRmVM -ResourceGroupName $ResourceGroupName -Location $location -VM $vm -Tags $automationTags
+# New-AzureRmVM -ResourceGroupName $ResourceGroupName -Location $location -VM $vm -Tags $automationTags
+New-AzureRmVM -ResourceGroupName $ResourceGroupName -Location $location -VM $vm
     
 Write-Host ("Virtual Machine {0} deployed at pip:{1} with runtime: {2}." -f $VMName, $public_ip.IpAddress, $elapsed.Elapsed.ToString())
 #Write-Host ("Attemping Remote Desktop connection . . .")

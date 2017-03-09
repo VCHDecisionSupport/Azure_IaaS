@@ -1,30 +1,9 @@
-$resourceGroupName = "vchds-root-rg"
-$dataCentre = "canadacentral"
-$vnetName = "vchds-vnet"
 $subnetName = "jb-subnet"
 $addressPrefix = "192.168.0.0/24"
 $networkSecurityGroupName = "jb-subnet-nsg"
 
-
-$Error.Clear()
-Get-AzureRmContext -ErrorAction Continue
-$IsSignedIn=$true
-foreach ($eacherror in $Error) 
-{
-    if ($eacherror.Exception.ToString() -like "*Run Login-AzureRmAccount to login.*") 
-    {
-        $IsSignedIn=$false
-    }
-}
-$Error.Clear()
-If($IsSignedIn -eq $false)
-{
-    Write-Host "signin to Azure"
-    Login-AzureRmAccount
-}
-
 # get virtual network
-$vnet = Get-AzureRmVirtualNetwork -ResourceGroupName $resourceGroupName -Name $vnetName 
+$vnet = Get-AzureRmVirtualNetwork -ResourceGroupName $env:resourceGroupName -Name $env:vnetName 
 
 # check is subnet exists
 If($vnet.SubnetsText.Contains($subnetName))
@@ -37,7 +16,7 @@ If($vnet.SubnetsText.Contains($subnetName))
         Write-Host "Remove NSG"
         # (Find-AzureRmResource -ResourceNameContains $networkSecurityGroupName).
         $nsgId = $subnet.NetworkSecurityGroup.Id
-        Remove-AzureRmNetworkSecurityGroup -Name $networkSecurityGroupName -ResourceGroupName $resourceGroupName -Force 
+        Remove-AzureRmNetworkSecurityGroup -Name $networkSecurityGroupName -ResourceGroupName $env:resourceGroupName -Force 
     }
     Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
 }
@@ -51,10 +30,9 @@ $rdprule = New-AzureRmNetworkSecurityRuleConfig -Name rdp-rule -Description "All
     -SourceAddressPrefix Internet -SourcePortRange * `
     -DestinationAddressPrefix * -DestinationPortRange 3389
 
-$nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName $resourceGroupName -Location $dataCentre -Name $networkSecurityGroupName -SecurityRules $rdprule
+$nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName $env:resourceGroupName -Location $env:dataCentre -Name $networkSecurityGroupName -SecurityRules $rdprule
 
 Set-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name $subnetName -AddressPrefix $addressPrefix -NetworkSecurityGroup $nsg
 
 # save changes
 Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
-

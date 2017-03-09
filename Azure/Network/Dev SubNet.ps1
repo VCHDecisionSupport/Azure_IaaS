@@ -1,14 +1,14 @@
 ﻿# not used
 
-$resourceGroupName = "vchds-root-rg"
-$dataCentre = "canadacentral"
-$vnetName = "vchds-vnet"
+$env:resourceGroupName = "vchds-root-rg"
+$env:dataCentre = "canadacentral"
+$env:vnetName = "vchds-vnet"
 $subnetName = "dev-subnet"
 $addressPrefix = "192.168.3.0/24"
 $networkSecurityGroupName = "dev-subnet-nsg"
 
 # get virtual network
-$vnet = Get-AzureRmVirtualNetwork -ResourceGroupName $resourceGroupName -Name $vnetName
+$vnet = Get-AzureRmVirtualNetwork -ResourceGroupName $env:resourceGroupName -Name $env:vnetName
 
 # add subnet inside vnet
 $subnet = Add-AzureRmVirtualNetworkSubnetConfig -Name $subnetName -VirtualNetwork $VNet -AddressPrefix $addressPrefix
@@ -18,7 +18,7 @@ $rdprule = New-AzureRmNetworkSecurityRuleConfig -Name rdp-rule -Description "All
     -SourceAddressPrefix Internet -SourcePortRange * `
     -DestinationAddressPrefix * -DestinationPortRange 3389
 
-$nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName $resourceGroupName -Location $dataCentre -Name $networkSecurityGroupName -SecurityRules $rdprule
+$nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName $env:resourceGroupName -Location $env:dataCentre -Name $networkSecurityGroupName -SecurityRules $rdprule
 
 Set-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name $subnetName -AddressPrefix $addressPrefix -NetworkSecurityGroup $nsg
 

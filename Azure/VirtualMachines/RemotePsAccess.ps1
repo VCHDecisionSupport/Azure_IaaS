@@ -4,27 +4,27 @@ Write-Host $PSCommandPath
 
 ..\Azure\ConnectToSubscription.ps1
 
-$resourceGroupName = "vchds-root-rg"
-$dataCentre = "canadacentral"
-$vnetName = "vchds-vnet"
-$storageAccountName = "vchdsstorageacct"
+$env:resourceGroupName = "vchds-root-rg"
+$env:dataCentre = "canadacentral"
+$env:vnetName = "vchds-vnet"
+$env:storageAccountName = "vchdsstorageacct"
 
-$vnetName = "vchds-vnet"
+$env:vnetName = "vchds-vnet"
 $subnetName = "jb-subnet"
 $addressPrefix = "192.168.0.0/24"
 $networkSecurityGroupName = "jb-subnet-nsg"
 
 $vmName = 'jumpboxvm1'
 
-$vnet = Get-AzureRmVirtualNetwork -Name $vnetName -ResourceGroupName $resourceGroupName
+$vnet = Get-AzureRmVirtualNetwork -Name $env:vnetName -ResourceGroupName $env:resourceGroupName
 
 $subnet = Get-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name $subnetName
 
-$vm=Get-AzureRmVM -ResourceGroupName $resourceGroupName -Name $vmName
+$vm=Get-AzureRmVM -ResourceGroupName $env:resourceGroupName -Name $vmName
 
-Get-AzureRmNetworkSecurityGroup -ResourceGroupName $resourceGroupName | Select Name
+Get-AzureRmNetworkSecurityGroup -ResourceGroupName $env:resourceGroupName | Select Name
 
-$nsg = Get-AzureRmNetworkSecurityGroup -Name 'jb-subnet-nsg' -ResourceGroupName $resourceGroupName
+$nsg = Get-AzureRmNetworkSecurityGroup -Name 'jb-subnet-nsg' -ResourceGroupName $env:resourceGroupName
 
 $rule = Get-AzureRmNetworkSecurityRuleConfig -NetworkSecurityGroup $nsg
 

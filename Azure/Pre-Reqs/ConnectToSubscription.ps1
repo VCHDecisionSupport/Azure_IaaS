@@ -18,20 +18,23 @@ Write-Host "Setting env variables to deployment values"
 $env:subscriptionName="Microsoft Azure Enterprise"
 Select-AzureRmSubscription -SubscriptionName $env:subscriptionName
 Set-AzureRmContext -SubscriptionName $env:subscriptionName
-#$env:subscription=Get-AzureRmSubscription -SubscriptionName $env:subscriptionName
+# $env:subscription=Get-AzureRmSubscription -SubscriptionName $env:subscriptionName
 
 #"Canada Central"
 $env:dataCentre = "canadacentral"
 $env:resourceGroupName = "vchds-root-rg"
-Get-AzureRmResourceGroup
-New-AzureRmResourceGroup -Name $env:resourceGroupName -Location $env:dataCentre
+# Get-AzureRmResourceGroup
 
 $env:vnetName = "vchds-vnet"
-#$env:vnet=Get-AzureRmVirtualNetwork -ResourceGroupName $env:resourceGroupName -Name $env:vnetName
+# $env:vnet=Get-AzureRmVirtualNetwork -ResourceGroupName $env:resourceGroupName -Name $env:vnetName
 
 $env:storageAccountName = "vchdsstorageacct"
 #$env:storageAccount=Get-AzureRmStorageAccount -Name $env:storageAccountName -ResourceGroupName $env:resourceGroupName -Verbose
 
 $env:autoAccountName="vchds-auto"
 
+
+$addressPrefix = "192.168.0.0/16"
+$env:storageAccountType = "Standard_LRS"
+$env:storageShareName = "vchdsshare"
 
