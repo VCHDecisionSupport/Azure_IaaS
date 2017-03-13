@@ -85,7 +85,7 @@ If($err.Count -gt 0)
 $Error.Clear()
 
 # check if storage account exists
-$storageAccount = Get-AzureRmStorageAccount -ResourceGroupName $env:resourceGroupName -Name $env:storageAccountName -ErrorAction SilentlyContinue -ErrorVariable err -OutVariable outvar
+$StorageAccount = Get-AzureRmStorageAccount -ResourceGroupName $env:resourceGroupName -Name $env:storageAccountName -ErrorAction SilentlyContinue -ErrorVariable err -OutVariable outvar
 If($err.Count -gt 0)
 {
     # new storage account
