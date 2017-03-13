@@ -3,5 +3,5 @@
 foreach($vm in $vms)
 {
     Write-Host ("Stopping VM: {0}" -f $vm.Name)
-    Stop-AzureRmVM -Name $vm.Name -ResourceGroupName $env:resourceGroupName -Force
+    Start-AzureRmVM -Name $vm.Name -ResourceGroupName $env:resourceGroupName -Force
 }

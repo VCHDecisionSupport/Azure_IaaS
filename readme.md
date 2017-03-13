@@ -1,8 +1,4 @@
-[![Stories in Ready](https://badge.waffle.io/VCHDecisionSupport/SP-on-Azure.png?label=ready&title=Ready)](https://waffle.io/VCHDecisionSupport/SP-on-Azure)
-[Click here for Agile Story Board for Azure](https://waffle.io/VCHDecisionSupport/SP-on-Azure)
-
 # VCH Decision Support
-
 
 # Remoting into VMs
 
@@ -38,7 +34,6 @@ Custom Domain Controller will allow us to:
 
 ## Other Deployment Details
 
-- Our subscription is limited to 20 cores ([see Virtual Network Section for Allocation](#virtual-network))
 - Azure's _Resource Manager_ **Deployment Model** was used rather than the legacy _Classic_ because new Azure features will only be available via _Resource Manager_ and VMs and other [resources created with one model can't necessarily interoperate with resources created using a different deployment.](https://azure.microsoft.com/en-us/documentation/articles/azure-classic-rm/#why-does-this-matter)<sup id="a00">[00](#f00)</sup>
 - **Virtual Networks** must be deployed before the VMs because VMs can only be bound to vnet when they are deployed.<sup id="a2">[2](#f2)</sup>
 - IPs in Virtual Network are grouped into **subnets** according to their workload and access they resource require
@@ -73,61 +68,10 @@ Custom Domain Controller will allow us to:
 7. Remove Storage Accounts
 8. Remove Resource Groups
 
-
-
 ## Virtual Network:
 **IP Range:** 192.168.0.0/16
 
-**Domain:** vchds.ca
-
-### Deployed Virtual Machine Information 
-- __Jumpbox Subnet:__ **jb-subnet**
-	- _subnet IP range:_ 192.168.0.0/24
-		- _private ip:_ 192.168.0.10
-        - _size:_ Standard D2 v2 (2 cores, 7 GB memory)
-        - _os:_ Windows Server 2012 R2 Data Center
-- __ADDC Subnet:__ **addc-subnet**
-	- _subnet IP range:_ 192.168.1.0/24
-		- _private ip:_ 192.168.1.10
-		- _size:_ Standard D2 v2 (2 cores, 7 GB memory)
-        - _os:_ Windows Server 2012 R2 Data Center
-- __SharePoint Subnet:__ **sp-subnet**
-    - _subnet IP range:_ 192.168.2.0/24
-        - _private ip:_ 192.168.2.10, 20, 30, 40
-        - _size:_ Standard A6 (4 cores, 28 GB memory)
-        - _os:_ Windows Server 2008 R2 Data Center
-
-- __Data Warehouse Subnet:__ **dw-subnet**
-    - _subnet IP range:_ 192.168.2.0/24
-        - _private ip:_ 192.168.2.10
-        - _size:_ Standard A6 (4 cores, 28 GB memory)
-        - _os:_ Windows Server 2012 R2 Data Center
-- __Dev Subnet:__ **dev-subnet**
-	- 192.168.3.0/24 
-
-
-this is brilliant information
-
-
-this is brilliant information
-
-this is brilliant information
-
-this is brilliant information
-
-this is brilliant information
-
-this is brilliant information
-
-this is brilliant information
-
-this is brilliant information
-
-this is brilliant information
-
-this is brilliant information
-
-this is brilliant information
+**Domain:** vch.ca
 
 
 

@@ -1,26 +1,6 @@
-$env:resourceGroupName = "vchds-root-rg"
-$env:dataCentre = "canadacentral"
-$env:vnetName = "vchds-vnet"
 $subnetName = "addc-subnet"
 $addressPrefix = "192.168.1.0/24"
 $networkSecurityGroupName = "addc-subnet-nsg"
-
-$Error.Clear()
-Get-AzureRmContext -ErrorAction Continue
-$IsSignedIn=$true
-foreach ($eacherror in $Error) 
-{
-    if ($eacherror.Exception.ToString() -like "*Run Login-AzureRmAccount to login.*") 
-    {
-        $IsSignedIn=$false
-    }
-}
-$Error.Clear()
-If($IsSignedIn -eq $false)
-{
-    Write-Host "signin to Azure"
-    Login-AzureRmAccount
-}
 
 # get virtual network
 $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName $env:resourceGroupName -Name $env:vnetName 
@@ -56,4 +36,3 @@ Set-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name $subnetName -A
 
 # save changes
 Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
-

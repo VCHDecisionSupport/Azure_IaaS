@@ -1,4 +1,6 @@
-﻿########################################################
+﻿Set-Location -Path $PSScriptRoot
+
+########################################################
 # 
 # initializes enviroment variables and other pre-requistes
 # 
