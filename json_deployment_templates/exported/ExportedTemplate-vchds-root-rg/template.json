@@ -1,0 +1,565 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualNetworks_vchds_vnet_name": {
+            "defaultValue": "vchds-vnet",
+            "type": "String"
+        },
+
+
+        "storageAccounts_vchdsstorageacct_name": {
+            "defaultValue": "vchdsstorageacct",
+            "type": "String"
+        },
+
+
+       "networkSecurityGroups_jb_subnet_nsg_name": {
+            "defaultValue": "jb-subnet-nsg",
+            "type": "String"
+        },
+        
+       "networkSecurityGroups_addc_subnet_nsg_name": {
+            "defaultValue": "addc-subnet-nsg",
+            "type": "String"
+        },
+       "networkSecurityGroups_dw_subnet_nsg_name": {
+            "defaultValue": "dw-subnet-nsg",
+            "type": "String"
+        },
+       "networkSecurityGroups_sp_subnet_nsg_name": {
+            "defaultValue": "sp-subnet-nsg",
+            "type": "String"
+        },        
+       "networkSecurityGroups_user_subnet_nsg_name": {
+            "defaultValue": "user-subnet-nsg",
+            "type": "String"
+        },
+        
+
+        "publicIPAddresses_JumpBoxVm1Pip_name": {
+            "defaultValue": "JumpBoxVm1Pip",
+            "type": "String"
+        },
+        "publicIPAddresses_ADDCVm1Pip_name": {
+            "defaultValue": "ADDCVm1Pip",
+            "type": "String"
+        },
+        "publicIPAddresses_DWVm1Pip_name": {
+            "defaultValue": "DWVm1Pip",
+            "type": "String"
+        },
+        "publicIPAddresses_DWVm2Pip_name": {
+            "defaultValue": "DWVm2Pip",
+            "type": "String"
+        },
+        "publicIPAddresses_DWVm3Pip_name": {
+            "defaultValue": "DWVm3Pip",
+            "type": "String"
+        },
+        "publicIPAddresses_SPVm1Pip_name": {
+            "defaultValue": "SPVm1Pip",
+            "type": "String"
+        },
+        "publicIPAddresses_SPVm1Pip_name": {
+            "defaultValue": "SPVm1Pip",
+            "type": "String"
+        },
+        "publicIPAddresses_SPVm2Pip_name": {
+            "defaultValue": "SPVm2Pip",
+            "type": "String"
+        },
+        "publicIPAddresses_SPVm3Pip_name": {
+            "defaultValue": "SPVm3Pip",
+            "type": "String"
+        },
+        "publicIPAddresses_UserVm1Pip_name": {
+            "defaultValue": "UserVm1Pip",
+            "type": "String"
+        },
+
+
+        "networkInterfaces_JumpBoxVm1Nic_name": {
+            "defaultValue": "JumpBoxVm1Nic",
+            "type": "String"
+        },
+        "networkInterfaces_ADDCVm1Nic_name": {
+            "defaultValue": "ADDCVm1Nic",
+            "type": "String"
+        },
+        "networkInterfaces_DWVm1Nic_name": {
+            "defaultValue": "DWVm1Nic",
+            "type": "String"
+        },
+        "networkInterfaces_DWVm2Nic_name": {
+            "defaultValue": "DWVm2Nic",
+            "type": "String"
+        },
+        "networkInterfaces_DWVm3Nic_name": {
+            "defaultValue": "DWVm3Nic",
+            "type": "String"
+        },
+        "networkInterfaces_SPVm1Nic_name": {
+            "defaultValue": "SPVm1Nic",
+            "type": "String"
+        },
+        "networkInterfaces_SPVm1Nic_name": {
+            "defaultValue": "SPVm1Nic",
+            "type": "String"
+        },
+        "networkInterfaces_SPVm2Nic_name": {
+            "defaultValue": "SPVm2Nic",
+            "type": "String"
+        },
+        "networkInterfaces_SPVm3Nic_name": {
+            "defaultValue": "SPVm3Nic",
+            "type": "String"
+        },
+        "networkInterfaces_UserVm1Nic_name": {
+            "defaultValue": "UserVm1Nic",
+            "type": "String"
+        },
+
+
+        "virtualMachines_JumpBoxVm1_name": {
+            "defaultValue": "JumpBoxVm1",
+            "type": "String"
+        },
+        "virtualMachines_ADDCVm1_name": {
+            "defaultValue": "ADDCVm1",
+            "type": "String"
+        },
+        "virtualMachines_DWVm1_name": {
+            "defaultValue": "DWVm1",
+            "type": "String"
+        },
+        "virtualMachines_DWVm2_name": {
+            "defaultValue": "DWVm2",
+            "type": "String"
+        },
+        "virtualMachines_DWVm3_name": {
+            "defaultValue": "DWVm3",
+            "type": "String"
+        },
+        "virtualMachines_SPVm1_name": {
+            "defaultValue": "SPVm1",
+            "type": "String"
+        },
+        "virtualMachines_SPVm1_name": {
+            "defaultValue": "SPVm1",
+            "type": "String"
+        },
+        "virtualMachines_SPVm2_name": {
+            "defaultValue": "SPVm2",
+            "type": "String"
+        },
+        "virtualMachines_SPVm3_name": {
+            "defaultValue": "SPVm3",
+            "type": "String"
+        },
+        "virtualMachines_UserVm1_name": {
+            "defaultValue": "UserVm1",
+            "type": "String"
+        }
+
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "Generalized from resource: '/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.Network/virtualNetworks/vchds-vnet'.",
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "[parameters('virtualNetworks_vchds_vnet_name')]",
+            "apiVersion": "2016-03-30",
+            "location": "canadacentral",
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "192.168.0.0/16"
+                    ]
+                },
+                "dhcpOptions": {
+                    "dnsServers": []
+                },
+                "subnets": [
+                    {
+                        "name": "jb-subnet",
+                        "properties": {
+                            "addressPrefix": "192.168.0.0/24",
+                            "networkSecurityGroup": {
+                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_jb_subnet_nsg_name'))]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "addc-subnet",
+                        "properties": {
+                            "addressPrefix": "192.168.1.0/24",
+                            "networkSecurityGroup": {
+                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_addc_subnet_nsg_name'))]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "dw-subnet",
+                        "properties": {
+                            "addressPrefix": "192.168.2.0/24",
+                            "networkSecurityGroup": {
+                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_dw_subnet_nsg_name'))]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "sp-subnet",
+                        "properties": {
+                            "addressPrefix": "192.168.3.0/24",
+                            "networkSecurityGroup": {
+                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_sp_subnet_nsg_name'))]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "user-subnet",
+                        "properties": {
+                            "addressPrefix": "192.168.4.0/24",
+                            "networkSecurityGroup": {
+                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_user_subnet_nsg_name'))]"
+                            }
+                        }
+                    }
+                ]
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_jb_subnet_nsg_name'))]",
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_addc_subnet_nsg_name'))]",
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_dw_subnet_nsg_name'))]",
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_sp_subnet_nsg_name'))]",
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_user_subnet_nsg_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.Network/networkSecurityGroups/jb-subnet-nsg'.",
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "name": "[parameters('networkSecurityGroups_jb_subnet_nsg_name')]",
+            "apiVersion": "2016-03-30",
+            "location": "canadacentral",
+            "properties": {
+                "securityRules": [
+                    {
+                        "name": "rdp-rule",
+                        "properties": {
+                            "description": "Allow www RDP",
+                            "protocol": "Tcp",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "3389",
+                            "sourceAddressPrefix": "Internet",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 100,
+                            "direction": "Inbound"
+                        }
+                    }
+                ]
+            },
+            "dependsOn": []
+        },
+{
+            "comments": "Generalized from resource: '/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.Network/networkSecurityGroups/jb-subnet-nsg'.",
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "name": "[parameters('networkSecurityGroups_jb_subnet_nsg_name')]",
+            "apiVersion": "2016-03-30",
+            "location": "canadacentral",
+            "properties": {
+                "securityRules": [
+                    {
+                        "name": "rdp-rule",
+                        "properties": {
+                            "description": "Allow www RDP",
+                            "protocol": "Tcp",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "3389",
+                            "sourceAddressPrefix": "Internet",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 100,
+                            "direction": "Inbound"
+                        }
+                    }
+                ]
+            },
+            "dependsOn": []
+        },
+
+
+
+        {
+            "comments": "Generalized from resource: '/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.Network/networkSecurityGroups/jb-subnet-nsg'.",
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "name": "[parameters('networkSecurityGroups_addc_subnet_nsg_name')]",
+            "apiVersion": "2016-03-30",
+            "location": "canadacentral",
+            "properties": {
+                "securityRules": [
+                    {
+                        "name": "rdp-rule",
+                        "properties": {
+                            "description": "Allow www RDP",
+                            "protocol": "Tcp",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "3389",
+                            "sourceAddressPrefix": "Internet",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 100,
+                            "direction": "Inbound"
+                        }
+                    }
+                ]
+            },
+            "dependsOn": []
+        },{
+            "comments": "Generalized from resource: '/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.Network/networkSecurityGroups/jb-subnet-nsg'.",
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "name": "[parameters('networkSecurityGroups_dw_subnet_nsg_name')]",
+            "apiVersion": "2016-03-30",
+            "location": "canadacentral",
+            "properties": {
+                "securityRules": [
+                    {
+                        "name": "rdp-rule",
+                        "properties": {
+                            "description": "Allow www RDP",
+                            "protocol": "Tcp",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "3389",
+                            "sourceAddressPrefix": "Internet",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 100,
+                            "direction": "Inbound"
+                        }
+                    }
+                ]
+            },
+            "dependsOn": []
+        },{
+            "comments": "Generalized from resource: '/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.Network/networkSecurityGroups/jb-subnet-nsg'.",
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "name": "[parameters('networkSecurityGroups_sp_subnet_nsg_name')]",
+            "apiVersion": "2016-03-30",
+            "location": "canadacentral",
+            "properties": {
+                "securityRules": [
+                    {
+                        "name": "rdp-rule",
+                        "properties": {
+                            "description": "Allow www RDP",
+                            "protocol": "Tcp",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "3389",
+                            "sourceAddressPrefix": "Internet",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 100,
+                            "direction": "Inbound"
+                        }
+                    }
+                ]
+            },
+            "dependsOn": []
+        },
+
+{
+            "comments": "Generalized from resource: '/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.Network/networkSecurityGroups/jb-subnet-nsg'.",
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "name": "[parameters('networkSecurityGroups_user_subnet_nsg_name')]",
+            "apiVersion": "2016-03-30",
+            "location": "canadacentral",
+            "properties": {
+                "securityRules": [
+                    {
+                        "name": "rdp-rule",
+                        "properties": {
+                            "description": "Allow www RDP",
+                            "protocol": "Tcp",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "3389",
+                            "sourceAddressPrefix": "Internet",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 100,
+                            "direction": "Inbound"
+                        }
+                    }
+                ]
+            },
+            "dependsOn": []
+        },
+
+
+        {
+            "comments": "Generalized from resource: '/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.Compute/virtualMachines/JumpBoxVm1'.",
+            "type": "Microsoft.Compute/virtualMachines",
+            "name": "[parameters('virtualMachines_JumpBoxVm1_name')]",
+            "apiVersion": "2016-04-30-preview",
+            "location": "CanadaCentral",
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_DS13_v2"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "MicrosoftWindowsServer",
+                        "offer": "WindowsServer",
+                        "sku": "2012-R2-Datacenter",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Windows",
+                        "name": "[concat(parameters('virtualMachines_JumpBoxVm1_name'),'OsDisk')]",
+                        "createOption": "FromImage",
+                        "vhd": {
+                            "uri": "[concat('https', '://', parameters('storageAccounts_vchdsstorageacct_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_JumpBoxVm1_name'),'OsDisk.vhd'))]"
+                        },
+                        "caching": "ReadWrite"
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_JumpBoxVm1_name')]",
+                    "adminUsername": "Floater1",
+                    "windowsConfiguration": {
+                        "provisionVMAgent": true,
+                        "enableAutomaticUpdates": true
+                    },
+                    "secrets": []
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_JumpBoxVm1Nic_name'))]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "[concat('https', '://', parameters('storageAccounts_vchdsstorageacct_name'), '.blob.core.windows.net', '/')]"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_vchdsstorageacct_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_JumpBoxVm1Nic_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.Network/networkInterfaces/JumpBoxVm1Nic'.",
+            "type": "Microsoft.Network/networkInterfaces",
+            "name": "[parameters('networkInterfaces_JumpBoxVm1Nic_name')]",
+            "apiVersion": "2016-03-30",
+            "location": "canadacentral",
+            "properties": {
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "properties": {
+                            "privateIPAddress": "192.168.0.10",
+                            "privateIPAllocationMethod": "Static",
+                            "publicIPAddress": {
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_JumpBoxVm1Pip_name'))]"
+                            },
+                            "subnet": {
+                                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_vchds_vnet_name')), '/subnets/jb-subnet')]"
+                            }
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": []
+                },
+                "enableIPForwarding": false,
+                "networkSecurityGroup": {
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_jb_subnet_nsg_name'))]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_JumpBoxVm1Pip_name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_vchds_vnet_name'))]",
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_jb_subnet_nsg_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.Network/networkSecurityGroups/jb-subnet-nsg'.",
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "name": "[parameters('networkSecurityGroups_jb_subnet_nsg_name')]",
+            "apiVersion": "2016-03-30",
+            "location": "canadacentral",
+            "properties": {
+                "securityRules": [
+                    {
+                        "name": "rdp-rule",
+                        "properties": {
+                            "description": "Allow www RDP",
+                            "protocol": "Tcp",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "3389",
+                            "sourceAddressPrefix": "Internet",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 100,
+                            "direction": "Inbound"
+                        }
+                    }
+                ]
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.Network/publicIPAddresses/JumpBoxVm1Pip'.",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "name": "[parameters('publicIPAddresses_JumpBoxVm1Pip_name')]",
+            "apiVersion": "2016-03-30",
+            "location": "canadacentral",
+            "properties": {
+                "publicIPAllocationMethod": "Static",
+                "idleTimeoutInMinutes": 4,
+                "dnsSettings": {
+                    "domainNameLabel": "jumpboxvm1"
+                }
+            },
+            "dependsOn": []
+        },
+
+        {
+            "comments": "Generalized from resource: '/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.Storage/storageAccounts/vchdsstorageacct'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_GRS",
+                "tier": "Standard"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccounts_vchdsstorageacct_name')]",
+            "apiVersion": "2016-01-01",
+            "location": "canadacentral",
+            "tags": {},
+            "properties": {},
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.Compute/virtualMachines/JumpBoxVm1/extensions/BGInfo'.",
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "name": "[parameters('extensions_BGInfo_name')]",
+            "apiVersion": "2016-04-30-preview",
+            "location": "CanadaCentral",
+            "properties": {
+                "publisher": "Microsoft.Compute",
+                "type": "BGInfo",
+                "typeHandlerVersion": "2.1",
+                "autoUpgradeMinorVersion": true
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_JumpBoxVm1_name'))]"
+            ]
+        }
+    ]
+}

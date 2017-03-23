@@ -132,11 +132,11 @@ $cred = New-Object -TypeName System.Management.Automation.PSCredential ($usernam
 # 
 ##############################################################################
 ##############################################################################
-$secretURL = (Get-AzureKeyVaultSecret -VaultName $env:keyVaultName -Name "somename").Id
-$vm = Set-AzureRmVMOperatingSystem -VM $vm -Windows -ComputerName $vmName -Credential $cred -ProvisionVMAgent -EnableAutoUpdate -WinRMHttp -WinRMHttps -WinRMCertificateUrl $secretURL
-$sourceVaultId = (Get-AzureRmKeyVault -ResourceGroupName $ResourceGroupName -VaultName $env:keyVaultName).ResourceId
-$CertificateStore = "My"
-$vm = Add-AzureRmVMSecret -VM $vm -SourceVaultId $sourceVaultId -CertificateStore $CertificateStore -CertificateUrl $secretURL
+#$secretURL = (Get-AzureKeyVaultSecret -VaultName $env:keyVaultName -Name "somename").Id
+#$vm = Set-AzureRmVMOperatingSystem -VM $vm -Windows -ComputerName $vmName -Credential $cred -ProvisionVMAgent -EnableAutoUpdate -WinRMHttp -WinRMHttps -WinRMCertificateUrl $secretURL
+#$sourceVaultId = (Get-AzureRmKeyVault -ResourceGroupName $ResourceGroupName -VaultName $env:keyVaultName).ResourceId
+#$CertificateStore = "My"
+#$vm = Add-AzureRmVMSecret -VM $vm -SourceVaultId $sourceVaultId -CertificateStore $CertificateStore -CertificateUrl $secretURL
 ##############################################################################
 ##############################################################################
 
