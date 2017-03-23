@@ -1,4 +1,6 @@
-# VCH Decision Support
+# 2 Tier Network Infrastructure for SQL Data Warehouse + SharePoint BI + Active Directory
+
+Turn key deployment and tear down of SharePoint enviroment on top of virtual network and dns server and domain controller.
 
 # Remoting into VMs
 
