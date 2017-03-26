@@ -30,3 +30,21 @@ $vmName=$AddcVm1.Name
 $vm=Get-AzureRmVM -ResourceGroupName $env:resourceGroupName -Name $vmName
 $vm=Add-AzureRmVMDataDisk -VM $vm -Name $dataDiskName -VhdUri $dataDiskUri -Caching ReadWrite -DiskSizeInGB 100 -Lun 6 -CreateOption Empty
 Update-AzureRmVM -VM $vm -ResourceGroupName $env:resourceGroupName
+
+
+
+
+# set up data disks and dirves...
+Get-Disk | Where-Object IsSystem -eq $true
+Get-Disk | Where-Object IsSystem -eq $false
+# initialize disks
+Initialize-Disk 2 –PartitionStyle MBR
+Initialize-Disk 3 –PartitionStyle MBR
+# add partition and disk drive letters
+
+New-Partition –DiskNumber 2 -UseMaximumSize -AssignDriveLetter 
+Get-Partition –DiskNumber 2
+
+New-Partition –DiskNumber 3 -UseMaximumSize -AssignDriveLetter 
+Get-Partition –DiskNumber 3
+
