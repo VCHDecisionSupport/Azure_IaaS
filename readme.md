@@ -1,14 +1,77 @@
 # 2 Tier Network Infrastructure for SQL Data Warehouse + SharePoint BI + Active Directory
 
-Turn key deployment and tear down of SharePoint enviroment on top of virtual network and dns server and domain controller.
+Turn key deployment and tear down of dev/test SharePoint environment and required infrastructure in Azure.
 
-# Remoting into VMs
+# Lunch and Learn Outline
+
+## Motivation and requirements
+Dev/test environment for SharePoint
+
+### Dev/test sharepoint environment. 
+- Active directory with equivalent confirmation config as on premises 
+- Sharepoint farm with topology and config as on premises 
+- Mock data warehouse with same schema as DSDW and simulated data
+- Turn key deployment from code
+- Schedule automatic deallocation of vms
+
+### Cloud service model 
+- SaaS vs paas vs iaas 
+- Aws vs azure
+
+### Azure deployment. 
+- Classic vs ARM 
+- PowerShell vs json vs cli
+
+### Active directory and networking protocols
+- Directory service in general 
+- Windows domain services 
+- DNS 
+- DCHP
+
+### Exploring vch/imts infrastructure
+
+### Network infrastructure 
+- Vnet 
+- Subnet 
+- Nsg 
+- Nic
+- Pip
+- Vm
+- Size and os
+- Jumpbox
+
+### Server software
+- Deployment automation with Chef
+
+#### Data warehouse
+- Chef install 
+- On premises schema export and data profiling 
+- Generation of data simulation
+
+#### SharePoint 
+- Chef install 
+- On premises config export
+
+# Usage
+
+## Remoting into VMs
 
 1. Remote into Jumpbox VM from local PC
  - use FQDN (since underlying IP may change if/when VMs are redeployed)
  - make sure they've been turned on
 2. Remote from Jumpbox VM to any other VM
  - use host name (ie vm name)
+
+## Tear Down Sequence of Azure IaaS Deployment
+
+1. Remove VMs
+2. Remove NICs
+3. Remove PIPs
+4. Remove Subnets
+5. Remove NSGs
+6. Remove Virtual Networks
+7. Remove Storage Accounts
+8. Remove Resource Groups
 
 # Azure Deployment Decisions
 
@@ -32,7 +95,7 @@ Custom Domain Controller will allow us to:
 - replicate the permissions of our real-world end-users with mock AD end-user accounts/signins
 - eventually (not currently planned/understood) sync on-premises AD with Azure VM ADDC **(there are important security and privacy implications with connecting/syncing Azure resources with VCH on premises resources)**
 
-**Dcpromo.exe** [depricated in favour of PS based deployment](https://technet.microsoft.com/windows-server-docs/identity/ad-ds/deploy/install-a-new-windows-server-2012-active-directory-forest--level-200-)
+**Dcpromo.exe** depricated in favour of PS based deployment.<sup id="a3">[3](#f4)</sup>  <sup id="a10">[10](#f10)</sup>
 
 ## Other Deployment Details
 
@@ -56,48 +119,32 @@ Custom Domain Controller will allow us to:
 	* SQL2016-WS2012R2
 	* SQL2016-WS2012R2-BYOL
 	* SQL2016RC3-WS2012R2
-- These images include the installation media on the `C:/` drive of the VM so configuration adjustments could be made as needed.
-	* It's not clear whether or not VM images would work for our SharePoint needs or whether BYOL is available
-
-# Tear Down Sequence of Azure IaaS Deployment
-
-1. Remove VMs
-2. Remove NICs
-3. Remove PIPs
-4. Remove Subnets
-5. Remove NSGs
-6. Remove Virtual Networks
-7. Remove Storage Accounts
-8. Remove Resource Groups
-
-## Virtual Network:
-**IP Range:** 192.168.0.0/16
-
-**Domain:** vch.ca
 
 
 
-<b id="f1">1</b> [See here.]() [↩](#a1)
 
-<b id="f2">2</b> [See here Microsoft documentation](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-overview/#strongnotestrong-1) [↩](#a2)
+# Documentation
 
-<b id="f3">3</b> When/if named resolved communication with vnet or to on-premises then a dedicated Domain Controller server will be added to our vnet but communication within vnet would still be handled by Azure.  Communication between Vms and instance roles within a vnet would reference different names than those used by communication from outside vnet?  Those the same Azure VM would have one name to other Azure VMs in the same vnet and another name to on premises connections.  [↩](#a3)
+## Active Directory Domain Services
 
-<b id="f4">4</b> [See here for VNet and subnet design.](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/#subnets)  [↩](#a4)
+These explain new forest deployment well
+- [Setting up Active Directory with PowerShell](https://blogs.technet.microsoft.com/uktechnet/2016/06/08/setting-up-active-directory-via-powershell/) 
+- [Deploying Windows Server 2012 and Windows Server 2012 R2 Domain Controllers](https://www.microsoftpressstore.com/articles/article.aspx?p=2216997&seqNum=4)
+- [Install a New Windows Server 2012 Active Directory Forest (Level 200)](https://technet.microsoft.com/windows-server-docs/identity/ad-ds/deploy/install-a-new-windows-server-2012-active-directory-forest--level-200-)
+- [Install Active Directory Domain Services (Level 100)](https://technet.microsoft.com/en-us/windows-server-docs/identity/ad-ds/deploy/install-active-directory-domain-services--level-100-)
 
-<b id="f00">00</b> [See here for benefits of Resource Manager.](https://azure.microsoft.com/en-us/documentation/articles/resource-group-overview/#the-benefits-of-using-resource-manager)  [↩](#a00)
+[Change IP used for DNS Lookups with wizard](http://geekswithblogs.net/technetbytes/archive/2011/10/09/147233.aspx)
 
-
-# Other useful documentation:
-
-[Azure VM sizing](https://azure.microsoft.com/en-us/documentation/articles/cloud-services-sizes-specs/)
-
-[Create DNS Zone](https://azure.microsoft.com/en-us/documentation/articles/dns-getstarted-create-dnszone/)
-
+Classic deployment model but includes links to other topics (domain trusts)
 
 [Install a new Active Directory forest on an Azure virtual network](https://azure.microsoft.com/en-us/documentation/articles/active-directory-new-forest-virtual-machine/)
 
-## PowerShell
+DHCP server role is not needed but just in case...
+- [Installing and Configuring DHCP role on Windows Server 2012](https://blogs.technet.microsoft.com/teamdhcp/2012/08/31/installing-and-configuring-dhcp-role-on-windows-server-2012/)
+- [Bringing PowerShell to DHCP Server](https://blogs.technet.microsoft.com/teamdhcp/2012/07/15/bringing-powershell-to-dhcp-server/)
+
+
+## PowerShell for Azure <b id="f10"></b>[↩](#a10)
 
 [Manage VMs with PowerShell](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-windows-ps-manage/)
 
@@ -108,3 +155,22 @@ Custom Domain Controller will allow us to:
 [PowerShell script to Configure Secure Remote PowerShell Access to Windows Azure Virtual Machines](https://gallery.technet.microsoft.com/scriptcenter/Configures-Secure-Remote-b137f2fe)
 
 [Introduction to Remote PowerShell with Windows Azure](https://www.opsgility.com/blog/windows-azure-powershell-reference-guide/introduction-remote-powershell-with-windows-azure/)
+
+# Other documentation:
+
+[Azure VM sizing](https://azure.microsoft.com/en-us/documentation/articles/cloud-services-sizes-specs/)
+
+[Create DNS Zone](https://azure.microsoft.com/en-us/documentation/articles/dns-getstarted-create-dnszone/)
+
+# Footnotes
+
+<b id="f1">1</b> [See here.]() [↩](#a1)
+
+<b id="f2">2</b> [See here Microsoft Azure VNet Docs](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-overview/#strongnotestrong-1) [↩](#a2)
+
+<b id="f3">3</b> When/if named resolved communication with vnet or to on-premises then a dedicated Domain Controller server will be added to our vnet but communication within vnet would still be handled by Azure.  Communication between Vms and instance roles within a vnet would reference different names than those used by communication from outside vnet?  Those the same Azure VM would have one name to other Azure VMs in the same vnet and another name to on premises connections.  [↩](#a3)
+
+<b id="f4">4</b> [See here for VNet and subnet design.](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/#subnets)  [↩](#a4)
+
+<b id="f00">00</b> [See here for benefits of Resource Manager.](https://azure.microsoft.com/en-us/documentation/articles/resource-group-overview/#the-benefits-of-using-resource-manager)  [↩](#a00)
+
