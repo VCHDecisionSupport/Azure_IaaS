@@ -2,14 +2,16 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "virtualNetworks_vchds_vnet_name": {
+        "virtualNetworkName": {
             "defaultValue": "vchds-vnet",
             "type": "String"
         },
-        "storageAccounts_vchdsstorageacct_name": {
+        "storageAccountName": {
             "defaultValue": "vchdsstorageacct2",
             "type": "String"
         },
+
+        
         "networkSecurityGroups_jb_subnet_nsg_name": {
             "defaultValue": "jb-subnet-nsg",
             "type": "String"
@@ -151,12 +153,13 @@
             "type": "String"
         }
     },
-    "variables": {},
+    "variables": {
+    },
     "resources": [
         {
             "comments": "Generalized from resource: '/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.Network/virtualNetworks/vchds-vnet'.",
             "type": "Microsoft.Network/virtualNetworks",
-            "name": "[parameters('virtualNetworks_vchds_vnet_name')]",
+            "name": "[parameters('virtualNetworkName')]",
             "apiVersion": "2016-03-30",
             "location": "canadacentral",
             "properties": {
@@ -378,7 +381,7 @@
                         "name": "[concat(parameters('virtualMachines_JumpBoxVm1_name'),'OsDisk')]",
                         "createOption": "FromImage",
                         "vhd": {
-                            "uri": "[concat('https', '://', parameters('storageAccounts_vchdsstorageacct_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_JumpBoxVm1_name'),'OsDisk.vhd'))]"
+                            "uri": "[concat('https', '://', parameters('storageAccountName'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_JumpBoxVm1_name'),'OsDisk.vhd'))]"
                         },
                         "caching": "ReadWrite"
                     },
@@ -404,12 +407,12 @@
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
                         "enabled": true,
-                        "storageUri": "[concat('https', '://', parameters('storageAccounts_vchdsstorageacct_name'), '.blob.core.windows.net', '/')]"
+                        "storageUri": "[concat('https', '://', parameters('storageAccountName'), '.blob.core.windows.net', '/')]"
                     }
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_vchdsstorageacct_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
                 "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_JumpBoxVm1Nic_name'))]"
             ]
         },
@@ -430,7 +433,7 @@
                                 "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_JumpBoxVm1Pip_name'))]"
                             },
                             "subnet": {
-                                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_vchds_vnet_name')), '/subnets/jb-subnet')]"
+                                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName')), '/subnets/jb-subnet')]"
                             }
                         }
                     }
@@ -445,7 +448,7 @@
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_JumpBoxVm1Pip_name'))]",
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_vchds_vnet_name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
                 "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_jb_subnet_nsg_name'))]"
             ]
         },
@@ -488,7 +491,7 @@
                         "name": "[concat(parameters('virtualMachines_ADDCVm1_name'),'OsDisk')]",
                         "createOption": "FromImage",
                         "vhd": {
-                            "uri": "[concat('https', '://', parameters('storageAccounts_vchdsstorageacct_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_ADDCVm1_name'),'OsDisk.vhd'))]"
+                            "uri": "[concat('https', '://', parameters('storageAccountName'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_ADDCVm1_name'),'OsDisk.vhd'))]"
                         },
                         "caching": "ReadWrite"
                     },
@@ -514,12 +517,12 @@
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
                         "enabled": true,
-                        "storageUri": "[concat('https', '://', parameters('storageAccounts_vchdsstorageacct_name'), '.blob.core.windows.net', '/')]"
+                        "storageUri": "[concat('https', '://', parameters('storageAccountName'), '.blob.core.windows.net', '/')]"
                     }
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_vchdsstorageacct_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
                 "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_ADDCVm1Nic_name'))]"
             ]
         },
@@ -540,7 +543,7 @@
                                 "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_ADDCVm1Pip_name'))]"
                             },
                             "subnet": {
-                                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_vchds_vnet_name')), '/subnets/addc-subnet')]"
+                                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName')), '/subnets/addc-subnet')]"
                             }
                         }
                     }
@@ -555,7 +558,7 @@
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_ADDCVm1Pip_name'))]",
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_vchds_vnet_name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
                 "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_addc_subnet_nsg_name'))]"
             ]
         },
@@ -588,7 +591,7 @@
                 "tier": "Standard"
             },
             "kind": "Storage",
-            "name": "[parameters('storageAccounts_vchdsstorageacct_name')]",
+            "name": "[parameters('storageAccountName')]",
             "apiVersion": "2016-01-01",
             "location": "canadacentral",
             "tags": {},
