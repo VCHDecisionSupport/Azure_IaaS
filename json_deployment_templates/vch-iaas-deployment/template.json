@@ -7,7 +7,7 @@
             "type": "string"
         },
         "virtualNetworkName": {
-            "defaultValue": "vchds-vnettest",
+            "defaultValue": "vchds-vnettestttt",
             "type": "string"
         },
         "virtualNetworkIpRange": {
@@ -15,15 +15,15 @@
             "type": "string"
         },
         "storageAccountName": {
-            "defaultValue": "vchdsstorageaccttest",
+            "defaultValue": "vchdsstorageaccttesttttt",
             "type": "string"
         },
         "workLoadAd": {
             "type": "object",
             "defaultValue": {
-                "name": "adtest",
+                "name": "adtestttt",
                 "ipRange": "192.168.0.0/24",
-                "pipSuffix": "192.168.0.",
+                "ipPrefix": "192.168.0.",
                 "count": 2,
                 "vmSize": "Standard_DS13_v2"
 
@@ -53,7 +53,7 @@
                 "subnets": [{
                     "name": "[variables('adSubNetName')]",
                     "properties": {
-                        "addressPrefix": "[parameters('workLoadAd')['IpRange']]",
+                        "addressPrefix": "[parameters('workLoadAd')['ipRange']]",
                         "networkSecurityGroup": {
                             "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('adNsgName'))]"
                         }
@@ -145,26 +145,30 @@
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
-                "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('adVmName'), copyIndex(),'Nic')]"
+                "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('adVmName'), copyIndex(),'Nic'))]"
             ]
         },
         {
             "comments": "Generalized from resource: '/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.Network/networkInterfaces/JumpBoxVm1Nic'.",
             "type": "Microsoft.Network/networkInterfaces",
-            "name": "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('adVmName'), copyIndex(),'Nic')]",
+            "copy": {
+                "name": "vmsCopy",
+                "count": "[parameters('workLoadAd')['count']]"
+            },
+            "name": "[concat(variables('adVmName'), copyIndex(),'Nic')]",
             "apiVersion": "2016-03-30",
             "location": "[parameters('location')]",
             "properties": {
                 "ipConfigurations": [{
                     "name": "ipconfig1",
                     "properties": {
-                        "privateIPAddress": "[concat(parameters('workLoadAd')['ipPrefix'],mul(10, copyIndex()))]",
+                        "privateIPAddress": "[concat(parameters('workLoadAd')['ipPrefix'],mul(10, add(copyIndex(), 1)))]",
                         "privateIPAllocationMethod": "Static",
                         "publicIPAddress": {
                             "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('adVmName'), copyIndex(),'Pip'))]"
                         },
                         "subnet": {
-                            "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_vchds_vnet_name')), '/subnets/', variables('adSubNetName')]"
+                            "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName')), '/subnets/', variables('adSubNetName'))]"
                         }
                     }
                 }],
@@ -177,10 +181,47 @@
                 }
             },
             "dependsOn": [
+                // "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
+                // "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('adVmName'), copyIndex(),'Nic'))]",
                 "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('adVmName'), copyIndex(),'Pip'))]",
-                "[resourceId('Microsoft.Network/virtualNetworks', [parameters('virtualNetworkName')])]",
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
                 "[resourceId('Microsoft.Network/networkSecurityGroups', variables('adNsgName'))]"
             ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.Network/publicIPAddresses/JumpBoxVm1Pip'.",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "name": "[concat(variables('adVmName'), copyIndex(),'Pip')]",
+            "copy": {
+                "name": "vmsCopy",
+                "count": "[parameters('workLoadAd')['count']]"
+            },
+            "apiVersion": "2016-03-30",
+            "location": "[parameters('location')]",
+            "properties": {
+                "publicIPAllocationMethod": "Static",
+                "idleTimeoutInMinutes": 4,
+                "dnsSettings": {
+                    "domainNameLabel": "[toLower(concat(variables('adVmName'), copyIndex()))]"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.Storage/storageAccounts/vchdsstorageacct'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_GRS",
+                "tier": "Standard"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccountName')]",
+            "apiVersion": "2016-01-01",
+            "location": "canadacentral",
+            "tags": {},
+            "properties": {},
+            "dependsOn": []
         }
+
     ]
 }
