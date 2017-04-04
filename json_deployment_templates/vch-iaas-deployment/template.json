@@ -29,6 +29,19 @@
                 "vmSize": "Standard_DS13_v2"
 
             }
+        },
+        "adminName": {
+            "type": "string",
+            "defaultValue": "Floater1",
+            "metadata": {
+                "description": "VM admin user name."
+            }
+        },
+        "adminPassword": {
+            "type": "securestring",
+            "metadata": {
+                "description": "VM admin password."
+            }
         }
     },
     "variables": {
@@ -41,7 +54,7 @@
             "type": "Microsoft.Network/virtualNetworks",
             "name": "[parameters('virtualNetworkName')]",
             "apiVersion": "2016-03-30",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "properties": {
                 "addressSpace": {
                     "addressPrefixes": [
@@ -70,7 +83,7 @@
             "type": "Microsoft.Network/networkSecurityGroups",
             "name": "[variables('adNsgName')]",
             "apiVersion": "2016-03-30",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "properties": {
                 "securityRules": [{
                     "name": "rdp-rule",
@@ -100,7 +113,7 @@
                 "count": "[parameters('workLoadAd')['count']]"
             },
             "apiVersion": "2016-04-30-preview",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "properties": {
                 "hardwareProfile": {
                     "vmSize": "[parameters('workLoadAd')['vmSize']]"
@@ -125,7 +138,8 @@
                 },
                 "osProfile": {
                     "computerName": "[concat(variables('adVmName'), copyIndex())]",
-                    "adminUsername": "Floater1",
+                    "adminUsername": "[parameters('adminName')]",
+                    "adminPassword": "[parameters('adminPassword')]",
                     "windowsConfiguration": {
                         "provisionVMAgent": true,
                         "enableAutomaticUpdates": true
@@ -158,7 +172,7 @@
             },
             "name": "[concat(variables('adVmName'), copyIndex(),'Nic')]",
             "apiVersion": "2016-03-30",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "properties": {
                 "ipConfigurations": [{
                     "name": "ipconfig1",
@@ -182,8 +196,6 @@
                 }
             },
             "dependsOn": [
-                // "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
-                // "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('adVmName'), copyIndex(),'Nic'))]",
                 "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('adVmName'), copyIndex(),'Pip'))]",
                 "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
                 "[resourceId('Microsoft.Network/networkSecurityGroups', variables('adNsgName'))]"
@@ -198,7 +210,7 @@
                 "count": "[parameters('workLoadAd')['count']]"
             },
             "apiVersion": "2016-03-30",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "properties": {
                 "publicIPAllocationMethod": "Static",
                 "idleTimeoutInMinutes": 4,
