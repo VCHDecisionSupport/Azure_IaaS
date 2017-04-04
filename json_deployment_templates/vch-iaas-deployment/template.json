@@ -1,3 +1,4 @@
+// https://github.com/Azure/azure-quickstart-templates/blob/master/201-vm-dynamic-data-disks-selection/azuredeploy.json
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
@@ -7,7 +8,7 @@
             "type": "string"
         },
         "virtualNetworkName": {
-            "defaultValue": "vchds-vnettestttt",
+            "defaultValue": "vchds-vnettest",
             "type": "string"
         },
         "virtualNetworkIpRange": {
@@ -15,13 +16,13 @@
             "type": "string"
         },
         "storageAccountName": {
-            "defaultValue": "vchdsstorageaccttesttttt",
+            "defaultValue": "vchdsstorageaccttest",
             "type": "string"
         },
         "workLoadAd": {
             "type": "object",
             "defaultValue": {
-                "name": "adtestttt",
+                "name": "adtest",
                 "ipRange": "192.168.0.0/24",
                 "ipPrefix": "192.168.0.",
                 "count": 2,
@@ -116,7 +117,7 @@
                         "name": "[concat(variables('adVmName'), copyIndex(),'OsDisk')]",
                         "createOption": "FromImage",
                         "vhd": {
-                            "uri": "[concat('https', '://', parameters('storageAccounts_vchdsstorageacct_name'), '.blob.core.windows.net', concat('/vhds/', concat(variables('adVmName'), copyIndex()),'OsDisk.vhd'))]"
+                            "uri": "[concat('https', '://', parameters('storageAccountName'), '.blob.core.windows.net', concat('/vhds/', concat(variables('adVmName'), copyIndex()),'OsDisk.vhd'))]"
                         },
                         "caching": "ReadWrite"
                     },
