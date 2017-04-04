@@ -2,7 +2,7 @@
 
 ## resource hierarchy
 
-Use resource hierarchy to name child resources from to names of inheret name
+Use resource hierarchy to name by naming child resources as parent resources with an addition suffix/prefix.
 I invented the concept of a "workload" to a describe group of vms in a single subnet that together.
 
 - location

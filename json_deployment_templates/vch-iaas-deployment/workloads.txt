@@ -1,0 +1,24 @@
+"workLoadDwName": {
+            "defaultValue": "dwtest",
+            "type": "string"
+        },
+        "workLoadDwCount": {
+            "defaultValue": "1",
+            "type": "int"
+        },
+        "workLoadSpName": {
+            "defaultValue": "sptest",
+            "type": "string"
+        },
+        "workLoadSpCount": {
+            "defaultValue": "1",
+            "type": "int"
+        },
+        "workLoadUsName": {
+            "defaultValue": "ustest",
+            "type": "string"
+        },
+        "workLoadUsCount": {
+            "defaultValue": "1",
+            "type": "int"
+        },
