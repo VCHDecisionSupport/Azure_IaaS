@@ -39,6 +39,9 @@
                 "templateLink": {
                     "uri": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/json_deployment_templates/linked_templates/azuredeploy_workload.json",
                     "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" }
                 }
             }
 
