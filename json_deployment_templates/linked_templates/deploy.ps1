@@ -2,7 +2,7 @@ Set-Location -Path $PSScriptRoot
 $template_path = Join-Path -Path $PSScriptRoot -ChildPath "template.json"
 $template_path = "azuredeploy.json"
 $parameter_path = "azuredeploy.parameters.json"
-$resource_group_name = "testvchrg"
+$resource_group_name = "testvchrg2"
 
 # Login-AzureRmAccount
 
