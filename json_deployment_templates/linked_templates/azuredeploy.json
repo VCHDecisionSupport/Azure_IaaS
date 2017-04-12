@@ -1,0 +1,47 @@
+// https://github.com/Azure/azure-quickstart-templates/blob/master/201-vm-dynamic-data-disks-selection/azuredeploy.json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualNetworkName": {
+            "defaultValue": "vchds-vnettest",
+            "type": "string"
+        },
+        "virtualNetworkIpRange": {
+            "defaultValue": "192.168.0.0/16",
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [{
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "[parameters('virtualNetworkName')]",
+            "apiVersion": "2016-03-30",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[parameters('virtualNetworkIpRange')]"
+                    ]
+                },
+                "dhcpOptions": {
+                    "dnsServers": []
+                },
+                "subnets": []
+            }
+        },
+        {
+            "apiVersion": "2015-01-01",
+            "name": "linkedTemplate",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/tree/master/json_deployment_templates/linked_templates/azuredeploy_workload.json', parameters('virtualNetworkName'))]",
+                    "contentVersion": "1.0.0.0"
+                }
+            }
+
+        }
+    ]
+}

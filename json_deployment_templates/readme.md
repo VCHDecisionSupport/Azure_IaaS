@@ -55,3 +55,9 @@ I invented the concept of a "workload" to a describe group of vms in a single su
         - nic
         - os
         - size
+
+
+## Resources
+
+- [Single template vs nested templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-template-best-practices#single-template-vs-nested-templates)
+- [Design patterns for Azure Resource Manager templates when deploying complex solutions](https://docs.microsoft.com/en-us/azure/azure-resource-manager/best-practices-resource-manager-design-templates)
