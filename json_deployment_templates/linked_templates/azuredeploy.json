@@ -37,7 +37,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/tree/master/json_deployment_templates/linked_templates/azuredeploy_workload.json', parameters('virtualNetworkName'))]",
+                    "uri": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/json_deployment_templates/linked_templates/azuredeploy_workload.json",
                     "contentVersion": "1.0.0.0"
                 }
             }

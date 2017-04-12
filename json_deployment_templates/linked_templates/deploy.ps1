@@ -17,7 +17,4 @@ New-AzureRmResourceGroup -Name $resource_group_name -Location "canadacentral"
 
 # Test-AzureRmResourceGroupDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path -TemplateParameterFile $parameter_path -Verbose -Debug
 
-# New-AzureRmResourceGroupDeployment -Name gcdeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path -TemplateParameterFile $parameter_path
-
-$template_path = "azuredeploy.json"
-New-AzureRmResourceGroupDeployment -Name gcdeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
+New-AzureRmResourceGroupDeployment -Name gcdeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path -TemplateParameterFile $parameter_path
