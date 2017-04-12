@@ -6,15 +6,15 @@ $resource_group_name = "testvchrg2"
 
 # Login-AzureRmAccount
 
-$Error.Clear()
-$rg = Get-AzureRmResourceGroup -Name $resource_group_name -ErrorAction SilentlyContinue
+# $Error.Clear()
+# $rg = Get-AzureRmResourceGroup -Name $resource_group_name -ErrorAction SilentlyContinue
 
-if (!$Error) {
-    Remove-AzureRmResourceGroup -Name $resource_group_name
-}
+# if (!$Error) {
+#     Remove-AzureRmResourceGroup -Name $resource_group_name
+# }
 
-New-AzureRmResourceGroup -Name $resource_group_name -Location "canadacentral"
+# New-AzureRmResourceGroup -Name $resource_group_name -Location "canadacentral"
 
-# Test-AzureRmResourceGroupDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path -TemplateParameterFile $parameter_path -Verbose -Debug
+Test-AzureRmResourceGroupDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path -TemplateParameterFile $parameter_path -Verbose -Debug
 
 New-AzureRmResourceGroupDeployment -Name gcdeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
