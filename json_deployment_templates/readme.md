@@ -21,7 +21,6 @@ I invented the concept of a "workload" to a describe group of vms in a single su
             - size
 
 
-
 ## json parameters
 
 - root_name: `vchds`
