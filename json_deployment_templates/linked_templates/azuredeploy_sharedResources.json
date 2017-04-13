@@ -44,7 +44,7 @@
     },
     "variables": {
         "subnetCount": "[length(parameters('workloadConfigs'))]",
-        "sharedResourcesUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_subnets.json')]"
+        "subnetsUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_subnets.json')]"
     },
     "resources": [{
             "type": "Microsoft.Storage/storageAccounts",
@@ -91,7 +91,7 @@
                     "count": "[parameters('subnetCount')]"
                 },
                 "templateLink": {
-                    "uri": "[variables('sharedResourcesUri')]",
+                    "uri": "[variables('subnetsUri')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
