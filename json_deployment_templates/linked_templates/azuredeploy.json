@@ -44,10 +44,10 @@
     },
     "variables": {
         "subnetCount": "[length(parameters('workloadConfigs'))]",
-        "sharedResourcesUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_sharedResources.json']"
+        "sharedResourcesUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_sharedResources.json')]"
     },
     "resources": [{
-        "comment": "deploys common/shared resources: vnet, storage account",
+        "comments": "deploys common/shared resources: vnet, storage account",
         "apiVersion": "2015-01-01",
         "name": "linkedTemplate",
         "type": "Microsoft.Resources/deployments",

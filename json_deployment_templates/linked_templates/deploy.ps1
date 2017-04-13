@@ -2,19 +2,13 @@ Set-Location -Path $PSScriptRoot
 $template_path = Join-Path -Path $PSScriptRoot -ChildPath "template.json"
 $template_path = "azuredeploy.json"
 # $parameter_path = "azuredeploy.parameters.json"
-$resource_group_name = "testvchrg0"
+$resource_group_name = "testvchrg"
 
 # Login-AzureRmAccount
 
-# $Error.Clear()
-# $rg = Get-AzureRmResourceGroup -Name $resource_group_name -ErrorAction SilentlyContinue
+New-AzureRmResourceGroup -Name $resource_group_name -Location "canadacentral"
 
-# if (!$Error) {
-#     Remove-AzureRmResourceGroup -Name $resource_group_name
-# }
-
-# New-AzureRmResourceGroup -Name $resource_group_name -Location "canadacentral"
-
-Test-AzureRmResourceGroupDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path -TemplateParameterFile $parameter_path -Verbose -Debug
+Test-AzureRmResourceGroupDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
+#  -TemplateParameterFile $parameter_path -Verbose -Debug
 
 New-AzureRmResourceGroupDeployment -Name gcdeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
