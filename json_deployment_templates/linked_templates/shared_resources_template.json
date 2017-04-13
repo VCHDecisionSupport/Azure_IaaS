@@ -68,7 +68,6 @@
                     "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" }
                 }
             }
-
         }
     ]
 }

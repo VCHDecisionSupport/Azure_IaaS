@@ -1,10 +1,17 @@
-# Linked json Template Deployment
+# Capability Scope Topology
 
-Deployment template use these [design patterns](https://docs.microsoft.com/en-us/azure/azure-resource-manager/best-practices-resource-manager-design-templates#capacity-and-capability-scoped-solution-templates) and follow these [best practices](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-template-best-practices#single-template-vs-nested-templates)
+Since requirements call for complex multi-tier infrastructure design of deployment templates use [nested templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-template-best-practices#single-template-vs-nested-templates) to reduce code duplication and promote simplicity.
+
+Since design goal is a [technology specific environment](https://docs.microsoft.com/en-us/azure/azure-resource-manager/best-practices-resource-manager-design-templates#common-template-scopes), the [capability scope topology design pattern](https://docs.microsoft.com/en-us/azure/azure-resource-manager/best-practices-resource-manager-design-templates#capacity-and-capability-scoped-solution-templates) was adopted.
+
 
 ## azuredeploy.json
 
-- entry point of deployment
+- main entry point of deployment
+- receives parameter values from user provided parameter file
+
+
+
 - creates one-off resources
 
 ### what it includes and does
