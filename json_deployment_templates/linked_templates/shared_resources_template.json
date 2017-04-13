@@ -18,9 +18,29 @@
         "dnsServerIp": {
             "defaultValue": "192.168.0.0",
             "type": "string"
+        },
+        "workloadConfigs": {
+            "type": "array",
+            "defaultValue": [{
+                    "workloadName": "addc",
+                    "addressPrefix": "192.168.0.0/24",
+                    "vmCount": 1
+                },
+                {
+                    "workloadName": "dsdw",
+                    "addressPrefix": "192.168.1.0/24",
+                    "vmCount": 1
+                }, {
+                    "workloadName": "sharepoint",
+                    "addressPrefix": "192.168.2.0/24",
+                    "vmCount": 3
+                }
+            ]
         }
     },
-    "variables": {},
+    "variables": {
+        "subnetCount": "[length(parameters('workloadConfigs'))]"
+    },
     "resources": [{
             "type": "Microsoft.Storage/storageAccounts",
             "sku": {

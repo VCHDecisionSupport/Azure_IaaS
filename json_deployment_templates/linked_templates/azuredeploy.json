@@ -3,6 +3,10 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "templateUriPrefix": {
+            "defaultValue": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/json_deployment_templates/linked_templates/",
+            "type": "string"
+        },
         "storageAccountName": {
             "defaultValue": "vchstorageaccountgac",
             "type": "string"
@@ -18,57 +22,47 @@
         "dnsServerIp": {
             "defaultValue": "192.168.0.0",
             "type": "string"
+        },
+        "workloadConfigs": {
+            "type": "array",
+            "defaultValue": [{
+                    "workloadName": "addc",
+                    "addressPrefix": "192.168.0.0/24",
+                    "vmCount": 1
+                },
+                {
+                    "workloadName": "dsdw",
+                    "addressPrefix": "192.168.1.0/24",
+                    "vmCount": 1
+                }, {
+                    "workloadName": "sharepoint",
+                    "addressPrefix": "192.168.2.0/24",
+                    "vmCount": 3
+                }
+            ]
         }
     },
-    "variables": {},
+    "variables": {
+        "subnetCount": "[length(parameters('workloadConfigs'))]",
+        "sharedResourcesUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_sharedResources.json']"
+    },
     "resources": [{
-            "type": "Microsoft.Storage/storageAccounts",
-            "sku": {
-                "name": "Standard_GRS",
-                "tier": "Standard"
+        "comment": "deploys common/shared resources: vnet, storage account",
+        "apiVersion": "2015-01-01",
+        "name": "linkedTemplate",
+        "type": "Microsoft.Resources/deployments",
+        "properties": {
+            "mode": "Incremental",
+            "templateLink": {
+                "uri": "[variables('sharedResourcesUri')]",
+                "contentVersion": "1.0.0.0"
             },
-            "kind": "Storage",
-            "name": "[parameters('storageAccountName')]",
-            "apiVersion": "2016-01-01",
-            "location": "canadacentral",
-            "tags": {},
-            "properties": {},
-            "dependsOn": []
-        },
-        {
-            "type": "Microsoft.Network/virtualNetworks",
-            "name": "[parameters('virtualNetworkName')]",
-            "apiVersion": "2016-03-30",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "addressSpace": {
-                    "addressPrefixes": [
-                        "[parameters('virtualNetworkIpRange')]"
-                    ]
-                },
-                "dhcpOptions": {
-                    "dnsServers": [
-                        "[parameters('dnsServerIp')]"
-                    ]
-                },
-                "subnets": []
+            "parameters": {
+                "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" },
+                "storageAccountName": { "value": "[parameters('storageAccountName')]" },
+                "dnsServerIp": { "value": "[parameters('dnsServerIp')]" },
+                "virtualNetworkIpRange": { "value": "[parameters('virtualNetworkIpRange')]" }
             }
-        },
-        {
-            "apiVersion": "2015-01-01",
-            "name": "linkedTemplate",
-            "type": "Microsoft.Resources/deployments",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/json_deployment_templates/linked_templates/azuredeploy_workload.json",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" }
-                }
-            }
-
         }
-    ]
+    }]
 }
