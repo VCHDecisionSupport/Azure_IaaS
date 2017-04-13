@@ -48,7 +48,7 @@
     "resources": [{
         "comments": "deploys common/shared resources: vnet, storage account",
         "apiVersion": "2015-01-01",
-        "name": "linkedTemplate",
+        "name": "sharedResourcesDeploymentTemplate",
         "type": "Microsoft.Resources/deployments",
         "properties": {
             "mode": "Incremental",
