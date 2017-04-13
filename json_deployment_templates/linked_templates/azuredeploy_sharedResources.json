@@ -78,30 +78,29 @@
                 },
                 "subnets": []
             }
+        },
+        {
+            "comments": "deploys subnets",
+            "apiVersion": "2015-01-01",
+            "name": "linkedTemplate",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "copy": {
+                    "name": "iter",
+                    "count": "[variables('subnetCount')]"
+                },
+                "templateLink": {
+                    "uri": "[variables('subnetsUri')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" },
+                    "workloadName": { "value": "[parameters('workloadConfigs')[copyIndex()]['workloadName']]" },
+                    "addressPrefix": { "value": "[parameters('workloadConfigs')[copyIndex()]['addressPrefix']]" },
+                    "vmCount": { "value": "[parameters('workloadConfigs')[copyIndex()]['vmCount']]" }
+                }
+            }
         }
-        // ,
-        // {
-        //     "comments": "deploys subnets",
-        //     "apiVersion": "2015-01-01",
-        //     "name": "linkedTemplate",
-        //     "type": "Microsoft.Resources/deployments",
-        //     "properties": {
-        //         "mode": "Incremental",
-        //         "copy": {
-        //             "name": "iter",
-        //             "count": "[variables('subnetCount')]"
-        //         },
-        //         "templateLink": {
-        //             "uri": "[variables('subnetsUri')]",
-        //             "contentVersion": "1.0.0.0"
-        //         },
-        //         "parameters": {
-        //             "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" },
-        //             "workloadName": { "value": "[parameters('workloadConfigs')[copyIndex()]['workloadName']]" },
-        //             "addressPrefix": { "value": "[parameters('workloadConfigs')[copyIndex()]['addressPrefix']]" },
-        //             "vmCount": { "value": "[parameters('workloadConfigs')[copyIndex()]['vmCount']]" }
-        //         }
-        //     }
-        // }
     ]
 }
