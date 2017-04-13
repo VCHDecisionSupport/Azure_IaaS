@@ -43,7 +43,6 @@
         }
     },
     "variables": {
-        "subnetCount": "[length(parameters('workloadConfigs'))]",
         "sharedResourcesUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_sharedResources.json')]"
     },
     "resources": [{
@@ -61,7 +60,9 @@
                 "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" },
                 "storageAccountName": { "value": "[parameters('storageAccountName')]" },
                 "dnsServerIp": { "value": "[parameters('dnsServerIp')]" },
-                "virtualNetworkIpRange": { "value": "[parameters('virtualNetworkIpRange')]" }
+                "virtualNetworkIpRange": { "value": "[parameters('virtualNetworkIpRange')]" },
+                "templateUriPrefix": { "value": "[parameters('templateUriPrefix')]" },
+                "workloadConfigs": { "value": "[parameters('workloadConfigs')]" }
             }
         }
     }]

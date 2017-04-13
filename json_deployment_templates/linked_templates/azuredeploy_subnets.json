@@ -1,0 +1,63 @@
+// https://github.com/Azure/azure-quickstart-templates/blob/master/201-vm-dynamic-data-disks-selection/azuredeploy.json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageAccountName": {
+            "defaultValue": "vchstorageaccountgac",
+            "type": "string"
+        },
+        "virtualNetworkName": {
+            "defaultValue": "vchds-vnettest",
+            "type": "string"
+        },
+        "workloadName": {
+            "defaultValue": "bob",
+            "type": "string"
+        },
+        "addressPrefix": {
+            "defaultValue": "192.168.10.0/24",
+            "type": "string"
+        },
+        "vmCount": {
+            "defaultValue": 2,
+            "type": "int"
+        }
+    },
+    "variables": {
+        // "sharedResourcesUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_subnets.json')]"
+    },
+    "resources": [{
+            "apiVersion": "2015-06-15",
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "name": "[concat(parameters('virtualNetworkName'), '/',parameters('workloadName')]",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "addressPrefix": "[parameters('addressPrefix')]",
+                "publicIPAllocationMethod": "Dynamic"
+            }
+        }
+        // ,
+        // {
+        //     "comments": "deploys subnets",
+        //     "apiVersion": "2015-01-01",
+        //     "name": "linkedTemplate",
+        //     "type": "Microsoft.Resources/deployments",
+        //     "properties": {
+        //         "mode": "Incremental",
+        //         "copy": {
+        //             "name": "iter",
+        //             "count": "[parameters('subnetCount')]"
+        //         },
+        //         "templateLink": {
+        //             "uri": "[variables('sharedResourcesUri')]",
+        //             "contentVersion": "1.0.0.0"
+        //         },
+        //         "parameters": {
+        //             "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" },
+        //             "workloadName": { "value": "[parameters('workloadConfigs')[copyIndex()]['workloadName']" }
+        //         }
+        //     }
+        // }
+    ]
+}
