@@ -30,7 +30,7 @@
     "resources": [{
             "apiVersion": "2015-06-15",
             "type": "Microsoft.Network/virtualNetworks/subnets",
-            "name": "[concat(parameters('virtualNetworkName'), '/',parameters('workloadName')]",
+            "name": "[concat(parameters('virtualNetworkName'), '/',parameters('workloadName'))]",
             "location": "[resourceGroup().location]",
             "properties": {
                 "addressPrefix": "[parameters('addressPrefix')]",
