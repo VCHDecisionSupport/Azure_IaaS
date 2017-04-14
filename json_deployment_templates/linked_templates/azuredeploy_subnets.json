@@ -11,6 +11,14 @@
             "defaultValue": "vchds-vnettest",
             "type": "string"
         },
+        "workloadConfig": {
+            "type": "object",
+            "defaultValue": {
+                "workloadName": "bob",
+                "addressPrefix": "bob",
+                "vmCount": "1"
+            }
+        },
         "workloadName": {
             "defaultValue": "bob",
             "type": "string"
@@ -30,10 +38,10 @@
     "resources": [{
             "apiVersion": "2015-06-15",
             "type": "Microsoft.Network/virtualNetworks/subnets",
-            "name": "[concat(parameters('virtualNetworkName'), '/',parameters('workloadName'))]",
+            "name": "[concat(parameters('virtualNetworkName'), '/',parameters('workloadConfig')['workloadName'])]",
             "location": "[resourceGroup().location]",
             "properties": {
-                "addressPrefix": "[parameters('addressPrefix')]",
+                "addressPrefix": "[parameters('workloadConfig')['addressPrefix']]",
                 "publicIPAllocationMethod": "Dynamic"
             }
         }

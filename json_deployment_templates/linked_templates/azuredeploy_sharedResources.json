@@ -96,9 +96,10 @@
                 },
                 "parameters": {
                     "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" },
-                    "workloadName": { "value": "[parameters('workloadConfigs')[copyIndex()]['workloadName']]" },
-                    "addressPrefix": { "value": "[parameters('workloadConfigs')[copyIndex()]['addressPrefix']]" },
-                    "vmCount": { "value": "[parameters('workloadConfigs')[copyIndex()]['vmCount']]" }
+                    // "workloadName": { "value": "[parameters('workloadConfigs')[copyIndex()]['workloadName']]" },
+                    // "addressPrefix": { "value": "[parameters('workloadConfigs')[copyIndex()]['addressPrefix']]" },
+                    // "vmCount": { "value": "[parameters('workloadConfigs')[copyIndex()]['vmCount']]" }
+                    "workloadConfig": { "value": "[parameters('workloadConfigs')[copyIndex()]]" }
                 }
             }
         }
