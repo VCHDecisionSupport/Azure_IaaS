@@ -30,6 +30,28 @@
         "vmCount": {
             "defaultValue": 2,
             "type": "int"
+        },
+        "workloadConfigs": {
+            "type": "array",
+            "defaultValue": [{
+                    "workloadName": "addc",
+                    "addressPrefix": "192.168.0.0/24",
+                    "vmCount": 1
+                },
+                {
+                    "workloadName": "dsdw",
+                    "addressPrefix": "192.168.1.0/24",
+                    "vmCount": 1
+                }, {
+                    "workloadName": "sharepoint",
+                    "addressPrefix": "192.168.2.0/24",
+                    "vmCount": 3
+                }
+            ]
+        },
+        "workloadIndex": {
+            "type": "int",
+            "defaultValue": 0
         }
     },
     "variables": {
@@ -38,10 +60,10 @@
     "resources": [{
             "apiVersion": "2015-06-15",
             "type": "Microsoft.Network/virtualNetworks/subnets",
-            "name": "[concat(parameters('virtualNetworkName'), '/',parameters('workloadConfig')['workloadName'])]",
+            "name": "[concat(parameters('virtualNetworkName'), '/',[parameters('workloadConfigs')[parameters('workloadIndex')]['workloadName']])]",
             "location": "[resourceGroup().location]",
             "properties": {
-                "addressPrefix": "[parameters('workloadConfig')['addressPrefix']]",
+                "addressPrefix": "[parameters('workloadConfigs')[parameters('workloadIndex')]['addressPrefix']]",
                 "publicIPAllocationMethod": "Dynamic"
             }
         }
