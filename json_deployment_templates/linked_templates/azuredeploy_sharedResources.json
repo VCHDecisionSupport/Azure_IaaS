@@ -95,11 +95,11 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                    "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" },
+                    "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" }
                     // "workloadName": { "value": "[parameters('workloadConfigs')[copyIndex()]['workloadName']]" },
                     // "addressPrefix": { "value": "[parameters('workloadConfigs')[copyIndex()]['addressPrefix']]" },
                     // "vmCount": { "value": "[parameters('workloadConfigs')[copyIndex()]['vmCount']]" }
-                    "workloadConfig": { "value": "[parameters('workloadConfigs')[copyIndex()]]" }
+                    // "workloadConfig": { "value": "[parameters('workloadConfigs')[copyIndex()]]" }
                 }
             }
         }
