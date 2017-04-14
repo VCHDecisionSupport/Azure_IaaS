@@ -15,7 +15,7 @@
             "type": "object",
             "defaultValue": {
                 "workloadName": "bob",
-                "addressPrefix": "bob",
+                "addressPrefix": "192.168.5.0/24",
                 "vmCount": "1"
             }
         },
