@@ -88,7 +88,7 @@
                 "mode": "Incremental",
                 "copy": {
                     "name": "iter",
-                    "count": "[variables('subnetCount')]"
+                    "count": "[length(parameters('workloadConfigs'))]"
                 },
                 "templateLink": {
                     "uri": "[variables('subnetsUri')]",
