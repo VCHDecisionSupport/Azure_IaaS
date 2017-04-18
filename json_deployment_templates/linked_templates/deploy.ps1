@@ -10,6 +10,6 @@ $resource_group_name = "testrg"
 
 New-AzureRmResourceGroup -Name $resource_group_name -Location "canadacentral"
 
-Test-AzureRmResourceGroupDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
+# Test-AzureRmResourceGroupDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
 
 New-AzureRmResourceGroupDeployment -Name mainEntryDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
