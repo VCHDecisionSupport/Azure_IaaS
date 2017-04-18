@@ -79,34 +79,33 @@
                 },
                 "subnets": []
             }
-        }
-        // ,
-        // {
-        //     "comments": "deploys subnets",
-        //     "apiVersion": "2015-01-01",
-        //     "name": "linkedTemplateSubnet",
-        //     "type": "Microsoft.Resources/deployments",
-        //     "properties": {
-        //         "mode": "Incremental",
-        //         "copy": {
-        //             "name": "iter",
-        //             "count": "[length(parameters('workloadConfigs'))]"
-        //         },
-        //         "templateLink": {
-        //             "uri": "[variables('subnetsUri')]",
-        //             "contentVersion": "1.0.0.0"
-        //         },
-        //         "parameters": {
-        //             "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" },
-        //             // "workloadName": { "value": "[parameters('workloadConfigs')[copyIndex()]['workloadName']]" },
-        //             // "addressPrefix": { "value": "[parameters('workloadConfigs')[copyIndex()]['addressPrefix']]" },
-        //             // "vmCount": { "value": "[parameters('workloadConfigs')[copyIndex()]['vmCount']]" },
-        //             // "workloadConfig": { "value": "[parameters('workloadConfigs')[copyIndex()]]" },
-        //             "workloadIndex": { "value": "[copyIndex()]" },
-        //             "workloadConfigs": { "value": "[parameters('workloadConfigs')]" }
+        },
+        {
+            "comments": "deploys subnets",
+            "apiVersion": "2015-01-01",
+            "name": "linkedTemplateSubnet",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "copy": {
+                    "name": "iter",
+                    "count": "[length(parameters('workloadConfigs'))]"
+                },
+                "templateLink": {
+                    "uri": "[variables('subnetsUri')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" },
+                    "workloadName": { "value": "[parameters('workloadConfigs')[copyIndex()]['workloadName']]" },
+                    "addressPrefix": { "value": "[parameters('workloadConfigs')[copyIndex()]['addressPrefix']]" }
+                    // "vmCount": { "value": "[parameters('workloadConfigs')[copyIndex()]['vmCount']]" },
+                    // "workloadConfig": { "value": "[parameters('workloadConfigs')[copyIndex()]]" },
+                    // "workloadIndex": { "value": "[copyIndex()]" },
+                    // "workloadConfigs": { "value": "[parameters('workloadConfigs')]" }
 
-        //         }
-        //     }
-        // }
+                }
+            }
+        }
     ]
 }
