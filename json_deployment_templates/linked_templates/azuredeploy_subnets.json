@@ -84,22 +84,21 @@
                 }]
             },
             "dependsOn": []
+        },
+        {
+            "apiVersion": "2015-06-15",
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "copy": {
+                "name": "iter",
+                "count": "[length(parameters('workloadConfigs'))]"
+            },
+            "name": "[concat(parameters('virtualNetworkName'), '/',parameters('workloadConfigs')[copyIndex()]['workloadName'])]",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "addressPrefix": "[parameters('workloadConfigs')[copyIndex()]['addressPrefix']]",
+                "publicIPAllocationMethod": "Dynamic"
+            }
         }
-        // ,
-        // {
-        //     "apiVersion": "2015-06-15",
-        //     "type": "Microsoft.Network/virtualNetworks/subnets",
-        //     "copy": {
-        //         "name": "iter",
-        //         "count": "[length(parameters('workloadConfigs'))]"
-        //     },
-        //     "name": "[concat(parameters('virtualNetworkName'), '/',parameters('workloadConfigs')[copyIndex()]['workloadName'])]",
-        //     "location": "[resourceGroup().location]",
-        //     "properties": {
-        //         "addressPrefix": "[parameters('workloadConfigs')[copyIndex()]['addressPrefix']]",
-        //         "publicIPAllocationMethod": "Dynamic"
-        //     }
-        // }
 
 
         // , {
