@@ -27,15 +27,18 @@
             "type": "array",
             "defaultValue": [{
                     "workloadName": "addc",
+                    "nsgName": "addc-nsg",
                     "addressPrefix": "192.168.0.0/24",
                     "vmCount": 1
                 },
                 {
                     "workloadName": "dsdw",
+                    "nsgName": "dsdw-nsg",
                     "addressPrefix": "192.168.1.0/24",
                     "vmCount": 1
                 }, {
                     "workloadName": "sharepoint",
+                    "nsgName": "sharepoint-nsg",
                     "addressPrefix": "192.168.2.0/24",
                     "vmCount": 3
                 }
