@@ -11,26 +11,6 @@
             "defaultValue": "vchds-vnettest",
             "type": "string"
         },
-        "workloadConfig": {
-            "type": "object",
-            "defaultValue": {
-                "workloadName": "bob",
-                "addressPrefix": "192.168.5.0/24",
-                "vmCount": "1"
-            }
-        },
-        "workloadName": {
-            "defaultValue": "bob",
-            "type": "string"
-        },
-        "addressPrefix": {
-            "defaultValue": "192.168.10.0/24",
-            "type": "string"
-        },
-        "vmCount": {
-            "defaultValue": 2,
-            "type": "int"
-        },
         "workloadConfigs": {
             "type": "array",
             "defaultValue": [{
@@ -99,52 +79,5 @@
                 "publicIPAllocationMethod": "Dynamic"
             }
         }
-
-
-        // , {
-        //     "type": "Microsoft.Network/networkSecurityGroups",
-        //     "name": "[concat(parameters('virtualNetworkName'), '/', parameters('workloadConfigs')[copyIndex()]['workloadName'], variables('nsgSuffix'))]",
-        //     "apiVersion": "2016-03-30",
-        //     "location": "[resourceGroup().location]",
-        //     "properties": {
-        //         "securityRules": [{
-        //             "name": "rdp-rule",
-        //             "properties": {
-        //                 "description": "Allow www RDP",
-        //                 "protocol": "Tcp",
-        //                 "sourcePortRange": "*",
-        //                 "destinationPortRange": "*",
-        //                 "sourceAddressPrefix": "Internet",
-        //                 "destinationAddressPrefix": "*",
-        //                 "access": "Allow",
-        //                 "priority": 100,
-        //                 "direction": "Inbound"
-        //             }
-        //         }]
-        //     },
-        //     "dependsOn": []
-        // }
-        // ,
-        // {
-        //     "comments": "deploys subnets",
-        //     "apiVersion": "2015-01-01",
-        //     "name": "linkedTemplate",
-        //     "type": "Microsoft.Resources/deployments",
-        //     "properties": {
-        //         "mode": "Incremental",
-        //         "copy": {
-        //             "name": "iter",
-        //             "count": "[parameters('subnetCount')]"
-        //         },
-        //         "templateLink": {
-        //             "uri": "[variables('sharedResourcesUri')]",
-        //             "contentVersion": "1.0.0.0"
-        //         },
-        //         "parameters": {
-        //             "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" },
-        //             "workloadName": { "value": "[parameters('workloadConfigs')[copyIndex()]['workloadName']" }
-        //         }
-        //     }
-        // }
     ]
 }
