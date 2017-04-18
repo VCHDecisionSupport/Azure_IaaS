@@ -62,7 +62,7 @@
 
         {
             "type": "Microsoft.Network/networkSecurityGroups",
-            "name": "[concat(parameters('virtualNetworkName'), '/', parameters('workloadConfigs')[copyIndex()]['nsgName'])]",
+            "name": "[parameters('workloadConfigs')[copyIndex()]['nsgName']]",
             "apiVersion": "2016-03-30",
             "location": "[resourceGroup().location]",
             "properties": {
