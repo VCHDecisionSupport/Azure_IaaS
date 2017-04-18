@@ -59,10 +59,10 @@
             "parameters": {
                 "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" },
                 "storageAccountName": { "value": "[parameters('storageAccountName')]" },
-                "dnsServerIp": { "value": "[parameters('dnsServerIp')]" },
-                "virtualNetworkIpRange": { "value": "[parameters('virtualNetworkIpRange')]" },
-                "templateUriPrefix": { "value": "[parameters('templateUriPrefix')]" },
-                "workloadConfigs": { "value": "[parameters('workloadConfigs')]" }
+                "dnsServerIp": { "value": "[parameters('dnsServerIp')]" }
+                // "virtualNetworkIpRange": { "value": "[parameters('virtualNetworkIpRange')]" },
+                // "templateUriPrefix": { "value": "[parameters('templateUriPrefix')]" },
+                // "workloadConfigs": { "value": "[parameters('workloadConfigs')]" }
             }
         }
     }]

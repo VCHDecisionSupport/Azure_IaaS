@@ -1,10 +1,11 @@
+
 Set-Location -Path $PSScriptRoot
-$template_path = Join-Path -Path $PSScriptRoot -ChildPath "azuredeploy.json"
 $template_path = "azuredeploy.json"
 # $template_path = "azuredeploy_subnets.json"
 # $parameter_path = "azuredeploy.parameters.json"
-$resource_group_name = "testvchrg0"
+$resource_group_name = "testrg"
 
+# prompts login popup; only need to login once per powershell session
 # Login-AzureRmAccount
 
 New-AzureRmResourceGroup -Name $resource_group_name -Location "canadacentral"

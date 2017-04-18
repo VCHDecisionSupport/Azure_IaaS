@@ -1,4 +1,12 @@
-# Capability Scope Topology
+# Azure JSON Deployment Templates
+
+## Walk Through
+
+1. PowerShell script: `deploy.ps1`
+
+
+
+## Capability Scope Topology
 
 Since requirements call for complex multi-tier infrastructure design of deployment templates use [nested templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-template-best-practices#single-template-vs-nested-templates) to reduce code duplication and promote simplicity.
 
