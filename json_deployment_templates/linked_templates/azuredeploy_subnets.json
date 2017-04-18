@@ -35,15 +35,18 @@
             "type": "array",
             "defaultValue": [{
                     "workloadName": "addc",
+                    "nsgName": "addc-nsg",
                     "addressPrefix": "192.168.0.0/24",
                     "vmCount": 1
                 },
                 {
                     "workloadName": "dsdw",
+                    "nsgName": "dsdw-nsg",
                     "addressPrefix": "192.168.1.0/24",
                     "vmCount": 1
                 }, {
                     "workloadName": "sharepoint",
+                    "nsgName": "sharepoint-nsg",
                     "addressPrefix": "192.168.2.0/24",
                     "vmCount": 3
                 }
@@ -54,14 +57,12 @@
             "defaultValue": 0
         }
     },
-    "variables": {
-        "nsgSuffix": "-nsg"
-    },
+    "variables": {},
     "resources": [
 
         {
             "type": "Microsoft.Network/networkSecurityGroups",
-            "name": "[concat(parameters('virtualNetworkName'), '/', parameters('workloadConfigs')[copyIndex()]['workloadName'], variables('nsgSuffix'))]",
+            "name": "[concat(parameters('virtualNetworkName'), '/', parameters('workloadConfigs')[copyIndex()]['nsgName'])]",
             "apiVersion": "2016-03-30",
             "location": "[resourceGroup().location]",
             "properties": {
@@ -81,21 +82,24 @@
                 }]
             },
             "dependsOn": []
-        },
-        {
-            "apiVersion": "2015-06-15",
-            "type": "Microsoft.Network/virtualNetworks/subnets",
-            "copy": {
-                "name": "iter",
-                "count": "[length(parameters('workloadConfigs'))]"
-            },
-            "name": "[concat(parameters('virtualNetworkName'), '/',parameters('workloadConfigs')[copyIndex()]['workloadName'])]",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "addressPrefix": "[parameters('workloadConfigs')[copyIndex()]['addressPrefix']]",
-                "publicIPAllocationMethod": "Dynamic"
-            }
         }
+        // ,
+        // {
+        //     "apiVersion": "2015-06-15",
+        //     "type": "Microsoft.Network/virtualNetworks/subnets",
+        //     "copy": {
+        //         "name": "iter",
+        //         "count": "[length(parameters('workloadConfigs'))]"
+        //     },
+        //     "name": "[concat(parameters('virtualNetworkName'), '/',parameters('workloadConfigs')[copyIndex()]['workloadName'])]",
+        //     "location": "[resourceGroup().location]",
+        //     "properties": {
+        //         "addressPrefix": "[parameters('workloadConfigs')[copyIndex()]['addressPrefix']]",
+        //         "publicIPAllocationMethod": "Dynamic"
+        //     }
+        // }
+
+
         // , {
         //     "type": "Microsoft.Network/networkSecurityGroups",
         //     "name": "[concat(parameters('virtualNetworkName'), '/', parameters('workloadConfigs')[copyIndex()]['workloadName'], variables('nsgSuffix'))]",
