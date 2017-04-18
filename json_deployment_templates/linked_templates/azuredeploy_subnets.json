@@ -63,6 +63,10 @@
         {
             "type": "Microsoft.Network/networkSecurityGroups",
             "name": "[parameters('workloadConfigs')[copyIndex()]['nsgName']]",
+            "copy": {
+                "name": "iter",
+                "count": "[length(parameters('workloadConfigs'))]"
+            },
             "apiVersion": "2016-03-30",
             "location": "[resourceGroup().location]",
             "properties": {
