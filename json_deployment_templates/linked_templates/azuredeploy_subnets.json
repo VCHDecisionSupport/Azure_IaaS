@@ -55,7 +55,7 @@
         }
     },
     "variables": {
-        "nsgSuffix": "-nsg"
+        // "nsgSuffix": "-nsg"
     },
     "resources": [{
             "apiVersion": "2015-06-15",
