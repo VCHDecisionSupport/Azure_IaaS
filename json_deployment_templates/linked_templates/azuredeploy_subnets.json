@@ -70,29 +70,30 @@
                 "addressPrefix": "[parameters('workloadConfigs')[copyIndex()]['addressPrefix']]",
                 "publicIPAllocationMethod": "Dynamic"
             }
-        }, {
-            "type": "Microsoft.Network/networkSecurityGroups",
-            "name": "[concat(parameters('virtualNetworkName'), '/', parameters('workloadConfigs')[copyIndex()]['workloadName'], variables('nsgSuffix'))]",
-            "apiVersion": "2016-03-30",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "securityRules": [{
-                    "name": "rdp-rule",
-                    "properties": {
-                        "description": "Allow www RDP",
-                        "protocol": "Tcp",
-                        "sourcePortRange": "*",
-                        "destinationPortRange": "*",
-                        "sourceAddressPrefix": "Internet",
-                        "destinationAddressPrefix": "*",
-                        "access": "Allow",
-                        "priority": 100,
-                        "direction": "Inbound"
-                    }
-                }]
-            },
-            "dependsOn": []
         }
+        // , {
+        //     "type": "Microsoft.Network/networkSecurityGroups",
+        //     "name": "[concat(parameters('virtualNetworkName'), '/', parameters('workloadConfigs')[copyIndex()]['workloadName'], variables('nsgSuffix'))]",
+        //     "apiVersion": "2016-03-30",
+        //     "location": "[resourceGroup().location]",
+        //     "properties": {
+        //         "securityRules": [{
+        //             "name": "rdp-rule",
+        //             "properties": {
+        //                 "description": "Allow www RDP",
+        //                 "protocol": "Tcp",
+        //                 "sourcePortRange": "*",
+        //                 "destinationPortRange": "*",
+        //                 "sourceAddressPrefix": "Internet",
+        //                 "destinationAddressPrefix": "*",
+        //                 "access": "Allow",
+        //                 "priority": 100,
+        //                 "direction": "Inbound"
+        //             }
+        //         }]
+        //     },
+        //     "dependsOn": []
+        // }
         // ,
         // {
         //     "comments": "deploys subnets",
