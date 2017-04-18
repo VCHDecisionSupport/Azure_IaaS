@@ -58,10 +58,14 @@
     "resources": [{
             "apiVersion": "2015-06-15",
             "type": "Microsoft.Network/virtualNetworks/subnets",
-            "name": "[concat(parameters('virtualNetworkName'), '/',parameters('workloadConfigs')[parameters('workloadIndex')]['workloadName'])]",
+            "copy": {
+                "name": "iter",
+                "count": "[length(parameters('workloadConfigs'))]"
+            },
+            "name": "[concat(parameters('virtualNetworkName'), '/',parameters('workloadConfigs')[copyIndex()]['workloadName'])]",
             "location": "[resourceGroup().location]",
             "properties": {
-                "addressPrefix": "[parameters('workloadConfigs')[parameters('workloadIndex')]['addressPrefix']]",
+                "addressPrefix": "[parameters('workloadConfigs')[copyIndex()]['addressPrefix']]",
                 "publicIPAllocationMethod": "Dynamic"
             }
         }
