@@ -54,9 +54,7 @@
             "defaultValue": 0
         }
     },
-    "variables": {
-        // "sharedResourcesUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_subnets.json')]"
-    },
+    "variables": {},
     "resources": [{
             "apiVersion": "2015-06-15",
             "type": "Microsoft.Network/virtualNetworks/subnets",
