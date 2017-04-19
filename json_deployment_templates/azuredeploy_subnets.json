@@ -102,8 +102,8 @@
             },
             "parameters": {
                 "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" },
-                "workloadConfigs": { "value": "[parameters('workloadConfigs')]" },
-                "workloadName": {"value" :"[parameters('workloadConfigs')[copyIndex()]['workloadName']]"}
+                "workloadConfigs": { "value": "[parameters('workloadConfigs')]" }
+                // "workloadName": {"value" :"[parameters('workloadConfigs')[copyIndex()]['workloadName']]"}
             }
         }
     }
