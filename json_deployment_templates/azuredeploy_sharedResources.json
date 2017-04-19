@@ -4,7 +4,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "templateUriPrefix": {
-            "defaultValue": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/json_deployment_templates/linked_templates/",
+            "defaultValue": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/json_deployment_templates/",
             "type": "string"
         },
         "storageAccountName": {
@@ -46,24 +46,23 @@
         }
     },
     "variables": {
-        "subnetCount": "[length(parameters('workloadConfigs'))]",
         "subnetsUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_subnets.json')]"
     },
     "resources": [
-        // {
-        //     "type": "Microsoft.Storage/storageAccounts",
-        //     "sku": {
-        //         "name": "Standard_GRS",
-        //         "tier": "Standard"
-        //     },
-        //     "kind": "Storage",
-        //     "name": "[parameters('storageAccountName')]",
-        //     "apiVersion": "2016-01-01",
-        //     "location": "canadacentral",
-        //     "tags": {},
-        //     "properties": {},
-        //     "dependsOn": []
-        // },
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_GRS",
+                "tier": "Standard"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccountName')]",
+            "apiVersion": "2016-01-01",
+            "location": "canadacentral",
+            "tags": {},
+            "properties": {},
+            "dependsOn": []
+        },
         {
             "type": "Microsoft.Network/virtualNetworks",
             "name": "[parameters('virtualNetworkName')]",

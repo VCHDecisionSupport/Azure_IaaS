@@ -3,8 +3,8 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "storageAccountName": {
-            "defaultValue": "vchstorageaccountgac",
+              "templateUriPrefix": {
+            "defaultValue": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/json_deployment_templates/",
             "type": "string"
         },
         "virtualNetworkName": {
@@ -33,7 +33,10 @@
             ]
         }
     },
-    "variables": {},
+    "variables": {
+              "vmsUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_vms.json')]"
+
+    },
     "resources": [{
             "type": "Microsoft.Network/networkSecurityGroups",
             "copy": {
@@ -81,5 +84,24 @@
                 "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('workloadConfigs')[copyIndex()]['nsgName'])]"
             ]
         }
+        // ,
+        // {
+        //     "comments": "deploys vm(s) onto subnet",
+        //     "apiVersion": "2015-01-01",
+        //     "name": "linkedTemplateSubnet",
+        //     "type": "Microsoft.Resources/deployments",
+        //     "properties": {
+        //         "mode": "Incremental",
+        //         "templateLink": {
+        //             "uri": "[variables('vmsUri')]",
+        //             "contentVersion": "1.0.0.0"
+        //         },
+        //         "parameters": {
+        //             "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" },
+        //             "workloadConfigs": { "value": "[parameters('workloadConfigs')]" },
+        //             "workloadName": {"value" :"[parameters('workloadConfigs')[copyIndex()]['workloadName']]"}
+        //         }
+        //     }
+        // }
     ]
 }
