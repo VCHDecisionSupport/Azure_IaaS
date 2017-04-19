@@ -33,6 +33,10 @@
           "vmCount": 3
         }
       ]
+    },
+    "workloadName": {
+      "defaultValue": "vchds-vnettest",
+      "type": "string"
     }
   },
   "variables": {},

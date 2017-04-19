@@ -51,20 +51,20 @@
     "subnetsUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_subnets.json')]"
   },
   "resources": [
-    {
-      "type": "Microsoft.Storage/storageAccounts",
-      "sku": {
-        "name": "Standard_GRS",
-        "tier": "Standard"
-      },
-      "kind": "Storage",
-      "name": "[parameters('storageAccountName')]",
-      "apiVersion": "2016-01-01",
-      "location": "canadacentral",
-      "tags": {},
-      "properties": {},
-      "dependsOn": []
-    },
+    // {
+    //   "type": "Microsoft.Storage/storageAccounts",
+    //   "sku": {
+    //     "name": "Standard_GRS",
+    //     "tier": "Standard"
+    //   },
+    //   "kind": "Storage",
+    //   "name": "[parameters('storageAccountName')]",
+    //   "apiVersion": "2016-01-01",
+    //   "location": "canadacentral",
+    //   "tags": {},
+    //   "properties": {},
+    //   "dependsOn": []
+    // },
     {
       "type": "Microsoft.Network/virtualNetworks",
       "name": "[parameters('virtualNetworkName')]",

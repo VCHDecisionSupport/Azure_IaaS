@@ -88,24 +88,24 @@
         "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('workloadConfigs')[copyIndex()]['nsgName'])]"
       ]
     }
-    // ,
-    // {
-    //     "comments": "deploys vm(s) onto subnet",
-    //     "apiVersion": "2015-01-01",
-    //     "name": "linkedTemplateSubnet",
-    //     "type": "Microsoft.Resources/deployments",
-    //     "properties": {
-    //         "mode": "Incremental",
-    //         "templateLink": {
-    //             "uri": "[variables('vmsUri')]",
-    //             "contentVersion": "1.0.0.0"
-    //         },
-    //         "parameters": {
-    //             "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" },
-    //             "workloadConfigs": { "value": "[parameters('workloadConfigs')]" },
-    //             "workloadName": {"value" :"[parameters('workloadConfigs')[copyIndex()]['workloadName']]"}
-    //         }
-    //     }
-    // }
+    ,
+    {
+        "comments": "deploys vm(s) onto subnet",
+        "apiVersion": "2015-01-01",
+        "name": "linkedTemplateSubnet",
+        "type": "Microsoft.Resources/deployments",
+        "properties": {
+            "mode": "Incremental",
+            "templateLink": {
+                "uri": "[variables('vmsUri')]",
+                "contentVersion": "1.0.0.0"
+            },
+            "parameters": {
+                "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" },
+                "workloadConfigs": { "value": "[parameters('workloadConfigs')]" },
+                "workloadName": {"value" :"[parameters('workloadConfigs')[copyIndex()]['workloadName']]"}
+            }
+        }
+    }
   ]
 }
