@@ -76,8 +76,14 @@
             "location": "[resourceGroup().location]",
             "properties": {
                 "addressPrefix": "[parameters('workloadConfigs')[copyIndex()]['addressPrefix']]",
-                "publicIPAllocationMethod": "Dynamic"
-            }
+                "publicIPAllocationMethod": "Dynamic",
+                "networkSecurityGroup": {
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('workloadConfigs')[copyIndex()]['nsgName'])]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('workloadConfigs')[copyIndex()]['nsgName'])]"
+            ]
         }
     ]
 }
