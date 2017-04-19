@@ -31,10 +31,6 @@
                     "vmCount": 3
                 }
             ]
-        },
-        "workloadIndex": {
-            "type": "int",
-            "defaultValue": 0
         }
     },
     "variables": {},
