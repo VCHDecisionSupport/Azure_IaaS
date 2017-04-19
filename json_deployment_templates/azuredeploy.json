@@ -1,48 +1,56 @@
 // https://github.com/Azure/azure-quickstart-templates/blob/master/201-vm-dynamic-data-disks-selection/azuredeploy.json
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "templateUriPrefix": {
-            "defaultValue": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/json_deployment_templates/linked_templates/",
-            "type": "string"
-        },
-        "storageAccountName": {
-            "defaultValue": "vchstorageaccountgac",
-            "type": "string"
-        },
-        "virtualNetworkName": {
-            "defaultValue": "vchds-vnettest",
-            "type": "string"
-        },
-        "virtualNetworkIpRange": {
-            "defaultValue": "192.168.0.0/16",
-            "type": "string"
-        },
-        "dnsServerIp": {
-            "defaultValue": "192.168.0.0",
-            "type": "string"
-        }
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "templateUriPrefix": {
+      "defaultValue": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/json_deployment_templates/",
+      "type": "string"
     },
-    "variables": {
-        "sharedResourcesUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_sharedResources.json')]"
+    "storageAccountName": {
+      "defaultValue": "vchstorageaccountgac",
+      "type": "string"
     },
-    "resources": [{
-        "comments": "deploys common/shared resources: vnet, storage account",
-        "apiVersion": "2015-01-01",
-        "name": "linkedTemplateShared",
-        "type": "Microsoft.Resources/deployments",
-        "properties": {
-            "mode": "Incremental",
-            "templateLink": {
-                "uri": "[variables('sharedResourcesUri')]",
-                "contentVersion": "1.0.0.0"
-            },
-            "parameters": {
-                "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" },
-                "storageAccountName": { "value": "[parameters('storageAccountName')]" },
-                "dnsServerIp": { "value": "[parameters('dnsServerIp')]" }
-            }
+    "virtualNetworkName": {
+      "defaultValue": "vchds-vnettest",
+      "type": "string"
+    },
+    "virtualNetworkIpRange": {
+      "defaultValue": "192.168.0.0/16",
+      "type": "string"
+    },
+    "dnsServerIp": {
+      "defaultValue": "192.168.0.0",
+      "type": "string"
+    }
+  },
+  "variables": {
+    "sharedResourcesUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_sharedResources.json')]"
+  },
+  "resources": [
+    {
+      "comments": "deploys common/shared resources: vnet, storage account",
+      "apiVersion": "2015-01-01",
+      "name": "linkedTemplateShared",
+      "type": "Microsoft.Resources/deployments",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('sharedResourcesUri')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "virtualNetworkName": {
+            "value": "[parameters('virtualNetworkName')]"
+          },
+          "storageAccountName": {
+            "value": "[parameters('storageAccountName')]"
+          },
+          "dnsServerIp": {
+            "value": "[parameters('dnsServerIp')]"
+          }
         }
-    }]
+      }
+    }
+  ]
 }
