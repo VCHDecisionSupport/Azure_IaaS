@@ -1,4 +1,4 @@
-# Azure IaaS
+# Azure json template IaaS deployment
 
 Turn key deployment: execute `json_deployment_templates/deploy.ps1`
 
