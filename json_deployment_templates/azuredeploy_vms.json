@@ -77,8 +77,10 @@
         // }
     },
     "variables": {
-        "vmNameStub": "[concat(parameters('subnetName'),'Vm')]"
-
+        "vmNameStub": "[concat(parameters('subnetName'),'Vm')]",
+        "pipNameStub": "[concat(parameters('subnetName'),'Pip')]",
+        "nicNameStub": "[concat(parameters('subnetName'),'Nic')]",
+        "OsDiskNameStub": "[concat(parameters('subnetName'),'OsDisk')]"
     },
     "resources": [{
             "comments": "creates virtual machine according to given parameters above.  depends on creation of other resources: ip address",
@@ -97,10 +99,10 @@
                     "imageReference": "[parameters('imageReference')]",
                     "osDisk": {
                         "osType": "Windows",
-                        "name": "[concat(variables('vmNameStub'), copyIndex(),'OsDisk')]",
+                        "name": "[concat(variables('OsDiskNameStub'), copyIndex())]",
                         "createOption": "FromImage",
                         "vhd": {
-                            "uri": "[concat('https', '://', parameters('storageAccountName'), '.blob.core.windows.net', concat('/vhds/', concat(variables('vmNameStub'), copyIndex()),'OsDisk.vhd'))]"
+                            "uri": "[concat('https', '://', parameters('storageAccountName'), '.blob.core.windows.net', concat('/vhds/', concat(variables('OsDiskNameStub'), copyIndex()),'.vhd'))]"
                         },
                         "caching": "ReadWrite"
                     },
@@ -118,7 +120,7 @@
                 },
                 "networkProfile": {
                     "networkInterfaces": [{
-                        "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('vmNameStub'), copyIndex(),'Nic'))]"
+                        "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nicNameStub'), copyIndex()))]"
                     }]
                 },
                 "diagnosticsProfile": {
@@ -130,7 +132,7 @@
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
-                "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('vmNameStub'), copyIndex(),'Nic'))]"
+                "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nicNameStub'), copyIndex()))]"
             ]
         },
         {
@@ -140,17 +142,17 @@
                 "name": "vmsCopy",
                 "count": "[parameters('vmCount')]"
             },
-            "name": "[concat(variables('vmNameStub'), copyIndex(),'Nic')]",
+            "name": "[concat(variables('nicNameStub'), copyIndex())]",
             "apiVersion": "2016-03-30",
             "location": "[resourceGroup().location]",
             "properties": {
                 "ipConfigurations": [{
                     "name": "ipconfig1",
                     "properties": {
-                        "privateIPAddress": "[concat(parameters('workLoadAd')['ipPrefix'],mul(10, add(copyIndex(), 1)))]",
+                        "privateIPAddress": "[concat(parameters('addressStub'),mul(10, add(copyIndex(), 1)))]",
                         "privateIPAllocationMethod": "Static",
                         "publicIPAddress": {
-                            "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('vmNameStub'), copyIndex(),'Pip'))]"
+                            "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('pipNameStub'), copyIndex()))]"
                         },
                         "subnet": {
                             "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName')), '/subnets/', parameters('subnetName'))]"
@@ -166,14 +168,14 @@
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('vmNameStub'), copyIndex(),'Pip'))]",
+                "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('pipNameStub'), copyIndex()))]",
                 "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
                 "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('nsgName'))]"
             ]
         },
         {
             "comments": "creates public static IP",
-            "name": "[concat(variables('vmNameStub'), copyIndex(),'Pip')]",
+            "name": "[concat(variables('pipNameStub'), copyIndex())]",
             "apiVersion": "2016-03-30",
             "location": "[resourceGroup().location]",
             "properties": {

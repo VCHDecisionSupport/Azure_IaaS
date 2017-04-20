@@ -127,11 +127,11 @@
                         "value": "[parameters('subnetName')]"
                     },
                     "nsgName": {
-                        "value": "[parameters('nsgName')]"
-                    },
+                        "value": "[variables('nsgName')]"
+                            // },
 
-                    "workloadConfigs": {
-                        "value": "[parameters('workloadConfigs')]"
+                        // "workloadConfigs": {
+                        // "value": "[parameters('workloadConfigs')]"
                     }
                 }
             }
