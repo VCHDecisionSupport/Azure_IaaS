@@ -99,7 +99,7 @@
                         "value": "[parameters('virtualNetworkName')]"
                     },
                     "virtualNetworkIpRange": {
-                        "value": "[parameters('virtualNetworkName')]"
+                        "value": "[parameters('virtualNetworkIpRange')]"
                     },
                     "dnsServerIp": {
                         "value": "[parameters('dnsServerIp')]"

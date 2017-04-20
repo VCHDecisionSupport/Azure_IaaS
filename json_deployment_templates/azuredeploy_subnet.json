@@ -121,7 +121,7 @@
                         "value": "[parameters('virtualNetworkName')]"
                     },
                     "virtualNetworkIpRange": {
-                        "value": "[parameters('virtualNetworkName')]"
+                        "value": "[parameters('virtualNetworkIpRange')]"
                     },
                     "dnsServerIp": {
                         "value": "[parameters('dnsServerIp')]"
@@ -131,10 +131,10 @@
                         "value": "[parameters('subnetName')]"
                     },
                     "addressStub": {
-                        "value": "[variables('nsgName')]"
+                        "value": "[variables('addressStub')]"
                     },
                     "netMask": {
-                        "value": "[variables('nsgName')]"
+                        "value": "[variables('netMask')]"
                     },
                     "nsgName": {
                         "value": "[variables('nsgName')]"
