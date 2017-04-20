@@ -123,15 +123,18 @@
                     "dnsServerIp": {
                         "value": "[parameters('dnsServerIp')]"
                     },
+
                     "subnetName": {
                         "value": "[parameters('subnetName')]"
                     },
+                    "addressStub": {
+                        "value": "[variables('nsgName')]"
+                    },
+                    "netMask": {
+                        "value": "[variables('nsgName')]"
+                    },
                     "nsgName": {
                         "value": "[variables('nsgName')]"
-                            // },
-
-                        // "workloadConfigs": {
-                        // "value": "[parameters('workloadConfigs')]"
                     }
                 }
             }

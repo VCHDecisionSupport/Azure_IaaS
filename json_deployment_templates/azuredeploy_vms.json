@@ -28,6 +28,9 @@
         "netMask": {
             "type": "string"
         },
+        "nsgName": {
+            "type": "string"
+        },
 
 
 
