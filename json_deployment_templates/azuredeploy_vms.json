@@ -33,7 +33,20 @@
         },
 
 
-
+        "adminName": {
+            "type": "string",
+            "defaultValue": "Floater1",
+            "metadata": {
+                "description": "VM admin user name."
+            }
+        },
+        "adminPassword": {
+            "type": "string",
+            "defaultValue": "Floater1",
+            "metadata": {
+                "description": "VM admin password."
+            }
+        },
         "imageReference": {
             "defaultValue": {
                 "publisher": "MicrosoftWindowsServer",
