@@ -1,0 +1,98 @@
+// https://github.com/Azure/azure-quickstart-templates/blob/master/201-vm-dynamic-data-disks-selection/azuredeploy.json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "templateUriPrefix": {
+            "type": "string"
+        },
+        "virtualNetworkName": {
+            "defaultValue": "vchds-vnettest",
+            "type": "string"
+        },
+        "subnetName": {
+            "defaultValue": "subnet",
+            "type": "string"
+        },
+        "addressStub": {
+            "defaultValue": "192.168.0.",
+            "type": "string"
+        },
+        "netMask": {
+            "defaultValue": "/24",
+            "type": "string"
+        },
+        "imageReference": {
+            "publisher": "MicrosoftWindowsServer",
+            "offer": "WindowsServer",
+            "sku": "2012-R2-Datacenter",
+            "version": "latest"
+        },
+        "vmSize": {
+            "defaultValue": "Standard_DS13_v2",
+            "type": "string"
+        }
+    },
+    "variables": {
+        "nsgName": "[concat(parameters('subnetName'),'-nsg')]",
+        "vmNameStub": "[concat(parameters('subnetName'),'Vm')]"
+    },
+    "resources": [{
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "name": "[variables('nsgName')]",
+            "apiVersion": "2016-03-30",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "securityRules": [{
+                    "name": "rdp-rule",
+                    "properties": {
+                        "description": "Allow www RDP",
+                        "protocol": "Tcp",
+                        "sourcePortRange": "*",
+                        "destinationPortRange": "*",
+                        "sourceAddressPrefix": "Internet",
+                        "destinationAddressPrefix": "*",
+                        "access": "Allow",
+                        "priority": 100,
+                        "direction": "Inbound"
+                    }
+                }]
+            },
+            "dependsOn": []
+        },
+        {
+            "apiVersion": "2015-06-15",
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "name": "[concat(parameters('virtualNetworkName'), '/',parameters('subnetName'))]",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "addressPrefix": "[concat(parameters('addressStub'), '0', parameters('netMask'))]",
+                "publicIPAllocationMethod": "Static",
+                "networkSecurityGroup": {
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]"
+            ]
+        }
+        // ,
+        // {
+        //     "comments": "deploys vm(s) onto subnet",
+        //     "apiVersion": "2015-01-01",
+        //     "name": "linkedTemplateSubnet",
+        //     "type": "Microsoft.Resources/deployments",
+        //     "properties": {
+        //         "mode": "Incremental",
+        //         "templateLink": {
+        //             "uri": "[variables('vmsUri')]",
+        //             "contentVersion": "1.0.0.0"
+        //         },
+        //         "parameters": {
+        //             "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" },
+        //             "workloadConfigs": { "value": "[parameters('workloadConfigs')]" }
+        //         }
+        //     }
+        // }
+    ]
+}
