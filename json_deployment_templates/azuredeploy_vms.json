@@ -20,15 +20,12 @@
         },
 
         "subnetName": {
-            "defaultValue": "subnet",
             "type": "string"
         },
         "addressStub": {
-            "defaultValue": "192.168.0.",
             "type": "string"
         },
         "netMask": {
-            "defaultValue": "/24",
             "type": "string"
         },
 
@@ -84,8 +81,7 @@
 
     },
     "resources": [{
-            "comments": "Generalized from resource: '/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.Compute/virtualMachines/JumpBoxVm1'.",
-            "type": "Microsoft.Compute/virtualMachines",
+            "comments": "creates virtual machine according to given parameters above.  depends on creation of other resources: ip address",
             "name": "[concat(variables('vmNameStub'), copyIndex())]",
             "copy": {
                 "name": "vmsCopy",
@@ -138,7 +134,7 @@
             ]
         },
         {
-            "comments": "Generalized from resource: '/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.Network/networkInterfaces/JumpBoxVm1Nic'.",
+            "comments": "creates network interface and associates it with public and private static ips",
             "type": "Microsoft.Network/networkInterfaces",
             "copy": {
                 "name": "vmsCopy",
@@ -176,8 +172,7 @@
             ]
         },
         {
-            "comments": "Generalized from resource: '/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.Network/publicIPAddresses/JumpBoxVm1Pip'.",
-            "type": "Microsoft.Network/publicIPAddresses",
+            "comments": "creates public static IP",
             "name": "[concat(variables('vmNameStub'), copyIndex(),'Pip')]",
             "apiVersion": "2016-03-30",
             "location": "[resourceGroup().location]",
