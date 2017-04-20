@@ -23,10 +23,13 @@
             "type": "string"
         },
         "imageReference": {
-            "publisher": "MicrosoftWindowsServer",
-            "offer": "WindowsServer",
-            "sku": "2012-R2-Datacenter",
-            "version": "latest"
+            "type": "object",
+            "defaultValue": {
+                "publisher": "MicrosoftWindowsServer",
+                "offer": "WindowsServer",
+                "sku": "2012-R2-Datacenter",
+                "version": "latest"
+            }
         },
         "vmSize": {
             "defaultValue": "Standard_DS13_v2",
