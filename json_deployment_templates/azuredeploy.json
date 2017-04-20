@@ -42,11 +42,14 @@
                 "templateUriPrefix": {
                     "value": "[parameters('templateUriPrefix')]"
                 },
+                "storageAccountName": {
+                    "value": "[parameters('storageAccountName')]"
+                },
                 "virtualNetworkName": {
                     "value": "[parameters('virtualNetworkName')]"
                 },
-                "storageAccountName": {
-                    "value": "[parameters('storageAccountName')]"
+                "virtualNetworkIpRange": {
+                    "value": "[parameters('virtualNetworkName')]"
                 },
                 "dnsServerIp": {
                     "value": "[parameters('dnsServerIp')]"

@@ -4,75 +4,114 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "templateUriPrefix": {
-            "defaultValue": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/json_deployment_templates/",
+            "type": "string"
+        },
+        "storageAccountName": {
             "type": "string"
         },
         "virtualNetworkName": {
-            "defaultValue": "vchds-vnettest",
             "type": "string"
         },
-        "workloadConfigs": {
-            "type": "array",
-            "defaultValue": [{
-                    "workloadName": "addc",
-                    "nsgName": "addc-nsg",
-                    "addressPrefix": "192.168.0.0/24",
-                    "vmCount": 1
-                },
-                {
-                    "workloadName": "dsdw",
-                    "nsgName": "dsdw-nsg",
-                    "addressPrefix": "192.168.1.0/24",
-                    "vmCount": 1
-                },
-                {
-                    "workloadName": "sharepoint",
-                    "nsgName": "sharepoint-nsg",
-                    "addressPrefix": "192.168.2.0/24",
-                    "vmCount": 3
-                }
-            ]
+        "virtualNetworkIpRange": {
+            "type": "string"
         },
-        "workloadName": {
-            "defaultValue": "vchds-vnettest",
+        "dnsServerIp": {
+            "type": "string"
+        },
+
+        "subnetName": {
+            "defaultValue": "subnet",
+            "type": "string"
+        },
+        "addressStub": {
+            "defaultValue": "192.168.0.",
+            "type": "string"
+        },
+        "netMask": {
+            "defaultValue": "/24",
+            "type": "string"
+        },
+
+
+
+        "imageReference": {
+            "defaultValue": {
+                "publisher": "MicrosoftWindowsServer",
+                "offer": "WindowsServer",
+                "sku": "2012-R2-Datacenter",
+                "version": "latest"
+            },
+            "type": "object"
+        },
+
+        "vmCount": {
+            "defaultValue": 2,
+            "type": "int"
+        },
+        "vmSize": {
+            "defaultValue": "Standard_DS13_v2",
             "type": "string"
         }
+        // "workloadConfigs": {
+        //     "type": "array",
+        //     "defaultValue": [{
+        //             "workloadName": "addc",
+        //             "nsgName": "addc-nsg",
+        //             "addressPrefix": "192.168.0.0/24",
+        //             "vmCount": 1
+        //         },
+        //         {
+        //             "workloadName": "dsdw",
+        //             "nsgName": "dsdw-nsg",
+        //             "addressPrefix": "192.168.1.0/24",
+        //             "vmCount": 1
+        //         },
+        //         {
+        //             "workloadName": "sharepoint",
+        //             "nsgName": "sharepoint-nsg",
+        //             "addressPrefix": "192.168.2.0/24",
+        //             "vmCount": 3
+        //         }
+        //     ]
+        // },
+        // "workloadName": {
+        //     "defaultValue": "vchds-vnettest",
+        //     "type": "string"
+        // }
     },
-    "variables": {},
+    "variables": {
+        "vmNameStub": "[concat(parameters('subnetName'),'Vm')]"
+
+    },
     "resources": [{
             "comments": "Generalized from resource: '/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.Compute/virtualMachines/JumpBoxVm1'.",
             "type": "Microsoft.Compute/virtualMachines",
-            "name": "[concat(variables('adVmName'), copyIndex())]",
+            "name": "[concat(variables('vmNameStub'), copyIndex())]",
             "copy": {
                 "name": "vmsCopy",
-                "count": "[parameters('workLoadAd')['count']]"
+                "count": "[parameters('vmCount')]"
             },
             "apiVersion": "2016-04-30-preview",
             "location": "[resourceGroup().location]",
             "properties": {
                 "hardwareProfile": {
-                    "vmSize": "[parameters('workLoadAd')['vmSize']]"
+                    "vmSize": "[parameters('vmSize')]"
                 },
                 "storageProfile": {
-                    "imageReference": {
-                        "publisher": "MicrosoftWindowsServer",
-                        "offer": "WindowsServer",
-                        "sku": "2012-R2-Datacenter",
-                        "version": "latest"
-                    },
+                    "imageReference": "[parameters('imageReference')]",
                     "osDisk": {
                         "osType": "Windows",
-                        "name": "[concat(variables('adVmName'), copyIndex(),'OsDisk')]",
+                        "name": "[concat(variables('vmNameStub'), copyIndex(),'OsDisk')]",
                         "createOption": "FromImage",
                         "vhd": {
-                            "uri": "[concat('https', '://', parameters('storageAccountName'), '.blob.core.windows.net', concat('/vhds/', concat(variables('adVmName'), copyIndex()),'OsDisk.vhd'))]"
+                            "uri": "[concat('https', '://', parameters('storageAccountName'), '.blob.core.windows.net', concat('/vhds/', concat(variables('vmNameStub'), copyIndex()),'OsDisk.vhd'))]"
                         },
                         "caching": "ReadWrite"
                     },
                     "dataDisks": []
                 },
                 "osProfile": {
-                    "computerName": "[concat(variables('adVmName'), copyIndex())]",
+                    "computerName": "[concat(variables('vmNameStub'), copyIndex())]",
                     "adminUsername": "[parameters('adminName')]",
                     "adminPassword": "[parameters('adminPassword')]",
                     "windowsConfiguration": {
@@ -83,7 +122,7 @@
                 },
                 "networkProfile": {
                     "networkInterfaces": [{
-                        "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('adVmName'), copyIndex(),'Nic'))]"
+                        "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('vmNameStub'), copyIndex(),'Nic'))]"
                     }]
                 },
                 "diagnosticsProfile": {
@@ -95,7 +134,7 @@
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
-                "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('adVmName'), copyIndex(),'Nic'))]"
+                "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('vmNameStub'), copyIndex(),'Nic'))]"
             ]
         },
         {
@@ -103,9 +142,9 @@
             "type": "Microsoft.Network/networkInterfaces",
             "copy": {
                 "name": "vmsCopy",
-                "count": "[parameters('workLoadAd')['count']]"
+                "count": "[parameters('vmCount')]"
             },
-            "name": "[concat(variables('adVmName'), copyIndex(),'Nic')]",
+            "name": "[concat(variables('vmNameStub'), copyIndex(),'Nic')]",
             "apiVersion": "2016-03-30",
             "location": "[resourceGroup().location]",
             "properties": {
@@ -115,10 +154,10 @@
                         "privateIPAddress": "[concat(parameters('workLoadAd')['ipPrefix'],mul(10, add(copyIndex(), 1)))]",
                         "privateIPAllocationMethod": "Static",
                         "publicIPAddress": {
-                            "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('adVmName'), copyIndex(),'Pip'))]"
+                            "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('vmNameStub'), copyIndex(),'Pip'))]"
                         },
                         "subnet": {
-                            "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName')), '/subnets/', variables('adSubNetName'))]"
+                            "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName')), '/subnets/', parameters('subnetName'))]"
                         }
                     }
                 }],
@@ -127,30 +166,26 @@
                 },
                 "enableIPForwarding": false,
                 "networkSecurityGroup": {
-                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('adNsgName'))]"
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('nsgName'))]"
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('adVmName'), copyIndex(),'Pip'))]",
+                "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('vmNameStub'), copyIndex(),'Pip'))]",
                 "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
-                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('adNsgName'))]"
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('nsgName'))]"
             ]
         },
         {
             "comments": "Generalized from resource: '/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.Network/publicIPAddresses/JumpBoxVm1Pip'.",
             "type": "Microsoft.Network/publicIPAddresses",
-            "name": "[concat(variables('adVmName'), copyIndex(),'Pip')]",
-            "copy": {
-                "name": "vmsCopy",
-                "count": "[parameters('workLoadAd')['count']]"
-            },
+            "name": "[concat(variables('vmNameStub'), copyIndex(),'Pip')]",
             "apiVersion": "2016-03-30",
             "location": "[resourceGroup().location]",
             "properties": {
                 "publicIPAllocationMethod": "Static",
                 "idleTimeoutInMinutes": 4,
                 "dnsSettings": {
-                    "domainNameLabel": "[toLower(concat(variables('adVmName'), copyIndex()))]"
+                    "domainNameLabel": "[toLower(concat(variables('vmNameStub'), copyIndex()))]"
                 }
             },
             "dependsOn": []

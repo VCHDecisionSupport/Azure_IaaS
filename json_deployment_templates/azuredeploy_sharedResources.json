@@ -7,19 +7,15 @@
             "type": "string"
         },
         "storageAccountName": {
-            "defaultValue": "vchstorageaccountgac",
             "type": "string"
         },
         "virtualNetworkName": {
-            "defaultValue": "vchds-vnettest",
             "type": "string"
         },
         "virtualNetworkIpRange": {
-            "defaultValue": "192.168.0.0/16",
             "type": "string"
         },
         "dnsServerIp": {
-            "defaultValue": "192.168.0.0",
             "type": "string"
         },
         "workloadConfigs": {
@@ -83,7 +79,7 @@
             }
         },
         {
-            "comments": "deploys subnets",
+            "comments": "deploys subnet",
             "apiVersion": "2015-01-01",
             "name": "linkedTemplate-Subnet",
             "type": "Microsoft.Resources/deployments",
@@ -97,8 +93,17 @@
                     "templateUriPrefix": {
                         "value": "[parameters('templateUriPrefix')]"
                     },
+                    "storageAccountName": {
+                        "value": "[parameters('storageAccountName')]"
+                    },
                     "virtualNetworkName": {
                         "value": "[parameters('virtualNetworkName')]"
+                    },
+                    "virtualNetworkIpRange": {
+                        "value": "[parameters('virtualNetworkName')]"
+                    },
+                    "dnsServerIp": {
+                        "value": "[parameters('dnsServerIp')]"
                     }
                 }
             }

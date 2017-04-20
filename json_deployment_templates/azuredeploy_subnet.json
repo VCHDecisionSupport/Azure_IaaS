@@ -6,10 +6,19 @@
         "templateUriPrefix": {
             "type": "string"
         },
-        "virtualNetworkName": {
-            "defaultValue": "vchds-vnettest",
+        "storageAccountName": {
             "type": "string"
         },
+        "virtualNetworkName": {
+            "type": "string"
+        },
+        "virtualNetworkIpRange": {
+            "type": "string"
+        },
+        "dnsServerIp": {
+            "type": "string"
+        },
+
         "subnetName": {
             "defaultValue": "subnet",
             "type": "string"
@@ -22,6 +31,8 @@
             "defaultValue": "/24",
             "type": "string"
         },
+
+
         "imageReference": {
             "defaultValue": {
                 "publisher": "MicrosoftWindowsServer",
@@ -31,14 +42,19 @@
             },
             "type": "object"
         },
+
+        "vmSize": {
+            "defaultValue": 2,
+            "type": "int"
+        },
         "vmSize": {
             "defaultValue": "Standard_DS13_v2",
             "type": "string"
         }
     },
     "variables": {
-        "nsgName": "[concat(parameters('subnetName'),'-nsg')]",
-        "vmNameStub": "[concat(parameters('subnetName'),'Vm')]"
+        "VMsUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_vms.json')]",
+        "nsgName": "[concat(parameters('subnetName'),'-nsg')]"
     },
     "resources": [{
             "type": "Microsoft.Network/networkSecurityGroups",
@@ -78,24 +94,43 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]"
             ]
+        },
+        {
+            "comments": "deploys vm(s) onto subnet",
+            "apiVersion": "2015-01-01",
+            "name": "linkedTemplate-VMs",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('VMsUri')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "templateUriPrefix": {
+                        "value": "[parameters('templateUriPrefix')]"
+                    },
+                    "storageAccountName": {
+                        "value": "[parameters('storageAccountName')]"
+                    },
+                    "virtualNetworkName": {
+                        "value": "[parameters('virtualNetworkName')]"
+                    },
+                    "virtualNetworkIpRange": {
+                        "value": "[parameters('virtualNetworkName')]"
+                    },
+                    "dnsServerIp": {
+                        "value": "[parameters('dnsServerIp')]"
+                    },
+                    "nsgName": {
+                        "value": "[parameters('nsgName')]"
+                    },
+
+                    "workloadConfigs": {
+                        "value": "[parameters('workloadConfigs')]"
+                    }
+                }
+            }
         }
-        // ,
-        // {
-        //     "comments": "deploys vm(s) onto subnet",
-        //     "apiVersion": "2015-01-01",
-        //     "name": "linkedTemplateSubnet",
-        //     "type": "Microsoft.Resources/deployments",
-        //     "properties": {
-        //         "mode": "Incremental",
-        //         "templateLink": {
-        //             "uri": "[variables('vmsUri')]",
-        //             "contentVersion": "1.0.0.0"
-        //         },
-        //         "parameters": {
-        //             "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" },
-        //             "workloadConfigs": { "value": "[parameters('workloadConfigs')]" }
-        //         }
-        //     }
-        // }
     ]
 }
