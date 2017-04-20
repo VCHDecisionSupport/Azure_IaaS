@@ -107,7 +107,7 @@
             }
         },
         "dependsOn": [
-            "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
+            // "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
         ]
     }]
 }
