@@ -102,7 +102,7 @@
             "name": "linkedTemplate-VMs",
             "type": "Microsoft.Resources/deployments",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('storageAccountName'))]"
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
             ],
             "properties": {
                 "mode": "Incremental",
