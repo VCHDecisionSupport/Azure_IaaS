@@ -85,7 +85,7 @@
         {
             "comments": "deploys subnets",
             "apiVersion": "2015-01-01",
-            "name": "linkedTemplateSubnet",
+            "name": "linkedTemplate-Subnet",
             "type": "Microsoft.Resources/deployments",
             "properties": {
                 "mode": "Incremental",
