@@ -177,6 +177,7 @@
         {
             "comments": "creates public static IP",
             "name": "[concat(variables('pipNameStub'), copyIndex())]",
+            "type": "Microsoft.Network/publicIPAddresses",
             "apiVersion": "2016-03-30",
             "location": "[resourceGroup().location]",
             "properties": {
