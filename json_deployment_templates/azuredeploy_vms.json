@@ -84,6 +84,7 @@
     },
     "resources": [{
             "comments": "creates virtual machine according to given parameters above.  depends on creation of other resources: ip address",
+            "type": "Microsoft.Compute/virtualMachines",
             "name": "[concat(variables('vmNameStub'), copyIndex())]",
             "copy": {
                 "name": "vmsCopy",
