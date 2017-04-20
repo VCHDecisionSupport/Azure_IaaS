@@ -19,6 +19,7 @@
             "type": "string"
         },
 
+
         "subnetName": {
             "defaultValue": "subnet",
             "type": "string"
@@ -94,43 +95,44 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]"
             ]
-        },
-        {
-            "comments": "deploys vm(s) onto subnet",
-            "apiVersion": "2015-01-01",
-            "name": "linkedTemplate-VMs",
-            "type": "Microsoft.Resources/deployments",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[variables('VMsUri')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "templateUriPrefix": {
-                        "value": "[parameters('templateUriPrefix')]"
-                    },
-                    "storageAccountName": {
-                        "value": "[parameters('storageAccountName')]"
-                    },
-                    "virtualNetworkName": {
-                        "value": "[parameters('virtualNetworkName')]"
-                    },
-                    "virtualNetworkIpRange": {
-                        "value": "[parameters('virtualNetworkName')]"
-                    },
-                    "dnsServerIp": {
-                        "value": "[parameters('dnsServerIp')]"
-                    },
-                    "nsgName": {
-                        "value": "[parameters('nsgName')]"
-                    },
-
-                    "workloadConfigs": {
-                        "value": "[parameters('workloadConfigs')]"
-                    }
-                }
-            }
         }
+        // ,
+        // {
+        //     "comments": "deploys vm(s) onto subnet",
+        //     "apiVersion": "2015-01-01",
+        //     "name": "linkedTemplate-VMs",
+        //     "type": "Microsoft.Resources/deployments",
+        //     "properties": {
+        //         "mode": "Incremental",
+        //         "templateLink": {
+        //             "uri": "[variables('VMsUri')]",
+        //             "contentVersion": "1.0.0.0"
+        //         },
+        //         "parameters": {
+        //             "templateUriPrefix": {
+        //                 "value": "[parameters('templateUriPrefix')]"
+        //             },
+        //             "storageAccountName": {
+        //                 "value": "[parameters('storageAccountName')]"
+        //             },
+        //             "virtualNetworkName": {
+        //                 "value": "[parameters('virtualNetworkName')]"
+        //             },
+        //             "virtualNetworkIpRange": {
+        //                 "value": "[parameters('virtualNetworkName')]"
+        //             },
+        //             "dnsServerIp": {
+        //                 "value": "[parameters('dnsServerIp')]"
+        //             },
+        //             "nsgName": {
+        //                 "value": "[parameters('nsgName')]"
+        //             },
+
+        //             "workloadConfigs": {
+        //                 "value": "[parameters('workloadConfigs')]"
+        //             }
+        //         }
+        //     }
+        // }
     ]
 }
