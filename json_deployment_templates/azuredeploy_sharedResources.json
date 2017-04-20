@@ -77,37 +77,36 @@
                 },
                 "subnets": []
             }
+        },
+        {
+            "comments": "deploys subnet",
+            "apiVersion": "2015-01-01",
+            "name": "linkedTemplate-Subnet",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('subnetUri')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "templateUriPrefix": {
+                        "value": "[parameters('templateUriPrefix')]"
+                    },
+                    "storageAccountName": {
+                        "value": "[parameters('storageAccountName')]"
+                    },
+                    "virtualNetworkName": {
+                        "value": "[parameters('virtualNetworkName')]"
+                    },
+                    "virtualNetworkIpRange": {
+                        "value": "[parameters('virtualNetworkName')]"
+                    },
+                    "dnsServerIp": {
+                        "value": "[parameters('dnsServerIp')]"
+                    }
+                }
+            }
         }
-        // ,
-        // {
-        //     "comments": "deploys subnet",
-        //     "apiVersion": "2015-01-01",
-        //     "name": "linkedTemplate-Subnet",
-        //     "type": "Microsoft.Resources/deployments",
-        //     "properties": {
-        //         "mode": "Incremental",
-        //         "templateLink": {
-        //             "uri": "[variables('subnetUri')]",
-        //             "contentVersion": "1.0.0.0"
-        //         },
-        //         "parameters": {
-        //             "templateUriPrefix": {
-        //                 "value": "[parameters('templateUriPrefix')]"
-        //             },
-        //             "storageAccountName": {
-        //                 "value": "[parameters('storageAccountName')]"
-        //             },
-        //             "virtualNetworkName": {
-        //                 "value": "[parameters('virtualNetworkName')]"
-        //             },
-        //             "virtualNetworkIpRange": {
-        //                 "value": "[parameters('virtualNetworkName')]"
-        //             },
-        //             "dnsServerIp": {
-        //                 "value": "[parameters('dnsServerIp')]"
-        //             }
-        //         }
-        //     }
-        // }
     ]
 }
