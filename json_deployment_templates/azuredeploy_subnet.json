@@ -101,6 +101,9 @@
             "apiVersion": "2015-01-01",
             "name": "linkedTemplate-VMs",
             "type": "Microsoft.Resources/deployments",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('storageAccountName'))]"
+            ],
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
