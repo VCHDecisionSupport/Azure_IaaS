@@ -119,7 +119,69 @@
                     }
                 }
             }
-        }
+        },
+        {
+            "comments": "deploys vm(s) onto subnet",
+            "apiVersion": "2015-01-01",
+            "name": "linkedTemplateVMs",
+            "type": "Microsoft.Resources/deployments",
+            "dependsOn": [
+                "Microsoft.Resources/deployments/linkedTemplateSubnet"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('vmsTemplateUri')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "templateUriPrefix": {
+                        "value": "[parameters('templateUriPrefix')]"
+                    },
+                    "storageAccountName": {
+                        "value": "[parameters('storageAccountName')]"
+                    },
+                    "virtualNetworkName": {
+                        "value": "[parameters('virtualNetworkName')]"
+                    },
+                    "virtualNetworkIpRange": {
+                        "value": "[parameters('virtualNetworkIpRange')]"
+                    },
+                    "dnsServerIp": {
+                        "value": "[parameters('dnsServerIp')]"
+                    },
+                    "subnetName": {
+                        "value": "[parameters('subnetName')]"
+                    },
+                    "addressStub": {
+                        "value": "[parameters('addressStub')]"
+                    },
+                    "netMask": {
+                        "value": "[parameters('netMask')]"
+                    },
+                    "nsgName": {
+                        "value": "[variables('nsgName')]"
+                    },
 
+                    "adminName": {
+                        "value": "[parameters('adminName')]"
+                    },
+                    "adminPassword": {
+                        "value": "[parameters('adminPassword')]"
+                    },
+                    "imageReference": {
+                        "value": "[parameters('imageReference')]"
+                    },
+                    "vmCount": {
+                        "value": "[parameters('vmCount')]"
+                    },
+                    "vmSize": {
+                        "value": "[parameters('vmSize')]"
+                    }
+
+
+                }
+            }
+        }
     ]
 }
