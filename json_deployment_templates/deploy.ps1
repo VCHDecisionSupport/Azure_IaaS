@@ -7,15 +7,14 @@ $resource_group_name = "testrg"
 # prompts login popup; only need to login once per powershell session
 # Login-AzureRmAccount
 
-# New-AzureRmResourceGroup -Name $resource_group_name -Location "canadacentral"
+New-AzureRmResourceGroup -Name $resource_group_name -Location "canadacentral"
 
-
-$template_path = "azuredeploy_shared.json"
-Test-AzureRmResourceGroupDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
-New-AzureRmResourceGroupDeployment -Name sharedResourcesDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
-
-
-# $template_path = "azuredeploy_mainWorkload.json"
+# $template_path = "azuredeploy_shared.json"
 # Test-AzureRmResourceGroupDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
+# New-AzureRmResourceGroupDeployment -Name sharedResourcesDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
+
+
+$template_path = "azuredeploy_workload.json"
+Test-AzureRmResourceGroupDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
 # New-AzureRmResourceGroupDeployment -Name sharedResourcesDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
 

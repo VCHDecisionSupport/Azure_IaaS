@@ -9,15 +9,15 @@ Set-Location -Path $PSScriptRoot
 $SkipList = $null, $null, "vchds-root-rg"
 Write-Host ("Geting list of virtual machines in subscription...`n")
 
-$ResourceGroups = Get-AzureRmResourceGroup | Where-Object {$SkipList -notcontains $_.ResourceGroupName}
-$ResourceGroupNames = $ResourceGroups.ResourceGroupName
+$VirtualMachines = Get-AzureRmVM | Where-Object {$SkipList -notcontains $_.VirtualMachineName}
+$VirtualMachineNames = $VirtualMachines.VirtualMachineName
 
-if ($ResourceGroupNames.Count -gt 0) {
+if ($VirtualMachineNames.Count -gt 0) {
 
   $caption = ("`tRemoving these virtual machines:")
 
-  foreach ($ResourceGroupName in $ResourceGroupNames) {
-    $caption += ("`n`t`t$ResourceGroupName")    
+  foreach ($VirtualMachineName in $VirtualMachineNames) {
+    $caption += ("`n`t`t$VirtualMachineName")    
   }
   	
   $message = "Are you Sure You Want To Proceed:"
@@ -27,7 +27,7 @@ if ($ResourceGroupNames.Count -gt 0) {
   $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
   $choiceRTN = $host.ui.PromptForChoice($caption, $message, $options, $defaultChoice)
   if ( $choiceRTN -ne 1 ) {
-    .\Run-CommandMultiThreaded.ps1 -Command Remove-ResourceGroup.ps1 -ObjectList $ResourceGroupNames
+    .\Run-CommandMultiThreaded.ps1 -Command Remove-VirtualMachine.ps1 -ObjectList $VirtualMachineNames
   }
   else {
     Write-Host ("`nCancelled`n`tNothing removed.")

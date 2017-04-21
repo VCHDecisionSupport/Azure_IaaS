@@ -1,0 +1,187 @@
+// https://github.com/Azure/azure-quickstart-templates/blob/master/201-vm-dynamic-data-disks-selection/azuredeploy.json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "templateUriPrefix": {
+            "defaultValue": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/flattened_deployment/json_deployment_templates/",
+            "type": "string"
+        },
+        "storageAccountName": {
+            "defaultValue": "vchstorageaccountgac",
+            "type": "string"
+        },
+        "virtualNetworkName": {
+            "defaultValue": "vchds-vnettest",
+            "type": "string"
+        },
+        "virtualNetworkIpRange": {
+            "defaultValue": "192.168.0.0/16",
+            "type": "string"
+        },
+        "dnsServerIp": {
+            "defaultValue": "192.168.0.0",
+            "type": "string"
+        },
+
+
+        "subnetName": {
+            "defaultValue": "subnet3",
+            "type": "string"
+        },
+        "addressStub": {
+            "defaultValue": "192.168.0.",
+            "type": "string"
+        },
+        "netMask": {
+            "defaultValue": "/24",
+            "type": "string"
+        },
+
+        "adminName": {
+            "type": "string",
+            "defaultValue": "Floater1",
+            "metadata": {
+                "description": "VM admin user name."
+            }
+        },
+        "adminPassword": {
+            "type": "string",
+            "defaultValue": "Floater1",
+            "metadata": {
+                "description": "VM admin password."
+            }
+        },
+        "imageReference": {
+            "defaultValue": {
+                "publisher": "MicrosoftWindowsServer",
+                "offer": "WindowsServer",
+                "sku": "2012-R2-Datacenter",
+                "version": "latest"
+            },
+            "type": "object"
+        },
+        "vmSize": {
+            "defaultValue": 2,
+            "type": "int"
+        },
+        "vmSize": {
+            "defaultValue": "Standard_DS13_v2",
+            "type": "string"
+        }
+    },
+    "variables": {
+        "subnetTemplateUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_subnet.json')]",
+        "vmsTemplateUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_vms.json')]",
+        "nsgName": "[concat(parameters('subnetName'),'-nsg')]"
+    },
+    "resources": [
+
+        {
+            "comments": "deploys subnet and network security group",
+            "apiVersion": "2015-01-01",
+            "name": "linkedTemplateSubnet",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('subnetTemplateUri')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "templateUriPrefix": {
+                        "value": "[parameters('templateUriPrefix')]"
+                    },
+                    "storageAccountName": {
+                        "value": "[parameters('storageAccountName')]"
+                    },
+                    "virtualNetworkName": {
+                        "value": "[parameters('virtualNetworkName')]"
+                    },
+                    "virtualNetworkIpRange": {
+                        "value": "[parameters('virtualNetworkIpRange')]"
+                    },
+                    "dnsServerIp": {
+                        "value": "[parameters('dnsServerIp')]"
+                    },
+
+                    "subnetName": {
+                        "value": "[parameters('subnetName')]"
+                    },
+                    "nsgName": {
+                        "value": "[variables('nsgName')]"
+                    },
+                    "addressStub": {
+                        "value": "[parameters('addressStub')]"
+                    },
+                    "netMask": {
+                        "value": "[parameters('netMask')]"
+                    }
+                }
+            }
+        },
+        {
+            "comments": "deploys vm(s) onto subnet",
+            "apiVersion": "2015-01-01",
+            "name": "linkedTemplateVMs",
+            "type": "Microsoft.Resources/deployments",
+            "dependsOn": [
+                "Microsoft.Resources/deployments/linkedTemplateSubnet"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('vmsTemplateUri')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "templateUriPrefix": {
+                        "value": "[parameters('templateUriPrefix')]"
+                    },
+                    "storageAccountName": {
+                        "value": "[parameters('storageAccountName')]"
+                    },
+                    "virtualNetworkName": {
+                        "value": "[parameters('virtualNetworkName')]"
+                    },
+                    "virtualNetworkIpRange": {
+                        "value": "[parameters('virtualNetworkIpRange')]"
+                    },
+                    "dnsServerIp": {
+                        "value": "[parameters('dnsServerIp')]"
+                    },
+                    "subnetName": {
+                        "value": "[parameters('subnetName')]"
+                    },
+                    "addressStub": {
+                        "value": "[parameters('addressStub')]"
+                    },
+                    "netMask": {
+                        "value": "[parameters('netMask')]"
+                    },
+                    "nsgName": {
+                        "value": "[variables('nsgName')]"
+                    },
+
+                    "adminName": {
+                        "value": "[parameters('adminName')]"
+                    },
+                    "adminPassword": {
+                        "value": "[parameters('adminPassword')]"
+                    },
+                    "imageReference": {
+                        "value": "[parameters('imageReference')]"
+                    },
+                    "vmCount": {
+                        "value": "[parameters('vmCount')]"
+                    },
+                    "vmSize": {
+                        "value": "[variables('vmSize')]"
+                    }
+
+
+                }
+            }
+        }
+    ]
+}
