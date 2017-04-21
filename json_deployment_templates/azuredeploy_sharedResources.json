@@ -77,42 +77,43 @@
                 },
                 "subnets": []
             }
-        },
-        {
-            "comments": "deploys subnet",
-            "apiVersion": "2015-01-01",
-            "name": "linkedTemplate-Subnet",
-            "type": "Microsoft.Resources/deployments",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[variables('subnetUri')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "templateUriPrefix": {
-                        "value": "[parameters('templateUriPrefix')]"
-                    },
-                    "storageAccountName": {
-                        "value": "[parameters('storageAccountName')]"
-                    },
-                    "virtualNetworkName": {
-                        "value": "[parameters('virtualNetworkName')]"
-                    },
-                    "virtualNetworkIpRange": {
-                        "value": "[parameters('virtualNetworkIpRange')]"
-                    },
-                    "dnsServerIp": {
-                        "value": "[parameters('dnsServerIp')]"
-                    }
-                }
-            }
         }
-    ],
-    "outputs": {
-        "storageAccountId": {
-            "value": "[concat(resourceId('Microsoft.Storage/StorageAccounts',parameters('storageAccountName')))]",
-            "type": "string"
-        }
-    }
+        // ,
+        // {
+        //     "comments": "deploys subnet",
+        //     "apiVersion": "2015-01-01",
+        //     "name": "linkedTemplate-Subnet",
+        //     "type": "Microsoft.Resources/deployments",
+        //     "properties": {
+        //         "mode": "Incremental",
+        //         "templateLink": {
+        //             "uri": "[variables('subnetUri')]",
+        //             "contentVersion": "1.0.0.0"
+        //         },
+        //         "parameters": {
+        //             "templateUriPrefix": {
+        //                 "value": "[parameters('templateUriPrefix')]"
+        //             },
+        //             "storageAccountName": {
+        //                 "value": "[parameters('storageAccountName')]"
+        //             },
+        //             "virtualNetworkName": {
+        //                 "value": "[parameters('virtualNetworkName')]"
+        //             },
+        //             "virtualNetworkIpRange": {
+        //                 "value": "[parameters('virtualNetworkIpRange')]"
+        //             },
+        //             "dnsServerIp": {
+        //                 "value": "[parameters('dnsServerIp')]"
+        //             }
+        //         }
+        //     }
+        // }
+    ]
+    // "outputs": {
+    //     "storageAccountId": {
+    //         "value": "[concat(resourceId('Microsoft.Storage/StorageAccounts',parameters('storageAccountName')))]",
+    //         "type": "string"
+    //     }
+    // }
 }
