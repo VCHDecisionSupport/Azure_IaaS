@@ -18,7 +18,7 @@
         "kind": "Storage",
         "name": "[parameters('storageAccountName')]",
         "apiVersion": "2016-01-01",
-        "location": "canadacentral",
+        "location": "[resourceGroup().location]",
         "tags": {},
         "properties": {},
         "dependsOn": []

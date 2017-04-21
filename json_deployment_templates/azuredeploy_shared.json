@@ -40,9 +40,6 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                    "templateUriPrefix": {
-                        "value": "[parameters('templateUriPrefix')]"
-                    },
                     "virtualNetworkName": {
                         "value": "[parameters('virtualNetworkName')]"
                     },
