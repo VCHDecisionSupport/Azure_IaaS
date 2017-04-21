@@ -30,7 +30,7 @@
             "type": "string"
         },
         "addressStub": {
-            "defaultValue": "192.168.0.",
+            "defaultValue": "192.168.1.",
             "type": "string"
         },
         "netMask": {
@@ -61,7 +61,7 @@
             },
             "type": "object"
         },
-        "vmSize": {
+        "vmCount": {
             "defaultValue": 2,
             "type": "int"
         },
