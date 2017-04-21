@@ -2,7 +2,7 @@
 # https://github.com/Azure/azure-quickstart-templates/blob/master/201-vm-dynamic-data-disks-selection/azuredeploy.json
 # set current working directory
 Set-Location -Path $PSScriptRoot
-$resource_group_name = "testrg3"
+$resource_group_name = "testrg"
 
 # prompts login popup; only need to login once per powershell session
 # Login-AzureRmAccount
