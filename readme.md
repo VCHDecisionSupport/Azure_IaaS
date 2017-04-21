@@ -1,16 +1,16 @@
 # Azure json template IaaS deployment
 
-## __How to:__ Browse existing resources
+## How to:
+
+### Browse existing resources
 
 Manage Azure visually from browser with point & click.  Go to: [www.azureportal.com](www.azureportal.com).
 
-## __How to:__ Deploy and configure from code
-
-### Deploys all new resources from scratch
+### Deploy and configure from code
 
 Turn key deployment: execute `json_deployment_templates/deploy.ps1`
 
-#### Infrastructure Resources
+## Infrastructure Resources
 
 `deploy.ps1` creates:
 
