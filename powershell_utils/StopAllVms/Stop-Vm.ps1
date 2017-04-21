@@ -1,18 +1,18 @@
 # $Command = $(Read-Host "Enter virtual machine to remove"), 
 Param(
-    [Parameter(ValueFromPipeline=$true,ValueFromPipelineByPropertyName=$true)]$ResourceGroupName
+    [Parameter(ValueFromPipeline=$true,ValueFromPipelineByPropertyName=$true)]$VirtualMachine
 )
 
-Write-Host ("Removing virtual machine: {0}" -f $ResourceGroupName)
+# Pass comma delimitted because powershell sucks
+$Name, $ResourceGroupName = $VirtualMachine -Split ","
+Write-Host ("Stopping virtual machine: {0} (ResourceGroup: {1})" -f $Name, $ResourceGroupName)
 
 $Error.Clear()
-$rg = Get-AzureRmResourceGroup -Name $ResourceGroupName -ErrorAction SilentlyContinue
 
 if (!$Error) {
-    Remove-AzureRmResourceGroup -Name $ResourceGroupName -Force
+    Stop-AzureRmVM -Name $Name -ResourceGroupName $ResourceGroupName -Force
 }
 else {
     Write-Host "ERROR"
     Write-Host $Error
 }
-
