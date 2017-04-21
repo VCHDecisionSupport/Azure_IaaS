@@ -159,8 +159,7 @@
         }
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('pipNameStub'), copyIndex()))]",
-        "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('nsgName'))]"
+        "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('pipNameStub'), copyIndex()))]"
       ]
     },
     {
