@@ -101,7 +101,6 @@
       "name": "linkedTemplate-VMs",
       "type": "Microsoft.Resources/deployments",
       "dependsOn": [
-        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
       ],
       "properties": {
         "mode": "Incremental",
