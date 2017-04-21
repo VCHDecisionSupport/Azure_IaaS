@@ -66,11 +66,11 @@
                 "addressPrefix": "[concat(parameters('addressStub'), '0', parameters('netMask'))]",
                 "publicIPAllocationMethod": "Static",
                 "networkSecurityGroup": {
-                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]"
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('nsgName'))]"
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]"
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('nsgName'))]"
             ]
         }
 

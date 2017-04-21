@@ -176,7 +176,7 @@
                         "value": "[parameters('vmCount')]"
                     },
                     "vmSize": {
-                        "value": "[variables('vmSize')]"
+                        "value": "[parameters('vmSize')]"
                     }
 
 
