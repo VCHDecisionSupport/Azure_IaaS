@@ -20,7 +20,7 @@
     },
     
     "subnetName": {
-      "defaultValue": "subnet2",
+      "defaultValue": "subnet3",
       "type": "string"
     },
     "addressStub": {
