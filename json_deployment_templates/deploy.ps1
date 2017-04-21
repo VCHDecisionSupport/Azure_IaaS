@@ -17,7 +17,7 @@ Test-AzureRmResourceGroupDeployment -ResourceGroupName $resource_group_name -Tem
 New-AzureRmResourceGroupDeployment -Name sharedResourcesDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
 
 
-$template_path = "azuredeploy_mainWorkload.json"
-Test-AzureRmResourceGroupDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
-New-AzureRmResourceGroupDeployment -Name sharedResourcesDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
+# $template_path = "azuredeploy_mainWorkload.json"
+# Test-AzureRmResourceGroupDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
+# New-AzureRmResourceGroupDeployment -Name sharedResourcesDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
 
