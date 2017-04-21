@@ -94,50 +94,6 @@
       "dependsOn": [
         "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]"
       ]
-    },
-    {
-      "comments": "deploys vm(s) onto subnet",
-      "apiVersion": "2015-01-01",
-      "name": "linkedTemplate-VMs",
-      "type": "Microsoft.Resources/deployments",
-      "dependsOn": [
-      ],
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[variables('VMsUri')]",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "templateUriPrefix": {
-            "value": "[parameters('templateUriPrefix')]"
-          },
-          "storageAccountName": {
-            "value": "[parameters('storageAccountName')]"
-          },
-          "virtualNetworkName": {
-            "value": "[parameters('virtualNetworkName')]"
-          },
-          "virtualNetworkIpRange": {
-            "value": "[parameters('virtualNetworkIpRange')]"
-          },
-          "dnsServerIp": {
-            "value": "[parameters('dnsServerIp')]"
-          },
-          "subnetName": {
-            "value": "[parameters('subnetName')]"
-          },
-          "addressStub": {
-            "value": "[parameters('addressStub')]"
-          },
-          "netMask": {
-            "value": "[parameters('netMask')]"
-          },
-          "nsgName": {
-            "value": "[variables('nsgName')]"
-          }
-        }
-      }
     }
   ]
 }
