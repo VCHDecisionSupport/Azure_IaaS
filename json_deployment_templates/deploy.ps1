@@ -16,5 +16,6 @@ $resource_group_name = "testrg"
 
 $template_path = "azuredeploy_workload.json"
 Test-AzureRmResourceGroupDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
+WriteHost
 New-AzureRmResourceGroupDeployment -Name sharedResourcesDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
 
