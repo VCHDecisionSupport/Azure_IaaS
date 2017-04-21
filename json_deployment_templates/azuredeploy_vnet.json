@@ -6,9 +6,6 @@
         "templateUriPrefix": {
             "type": "string"
         },
-        "storageAccountName": {
-            "type": "string"
-        },
         "virtualNetworkName": {
             "type": "string"
         },
@@ -19,10 +16,9 @@
             "type": "string"
         }
     },
-    "variables": {
-    },
+    "variables": {},
     "resources": [
-     
+
         {
             "type": "Microsoft.Network/virtualNetworks",
             "name": "[parameters('virtualNetworkName')]",
