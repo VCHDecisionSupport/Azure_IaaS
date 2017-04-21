@@ -4,7 +4,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "templateUriPrefix": {
-            "defaultValue": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/standalonesubnet/json_deployment_templates/",
+            "defaultValue": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/flatten_deployment/json_deployment_templates/",
             "type": "string"
         },
         "storageAccountName": {
