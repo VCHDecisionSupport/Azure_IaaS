@@ -1,146 +1,144 @@
 // https://github.com/Azure/azure-quickstart-templates/blob/master/201-vm-dynamic-data-disks-selection/azuredeploy.json
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "templateUriPrefix": {
-            "type": "string"
-        },
-        "storageAccountName": {
-            "type": "string"
-        },
-        "virtualNetworkName": {
-            "type": "string"
-        },
-        "virtualNetworkIpRange": {
-            "type": "string"
-        },
-        "dnsServerIp": {
-            "type": "string"
-        },
-
-
-        "subnetName": {
-            "defaultValue": "subnet",
-            "type": "string"
-        },
-        "addressStub": {
-            "defaultValue": "192.168.0.",
-            "type": "string"
-        },
-        "netMask": {
-            "defaultValue": "/24",
-            "type": "string"
-        },
-
-
-        "imageReference": {
-            "defaultValue": {
-                "publisher": "MicrosoftWindowsServer",
-                "offer": "WindowsServer",
-                "sku": "2012-R2-Datacenter",
-                "version": "latest"
-            },
-            "type": "object"
-        },
-
-        "vmSize": {
-            "defaultValue": 2,
-            "type": "int"
-        },
-        "vmSize": {
-            "defaultValue": "Standard_DS13_v2",
-            "type": "string"
-        }
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "templateUriPrefix": {
+      "type": "string"
     },
-    "variables": {
-        "VMsUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_vms.json')]",
-        "nsgName": "[concat(parameters('subnetName'),'-nsg')]"
+    "storageAccountName": {
+      "type": "string"
     },
-    "resources": [{
-            "type": "Microsoft.Network/networkSecurityGroups",
-            "name": "[variables('nsgName')]",
-            "apiVersion": "2016-03-30",
-            "location": "[resourceGroup().location]",
+    "virtualNetworkName": {
+      "type": "string"
+    },
+    "virtualNetworkIpRange": {
+      "type": "string"
+    },
+    "dnsServerIp": {
+      "type": "string"
+    },
+    
+    "subnetName": {
+      "defaultValue": "subnet",
+      "type": "string"
+    },
+    "addressStub": {
+      "defaultValue": "192.168.0.",
+      "type": "string"
+    },
+    "netMask": {
+      "defaultValue": "/24",
+      "type": "string"
+    },
+    "imageReference": {
+      "defaultValue": {
+        "publisher": "MicrosoftWindowsServer",
+        "offer": "WindowsServer",
+        "sku": "2012-R2-Datacenter",
+        "version": "latest"
+      },
+      "type": "object"
+    },
+    "vmSize": {
+      "defaultValue": 2,
+      "type": "int"
+    },
+    "vmSize": {
+      "defaultValue": "Standard_DS13_v2",
+      "type": "string"
+    }
+  },
+  "variables": {
+    "VMsUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_vms.json')]",
+    "nsgName": "[concat(parameters('subnetName'),'-nsg')]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "name": "[variables('nsgName')]",
+      "apiVersion": "2016-03-30",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "securityRules": [
+          {
+            "name": "rdp-rule",
             "properties": {
-                "securityRules": [{
-                    "name": "rdp-rule",
-                    "properties": {
-                        "description": "Allow www RDP",
-                        "protocol": "Tcp",
-                        "sourcePortRange": "*",
-                        "destinationPortRange": "*",
-                        "sourceAddressPrefix": "Internet",
-                        "destinationAddressPrefix": "*",
-                        "access": "Allow",
-                        "priority": 100,
-                        "direction": "Inbound"
-                    }
-                }]
-            },
-            "dependsOn": []
-        },
-        {
-            "apiVersion": "2015-06-15",
-            "type": "Microsoft.Network/virtualNetworks/subnets",
-            "name": "[concat(parameters('virtualNetworkName'), '/',parameters('subnetName'))]",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "addressPrefix": "[concat(parameters('addressStub'), '0', parameters('netMask'))]",
-                "publicIPAllocationMethod": "Static",
-                "networkSecurityGroup": {
-                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]"
-                }
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]"
-            ]
-        },
-        {
-            "comments": "deploys vm(s) onto subnet",
-            "apiVersion": "2015-01-01",
-            "name": "linkedTemplate-VMs",
-            "type": "Microsoft.Resources/deployments",
-            "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
-            ],
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[variables('VMsUri')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "templateUriPrefix": {
-                        "value": "[parameters('templateUriPrefix')]"
-                    },
-                    "storageAccountName": {
-                        "value": "[parameters('storageAccountName')]"
-                    },
-                    "virtualNetworkName": {
-                        "value": "[parameters('virtualNetworkName')]"
-                    },
-                    "virtualNetworkIpRange": {
-                        "value": "[parameters('virtualNetworkIpRange')]"
-                    },
-                    "dnsServerIp": {
-                        "value": "[parameters('dnsServerIp')]"
-                    },
-
-                    "subnetName": {
-                        "value": "[parameters('subnetName')]"
-                    },
-                    "addressStub": {
-                        "value": "[variables('addressStub')]"
-                    },
-                    "netMask": {
-                        "value": "[variables('netMask')]"
-                    },
-                    "nsgName": {
-                        "value": "[variables('nsgName')]"
-                    }
-                }
+              "description": "Allow www RDP",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "*",
+              "sourceAddressPrefix": "Internet",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 100,
+              "direction": "Inbound"
             }
+          }
+        ]
+      },
+      "dependsOn": []
+    },
+    {
+      "apiVersion": "2015-06-15",
+      "type": "Microsoft.Network/virtualNetworks/subnets",
+      "name": "[concat(parameters('virtualNetworkName'), '/',parameters('subnetName'))]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "addressPrefix": "[concat(parameters('addressStub'), '0', parameters('netMask'))]",
+        "publicIPAllocationMethod": "Static",
+        "networkSecurityGroup": {
+          "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]"
         }
-    ]
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]"
+      ]
+    },
+    {
+      "comments": "deploys vm(s) onto subnet",
+      "apiVersion": "2015-01-01",
+      "name": "linkedTemplate-VMs",
+      "type": "Microsoft.Resources/deployments",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('VMsUri')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "templateUriPrefix": {
+            "value": "[parameters('templateUriPrefix')]"
+          },
+          "storageAccountName": {
+            "value": "[parameters('storageAccountName')]"
+          },
+          "virtualNetworkName": {
+            "value": "[parameters('virtualNetworkName')]"
+          },
+          "virtualNetworkIpRange": {
+            "value": "[parameters('virtualNetworkIpRange')]"
+          },
+          "dnsServerIp": {
+            "value": "[parameters('dnsServerIp')]"
+          },
+          "subnetName": {
+            "value": "[parameters('subnetName')]"
+          },
+          "addressStub": {
+            "value": "[parameters('addressStub')]"
+          },
+          "netMask": {
+            "value": "[parameters('netMask')]"
+          },
+          "nsgName": {
+            "value": "[variables('nsgName')]"
+          }
+        }
+      }
+    }
+  ]
 }

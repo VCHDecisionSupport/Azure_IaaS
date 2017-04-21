@@ -44,7 +44,8 @@
     "variables": {
         "subnetUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_subnet.json')]"
     },
-    "resources": [{
+    "resources": [
+      {
             "type": "Microsoft.Storage/storageAccounts",
             "sku": {
                 "name": "Standard_GRS",

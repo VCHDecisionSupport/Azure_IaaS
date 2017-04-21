@@ -1,5 +1,26 @@
 # azure resources
 
+## deployment steps
+
+There are two stages for a complete deployment
+
+- shared permanent resources
+  - virtual network
+  - storage account
+- disposible workload specific resources
+  - subnet
+    - network security group
+    - virtual machine(s)
+      - hard drives
+        - os disk
+        - data disk(s)
+      - network interface card
+      - public static ip
+      - private/local static ip
+
+
+
+
 ## resource hierarchy
 
 Use resource hierarchy to name by naming child resources as parent resources with an addition suffix/prefix.
