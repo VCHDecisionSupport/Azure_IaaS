@@ -102,6 +102,7 @@
       "name": "linkedTemplate-VMs",
       "type": "Microsoft.Resources/deployments",
       "dependsOn": [
+        "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]"
       ],
       "properties": {
         "mode": "Incremental",
