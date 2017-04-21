@@ -1,5 +1,26 @@
 # azure resources
 
+## deployment steps
+
+There are two stages for a complete deployment
+
+- shared permanent resources
+  - virtual network
+  - storage account
+- disposible workload specific resources
+  - subnet
+    - network security group
+    - virtual machine(s)
+      - hard drives
+        - os disk
+        - data disk(s)
+      - network interface card
+      - public static ip
+      - private/local static ip
+
+
+
+
 ## resource hierarchy
 
 Use resource hierarchy to name by naming child resources as parent resources with an addition suffix/prefix.
@@ -61,7 +82,7 @@ I invented the concept of a "workload" to a describe group of vms in a single su
 
 - [Single template vs nested templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-template-best-practices#single-template-vs-nested-templates)
 - [Design patterns for Azure Resource Manager templates when deploying complex solutions](https://docs.microsoft.com/en-us/azure/azure-resource-manager/best-practices-resource-manager-design-templates)
-
+- [IP Calculator for calculating CIDR notation network prefixes](http://jodies.de/ipcalc)
 
 
 # Azure JSON Deployment Templates
