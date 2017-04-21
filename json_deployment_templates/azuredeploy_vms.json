@@ -1,184 +1,186 @@
 // https://github.com/Azure/azure-quickstart-templates/blob/master/201-vm-dynamic-data-disks-selection/azuredeploy.json
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "templateUriPrefix": {
-            "type": "string"
-        },
-        "storageAccountName": {
-            "type": "string"
-        },
-        "virtualNetworkName": {
-            "type": "string"
-        },
-        "virtualNetworkIpRange": {
-            "type": "string"
-        },
-        "dnsServerIp": {
-            "type": "string"
-        },
-
-        "subnetName": {
-            "type": "string"
-        },
-        "addressStub": {
-            "type": "string"
-        },
-        "netMask": {
-            "type": "string"
-        },
-        "nsgName": {
-            "type": "string"
-        },
-
-
-        "adminName": {
-            "type": "string",
-            "defaultValue": "Floater1",
-            "metadata": {
-                "description": "VM admin user name."
-            }
-        },
-        "adminPassword": {
-            "type": "string",
-            "defaultValue": "Floater1",
-            "metadata": {
-                "description": "VM admin password."
-            }
-        },
-        "imageReference": {
-            "defaultValue": {
-                "publisher": "MicrosoftWindowsServer",
-                "offer": "WindowsServer",
-                "sku": "2012-R2-Datacenter",
-                "version": "latest"
-            },
-            "type": "object"
-        },
-
-        "vmCount": {
-            "defaultValue": 2,
-            "type": "int"
-        },
-        "vmSize": {
-            "defaultValue": "Standard_DS13_v2",
-            "type": "string"
-        }
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "templateUriPrefix": {
+      "type": "string"
     },
-    "variables": {
-        "vmNameStub": "[concat(parameters('subnetName'),'Vm')]",
-        "pipNameStub": "[concat(parameters('subnetName'),'Pip')]",
-        "nicNameStub": "[concat(parameters('subnetName'),'Nic')]",
-        "OsDiskNameStub": "[concat(parameters('subnetName'),'OsDisk')]"
+    "storageAccountName": {
+      "type": "string"
     },
-    "resources": [{
-        "comments": "creates virtual machine according to given parameters above.  depends on creation of other resources: ip address",
-        "type": "Microsoft.Compute/virtualMachines",
-        "name": "[concat(variables('vmNameStub'), copyIndex())]",
-        "copy": {
-            "name": "vmsCopy",
-            "count": "[parameters('vmCount')]"
-        },
-        "apiVersion": "2016-04-30-preview",
-        "location": "[resourceGroup().location]",
-        "properties": {
-            "hardwareProfile": {
-                "vmSize": "[parameters('vmSize')]"
-            },
-            "storageProfile": {
-                "imageReference": "[parameters('imageReference')]",
-                "osDisk": {
-                    "osType": "Windows",
-                    "name": "[concat(variables('OsDiskNameStub'), copyIndex())]",
-                    "createOption": "FromImage",
-                    "vhd": {
-                        "uri": "[concat('https', '://', parameters('storageAccountName'), '.blob.core.windows.net', concat('/vhds/', concat(variables('OsDiskNameStub'), copyIndex()),'.vhd'))]"
-                    },
-                    "caching": "ReadWrite"
-                },
-                "dataDisks": []
-            },
-            "osProfile": {
-                "computerName": "[concat(variables('vmNameStub'), copyIndex())]",
-                "adminUsername": "[parameters('adminName')]",
-                "adminPassword": "[parameters('adminPassword')]",
-                "windowsConfiguration": {
-                    "provisionVMAgent": true,
-                    "enableAutomaticUpdates": true
-                },
-                "secrets": []
-            },
-            "networkProfile": {
-                    "networkInterfaces": [{
-                    "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nicNameStub'), copyIndex()))]"
-                    }]
-            },
-            "diagnosticsProfile": {
-                "bootDiagnostics": {
-                    "enabled": true,
-                    "storageUri": "[concat('https', '://', parameters('storageAccountName'), '.blob.core.windows.net', '/')]"
-                }
-            }
-        },
-        "dependsOn": [
-          "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nicNameStub'), copyIndex()))]"
-        ]
+    "virtualNetworkName": {
+      "type": "string"
     },
-    
+    "virtualNetworkIpRange": {
+      "type": "string"
+    },
+    "dnsServerIp": {
+      "type": "string"
+    },
+    "subnetName": {
+      "type": "string"
+    },
+    "addressStub": {
+      "type": "string"
+    },
+    "netMask": {
+      "type": "string"
+    },
+    "nsgName": {
+      "type": "string"
+    },
+    "adminName": {
+      "type": "string",
+      "defaultValue": "Floater1",
+      "metadata": {
+        "description": "VM admin user name."
+      }
+    },
+    "adminPassword": {
+      "type": "string",
+      "defaultValue": "Floater1",
+      "metadata": {
+        "description": "VM admin password."
+      }
+    },
+    "imageReference": {
+      "defaultValue": {
+        "publisher": "MicrosoftWindowsServer",
+        "offer": "WindowsServer",
+        "sku": "2012-R2-Datacenter",
+        "version": "latest"
+      },
+      "type": "object"
+    },
+    "vmCount": {
+      "defaultValue": 2,
+      "type": "int"
+    },
+    "vmSize": {
+      "defaultValue": "Standard_DS13_v2",
+      "type": "string"
+    }
+  },
+  "variables": {
+    "vmNameStub": "[concat(parameters('subnetName'),'Vm')]",
+    "pipNameStub": "[concat(parameters('subnetName'),'Pip')]",
+    "nicNameStub": "[concat(parameters('subnetName'),'Nic')]",
+    "OsDiskNameStub": "[concat(parameters('subnetName'),'OsDisk')]"
+  },
+  "resources": [
     {
-            "comments": "creates network interface and associates it with public and private static ips",
-            "type": "Microsoft.Network/networkInterfaces",
-            "copy": {
-                "name": "vmsCopy",
-                "count": "[parameters('vmCount')]"
-            },
-            "name": "[concat(variables('nicNameStub'), copyIndex())]",
-            "apiVersion": "2016-03-30",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "ipConfigurations": [{
-                    "name": "ipconfig1",
-                    "properties": {
-                        "privateIPAddress": "[concat(parameters('addressStub'),mul(10, add(copyIndex(), 1)))]",
-                        "privateIPAllocationMethod": "Static",
-                        "publicIPAddress": {
-                            "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('pipNameStub'), copyIndex()))]"
-                        },
-                        "subnet": {
-                            "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName')), '/subnets/', parameters('subnetName'))]"
-                        }
-                    }
-                }],
-                "dnsSettings": {
-                    "dnsServers": []
-                },
-                "enableIPForwarding": false,
-                "networkSecurityGroup": {
-                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('nsgName'))]"
-                }
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('pipNameStub'), copyIndex()))]",
-                
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('nsgName'))]"
-            ]
+      "comments": "creates virtual machine according to given parameters above.  depends on creation of other resources: ip address",
+      "type": "Microsoft.Compute/virtualMachines",
+      "name": "[concat(variables('vmNameStub'), copyIndex())]",
+      "copy": {
+        "name": "vmsCopy",
+        "count": "[parameters('vmCount')]"
+      },
+      "apiVersion": "2016-04-30-preview",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "[parameters('vmSize')]"
         },
-        {
-            "comments": "creates public static IP",
-            "name": "[concat(variables('pipNameStub'), copyIndex())]",
-            "type": "Microsoft.Network/publicIPAddresses",
-            "apiVersion": "2016-03-30",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "publicIPAllocationMethod": "Static",
-                "idleTimeoutInMinutes": 4,
-                "dnsSettings": {
-                    "domainNameLabel": "[toLower(concat(variables('vmNameStub'), copyIndex()))]"
-                }
+        "storageProfile": {
+          "imageReference": "[parameters('imageReference')]",
+          "osDisk": {
+            "osType": "Windows",
+            "name": "[concat(variables('OsDiskNameStub'), copyIndex())]",
+            "createOption": "FromImage",
+            "vhd": {
+              "uri": "[concat('https', '://', parameters('storageAccountName'), '.blob.core.windows.net', concat('/vhds/', concat(variables('OsDiskNameStub'), copyIndex()),'.vhd'))]"
             },
-            "dependsOn": []
+            "caching": "ReadWrite"
+          },
+          "dataDisks": []
+        },
+        "osProfile": {
+          "computerName": "[concat(variables('vmNameStub'), copyIndex())]",
+          "adminUsername": "[parameters('adminName')]",
+          "adminPassword": "[parameters('adminPassword')]",
+          "windowsConfiguration": {
+            "provisionVMAgent": true,
+            "enableAutomaticUpdates": true
+          },
+          "secrets": []
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nicNameStub'), copyIndex()))]"
+            }
+          ]
+        },
+        "diagnosticsProfile": {
+          "bootDiagnostics": {
+            "enabled": true,
+            "storageUri": "[concat('https', '://', parameters('storageAccountName'), '.blob.core.windows.net', '/')]"
+          }
         }
-    
-    ]
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nicNameStub'), copyIndex()))]"
+      ]
+    },
+    {
+      "comments": "creates network interface and associates it with public and private static ips",
+      "type": "Microsoft.Network/networkInterfaces",
+      "copy": {
+        "name": "vmsCopy",
+        "count": "[parameters('vmCount')]"
+      },
+      "name": "[concat(variables('nicNameStub'), copyIndex())]",
+      "apiVersion": "2016-03-30",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipconfig1",
+            "properties": {
+              "privateIPAddress": "[concat(parameters('addressStub'),mul(10, add(copyIndex(), 1)))]",
+              "privateIPAllocationMethod": "Static",
+              "publicIPAddress": {
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('pipNameStub'), copyIndex()))]"
+              },
+              "subnet": {
+                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName')), '/subnets/', parameters('subnetName'))]"
+              }
+            }
+          }
+        ],
+        "dnsSettings": {
+          "dnsServers": []
+        },
+        "enableIPForwarding": false,
+        "networkSecurityGroup": {
+          "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('nsgName'))]"
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('pipNameStub'), copyIndex()))]",
+        "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('nsgName'))]"
+      ]
+    },
+    {
+      "comments": "creates public static IP",
+      "name": "[concat(variables('pipNameStub'), copyIndex())]",
+      "copy": {
+        "name": "vmsCopy",
+        "count": "[parameters('vmCount')]"
+      },
+      "type": "Microsoft.Network/publicIPAddresses",
+      "apiVersion": "2016-03-30",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "publicIPAllocationMethod": "Static",
+        "idleTimeoutInMinutes": 4,
+        "dnsSettings": {
+          "domainNameLabel": "[toLower(concat(variables('vmNameStub'), copyIndex()))]"
+        }
+      },
+      "dependsOn": []
+    }
+  ]
 }
