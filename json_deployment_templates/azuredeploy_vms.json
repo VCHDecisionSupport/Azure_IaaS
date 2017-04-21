@@ -165,12 +165,13 @@
     },
     {
       "comments": "creates public static IP",
+      "type": "Microsoft.Network/publicIPAddresses",
       "name": "[concat(variables('pipNameStub'), copyIndex())]",
       "copy": {
         "name": "vmsCopy",
         "count": "[parameters('vmCount')]"
       },
-      "type": "Microsoft.Network/publicIPAddresses",
+      
       "apiVersion": "2016-03-30",
       "location": "[resourceGroup().location]",
       "properties": {
