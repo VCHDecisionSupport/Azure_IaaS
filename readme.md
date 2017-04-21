@@ -1,6 +1,19 @@
-# Azure json template IaaS deployment
+# Azure json templates for IaaS deployment
 
-## How to:
+## How Tos
+
+### Start a VM
+
+### Stop a VM
+
+### Remove VMs
+
+### Save a VM image
+
+### Deployment from saved image
+
+### Add new blank VMs
+
 
 ### Browse existing resources
 
