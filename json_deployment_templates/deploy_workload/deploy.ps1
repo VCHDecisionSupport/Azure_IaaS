@@ -7,8 +7,8 @@ $resource_group_name = "testrg"
 # prompts login popup; only need to login once per powershell session
 # Login-AzureRmAccount
 
+# deploy resources declared in $template_path
 $template_path = "azuredeploy_workload.json"
 Test-AzureRmResourceGroupDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
-WriteHost
 New-AzureRmResourceGroupDeployment -Name sharedResourcesDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
 

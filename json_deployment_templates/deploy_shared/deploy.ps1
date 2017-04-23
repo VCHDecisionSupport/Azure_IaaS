@@ -7,13 +7,15 @@ Set-Location -Path $PSScriptRoot
 $resource_group_name = "testrg"
 
 # Azure login; only need to login once per powershell session
-# Login-AzureRmAccount
+Login-AzureRmAccount
 
 # create new resource group
-# New-AzureRmResourceGroup -Name $resource_group_name -Location "canadacentral"
+New-AzureRmResourceGroup -Name $resource_group_name -Location "canadacentral"
 
 # deploy resources declared in $template_path
 $template_path = "azuredeploy_shared.json"
+$template_path = "azuredeploy_vnet.json"
+$parameter_path = "azuredeploy_vnet.parameter.json"
 Test-AzureRmResourceGroupDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
-New-AzureRmResourceGroupDeployment -Name sharedResourcesDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
+New-AzureRmResourceGroupDeployment -Name sharedResourcesDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path -ParameterFile $parameter_path
 

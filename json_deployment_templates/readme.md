@@ -4,7 +4,7 @@
 1. save templates online (Azure will need their url)
 1. sign into Azure subscription from PowerShell
 1. create resource group to deploy into with PowerShell
-1. start deployment with PowerShell
+1. [start deployment with PowerShell](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-template-deploy)
 
 1 and 2 are already done.
 

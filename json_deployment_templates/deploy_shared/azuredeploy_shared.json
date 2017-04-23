@@ -5,13 +5,21 @@
         "templateUriPrefix": {
             "defaultValue": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/json_deployment_templates/deploy_shared/",
             "type": "string"
+        },
+        "vnetParameterFile": {
+            "defaultValue": "azuredeploy_vnet.parameters.json",
+            "type": "string"
+        },
+        "storageParameterFile": {
+            "defaultValue": "azuredeploy_storage.parameters.json",
+            "type": "string"
         }
     },
     "variables": {
         "vnetTemplateUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_vnet.json')]",
         "storageTemplateUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_storage.json')]",
-        "vnetParametersUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_vnet.parameters.json')]",
-        "storageParametersUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_storage.parameters.json')]"
+        "vnetParametersUri": "[concat(parameters('templateUriPrefix'),parameters('vnetParameterFile'))]",
+        "storageParametersUri": "[concat(parameters('templateUriPrefix'),parameters('storageParameterFile')))]"
     },
     "resources": [{
             "comments": "deploys vnet",
