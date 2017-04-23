@@ -10,13 +10,10 @@
         },
 
         "subnetName": {
-            "value": "work"
-        },
-        "nsgName": {
-            "value": "string"
+            "value": "addc"
         },
         "addressStub": {
-            "value": "192.168.1."
+            "value": "192.168.2."
         },
         "netMask": {
             "value": "/24"

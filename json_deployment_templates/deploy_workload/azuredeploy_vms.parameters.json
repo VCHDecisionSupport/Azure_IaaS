@@ -16,19 +16,13 @@
         },
 
         "subnetName": {
-            "value": "work",
+            "value": "addc",
             "metadata": {
                 "description": "assumes already exists (eg by azuredeploy_subnet.json)"
             }
         },
         "addressStub": {
-            "value": "192.168.1.",
-            "metadata": {
-                "description": "assumes already exists (eg by azuredeploy_subnet.json)"
-            }
-        },
-        "nsgName": {
-            "value": "string",
+            "value": "192.168.2.",
             "metadata": {
                 "description": "assumes already exists (eg by azuredeploy_subnet.json)"
             }

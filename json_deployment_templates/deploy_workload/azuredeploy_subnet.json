@@ -10,9 +10,6 @@
         "subnetName": {
             "type": "string"
         },
-        "nsgName": {
-            "type": "string"
-        },
         "addressStub": {
             "type": "string"
         },
@@ -24,7 +21,7 @@
     "variables": { "nsgName": "[concat(parameters('subnetName'),'-nsg')]" },
     "resources": [{
             "type": "Microsoft.Network/networkSecurityGroups",
-            "name": "[parameters('nsgName')]",
+            "name": "[variables('nsgName')]",
             "apiVersion": "2016-03-30",
             "location": "[resourceGroup().location]",
             "properties": {
@@ -54,11 +51,11 @@
                 "addressPrefix": "[concat(parameters('addressStub'), '0', parameters('netMask'))]",
                 "publicIPAllocationMethod": "Static",
                 "networkSecurityGroup": {
-                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('nsgName'))]"
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]"
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('nsgName'))]"
+                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]"
             ]
         }
 
