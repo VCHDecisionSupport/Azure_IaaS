@@ -1,0 +1,21 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "templateUriPrefix": {
+            "value": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/json_deployment_templates/"
+        },
+        "storageAccountName": {
+            "value": "vchstorageaccounttest"
+        },
+        "virtualNetworkName": {
+            "value": "vchds-vnettest"
+        },
+        "virtualNetworkIpRange": {
+            "value": "192.168.0.0/16"
+        },
+        "dnsServerIp": {
+            "value": "192.168.0.0"
+        }
+    }
+}

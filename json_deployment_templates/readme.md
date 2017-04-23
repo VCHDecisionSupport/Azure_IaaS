@@ -1,4 +1,32 @@
-# azure resources
+# Azure Deployment Sequence
+
+1. define resources with deployment templates
+1. save templates online (Azure will need their url)
+1. sign into Azure subscription from PowerShell
+1. create resource group to deploy into with PowerShell
+1. start deployment with PowerShell
+
+1 and 2 are already done.
+
+## Azure Deployment using JSON Templates
+
+[JSON Templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-authoring-templates) let you declare what resources are to be deployed
+
+- templates parameters reduce configuration effort
+- templates can be nested and execute one another
+- templates are deployments are started with PowerShell
+- templates follow [infrastructure as code](https://en.wikipedia.org/wiki/Infrastructure_as_Code)
+  - version-able
+  - repeatable
+  - scalable
+
+## How To
+
+### 
+
+
+
+
 
 ## deployment steps
 

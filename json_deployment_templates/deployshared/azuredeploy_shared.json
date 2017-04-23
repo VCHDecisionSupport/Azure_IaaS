@@ -4,7 +4,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "templateUriPrefix": {
-            "defaultValue": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/flattened_deployment/json_deployment_templates/",
+            "defaultValue": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/json_deployment_templates/deployshared",
             "type": "string"
         },
         "storageAccountName": {
@@ -26,7 +26,8 @@
     },
     "variables": {
         "vnetTemplateUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_vnet.json')]",
-        "storageTemplateUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_storage.json')]"
+        "storageTemplateUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_storage.json')]",
+        "sharedParametersUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_parameters.json')]"
     },
     "resources": [{
             "comments": "deploys vnet",
@@ -39,16 +40,9 @@
                     "uri": "[variables('vnetTemplateUri')]",
                     "contentVersion": "1.0.0.0"
                 },
-                "parameters": {
-                    "virtualNetworkName": {
-                        "value": "[parameters('virtualNetworkName')]"
-                    },
-                    "virtualNetworkIpRange": {
-                        "value": "[parameters('virtualNetworkIpRange')]"
-                    },
-                    "dnsServerIp": {
-                        "value": "[parameters('dnsServerIp')]"
-                    }
+                "parametersLink": {
+                    "uri": "[variables('sharedParametersUri')]",
+                    "contentVersion": "1.0.0.0"
                 }
             }
         },
@@ -63,10 +57,9 @@
                     "uri": "[variables('storageTemplateUri')]",
                     "contentVersion": "1.0.0.0"
                 },
-                "parameters": {
-                    "storageAccountName": {
-                        "value": "[parameters('storageAccountName')]"
-                    }
+                "parametersLink": {
+                    "uri": "[variables('sharedParametersUri')]",
+                    "contentVersion": "1.0.0.0"
                 }
             }
         }
