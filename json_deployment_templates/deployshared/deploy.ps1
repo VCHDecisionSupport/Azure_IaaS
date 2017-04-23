@@ -10,7 +10,7 @@ $resource_group_name = "testrg"
 # Login-AzureRmAccount
 
 # create new resource group
-New-AzureRmResourceGroup -Name $resource_group_name -Location "canadacentral"
+# New-AzureRmResourceGroup -Name $resource_group_name -Location "canadacentral"
 
 # deploy resources declared in $template_path
 $template_path = "azuredeploy_shared.json"
