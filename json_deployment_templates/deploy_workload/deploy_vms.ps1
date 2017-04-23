@@ -26,7 +26,7 @@ $resource_group_name = "testrg"
 # New-AzureRmResourceGroupDeployment -Name sharedResourcesDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path -TemplateParameterFile $parameter_path
 
 
-$template_path = "azuredeploy_vnet.json"
-$parameter_path = "azuredeploy_vnet.parameters.json"
+$template_path = "azuredeploy_vms.json"
+$parameter_path = "azuredeploy_vms.parameters.json"
 # Test-AzureRmResourceGroupDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path -TemplateParameterFile $parameter_path
 New-AzureRmResourceGroupDeployment -Name sharedResourcesDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path -TemplateParameterFile $parameter_path

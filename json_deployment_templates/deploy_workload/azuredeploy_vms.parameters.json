@@ -16,13 +16,13 @@
         },
 
         "subnetName": {
-            "value": "string",
+            "value": "work",
             "metadata": {
                 "description": "assumes already exists (eg by azuredeploy_subnet.json)"
             }
         },
         "addressStub": {
-            "value": "string",
+            "value": "192.168.1.",
             "metadata": {
                 "description": "assumes already exists (eg by azuredeploy_subnet.json)"
             }
@@ -33,15 +33,14 @@
                 "description": "assumes already exists (eg by azuredeploy_subnet.json)"
             }
         },
-
         "adminName": {
-            "value": "string",
+            "value": "Floater1",
             "metadata": {
                 "description": "VM admin user name."
             }
         },
         "adminPassword": {
-            "value": "string",
+            "value": "Floater1",
             "metadata": {
                 "description": "VM admin password."
             }
