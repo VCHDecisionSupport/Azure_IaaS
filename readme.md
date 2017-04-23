@@ -1,31 +1,8 @@
-# Azure json templates for IaaS deployment
-
-## How Tos
-
-### Start a VM
-
-### Stop a VM
-
-### Remove VMs
-
-### Save a VM image
-
-### Deployment from saved image
-
-### Add new blank VMs
+# Azure_IaaS
 
 
-### Browse existing resources
 
-Manage Azure visually from browser with point & click.  Go to: [www.azureportal.com](www.azureportal.com).
 
-### Deploy and configure from code
-
-Turn key deployment: execute `json_deployment_templates/deploy.ps1`
-
-## Infrastructure Resources
-
-`deploy.ps1` creates:
 
 - resource group
 - storage account
