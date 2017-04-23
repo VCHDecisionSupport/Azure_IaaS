@@ -1,0 +1,21 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualNetworkName": {
+            "value": "vchds-vnettest",
+            "metadata": {
+                "description": "see https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview"
+            }
+        },
+        "virtualNetworkIpRange": {
+            "value": "192.168.0.0/16"
+        },
+        "dnsServerIp": {
+            "value": "192.168.0.0",
+            "metadata": {
+                "description": "assumes VM associated with this VM will be ADDC/DNS server role on this vnet"
+            }
+        }
+    }
+}

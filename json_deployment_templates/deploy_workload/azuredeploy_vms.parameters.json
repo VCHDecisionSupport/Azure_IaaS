@@ -1,0 +1,65 @@
+// https://github.com/Azure/azure-quickstart-templates/blob/master/201-vm-dynamic-data-disks-selection/azuredeploy.json
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageAccountName": {
+            "value": "vchstorageaccounttest",
+            "metadata": {
+                "description": "assumes already exists (eg by azuredeploy_shared.json)"
+            }
+        },
+        "virtualNetworkName": {
+            "value": "vchds-vnettest",
+            "metadata": {
+                "description": "assumes already exists (eg by azuredeploy_shared.json)"
+            }
+        },
+
+        "subnetName": {
+            "value": "string",
+            "metadata": {
+                "description": "assumes already exists (eg by azuredeploy_subnet.json)"
+            }
+        },
+        "addressStub": {
+            "value": "string",
+            "metadata": {
+                "description": "assumes already exists (eg by azuredeploy_subnet.json)"
+            }
+        },
+        "nsgName": {
+            "value": "string",
+            "metadata": {
+                "description": "assumes already exists (eg by azuredeploy_subnet.json)"
+            }
+        },
+
+        "adminName": {
+            "value": "string",
+            "metadata": {
+                "description": "VM admin user name."
+            }
+        },
+        "adminPassword": {
+            "value": "string",
+            "metadata": {
+                "description": "VM admin password."
+            }
+        },
+        "imageReference": {
+            "value": {
+                "publisher": "MicrosoftWindowsServer",
+                "offer": "WindowsServer",
+                "sku": "2012-R2-Datacenter",
+                "version": "latest"
+            }
+        },
+        "vmCount": {
+            "value": 1
+        },
+        "vmSize": {
+            "value": "Standard_DS13_v2"
+        }
+    }
+}

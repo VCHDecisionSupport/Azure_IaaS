@@ -1,0 +1,56 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "templateUriPrefix": {
+            "defaultValue": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/json_deployment_templates/deploy_workload/",
+            "type": "string"
+        }
+    },
+    "variables": {
+        "subnetTemplateUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_subnet.json')]",
+        "subnetParametersUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_subnet.parameters.json')]",
+        "vmsTemplateUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_vms.json')]",
+        "vmsParametersUri": "[concat(parameters('templateUriPrefix'),'azuredeploy_vms.parameters.json')]"
+    },
+    "resources": [
+
+        {
+            "comments": "deploys subnet and network security group",
+            "apiVersion": "2015-01-01",
+            "name": "linkedTemplateSubnet",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('subnetTemplateUri')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parametersLink": {
+                    "uri": "[variables('subnetParametersUri')]",
+                    "contentVersion": "1.0.0.0"
+                }
+            }
+        },
+        {
+            "comments": "deploys vm(s) onto subnet",
+            "apiVersion": "2015-01-01",
+            "name": "linkedTemplateVMs",
+            "type": "Microsoft.Resources/deployments",
+            "dependsOn": [
+                "Microsoft.Resources/deployments/linkedTemplateSubnet"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('vmsTemplateUri')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parametersLink": {
+                    "uri": "[variables('vmsParametersUri')]",
+                    "contentVersion": "1.0.0.0"
+                }
+            }
+        }
+    ]
+}
