@@ -15,9 +15,6 @@
         "addressStub": {
             "type": "string"
         },
-        "nsgName": {
-            "type": "string"
-        },
         "adminName": {
             "type": "string",
             "metadata": {
@@ -132,10 +129,7 @@
                 "dnsSettings": {
                     "dnsServers": []
                 },
-                "enableIPForwarding": false,
-                "networkSecurityGroup": {
-                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('nsgName'))]"
-                }
+                "enableIPForwarding": false
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('pipNameStub'), copyIndex()))]"
