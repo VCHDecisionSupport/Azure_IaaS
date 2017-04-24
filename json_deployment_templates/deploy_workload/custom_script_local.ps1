@@ -1,0 +1,1 @@
+New-Item -Name "thisisatext.txt" -Value "fuckimagenius"

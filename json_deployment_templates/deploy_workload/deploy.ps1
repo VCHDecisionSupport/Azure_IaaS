@@ -12,3 +12,4 @@ $template_path = "azuredeploy_workload.json"
 Test-AzureRmResourceGroupDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
 New-AzureRmResourceGroupDeployment -Name sharedResourcesDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path
 
+Set-AzureRmVMCustomScriptExtension -ResourceGroupName $resource_group_name -Location "canadacentral" -VMName "addcVm0" -Name "ContosoTest" -TypeHandlerVersion "1.1" -StorageAccountName "Contoso" -StorageAccountKey <StorageKey> -FileName "configure_vm.ps1" -ContainerName "Scripts"

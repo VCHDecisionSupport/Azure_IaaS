@@ -10,10 +10,10 @@
         },
 
         "subnetName": {
-            "value": "addc"
+            "value": "config"
         },
         "addressStub": {
-            "value": "192.168.2."
+            "value": "192.168.3."
         },
         "netMask": {
             "value": "/24"

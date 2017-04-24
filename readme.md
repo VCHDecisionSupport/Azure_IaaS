@@ -1,18 +1,25 @@
 # Azure_IaaS
 
+## High Level Explanation
 
+Azure resources (eg VMs, subnets, storage account etc) are configured/deployed using JSON template files and JSON parameter files.
 
+- use parameter files to change what it deployed (do not edit templates)
 
+- template files are not meant to change
 
-- resource group
+## Deployed Infrastructure
+
+- [resource group](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/infrastructure-resource-groups-guidelines#resource-groups)
 - storage account
 - virtual network
 - subnets
+- virtual machines
+
 - network security groups
 - network interface cards
 - public static ips
 - private static ips
-- virtual machines
 
 #### Post-Deployment Server Configuration
 

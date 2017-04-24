@@ -16,13 +16,13 @@
         },
 
         "subnetName": {
-            "value": "addc",
+            "value": "config",
             "metadata": {
                 "description": "assumes already exists (eg by azuredeploy_subnet.json)"
             }
         },
         "addressStub": {
-            "value": "192.168.2.",
+            "value": "192.168.3.",
             "metadata": {
                 "description": "assumes already exists (eg by azuredeploy_subnet.json)"
             }
