@@ -1,16 +1,18 @@
-# Azure Deployment Sequence
+# Azure Resource Manager Templates
 
-1. define resources with deployment templates
-1. save templates online (Azure will need their url)
-1. sign into Azure subscription from PowerShell
-1. create resource group to deploy into with PowerShell
-1. [start deployment with PowerShell](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-template-deploy)
+- Azure "resources" are specified using "templates"
+- template files are written in declarative JSON syntax
+- templates can define input parameters whose values are set in separate "parameter files"
+- PowerShell commands send templates to the "Azure Resource Manager" service
+- Azure Resource Manager provisions the resources
 
-1 and 2 are already done.
+sdf
+
+
 
 ## Azure Deployment using JSON Templates
 
-[JSON Templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-authoring-templates) let you declare what resources are to be deployed
+let you declare what resources are to be deployed
 
 - templates parameters reduce configuration effort
 - templates can be nested and execute one another
@@ -19,14 +21,6 @@
   - version-able
   - repeatable
   - scalable
-
-## How To
-
-### 
-
-
-
-
 
 ## deployment steps
 
@@ -70,44 +64,12 @@ I invented the concept of a "workload" to a describe group of vms in a single su
             - size
 
 
-## json parameters
-
-- root_name: `vchds`
-- location: "canadacentral"
-- resource_group
-  - resource_group_name: root_name ++ `-rg`
-- storage_account
-  - storage_account: storage_account_name ++ `sa`
-- vnet
-  - vnet_name: root_name ++ `-vnet`
-  - dsn server
-- domain
-  - domain_name: root_name ++ `.ca`
-- [workload]
-  work_load_names:
-  - `jb`
-  - `addc`
-  - `sp`
-  - `sqldw`
-  - `user`
-  - `sandbox`
-- subnet
-  - subnet_name: work_load_name ++ `-subnet`
-  - addressPrefix: "192.168.?.0/24"
-  - nsg:
-    - nsg_name: subnet_name ++ `-nsg`
-    - nsg_rule_name: subnet_name ++ `-nsg-rdp-rule`
-- vm
-  - vm_name: work_load_name ++ `Vm` ++ ?
-  - nic_name: vm_name
-      - [vm]
-        - nic
-        - os
-        - size
-
 
 ## Resources
 
+- [Azure Resource Manager overview](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview)
+- [Resource Manager templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-authoring-templates)
+- [Deploy template with PowerShell](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-template-deploy#deploy-local-template)
 - [Single template vs nested templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-template-best-practices#single-template-vs-nested-templates)
 - [Design patterns for Azure Resource Manager templates when deploying complex solutions](https://docs.microsoft.com/en-us/azure/azure-resource-manager/best-practices-resource-manager-design-templates)
 - [IP Calculator for calculating CIDR notation network prefixes](http://jodies.de/ipcalc)

@@ -13,14 +13,20 @@ $location = "canadacentral"
 # # create new resource group
 # New-AzureRmResourceGroup -Name $resource_group_name -Location $location
 
-# # deploy resources declared in $template_path
+# deploy resources declared in $template_path
 $template_path = "azuredeploy_vnet.json"
-$parameter_path = "azuredeploy_vnet.parameter.json"
-New-AzureRmResourceGroupDeployment -Name storageDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path -TemplateParameterFile $parameter_path
+$parameter_path = "azuredeploy_vnet.parameters.json"
+Write-Host ("Testing deployment of template:`n`t{0}" -f $template_path)
+Test-AzureRmResourceGroupDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path -TemplateParameterFile $parameter_path
+Write-Host ("Deploying of template:`n`t{0}" -f $template_path)
+New-AzureRmResourceGroupDeployment -Name vnetDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path -TemplateParameterFile $parameter_path
 
-
+# deploy resources declared in $template_path
 $template_path = "azuredeploy_storage.json"
 $parameter_path = "azuredeploy_storage.parameters.json"
-New-AzureRmResourceGroupDeployment -Name vnetDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path -TemplateParameterFile $parameter_path
+Write-Host ("Testing deployment of template:`n`t{0}" -f $template_path)
+Test-AzureRmResourceGroupDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path -TemplateParameterFile $parameter_path
+Write-Host ("Deploying of template:`n`t{0}" -f $template_path)
+New-AzureRmResourceGroupDeployment -Name storageDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path -TemplateParameterFile $parameter_path
 
 

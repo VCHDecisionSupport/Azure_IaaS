@@ -11,12 +11,12 @@
         "virtualNetworkIpRange": {
             "value": "192.168.0.0/16"
         },
-        "dnsServerIp": {
+        "dhcpOptions": {
             "value": {
                 "dnsServers": []
             },
             "metadata": {
-                "description": "assumes VM associated with this VM will be ADDC/DNS server role on this vnet"
+                "description": "dnsServers Microsoft provided Azure default is: 168.63.129.16; change to local ip of DC onces it's deployed."
             }
         }
     }

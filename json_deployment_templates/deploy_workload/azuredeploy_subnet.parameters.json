@@ -13,7 +13,7 @@
             "value": "config"
         },
         "addressStub": {
-            "value": "192.168.3."
+            "value": "192.168.0."
         },
         "netMask": {
             "value": "/24"
