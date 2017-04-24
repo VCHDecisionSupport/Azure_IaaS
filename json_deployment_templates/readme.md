@@ -9,7 +9,7 @@
 ## Deployment steps
 
 
-1. deploy shared resources (see `deploy_shared` folder)
+1. deploy shared resources (see [deploy_shared](deploy_shared) folder)
 1. deploy work load resources (see `deploy_workload` folder)
 1. configure vm server roles (todo)
 
