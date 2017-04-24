@@ -9,8 +9,8 @@ Azure resources (eg VMs, subnets, storage account etc) are configured/deployed u
 
 deployment code located in [json_deployment_templates](json_deployment_templates) folder in repo root
 
-1. deploy shared resources (see `deploy_shared` folder)
-1. deploy work load resources (see `deploy_workload` folder)
+1. deploy shared resources (see [deploy_shared](deploy_shared) folder)
+1. deploy work load resources (see [deploy_workload](deploy_workload) folder)
 1. configure vm server roles (todo)
 
 ### Network Diagram
@@ -27,6 +27,8 @@ deployment code located in [json_deployment_templates](json_deployment_templates
 
 ## Deployed resources and docs
 
+[Full IaaS walk through](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/infrastructure-example?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+
 - [resource group](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/infrastructure-resource-groups-guidelines#resource-groups)
 - [storage account](https://docs.microsoft.com/en-us/azure/storage/storage-introduction#blob-storage)
 - [virtual network](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview)
@@ -37,7 +39,7 @@ deployment code located in [json_deployment_templates](json_deployment_templates
   - [public static ips](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-public-ip-address)
   - [private static ips](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-static-private-ip-arm-pportal)
 
-## Technical documentation and tutorials
+## Other useful documentation
 
 ### Azure resource manager templates
 
@@ -45,9 +47,9 @@ deployment code located in [json_deployment_templates](json_deployment_templates
 - [Resource Manager templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-authoring-templates)
 - [Deploy template with PowerShell](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-template-deploy#deploy-local-template)
 - [Template design patterns](https://docs.microsoft.com/en-us/azure/azure-resource-manager/best-practices-resource-manager-design-templates)
+- [Custom script extension](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/extensions-customscript)
 - [Single template vs nested templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-template-best-practices#single-template-vs-nested-templates)
-- [technology specific environment](https://docs.microsoft.com/en-us/azure/azure-resource-manager/best-practices-resource-manager-design-templates#common-template-scopes)
-- [IP Calculator for calculating CIDR notation network prefixes](http://jodies.de/ipcalc)
+
 
 ### Active Directory Domain Services
 
@@ -68,7 +70,6 @@ DHCP server role is not needed but just in case...
 - [Installing and Configuring DHCP role on Windows Server 2012](https://blogs.technet.microsoft.com/teamdhcp/2012/08/31/installing-and-configuring-dhcp-role-on-windows-server-2012/)
 - [Bringing PowerShell to DHCP Server](https://blogs.technet.microsoft.com/teamdhcp/2012/07/15/bringing-powershell-to-dhcp-server/)
 
-
 ### PowerShell for Azure <b id="f10"></b>[↩](#a10)
 
 [Manage VMs with PowerShell](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-windows-ps-manage/)
@@ -81,8 +82,10 @@ DHCP server role is not needed but just in case...
 
 [Introduction to Remote PowerShell with Windows Azure](https://www.opsgility.com/blog/windows-azure-powershell-reference-guide/introduction-remote-powershell-with-windows-azure/)
 
-## Other documentation:
+### misc
 
 [Azure VM sizing](https://azure.microsoft.com/en-us/documentation/articles/cloud-services-sizes-specs/)
 
 [Create DNS Zone](https://azure.microsoft.com/en-us/documentation/articles/dns-getstarted-create-dnszone/)
+
+[IP Calculator for calculating CIDR notation network prefixes](http://jodies.de/ipcalc)
