@@ -12,7 +12,7 @@ Azure resources (eg VMs, subnets, storage account etc) are configured/deployed u
 
 - [resource group](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/infrastructure-resource-groups-guidelines#resource-groups)
 - storage account
-- virtual network
+- [virtual network](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview)
 - subnets
 - virtual machines
 

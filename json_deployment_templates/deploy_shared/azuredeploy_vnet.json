@@ -8,8 +8,8 @@
         "virtualNetworkIpRange": {
             "type": "string"
         },
-        "dnsServerIp": {
-            "type": "string"
+        "dhcpOptions": {
+            "type": "object"
         }
     },
     "variables": {},
@@ -24,11 +24,7 @@
                     "[parameters('virtualNetworkIpRange')]"
                 ]
             },
-            "dhcpOptions": {
-                "dnsServers": [
-                    "[parameters('dnsServerIp')]"
-                ]
-            },
+            "dhcpOptions": "[parameters('dhcpOptions')]",
             "subnets": []
         }
     }]

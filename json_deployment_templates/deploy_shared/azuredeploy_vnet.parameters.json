@@ -12,7 +12,9 @@
             "value": "192.168.0.0/16"
         },
         "dnsServerIp": {
-            "value": "192.168.0.0",
+            "value": {
+                "dnsServers": []
+            },
             "metadata": {
                 "description": "assumes VM associated with this VM will be ADDC/DNS server role on this vnet"
             }
