@@ -10,12 +10,9 @@
 
 
 1. deploy shared resources (see [deploy_shared](deploy_shared) folder)
-1. deploy work load resources (see [deploy_workload](deploy_workload) folder)
-1. configure vm server roles (todo)
-
-- shared permanent resources
   - virtual network
   - storage account
+1. deploy work load resources (see [deploy_workload](deploy_workload) folder)
 - disposable workload specific resources
   - subnet
     - network security group
@@ -26,6 +23,7 @@
       - network interface card
       - public static ip
       - private/local static ip
+1. configure vm server roles (todo)
 
 ## Azure deployment using JSON templates
 
@@ -33,12 +31,10 @@ let you declare what resources are to be deployed
 
 - templates parameters reduce configuration effort
 - templates can be nested and execute one another
-- templates are deployments are started with PowerShell
 - templates follow [infrastructure as code](https://en.wikipedia.org/wiki/Infrastructure_as_Code)
   - version-able
   - repeatable
   - scalable
-
 
 ### resource hierarchy
 

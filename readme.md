@@ -56,6 +56,7 @@ ideally also
 
 - [Azure Resource Manager overview](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview)
 - [Resource Manager templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-authoring-templates)
+- [Azure quick start example templates](https://github.com/Azure/azure-quickstart-templates)
 - [Deploy template with PowerShell](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-template-deploy#deploy-local-template)
 - [Template design patterns](https://docs.microsoft.com/en-us/azure/azure-resource-manager/best-practices-resource-manager-design-templates)
 - [Custom script extension](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/extensions-customscript)
