@@ -7,7 +7,7 @@ Azure resources (eg VMs, subnets, storage account etc) are configured/deployed u
 
 ## Deployment steps
 
-deployment code located in `/json_deployment_templates/` folder in repo root
+deployment code located in [json_deployment_templates](json_deployment_templates) folder in repo root
 
 1. deploy shared resources (see `deploy_shared` folder)
 1. deploy work load resources (see `deploy_workload` folder)
