@@ -37,9 +37,19 @@ deployment code located in `/json_deployment_templates/` folder in repo root
   - [public static ips](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-public-ip-address)
   - [private static ips](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-static-private-ip-arm-pportal)
 
-# Technical documentation and tutorials
+## Technical documentation and tutorials
 
-## Active Directory Domain Services
+### Azure resource manager templates
+
+- [Azure Resource Manager overview](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview)
+- [Resource Manager templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-authoring-templates)
+- [Deploy template with PowerShell](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-template-deploy#deploy-local-template)
+- [Template design patterns](https://docs.microsoft.com/en-us/azure/azure-resource-manager/best-practices-resource-manager-design-templates)
+- [Single template vs nested templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-template-best-practices#single-template-vs-nested-templates)
+- [technology specific environment](https://docs.microsoft.com/en-us/azure/azure-resource-manager/best-practices-resource-manager-design-templates#common-template-scopes)
+- [IP Calculator for calculating CIDR notation network prefixes](http://jodies.de/ipcalc)
+
+### Active Directory Domain Services
 
 These explain new forest deployment well
 - [Setting up Active Directory with PowerShell](https://blogs.technet.microsoft.com/uktechnet/2016/06/08/setting-up-active-directory-via-powershell/) 
@@ -59,7 +69,7 @@ DHCP server role is not needed but just in case...
 - [Bringing PowerShell to DHCP Server](https://blogs.technet.microsoft.com/teamdhcp/2012/07/15/bringing-powershell-to-dhcp-server/)
 
 
-## PowerShell for Azure <b id="f10"></b>[↩](#a10)
+### PowerShell for Azure <b id="f10"></b>[↩](#a10)
 
 [Manage VMs with PowerShell](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-windows-ps-manage/)
 
@@ -71,7 +81,7 @@ DHCP server role is not needed but just in case...
 
 [Introduction to Remote PowerShell with Windows Azure](https://www.opsgility.com/blog/windows-azure-powershell-reference-guide/introduction-remote-powershell-with-windows-azure/)
 
-# Other documentation:
+## Other documentation:
 
 [Azure VM sizing](https://azure.microsoft.com/en-us/documentation/articles/cloud-services-sizes-specs/)
 
