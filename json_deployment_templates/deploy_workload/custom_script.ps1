@@ -6,7 +6,7 @@ $run_cmd = "custom_script_local.ps1"
 $url = "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/json_deployment_templates/deploy_workload/custom_script_local.ps1"
 
 Set-AzureRmVMCustomScriptExtension -ResourceGroupName $resource_group_name `
-    -VMName myVM `
+    -VMName $vm_name `
     -Location $location `
     -FileUri $url `
     -Run 'myScript.ps1' `
