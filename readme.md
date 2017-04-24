@@ -15,7 +15,7 @@ deployment code located in `/json_deployment_templates/` folder in repo root
 
 ### Network Diagram
 
-[![](https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/misc/network_diagram.png "2 tier Architecture with Jumpbox by Renee Fung (click to see tutorial)")](https://azure.microsoft.com/en-us/documentation/articles/guidance-compute-3-tier-vm/)
+[![](https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/notes/network_diagram.png "2 tier Architecture with Jumpbox by Renee Fung (click to see tutorial)")](https://azure.microsoft.com/en-us/documentation/articles/guidance-compute-3-tier-vm/)
 
 ### Post-deployment server configuration
 
