@@ -10,13 +10,13 @@
 
 
 1. deploy shared resources (see [deploy_shared](deploy_shared) folder)
-1. deploy work load resources (see `deploy_workload` folder)
+1. deploy work load resources (see [deploy_workload](deploy_workload) folder)
 1. configure vm server roles (todo)
 
 - shared permanent resources
   - virtual network
   - storage account
-- disposible workload specific resources
+- disposable workload specific resources
   - subnet
     - network security group
     - virtual machine(s)

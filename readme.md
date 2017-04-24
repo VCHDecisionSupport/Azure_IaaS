@@ -1,4 +1,4 @@
-# Azure_IaaS
+# [Azure_IaaS](https://portal.azure.com/)
 
 Azure resources (eg VMs, subnets, storage account etc) are configured/deployed using JSON template files and JSON parameter files.
 
@@ -9,8 +9,8 @@ Azure resources (eg VMs, subnets, storage account etc) are configured/deployed u
 
 deployment code located in [json_deployment_templates](json_deployment_templates) folder in repo root
 
-1. deploy shared resources (see [deploy_shared](deploy_shared) folder)
-1. deploy work load resources (see [deploy_workload](deploy_workload) folder)
+1. deploy shared resources (see [deploy_shared](json_deployment_templates/deploy_shared) folder)
+1. deploy work load resources (see [deploy_workload](json_deployment_templates/deploy_workload) folder)
 1. configure vm server roles (todo)
 
 ### Network diagram
