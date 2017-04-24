@@ -3,21 +3,13 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "virtualNetworkName": {
-            "value": "vchds-vnettest",
+            "value": "vchdsvnet",
             "metadata": {
                 "description": "see https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview"
             }
         },
         "virtualNetworkIpRange": {
-            "value": "192.168.0.0/16"
-        },
-        "dhcpOptions": {
-            "value": {
-                "dnsServers": []
-            },
-            "metadata": {
-                "description": "dnsServers Microsoft provided Azure default is: 168.63.129.16; change to local ip of DC onces it's deployed."
-            }
+            "value": "10.0.0.0/16"
         }
     }
 }

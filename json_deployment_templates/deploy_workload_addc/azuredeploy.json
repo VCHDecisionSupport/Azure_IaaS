@@ -8,17 +8,14 @@
         "virtualNetworkName": {
             "type": "string"
         },
+        "virtualNetworkIpRange": {
+            "type": "string"
+        },
         "subnetName": {
             "type": "string"
         },
-        "addressStub": {
+        "subnetIpRange": {
             "type": "string"
-        },
-        "adminName": {
-            "type": "string",
-            "metadata": {
-                "description": "The name of the administrator account of the new VM and domain"
-            }
         },
         "adminPassword": {
             "type": "string",
@@ -26,7 +23,6 @@
                 "description": "The password for the administrator account of the new VM and domain"
             }
         },
-
 
         "adminUsername": {
             "type": "string",
@@ -38,12 +34,6 @@
             "type": "string",
             "metadata": {
                 "description": "The FQDN of the Active Directory Domain to be created"
-            }
-        },
-        "dnsPrefix": {
-            "type": "string",
-            "metadata": {
-                "description": "The DNS prefix for the public IP address used by the Load Balancer"
             }
         },
         "windowsserver": {
@@ -74,14 +64,12 @@
         }
     },
     "variables": {
-        "virtualNetworkAddressRange": "10.0.0.0/16",
         "adLBFE": "LBFE",
         "adLBBE": "LBBE",
         "adRDPNAT": "adRDP",
         "adNicName": "adNic",
         "adNicIPAddress": "10.0.0.4",
-        "adVMName": "adVM",
-        "adSubnetName": "adSubnet",
+        "adVMName": "addcVm",
         "adSubnetAddressPrefix": "10.0.0.0/24",
         "publicIPAddressName": "adPublicIP",
         "adAvailabilitySetName": "adAvailabiltySet",
@@ -95,7 +83,7 @@
             "properties": {
                 "publicIPAllocationMethod": "Static",
                 "dnsSettings": {
-                    "domainNameLabel": "[parameters('dnsPrefix')]"
+                    "domainNameLabel": "[parameters('adVMName')]"
                 }
             }
         },
@@ -155,7 +143,7 @@
                         "privateIPAllocationMethod": "Static",
                         "privateIPAddress": "[variables('adNicIPAddress')]",
                         "subnet": {
-                            "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), variables('adSubnetName'))]"
+                            "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), parameters('subnetName'))]"
                         },
                         "loadBalancerBackendAddressPools": [{
                             "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', variables('adLBName'), variables('adLBBE'))]"
@@ -270,14 +258,14 @@
                     "virtualNetworkName": {
                         "value": "[parameters('virtualNetworkName')]"
                     },
-                    "virtualNetworkAddressRange": {
-                        "value": "[variables('virtualNetworkAddressRange')]"
+                    "virtualNetworkIpRange": {
+                        "value": "[parameters('virtualNetworkIpRange')]"
                     },
                     "subnetName": {
-                        "value": "[variables('adSubnetName')]"
+                        "value": "[parameters('subnetName')]"
                     },
                     "subnetRange": {
-                        "value": "[variables('adSubnetAddressPrefix')]"
+                        "value": "[parameters('subnetIpRange')]"
                     },
                     "DNSServerAddress": {
                         "value": [

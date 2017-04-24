@@ -24,7 +24,9 @@
                     "[parameters('virtualNetworkIpRange')]"
                 ]
             },
-            "dhcpOptions": "[parameters('dhcpOptions')]",
+            "dhcpOptions": {
+                "dnsServers": []
+            },
             "subnets": []
         }
     }]
