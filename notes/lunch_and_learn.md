@@ -27,9 +27,10 @@ Dev/test environment for SharePoint
 ### Exploring vch/imts infrastructure
 
 ### Network infrastructure 
-- Vnet 
-- Subnet 
-- Nsg 
+
+- Vnet
+- Subnet
+- Nsg
 - Nic
 - Pip
 - Vm
@@ -37,13 +38,9 @@ Dev/test environment for SharePoint
 - Jumpbox
 
 ### Server software
-- Deployment automation with Chef
 
 #### Data warehouse
-- Chef install 
-- On premises schema export and data profiling 
-- Generation of data simulation
 
 #### SharePoint 
-- Chef install 
+
 - On premises config export
