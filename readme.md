@@ -15,7 +15,7 @@ deployment code located in [json_deployment_templates](json_deployment_templates
 
 ### Network diagram
 
-[![](https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/notes/network_diagram.png "2 tier Architecture with Jumpbox by Renee Fung (click to see tutorial)")](https://azure.microsoft.com/en-us/documentation/articles/guidance-compute-3-tier-vm/)
+[![](https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/notes/network_diagram.png "2 tier Architecture with Jumpbox by Renee Fung (click for docs)")](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/virtual-machines-windows/n-tier)
 
 ### Prerequisites
 
@@ -58,6 +58,7 @@ ideally also
 - [Resource Manager templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-authoring-templates)
 - [Azure quick start example templates](https://github.com/Azure/azure-quickstart-templates)
   - [new AD Forest, Domain, and DC](https://github.com/Azure/azure-quickstart-templates/tree/master/active-directory-new-domain)
+  - [join existing domain](https://github.com/Azure/azure-quickstart-templates/blob/master/201-vm-domain-join-existing/azuredeploy.json)
   - [dynamic data disks](https://github.com/Azure/azure-quickstart-templates/blob/master/201-vm-dynamic-data-disks-selection/azuredeploy.json)
   - [3 vm SharePoint Farm](https://github.com/VCHDecisionSupport/azure-quickstart-templates/tree/master/sharepoint-three-vm)
 - [Deploy template with PowerShell](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-template-deploy#deploy-local-template)

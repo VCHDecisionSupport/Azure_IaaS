@@ -3,17 +3,17 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "virtualNetworkName": {
-            "value": "vchds-vnettest",
+            "value": "adVNET",
             "metadata": {
                 "description": "assumes already exists (eg by azuredeploy_shared.json)"
             }
         },
 
         "subnetName": {
-            "value": "config"
+            "value": "jsonjoiner"
         },
         "addressStub": {
-            "value": "192.168.0."
+            "value": "10.0.2."
         },
         "netMask": {
             "value": "/24"

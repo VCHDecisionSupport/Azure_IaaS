@@ -8,15 +8,16 @@
 
 ## Deployment steps
 
-
 ### 1. deploy shared resources (see [deploy_shared](deploy_shared) folder)
+
+deploys these resources into the given resource group
 
 - virtual network
 - storage account
 
 ### 2. deploy work load resources (see [deploy_workload](deploy_workload) folder)
 
-There are 5 workloads deployed.  each deployed into it's own subnet.
+There are 5 workloads deployed into the given resource group.  each deployed into it's own subnet within the vnet.
 
 - active directory
 - share point

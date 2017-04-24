@@ -5,6 +5,7 @@
 #
 
 Set-Location -Path $PSScriptRoot
+Login-AzureRmAccount
 
 $SkipList = $null, $null
 Write-Host ("Geting list of virtual machines in subscription...`n")
