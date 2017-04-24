@@ -5,17 +5,6 @@ Azure resources (eg VMs, subnets, storage account etc) are configured/deployed u
 - use parameter files to change what it deployed (do not edit templates)
 - template files are not meant to change
 
-## Prerequisites
-
-- Microsoft Live account with permission on Azure subscription
-- [Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/overview?view=azurermps-3.8.0) extension installed
-
-ideally also
-
-- [Github account](https://github.com/join) with membership in [VCHDecisionSupport](https://github.com/orgs/VCHDecisionSupport/people)
-- [Github for Windows](https://desktop.github.com/)
-- [VS Code](https://code.visualstudio.com/)
-
 ## Deployment steps
 
 deployment code located in [json_deployment_templates](json_deployment_templates) folder in repo root
@@ -24,9 +13,20 @@ deployment code located in [json_deployment_templates](json_deployment_templates
 1. deploy work load resources (see [deploy_workload](deploy_workload) folder)
 1. configure vm server roles (todo)
 
-### Network Diagram
+### Network diagram
 
 [![](https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/notes/network_diagram.png "2 tier Architecture with Jumpbox by Renee Fung (click to see tutorial)")](https://azure.microsoft.com/en-us/documentation/articles/guidance-compute-3-tier-vm/)
+
+### Prerequisites
+
+- [Microsoft Live account](https://signup.live.com) with permission on [Azure subscription](https://portal.azure.com/)
+- [Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/overview?view=azurermps-3.8.0) extension installed
+
+ideally also
+
+- [Github account](https://github.com/join) with membership in [VCHDecisionSupport](https://github.com/orgs/VCHDecisionSupport/people)
+- [Github for Windows](https://desktop.github.com/)
+- [VS Code](https://code.visualstudio.com/)
 
 ### Post-deployment server configuration
 
@@ -60,7 +60,6 @@ deployment code located in [json_deployment_templates](json_deployment_templates
 - [Template design patterns](https://docs.microsoft.com/en-us/azure/azure-resource-manager/best-practices-resource-manager-design-templates)
 - [Custom script extension](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/extensions-customscript)
 - [Single template vs nested templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-template-best-practices#single-template-vs-nested-templates)
-
 
 ### Active Directory Domain Services
 
