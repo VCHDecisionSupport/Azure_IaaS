@@ -9,21 +9,34 @@
 ## Deployment steps
 
 
-1. deploy shared resources (see [deploy_shared](deploy_shared) folder)
-  - virtual network
-  - storage account
-1. deploy work load resources (see [deploy_workload](deploy_workload) folder)
-- disposable workload specific resources
-  - subnet
-    - network security group
-    - virtual machine(s)
-      - hard drives
-        - os disk
-        - data disk(s)
-      - network interface card
-      - public static ip
-      - private/local static ip
-1. configure vm server roles (todo)
+### 1. deploy shared resources (see [deploy_shared](deploy_shared) folder)
+
+- virtual network
+- storage account
+
+### 2. deploy work load resources (see [deploy_workload](deploy_workload) folder)
+
+There are 5 workloads deployed.  each deployed into it's own subnet.
+
+- active directory
+- share point
+- data warehouse
+- jumpbox
+- end users
+
+Each work load consists of:
+
+- subnet
+  - network security group
+  - virtual machine(s)
+    - hard drives
+      - os disk
+      - data disk(s)
+    - network interface card
+    - public static ip
+    - private/local static ip
+
+### 3. configure vm server roles (todo)
 
 ## Azure deployment using JSON templates
 
