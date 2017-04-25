@@ -2,7 +2,6 @@ Set-Location -Path $PSScriptRoot
 $resource_group_name = "vchdsrg"
 $location = "canadacentral"
 
-
 # Login-AzureRmAccount
 
 # deploy resources declared in $template_path

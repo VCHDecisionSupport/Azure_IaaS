@@ -1,0 +1,249 @@
+% *****************
+% LaTeX boiler plate template
+% *** PREAMBLE
+% \documentclass[10pt]{article}
+\documentclass[10pt,pdf]{beamer} % *** mathtools CRASHES WITH BEAMER
+% \hyperlink{expected_value}{\beamerbutton{Expected Value}}
+\usefonttheme[stillsansseriftext]{serif} 
+% \usepackage[margin=20mm, paperwidth=8.5in, paperheight=11in]{geometry} %PDF print
+% \usepackage[margin=10mm, paperwidth=210mm, paperheight=297mm]{geometry} %A4 ISO
+% \usepackage{extsizes} % allows for other font sizes % \documentclass[9pt]{extarticle}
+% \usepackage{mathtools} % allows cases enviroment *** CRASHES WITH BEAMER
+% \usefonttheme[stillsansseriftext]{serif} 
+\usepackage{amsmath} % allows standard AMS math enviroment
+\usepackage{amssymb} % allows AMS math symbols
+\usepackage{amsthm} % allows for custom theorems etc
+\usepackage{color} % {\color{red} this is red text}
+\definecolor{green}{RGB}{0,255,0}
+\usepackage{listings} % allows for source code formatting
+\lstset{basicstyle=\small\ttfamily,tabsize=2}
+% \lstset{ %
+  % backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  % basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  % breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  % breaklines=true,                 % sets automatic line breaking
+  % captionpos=b,                    % sets the caption-position to bottom
+  % commentstyle=\color{mygreen},    % comment style
+  % deletekeywords={...},            % if you want to delete keywords from the given language
+  % escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  % extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  % frame=single,                    % adds a frame around the code
+  % keywordstyle=\color{blue},       % keyword style
+  % language=Octave,                 % the language of the code
+  % morekeywords={*,...},            % if you want to add more keywords to the set
+  % numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  % numbersep=5pt,                   % how far the line-numbers are from the code
+  % numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  % rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  % showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  % showstringspaces=false,          % underline spaces within strings only
+  % showtabs=false,                  % show tabs within strings adding particular underscores
+  % stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  % stringstyle=\color{mymauve},     % string literal style
+  % tabsize=2,                       % sets default tabsize to 2 spaces
+  % title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+% }
+% \usepackage{calc} % infix notation arithmatic
+% font and character fixes
+% \usepackage{quotes} % replaces "blah" with ``blah''
+\usepackage{bbm} % allows indicator funciton font
+\newcommand{\1}[1]{\ensuremath{\mathbbm{1}_{\left\{#1\}}}}
+% page and table formatting
+\usepackage{multicol} % allows pages to printed in 'n' columns \begin{multicols}{n}
+\usepackage{subfig} % allows figures to be tiled in \figure
+\usepackage{array} % changes height of all rows in a \table
+\usepackage{multirow} % combines multiple rows in \tabular
+\usepackage{enumitem} % customize lists
+% \setdescription{leftmargin=\parindent,labelindent=\parindent}
+\usepackage{enumerate} % allows for formatted list
+\usepackage{bigstrut} % changes height of a single row in a \table  (see table tricks pg 4)
+\usepackage{setspace} % allows custom linespacing \doublespacing \singlespacing \onehalfspacing \setstretch{1.8}
+
+\usepackage{graphicx} % allows figures
+% \begin{figure}[h]
+	% \capstart
+	% \begin{center}
+		% \includegraphics[width=\textwidth]{skew}
+		% \caption{}
+	% \end{center}
+% \end{figure}
+\usepackage{url} % version \verb for web addresses
+% \usepackage{hyperref} % PDF navigation
+% \usepackage{hypref}
+% \hypersetup{ 
+% pdftitle={}, 
+	% pdfauthor={},
+	% bookmarks=true, bookmarksopen=true, pdftoolbar=true, 
+	% pdffitwindow=false,
+	% colorlinks=false,
+	% linkcolor=red, 
+	% citecolor=red,
+	% filecolor=magenta,
+	% urlcolor=black 
+% }
+% *** CUSTOM THEOREM, DEFINITION FORMAT
+% \newtheoremstyle{defstyle} % name
+	% {0mm} %3pt space above
+	% {0mm} %3pt space below
+	% {} %body font
+	% {0mm} %indent amount
+	% {} %thm head font
+	% {:} %:punctuation after head
+	% {4mm} %0.5em space after head
+	% {{\textbf{\underline{Definition}}\thmname{#1}}\thmnote{ #3}} %thm head spec
+% \theoremstyle{defstyle}
+% \newtheorem{definition}{}
+% \newcommand{\mydef}[2]{\begin{definition}[#1]#2\end{definition}}
+% \newtheoremstyle{thmstyle} % name
+	% {0mm} %3pt space above
+	% {0mm} %3pt space below
+	% {} %body font
+	% {0mm} %indent amount
+	% {} %thm head font
+	% {:} %:punctuation after head
+	% {4mm} %0.5em space after head
+	% {{\textbf{\underline{Theorem}}\thmname{#1}}\thmnote{ #3}} %thm head spec
+% \theoremstyle{thmstyle}
+% \newtheorem{theorem}{}
+% \newcommand{\mythm}[2]{\begin{theorem}[#1]#2\end{theorem}}
+% \newcommand{\mydef}[2]{\newtheorem*{#1}{#1}\begin{#1}#2\end{#1}}
+% \newcommand{\mythm}[2]{\newtheorem*{#1}{#1}\begin{#1}#2\end{#1}}
+% \newcommand{\myprf}[1]{\begin{proof}#1\end{proof}}
+
+% *** CUSTOMIZED SECTIONS
+% \usepackage{titlesec}
+	% \renewcommand{\thepart}{\arabic{part}}
+		% \titleformat{\part}[block]{\center\bfseries\Huge}{PART \thepart:~}{0pt}{}{}
+	% \renewcommand{\thesection}{\arabic{section}}
+		% \titleformat{\section}[hang]{\bfseries\Large}{Section \thesection:~}{0pt}{}{}
+	% \renewcommand{\thesubsection}{\arabic{subsection}}
+		% \titleformat{\subsection}[runin]{\bfseries\large}{}{0pt}{}{}
+	% \renewcommand{\thesubsubsection}{\arabic{subsubsection}}
+		% \titleformat{\subsubsection}[runin]{\large}{\thesubsection.\thesubsubsection~}{0pt}{}{}
+% \newcommand\isection[1]{%
+	% \refstepcounter{section}%
+	% \addcontentsline{toc}{section}{\protect\numberline{\thesection}#1}%
+	% \sectionmark{#1}}
+% *** BRACKET SHORTCUTS
+% \def\({\left(}
+% \def\){\right)}
+% \def\[{\left[}
+% \def\]{\right]}
+% \def\({\left(}
+% \def\){\right)}
+% \def\{{\left\{}
+% \def\}{\right\}}
+% *** MATH ENVIROMENT SHORTCUTS
+% \newcommand{\eqn}[1]{\begin{equation} #1 \end{equation}} % numbered equation shortcut
+% \newcommand{\eq}[1]{\begin{equation*} #1 \end{equation*}} % non-numbered equation shortcut
+% \newcommand{\aln}[1]{\begin{align} #1 \end{align}} % numbered align shortcut
+% \newcommand{\al}[1]{\begin{align*} #1 \end{align*}} % non-numbered align shortcut
+% *** LIST ENVIROMENT SHORTCUTS
+
+\usepackage{enumerate} % allows for formatted list
+% http://www.troubleshooters.com/linux/lyx/ownlists.htm
+% \newcommand{\desc}[1]{\begin{description}	
+% 	\setlength{\itemsep}{5pt}
+% 	\setlength{\parskip}{0pt}
+% 	\setlength{\parsep}{0pt}
+% 	#1\end{description}}
+% \newcommand{\pts}[1]{\begin{itemize}
+% 	\setlength{\itemsep}{5pt}
+% 	\setlength{\parskip}{0pt}
+% 	\setlength{\parsep}{0pt}
+% 	#1\end{itemize}}
+% \newcommand{\num}[1]{\begin{enumerate}
+% 	\setlength{\itemsep}{5pt}
+% 	\setlength{\parskip}{0pt}
+% 	\setlength{\parsep}{0pt}
+% 	#1\end{enumerate}}
+	
+% % *** MISC 
+% % \renewcommand{\refeq}[1]{Eq. \ref{#1}} % in text reference to a labeled equation
+% \def\th{\ensuremath{^{\text{th}}}}
+% \def\nd{\ensuremath{^{\text{nd}}}}
+% % *** MATH/STAT OPERATORS
+% \def\d{\ensuremath{\textup{d}}}
+% \def\dy{\ensuremath{\textup{d}y}}
+% \def\dx{\ensuremath{\textup{d}x}}
+% \def\dt{\ensuremath{\textup{d}t}}
+% \def\e{\ensuremath{\textup{e}}}
+% \def\del{\ensuremath{\partial}} % partial differential
+% \DeclareMathOperator*{\argmin}{arg\! min}
+% \DeclareMathOperator*{\argmax}{arg\! max}
+% \DeclareMathOperator*{\arccsc}{arccsc}
+% \DeclareMathOperator*{\arcsec}{arcsec}
+% \DeclareMathOperator*{\arccot}{arcsec}
+% \DeclareMathOperator*{\sech}{sech}
+% \DeclareMathOperator*{\csch}{csch}
+% \DeclareMathOperator{\Li}{Li}
+% \newcommand{\op}[1]{\ensuremath{\textup{#1}}} % math operator
+% \newcommand{\D}[1]{\ensuremath{#1^\prime}}
+% \newcommand{\abs}[1]{\left| #1 \right|} % absolute value operator
+% \newcommand{\ang}[1]{\langle #1 \rangle}
+% % *** MATH expressions
+% \newcommand{\comb}[2]{\(\begin{array}{c}#1\\#2\end{array}\)} % combination
+% \newcommand{\seq}[2]{\ensuremath{#1_1,#1_2,\ldots,#1_{#2}}} % sequence 
+% \newcommand{\at}[1]{\ensuremath{\left.#1\right|}} % evaluated at
+% \def\implies{\ensuremath{\Longrightarrow}} % implies
+% \newcommand{\notimplies}{\mathrel{{\ooalign{\hidewidth$\not\phantom{=}$\hidewidth\cr$\implies$}}}} % does not imply
+% \newcommand{\mbf}[1]{\boldsymbol{#1}}
+
+% % *** STATs
+% \def\ind{\ensuremath{\perp\!\!\!\perp}} % independant
+% \newcommand{\N}[1]{\ensuremath{\mathcal{N}\(#1\)}} % normal distribution
+% \def\R{\ensuremath{\mathbb{R}}} % real numbers
+% \def\F{\ensuremath{\mathcal{F}}} % sigma-algebra over sample space
+% \def\Ft{\ensuremath{\left\{\mathcal{F}_t\right\}_{t\geq0}}} % sigma-field over sample space
+% \def\E{\ensuremath{\textup{E}}} % expected value
+% \def\Var{\ensuremath{\textup{Var}}} % variance
+% \def\S{\ensuremath{\mathcal{S}}} % state space
+
+% \newcommand{\mat}[1]{\begin{pmatrix}#1\end{pmatrix}}
+% % TITLES & NAME LINE
+% \newcommand{\name}[2]{\setstretch{1}\begin{flushright}Graham Crowell\\#1\\#2\\\today\end{flushright}} % standard assignment name, subject, assignment, date
+% \renewcommand{\title}[1]{\centerline{\large\textbf{#1}}}
+% *** START OF DOCUMENT
+
+% \usetheme{Antibes}
+% \usetheme{Berlin}
+
+% \usetheme{Montpellier}
+% \usetheme{Singapore}
+% \usetheme{Dresden}
+% \useoutertheme{tree}
+
+% \def\cpA{\textbf{cpA}}
+% \def\cpB{\textbf{cpB}}
+% \def\refC{\textbf{refC}}
+% \newcommand{\blk}[1]{\begin{block}#1\end{block}}
+% \newcommand{\frm}[2]{\begin{frame}{#1}#2\end{frame}}
+% \def\svgwidth{\textwidth}
+% \def\svgheight{\paperheight}
+\begin{document}
+	\setlength{\parskip}{0.25cm}
+	\setlength{\itemsep}{0cm} % added to parskip for items in a list	
+	\setlength{\parindent}{0cm} % indent paragraph
+	% \setlength{\topmargin}{0in}
+	% \setlength{\headheight}{0in}
+	% \setlength{\headsep}{0in}
+	% \setlength{\textheight}{7.7in}
+	% \setlength{\textwidth}{6.5in}
+	% \setlength{\oddsidemargin}{0in}
+	% \setlength{\evensidemargin}{0in}
+	\abovedisplayskip=12pt % 12pt % amount of space before an equation
+	\belowdisplayskip=12pt % 12pt % amount of space after an equation
+	\abovedisplayshortskip=0pt
+	\belowdisplayshortskip=7pt
+	\pagestyle{empty}
+	% runtime_tex.py looks for 1 full line of '-----' and then inserts '\input{' ... '}'
+	% --------------------------------------------------------------------
+
+	% \input{intro.tex}
+	\input{slides.tex}
+	% \input{topology.tex}
+	% \input{state_space.tex}
+	% \input{refs.tex}
+	% \section<presentation>[Rsd;lj;lj;esults]{Results on the Main Problem2}
+
+\end{document}
