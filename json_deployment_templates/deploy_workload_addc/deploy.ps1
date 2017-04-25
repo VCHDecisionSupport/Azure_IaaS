@@ -1,5 +1,5 @@
 Set-Location -Path $PSScriptRoot
-$resource_group_name = "addcquickstart"
+$resource_group_name = "vchdsrg"
 $template_path = "azuredeploy.json"
 $parameter_path = "azuredeploy.parameters.json"
 $location = "canadacentral"
