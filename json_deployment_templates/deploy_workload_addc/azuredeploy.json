@@ -69,7 +69,7 @@
         "adRDPNAT": "adRDP",
         "adNicName": "adNic",
         "adNicIPAddress": "10.0.0.4",
-        "adVMName": "addcVm",
+        "adVMName": "addcvm",
         "adSubnetAddressPrefix": "10.0.0.0/24",
         "publicIPAddressName": "adPublicIP",
         "adAvailabilitySetName": "adAvailabiltySet",
@@ -83,7 +83,7 @@
             "properties": {
                 "publicIPAllocationMethod": "Static",
                 "dnsSettings": {
-                    "domainNameLabel": "[parameters('adVMName')]"
+                    "domainNameLabel": "[variables('adVMName')]"
                 }
             }
         },
@@ -258,7 +258,7 @@
                     "virtualNetworkName": {
                         "value": "[parameters('virtualNetworkName')]"
                     },
-                    "virtualNetworkIpRange": {
+                    "virtualNetworkAddressRange": {
                         "value": "[parameters('virtualNetworkIpRange')]"
                     },
                     "subnetName": {
