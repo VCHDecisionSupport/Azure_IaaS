@@ -13,6 +13,10 @@ deployment code located in [json_deployment_templates](json_deployment_templates
 1. deploy work load resources (see [deploy_workload](json_deployment_templates/deploy_workload) folder)
 1. configure vm server roles (todo)
 
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master//json_deployment_templates/deploy_shared/azuredeploy_vnet.json" target="_blank">
+    <img src="http://azuredeploy.net/deploybutton.png"/>
+</a>
+
 ### Network diagram
 
 [![](https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/notes/network_diagram.png "2 tier Architecture with Jumpbox by Renee Fung (click for docs)")](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/virtual-machines-windows/n-tier)
