@@ -42,7 +42,7 @@
             }
         },
         "_artifactsLocation": {
-            "value": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/active-directory-new-domain",
+            "value": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/json_deployment_templates/deploy_workload_addc/nestedtemplates",
             "metadata": {
                 "description": "The location of resources, such as templates and DSC modules, that the template depends on"
             }

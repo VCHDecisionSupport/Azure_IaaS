@@ -90,7 +90,7 @@
                         "value": "[parameters('virtualNetworkName')]"
                     },
                     "subnetName": {
-                        "value": "[variables('adSubnetName')]"
+                        "value": "[parameters('subnetName')]"
                     },
                     "subnetIpRange": {
                         "value": "[parameters('subnetIpRange')]"
