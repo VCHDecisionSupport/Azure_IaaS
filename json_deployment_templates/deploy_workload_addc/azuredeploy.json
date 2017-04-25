@@ -53,7 +53,7 @@
             "metadata": {
                 "description": "The location of resources, such as templates and DSC modules, that the template depends on"
             },
-            "defaultValue": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/active-directory-new-domain"
+            "defaultValue": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/json_deployment_templates/deploy_workload_addc/nestedtemplates"
         },
         "_artifactsLocationSasToken": {
             "type": "securestring",
@@ -76,6 +76,29 @@
         "adLBName": "adLoadBalancer"
     },
     "resources": [{
+            "type": "Microsoft.Resources/deployments",
+            "name": "addcSubnetDeployment",
+            "apiVersion": "2016-02-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(parameters('_artifactsLocation'), '/nestedtemplates/azuredeploy_addc_subnet.json', parameters('_artifactsLocationSasToken'))]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "virtualNetworkName": {
+                        "value": "[parameters('virtualNetworkName')]"
+                    },
+                    "subnetName": {
+                        "value": "[variables('adSubnetName')]"
+                    },
+                    "subnetIpRange": {
+                        "value": "[parameters('subnetIpRange')]"
+                    }
+                }
+            }
+        },
+        {
             "type": "Microsoft.Network/publicIPAddresses",
             "name": "[variables('publicIPAddressName')]",
             "apiVersion": "2016-03-30",
