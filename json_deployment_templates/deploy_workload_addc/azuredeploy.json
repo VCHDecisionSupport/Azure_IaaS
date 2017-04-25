@@ -157,6 +157,7 @@
             "apiVersion": "2016-03-30",
             "location": "[resourceGroup().location]",
             "dependsOn": [
+                "Microsoft.Resources/deployments/addcSubnetDeployment",
                 "[resourceId('Microsoft.Network/loadBalancers', variables('adLBName'))]"
             ],
             "properties": {
