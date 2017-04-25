@@ -7,9 +7,6 @@
         },
         "virtualNetworkIpRange": {
             "type": "string"
-        },
-        "dhcpOptions": {
-            "type": "object"
         }
     },
     "variables": {},
