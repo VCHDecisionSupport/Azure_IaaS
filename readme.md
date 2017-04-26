@@ -5,10 +5,26 @@ Azure resources (eg VMs, subnets, storage account etc) are configured/deployed u
 - use parameter files to change what it deployed (do not edit templates)
 - template files are not meant to change
 
+
 ## Table of Contents
 
-- [Azure Portal](https://portal.azure.com/)
-- [Azure_IaaS Lunch and Learn](https://vchdecisionsupport.github.io/Azure_IaaS/)
+<!-- TOC -->
+
+- [Azure_IaaS](#azure_iaas)
+    - [Table of Contents](#table-of-contents)
+    - [Deployment steps](#deployment-steps)
+        - [Network diagram](#network-diagram)
+        - [Prerequisites](#prerequisites)
+        - [Post-deployment server configuration](#post-deployment-server-configuration)
+    - [IaaS resources docs](#iaas-resources-docs)
+    - [Other useful documentation](#other-useful-documentation)
+        - [[Azure quick start templates examples (GitHub)](https://github.com/Azure/azure-quickstart-templates)](#azure-quick-start-templates-examples-githubhttpsgithubcomazureazure-quickstart-templates)
+        - [Azure Resource Manager and template docs](#azure-resource-manager-and-template-docs)
+        - [Active Directory Domain Services](#active-directory-domain-services)
+        - [PowerShell for Azure <b id="f10"></b>[↩](#a10)](#powershell-for-azure-b-idf10b↩a10)
+        - [misc](#misc)
+
+<!-- /TOC -->
 
 ## Deployment steps
 
@@ -67,6 +83,8 @@ ideally also
 - [new AD Forest, Domain, and DC](https://github.com/Azure/azure-quickstart-templates/tree/master/active-directory-new-domain)
 - [join existing domain](https://github.com/Azure/azure-quickstart-templates/blob/master/201-vm-domain-join-existing/azuredeploy.json)
 - [dynamic data disks](https://github.com/Azure/azure-quickstart-templates/blob/master/201-vm-dynamic-data-disks-selection/azuredeploy.json)
+
+Also see [devtestlab templates](https://github.com/Azure/azure-devtestlab/tree/master/Samples) (auto shut down, auto start etc)
 
 ### Azure Resource Manager and template docs
 
