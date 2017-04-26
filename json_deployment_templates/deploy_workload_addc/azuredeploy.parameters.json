@@ -24,7 +24,7 @@
             }
         },
         "adminPassword": {
-            "value": "Floater1",
+            "value": "#Draintheswamp",
             "metadata": {
                 "description": "The password for the administrator account of the new VM and domain"
             }
