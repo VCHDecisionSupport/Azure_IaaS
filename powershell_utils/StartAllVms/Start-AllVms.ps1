@@ -14,7 +14,7 @@ $VirtualMachines = Get-AzureRmVM | Where-Object {$SkipList -notcontains $_}
 
 if ($VirtualMachines.Count -gt 0) {
     $VmRgNames = @()
-    $caption = ("`tStopping these virtual machines:")
+    $caption = ("`tStarting these virtual machines:")
 
     foreach ($VirtualMachine in $VirtualMachines) {
         $caption += ("`n`t`t{0}" -f $VirtualMachine.Name)
@@ -23,12 +23,12 @@ if ($VirtualMachines.Count -gt 0) {
 
     $message = "Are you Sure You Want To Proceed:"
     [int]$defaultChoice = 0
-    $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Stop all listed virtual machines."
+    $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Start all listed virtual machines."
     $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "Cancel."
     $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
     $choiceRTN = $host.ui.PromptForChoice($caption, $message, $options, $defaultChoice)
     if ( $choiceRTN -ne 1 ) {
-        .\Run-CommandMultiThreaded.ps1 -Command Stop-Vm.ps1 -ObjectList $VmRgNames
+        .\Run-CommandMultiThreaded.ps1 -Command Start-Vm.ps1 -ObjectList $VmRgNames
     }
     else {
         Write-Host ("`nCancelled`n`tNothing removed.")
