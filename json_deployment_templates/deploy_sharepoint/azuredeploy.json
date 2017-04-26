@@ -162,7 +162,7 @@
                 "artifactsBaseUrl": "",
                 "description": "URL to acquire other templates"
             },
-            "defaultValue": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/json_deployment_templates/deploy_sharepoint"
+            "defaultValue": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/json_deployment_templates/deploy_sharepoint"
         },
         "spPublicIPNewOrExisting": {
             "type": "string",

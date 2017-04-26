@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "baseUrl": {
-            "value": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/json_deployment_templates/deploy_sharepoint",
+            "value": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/json_deployment_templates/deploy_sharepoint",
             "metadata": {
                 "artifactsBaseUrl": "",
                 "description": "URL to acquire other templates"
