@@ -1,5 +1,5 @@
 Set-Location -Path $PSScriptRoot
-$resource_group_name = "vchdsrg"
+$resource_group_name = "vchdsrgnosp"
 $location = "canadacentral"
 
 # Login-AzureRmAccount

@@ -3,11 +3,11 @@
 
 # set current working directory
 Set-Location -Path $PSScriptRoot
-$resource_group_name = "vchdsrg"
+$resource_group_name = "vchdsrgnosp"
 $location = "canadacentral"
 
 # Azure login; only need to login once per powershell session
-# Login-AzureRmAccount
+Login-AzureRmAccount
 
 # # create new resource group
 New-AzureRmResourceGroup -Name $resource_group_name -Location $location

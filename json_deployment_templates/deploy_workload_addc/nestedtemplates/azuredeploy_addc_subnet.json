@@ -19,8 +19,7 @@
         "location": "[resourceGroup().location]",
         "properties": {
             "addressPrefix": "[parameters('subnetIpRange')]",
-            "publicIPAllocationMethod": "Static",
-            "networkSecurityGroup": {}
+            "publicIPAllocationMethod": "Static"
         },
         "dependsOn": []
     }]
