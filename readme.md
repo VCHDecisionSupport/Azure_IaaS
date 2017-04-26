@@ -1,9 +1,14 @@
-# [Azure_IaaS](https://portal.azure.com/)
+# Azure_IaaS
 
 Azure resources (eg VMs, subnets, storage account etc) are configured/deployed using JSON template files and JSON parameter files.
 
 - use parameter files to change what it deployed (do not edit templates)
 - template files are not meant to change
+
+## Table of Contents
+
+- [Azure Portal](https://portal.azure.com/)
+- [Azure_IaaS Lunch and Learn](https://vchdecisionsupport.github.io/Azure_IaaS/)
 
 ## Deployment steps
 
