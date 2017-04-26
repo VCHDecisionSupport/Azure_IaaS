@@ -40,7 +40,7 @@ ideally also
   - set vnet dns server
   - join other vms to domain
 
-## Deployed resources and docs
+## IaaS resources docs
 
 [Full IaaS walk through](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/infrastructure-example?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
@@ -56,16 +56,14 @@ ideally also
 
 ## Other useful documentation
 
-### Azure resource manager templates
+### [Azure quick start templates examples (GitHub)](https://github.com/Azure/azure-quickstart-templates)
 
-#### [Azure quick start example templates](https://github.com/Azure/azure-quickstart-templates)
-
+- [3 vm SharePoint Farm](https://github.com/VCHDecisionSupport/azure-quickstart-templates/tree/master/sharepoint-three-vm)
 - [new AD Forest, Domain, and DC](https://github.com/Azure/azure-quickstart-templates/tree/master/active-directory-new-domain)
 - [join existing domain](https://github.com/Azure/azure-quickstart-templates/blob/master/201-vm-domain-join-existing/azuredeploy.json)
 - [dynamic data disks](https://github.com/Azure/azure-quickstart-templates/blob/master/201-vm-dynamic-data-disks-selection/azuredeploy.json)
-- [3 vm SharePoint Farm](https://github.com/VCHDecisionSupport/azure-quickstart-templates/tree/master/sharepoint-three-vm)
 
-#### Azure Resource Manager and template docs
+### Azure Resource Manager and template docs
 
 - [Azure Resource Manager overview](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview)
 - [Resource Manager templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-authoring-templates)
@@ -76,7 +74,8 @@ ideally also
 
 ### Active Directory Domain Services
 
-These explain new forest deployment well
+These explain local new forest install well
+
 - [Setting up Active Directory with PowerShell](https://blogs.technet.microsoft.com/uktechnet/2016/06/08/setting-up-active-directory-via-powershell/) 
 - [Deploying Windows Server 2012 and Windows Server 2012 R2 Domain Controllers](https://www.microsoftpressstore.com/articles/article.aspx?p=2216997&seqNum=4)
 - [Install a New Windows Server 2012 Active Directory Forest (Level 200)](https://technet.microsoft.com/windows-server-docs/identity/ad-ds/deploy/install-a-new-windows-server-2012-active-directory-forest--level-200-)
@@ -89,6 +88,7 @@ Classic deployment model but includes links to other topics (domain trusts)
 [Install a new Active Directory forest on an Azure virtual network](https://azure.microsoft.com/en-us/documentation/articles/active-directory-new-forest-virtual-machine/)
 
 DHCP server role is not needed but just in case...
+
 - [Azure Name Resolution](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances)
 - [Installing and Configuring DHCP role on Windows Server 2012](https://blogs.technet.microsoft.com/teamdhcp/2012/08/31/installing-and-configuring-dhcp-role-on-windows-server-2012/)
 - [Bringing PowerShell to DHCP Server](https://blogs.technet.microsoft.com/teamdhcp/2012/07/15/bringing-powershell-to-dhcp-server/)
