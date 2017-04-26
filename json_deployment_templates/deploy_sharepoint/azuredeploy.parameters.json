@@ -1,0 +1,51 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageAccountType": {
+            "value": "Premium_LRS"
+        },
+        "adminUsername": {
+            "value": "Floater1"
+        },
+        "adminPassword": {
+            "value": "Drain_The_Swamp"
+        },
+        "sqlServerServiceAccountUserName": {
+            "value": "Floater1"
+        },
+        "sqlServerServiceAccountPassword": {
+            "value": "Drain_The_Swamp"
+        },
+        "sharePointSetupUserAccountUserName": {
+            "value": "Floater1"
+        },
+        "sharePointSetupUserAccountPassword": {
+            "value": "Drain_The_Swamp"
+        },
+        "sharePointFarmAccountPassword": {
+            "value": "Drain_The_Swamp"
+        },
+        "sharePointFarmPassphrasePassword": {
+            "value": "Drain_The_Swamp"
+        },
+        "sppublicIPAddressName": {
+            "value": "sppublicIP"
+        },
+        "spDNSPrefix": {
+            "value": "vchspquickstart"
+        },
+        "storageAccountNamePrefix": {
+            "value": "vchspquickstart"
+        },
+        "adVMSize": {
+            "value": "Standard_DS4_v2"
+        },
+        "sqlVMSize": {
+            "value": "Standard_DS4_v2"
+        },
+        "spVMSize": {
+            "value": "Standard_DS4_v2"
+        }
+    }
+}
