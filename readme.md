@@ -5,23 +5,19 @@ Azure resources (eg VMs, subnets, storage account etc) are configured/deployed u
 - use parameter files to change what it deployed (do not edit templates)
 - template files are not meant to change
 
-
-## Table of Contents
-
 <!-- TOC -->
 
 - [Azure_IaaS](#azure_iaas)
-    - [Table of Contents](#table-of-contents)
     - [Deployment steps](#deployment-steps)
         - [Network diagram](#network-diagram)
         - [Prerequisites](#prerequisites)
         - [Post-deployment server configuration](#post-deployment-server-configuration)
     - [IaaS resources docs](#iaas-resources-docs)
     - [Other useful documentation](#other-useful-documentation)
-        - [[Azure quick start templates examples (GitHub)](https://github.com/Azure/azure-quickstart-templates)](#azure-quick-start-templates-examples-githubhttpsgithubcomazureazure-quickstart-templates)
+        - [Azure quick start templates examples (GitHub)](#azure-quick-start-templates-examples-github)
         - [Azure Resource Manager and template docs](#azure-resource-manager-and-template-docs)
         - [Active Directory Domain Services](#active-directory-domain-services)
-        - [PowerShell for Azure <b id="f10"></b>[↩](#a10)](#powershell-for-azure-b-idf10b↩a10)
+        - [PowerShell for Azure](#powershell-for-azure)
         - [misc](#misc)
 
 <!-- /TOC -->
@@ -43,7 +39,7 @@ deployment code located in [json_deployment_templates](json_deployment_templates
 [![](https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/docs/network_diagram.png "2 tier Architecture with Jumpbox by Renee Fung (click for docs)")](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/virtual-machines-windows/n-tier)
 
 ### Prerequisites
-
+****
 - [Microsoft Live account](https://signup.live.com) with permission on [Azure subscription](https://portal.azure.com/)
 - [Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/overview?view=azurermps-3.8.0) extension installed
 
@@ -77,7 +73,7 @@ ideally also
 
 ## Other useful documentation
 
-### [Azure quick start templates examples (GitHub)](https://github.com/Azure/azure-quickstart-templates)
+### Azure quick start templates examples (GitHub)
 
 - [3 vm SharePoint Farm](https://github.com/VCHDecisionSupport/azure-quickstart-templates/tree/master/sharepoint-three-vm)
 - [new AD Forest, Domain, and DC](https://github.com/Azure/azure-quickstart-templates/tree/master/active-directory-new-domain)
@@ -116,7 +112,7 @@ DHCP server role is not needed but just in case...
 - [Installing and Configuring DHCP role on Windows Server 2012](https://blogs.technet.microsoft.com/teamdhcp/2012/08/31/installing-and-configuring-dhcp-role-on-windows-server-2012/)
 - [Bringing PowerShell to DHCP Server](https://blogs.technet.microsoft.com/teamdhcp/2012/07/15/bringing-powershell-to-dhcp-server/)
 
-### PowerShell for Azure <b id="f10"></b>[↩](#a10)
+### PowerShell for Azure
 
 [Manage VMs with PowerShell](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-windows-ps-manage/)
 
