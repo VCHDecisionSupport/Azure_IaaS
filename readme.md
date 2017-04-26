@@ -5,6 +5,10 @@ Azure resources (eg VMs, subnets, storage account etc) are configured/deployed u
 - use parameter files to change what it deployed (do not edit templates)
 - template files are not meant to change
 
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FVCHDecisionSupport%2FAzure_IaaS%2Fmaster%2Fjson_deployment_templates%2Fdeploy_sharepoint%2Fazuredeploy.json" target="_blank">
+    <img src="http://azuredeploy.net/deploybutton.png"/>
+</a>
+
 <!-- TOC -->
 
 - [Azure_IaaS](#azure_iaas)
@@ -30,16 +34,12 @@ deployment code located in [json_deployment_templates](json_deployment_templates
 1. deploy work load resources (see [deploy_workload](json_deployment_templates/deploy_workload) folder)
 1. configure vm server roles (todo)
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FVCHDecisionSupport%2FAzure_IaaS%2Fmaster%2Fjson_deployment_templates%2Fdeploy_shared%2Fazuredeploy.json" target="_blank">
-    <img src="http://azuredeploy.net/deploybutton.png"/>
-</a>
-
 ### Network diagram
 
 [![](https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/docs/network_diagram.png "2 tier Architecture with Jumpbox by Renee Fung (click for docs)")](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/virtual-machines-windows/n-tier)
 
 ### Prerequisites
-****
+
 - [Microsoft Live account](https://signup.live.com) with permission on [Azure subscription](https://portal.azure.com/)
 - [Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/overview?view=azurermps-3.8.0) extension installed
 
