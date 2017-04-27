@@ -166,7 +166,7 @@
         },
         "spPublicIPNewOrExisting": {
             "type": "string",
-            "defaultValue": "new",
+            "defaultValue": "existing",
             "allowedValues": [
                 "new",
                 "existing"
@@ -177,13 +177,14 @@
         },
         "spPublicIPRGName": {
             "type": "string",
-            "defaultValue": "",
+            "defaultValue": "vchdsintranet",
             "metadata": {
                 "description": "Resource Group containing existing public IP for Sharepoint"
             }
         },
         "sppublicIPAddressName": {
             "type": "string",
+            "defaultValue": "vchdsintranet",
             "metadata": {
                 "description": "Name of existing public IP resource for Sharepoint"
             }

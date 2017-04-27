@@ -4,10 +4,10 @@ $resource_group_name = "vchdsintranet"
 $location = "canadacentral"
 
 # Azure login; only need to login once per powershell session
-Login-AzureRmAccount
+# Login-AzureRmAccount
 
 # # create new resource group
-New-AzureRmResourceGroup -Name $resource_group_name -Location $location
+# New-AzureRmResourceGroup -Name $resource_group_name -Location $location
 
 # deploy resources declared in $template_path
 $template_path = "azuredeploy.json"

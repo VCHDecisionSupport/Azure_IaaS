@@ -2,56 +2,17 @@
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "storageAccountName": {
-            "value": "vchdsstorageaccountnosp"
-        },
-        "virtualNetworkName": {
-            "value": "vchdsvnetnosp"
-        },
-        "virtualNetworkIpRange": {
-            "value": "10.0.0.0/16"
-        },
-        "subnetName": {
-            "value": "addcsubnet"
-        },
-        "subnetIpRange": {
-            "value": "10.0.0.0/24"
-        },
         "adminUsername": {
-            "value": "Floater1",
-            "metadata": {
-                "description": "The name of the administrator account of the new VM and domain"
-            }
+            "value": "Floater1"
         },
         "adminPassword": {
-            "value": "#Draintheswamp",
-            "metadata": {
-                "description": "The password for the administrator account of the new VM and domain"
-            }
+            "value": "Floater1"
         },
         "domainName": {
-            "value": "vch.ca",
-            "metadata": {
-                "description": "The FQDN of the Active Directory Domain to be created"
-            }
+            "value": "vch.ca"
         },
-        "windowsserver": {
-            "value": "2016-Datacenter",
-            "metadata": {
-                "description": "The version of Windows Server to use"
-            }
-        },
-        "_artifactsLocation": {
-            "value": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/json_deployment_templates/deploy_workload_addc/",
-            "metadata": {
-                "description": "The location of resources, such as templates and DSC modules, that the template depends on"
-            }
-        },
-        "_artifactsLocationSasToken": {
-            "value": "",
-            "metadata": {
-                "description": "Auto-generated token to access _artifactsLocation"
-            }
+        "dnsPrefix": {
+            "value": "addc"
         }
     }
 }

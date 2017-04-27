@@ -37,13 +37,13 @@
             "value": "Drain_The_Swamp"
         },
         "sppublicIPAddressName": {
-            "value": "sppublicIP"
+            "value": "vchdsintranet"
         },
         "spDNSPrefix": {
-            "value": "vchspquickstart"
+            "value": "vchdsintranet"
         },
         "storageAccountNamePrefix": {
-            "value": "vchspquickstart"
+            "value": "vchdsintranet"
         },
         "adVMSize": {
             "value": "Standard_DS4_v2"
