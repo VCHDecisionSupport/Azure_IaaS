@@ -2,6 +2,9 @@
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "publicIPAddressName": {
+            "value": "vchdsdcpip"
+        },
         "storageAccountName": {
             "value": "vchdsstorageaccount"
         },
@@ -9,7 +12,7 @@
             "value": "Floater1"
         },
         "adminPassword": {
-            "value": "Floater1"
+            "value": "Drain_The_Swamp"
         },
         "domainName": {
             "value": "vchds.ca"
