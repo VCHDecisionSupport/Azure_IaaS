@@ -9,10 +9,10 @@
             "value": "Floater1"
         },
         "domainName": {
-            "value": "vch.ca"
+            "value": "vchds.ca"
         },
         "dnsPrefix": {
-            "value": "addc"
+            "value": "vchdsaddc"
         }
     }
 }
