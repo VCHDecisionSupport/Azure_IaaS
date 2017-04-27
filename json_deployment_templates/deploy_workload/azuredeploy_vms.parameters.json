@@ -9,7 +9,7 @@
             }
         },
         "virtualNetworkName": {
-            "value": "adVNET",
+            "value": "vchdsVNET",
             "metadata": {
                 "description": "assumes already exists (eg by azuredeploy_shared.json)"
             }

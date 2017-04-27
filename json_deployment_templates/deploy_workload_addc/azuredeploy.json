@@ -2,6 +2,12 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "storageAccountName": {
+            "type": "string",
+            "metadata": {
+                "description": "creates new storage account"
+            }
+        },
         "adminUsername": {
             "type": "string",
             "metadata": {
@@ -56,7 +62,7 @@
     "variables": {
         "virtualNetworkName": "vchdsVNET",
         "virtualNetworkAddressRange": "10.0.0.0/16",
-        "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'adsa')]",
+        "storageAccountName": "[parameters('storageAccountName')]",
         "adLBFE": "LBFE",
         "adLBBE": "LBBE",
         "adRDPNAT": "adRDP",
