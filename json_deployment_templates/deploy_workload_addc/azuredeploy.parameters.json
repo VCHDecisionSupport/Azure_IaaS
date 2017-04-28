@@ -2,23 +2,23 @@
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "publicIPAddressName": {
-            "value": "vchdsdcpip"
-        },
         "storageAccountName": {
-            "value": "vchdsstorageaccount"
+            "value": "fromdsrepo",
+            "metadata": {
+                "description": "MUST BE UNIQUE ON AZURE IN centralcentral.  OTHER RESOURCES DEPEND ON THIS NAME.  creates new storage account"
+            }
         },
         "adminUsername": {
-            "value": "Floater1"
+            "value": "floater1"
         },
         "adminPassword": {
-            "value": "Drain_The_Swamp"
+            "value": "#DrainTheSwamp"
         },
         "domainName": {
-            "value": "vchds.ca"
+            "value": "fromdsrepo.ca"
         },
         "dnsPrefix": {
-            "value": "vchdsaddc"
+            "value": "fromdsrepo"
         }
     }
 }

@@ -2,16 +2,10 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "publicIPAddressName": {
-            "type": "string",
-            "metadata": {
-                "description": "MUST BE UNIQUE WITH SUBSCRIPTION.  creates new public ip"
-            }
-        },
         "storageAccountName": {
             "type": "string",
             "metadata": {
-                "description": "MUST BE UNIQUE WITH SUBSCRIPTION.  creates new storage account"
+                "description": "MUST BE UNIQUE ON AZURE IN centralcentral.  OTHER RESOURCES DEPEND ON THIS NAME.  creates new storage account"
             }
         },
         "adminUsername": {
@@ -66,7 +60,7 @@
         }
     },
     "variables": {
-        "virtualNetworkName": "vchdsVNET",
+        "virtualNetworkName": "adVNET",
         "virtualNetworkAddressRange": "10.0.0.0/16",
         "storageAccountName": "[parameters('storageAccountName')]",
         "adLBFE": "LBFE",
