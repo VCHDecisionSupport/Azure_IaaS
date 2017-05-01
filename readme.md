@@ -38,17 +38,6 @@ deployment code located in [json_deployment_templates](json_deployment_templates
 
 [![](https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/docs/network_diagram.png "2 tier Architecture with Jumpbox by Renee Fung (click for docs)")](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/virtual-machines-windows/n-tier)
 
-### Prerequisites
-
-- [Microsoft Live account](https://signup.live.com) with permission on [Azure subscription](https://portal.azure.com/)
-- [Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/overview?view=azurermps-3.8.0) extension installed
-
-ideally also
-
-- [Github account](https://github.com/join) with membership in [VCHDecisionSupport](https://github.com/orgs/VCHDecisionSupport/people)
-- [Github for Windows](https://desktop.github.com/)
-- [VS Code](https://code.visualstudio.com/)
-
 ### Post-deployment server configuration
 
 - Active Directory

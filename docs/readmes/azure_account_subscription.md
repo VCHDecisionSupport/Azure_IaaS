@@ -1,9 +1,9 @@
 # Overview of Azure management websites
 
-- [ea.azure.com](https://ea.azure.com/): Enterprise Portal
+- [ea.azure.com](https://ea.azure.com/): **Enterprise Portal**
   - Alan is (Enterprise) Account Administrator
   - create new subscription and assign "Service Administrator"
-- [portal.azure.com](https://portal.azure.com/)
+- [portal.azure.com](https://portal.azure.com/): **Azure Portal**
   - provision new resources to Azure
     - resource group, vnet, VMs
   - manage existing resources
