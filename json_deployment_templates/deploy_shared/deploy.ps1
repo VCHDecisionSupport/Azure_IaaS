@@ -1,3 +1,4 @@
+# ppbuak
 # set current working directory
 Set-Location -Path $PSScriptRoot
 $resource_group_name = "vchdsrgwork"

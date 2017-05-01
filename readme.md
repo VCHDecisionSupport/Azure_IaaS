@@ -14,7 +14,6 @@ Azure resources (eg VMs, subnets, storage account etc) are configured/deployed u
 - [Azure_IaaS](#azure_iaas)
     - [Deployment steps](#deployment-steps)
         - [Network diagram](#network-diagram)
-        - [Prerequisites](#prerequisites)
         - [Post-deployment server configuration](#post-deployment-server-configuration)
     - [IaaS resources docs](#iaas-resources-docs)
     - [Other useful documentation](#other-useful-documentation)
@@ -82,7 +81,10 @@ Also see [devtestlab templates](https://github.com/Azure/azure-devtestlab/tree/m
 
 ### Active Directory Domain Services
 
-These explain local new forest install well
+- [**xActiveDirectory Desired State Configuration for Azure Automation**](https://www.powershellgallery.com/packages/xActiveDirectory)
+- [Walk through Active Directory on Azure via DSC](https://kvaes.wordpress.com/2017/04/29/azure-deploying-a-domain-controller-via-dsc-pull/)
+
+These explain local (on premises) new forest install well
 
 - [Setting up Active Directory with PowerShell](https://blogs.technet.microsoft.com/uktechnet/2016/06/08/setting-up-active-directory-via-powershell/) 
 - [Deploying Windows Server 2012 and Windows Server 2012 R2 Domain Controllers](https://www.microsoftpressstore.com/articles/article.aspx?p=2216997&seqNum=4)
