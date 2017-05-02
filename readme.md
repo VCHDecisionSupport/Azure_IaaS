@@ -79,6 +79,11 @@ Also see [devtestlab templates](https://github.com/Azure/azure-devtestlab/tree/m
 - [Custom script extension](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/extensions-customscript)
 - [Single template vs nested templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-template-best-practices#single-template-vs-nested-templates)
 
+### Backup/restore
+
+- [How to capture a VM image](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/capture-image)
+- [Domain controller VMs cannot be captured (`sysprep` not supported)](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)
+
 ### Active Directory Domain Services
 
 - [**xActiveDirectory Desired State Configuration for Azure Automation**](https://www.powershellgallery.com/packages/xActiveDirectory)
