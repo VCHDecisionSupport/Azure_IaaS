@@ -5,5 +5,6 @@ Configuration MakeFile {
             Ensure = "Present"
             Contents = 'Hello World!'
         }
+        
     }
 }
