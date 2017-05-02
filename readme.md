@@ -1,5 +1,8 @@
 # Azure_IaaS
 
+
+
+
 Azure resources (eg VMs, subnets, storage account etc) are configured/deployed using JSON template files and JSON parameter files.
 
 - use parameter files to change what it deployed (do not edit templates)
@@ -9,29 +12,16 @@ Azure resources (eg VMs, subnets, storage account etc) are configured/deployed u
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-<!-- TOC -->
-
-- [Azure_IaaS](#azure_iaas)
-    - [Deployment steps](#deployment-steps)
-        - [Network diagram](#network-diagram)
-        - [Post-deployment server configuration](#post-deployment-server-configuration)
-    - [IaaS resources docs](#iaas-resources-docs)
-    - [Other useful documentation](#other-useful-documentation)
-        - [Azure quick start templates examples (GitHub)](#azure-quick-start-templates-examples-github)
-        - [Azure Resource Manager and template docs](#azure-resource-manager-and-template-docs)
-        - [Active Directory Domain Services](#active-directory-domain-services)
-        - [PowerShell for Azure](#powershell-for-azure)
-        - [misc](#misc)
-
-<!-- /TOC -->
-
 ## Deployment steps
+
+1. setup automation account
+1. create vnet and subnets
+1. deploy and configure AD and DC
 
 deployment code located in [json_deployment_templates](json_deployment_templates) folder in repo root
 
 1. deploy shared resources (see [deploy_shared](json_deployment_templates/deploy_shared) folder)
 1. deploy work load resources (see [deploy_workload](json_deployment_templates/deploy_workload) folder)
-1. configure vm server roles (todo)
 
 ### Network diagram
 
