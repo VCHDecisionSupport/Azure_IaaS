@@ -16,24 +16,23 @@ If($IsSignedIn -eq $false)
 }
 
 
-$env:dataCentre = "canadacentral"
-
+$location = "canadacentral"
 # VM Sizes
-Get-AzureRmVMSize -Location $env:dataCentre | Format-Table 
+Get-AzureRmVMSize -Location $location | Format-Table 
 
 # All Providers
-Get-AzureRmResourceProvider -Location $env:dataCentre -ListAvailable
+Get-AzureRmResourceProvider -Location $location -ListAvailable
 
 # Microsoft Publishers
-(Get-AzureRmVMImagePublisher -Location $env:dataCentre| Where-Object {$_.PublisherName -like '*microsoft*' }).PublisherName
+(Get-AzureRmVMImagePublisher -Location $location| Where-Object {$_.PublisherName -like '*microsoft*' }).PublisherName
 
 # Windows Server + R Server images
 $publisherName = "MicrosoftRServer"
-$offers = (Get-AzureRmVMImageOffer -Location $env:dataCentre -PublisherName $publisherName).Offer
+$offers = (Get-AzureRmVMImageOffer -Location $location -PublisherName $publisherName).Offer
 $skus = New-Object System.Collections.ArrayList
 foreach($offer in $offers)
 {
-    $offerSkus = Get-AzureRmVMImageSku -Location $env:dataCentre -PublisherName $PublisherName -Offer $offer
+    $offerSkus = Get-AzureRmVMImageSku -Location $location -PublisherName $PublisherName -Offer $offer
     foreach($sku in $offerSkus)
     {
         $i = $skus.Add($sku)
@@ -43,11 +42,11 @@ $skus | Format-Table
 
 # Windows Server + SQL Server images
 $publisherName = "MicrosoftSQLServer"
-$offers = (Get-AzureRmVMImageOffer -Location $env:dataCentre -PublisherName $publisherName).Offer
+$offers = (Get-AzureRmVMImageOffer -Location $location -PublisherName $publisherName).Offer
 $skus = New-Object System.Collections.ArrayList
 foreach($offer in $offers)
 {
-    $offerSkus = Get-AzureRmVMImageSku -Location $env:dataCentre -PublisherName $PublisherName -Offer $offer
+    $offerSkus = Get-AzureRmVMImageSku -Location $location -PublisherName $PublisherName -Offer $offer
     foreach($sku in $offerSkus)
     {
         $i = $skus.Add($sku)
@@ -55,12 +54,13 @@ foreach($offer in $offers)
 }
 $skus | Format-Table
 
-# Share Point images
-$publisherName = "MicrosoftSharePoint"
-$offer = (Get-AzureRmVMImageOffer -Location $env:dataCentre -PublisherName $publisherName).Offer
-Get-AzureRmVMImageSku -Location $env:dataCentre -PublisherName $PublisherName -Offer $offer | Format-Table
-
 # Windows Server images
 $publisherName = "MicrosoftWindowsServer"
-$offer = (Get-AzureRmVMImageOffer -Location $env:dataCentre -PublisherName $publisherName).Offer
-Get-AzureRmVMImageSku -Location $env:dataCentre -PublisherName $PublisherName -Offer $offer | Format-Table
+$offer = "WindowsServer"
+Get-AzureRmVMImageSku -Location $location -PublisherName $PublisherName -Offer $offer | Format-Table
+
+# Share Point images
+$publisherName = "MicrosoftSharePoint"
+$offer = (Get-AzureRmVMImageOffer -Location $location -PublisherName $publisherName).Offer
+Get-AzureRmVMImageSku -Location $location -PublisherName $PublisherName -Offer $offer | Format-Table
+

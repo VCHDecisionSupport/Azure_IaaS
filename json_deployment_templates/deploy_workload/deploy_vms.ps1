@@ -1,9 +1,6 @@
-# https://github.com/VCHDecisionSupport/azure-quickstart-templates/tree/master/sharepoint-three-vm
-# https://github.com/Azure/azure-quickstart-templates/blob/master/201-vm-dynamic-data-disks-selection/azuredeploy.json
-
 # set current working directory
 Set-Location -Path $PSScriptRoot
-$resource_group_name = "addcquickstart"
+$resource_group_name = "vchds-sp-test-rg"
 $location = "canadacentral"
 
 # Azure login; only need to login once per powershell session

@@ -3,14 +3,14 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "virtualNetworkName": {
-            "value": "vchdsVNET",
+            "value": "vchds-sp-test-vnet",
             "metadata": {
                 "description": "assumes already exists (eg by azuredeploy_shared.json)"
             }
         },
 
         "subnetName": {
-            "value": "spsubnet"
+            "value": "sp-subnet"
         },
         "addressStub": {
             "value": "10.0.1."

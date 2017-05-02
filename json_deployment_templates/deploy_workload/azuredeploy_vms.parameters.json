@@ -3,26 +3,26 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "storageAccountName": {
-            "value": "vchdsstorageaccountwork",
+            "value": "vchdsspteststorage",
             "metadata": {
                 "description": "assumes already exists (eg by azuredeploy_shared.json)"
             }
         },
         "virtualNetworkName": {
-            "value": "vchdsVNET",
+            "value": "vchds-sp-test-vnet",
             "metadata": {
                 "description": "assumes already exists (eg by azuredeploy_shared.json)"
             }
         },
 
         "subnetName": {
-            "value": "jsonjoiner",
+            "value": "sp-subnet",
             "metadata": {
                 "description": "assumes already exists (eg by azuredeploy_subnet.json)"
             }
         },
         "addressStub": {
-            "value": "10.0.2.",
+            "value": "10.0.1.",
             "metadata": {
                 "description": "assumes already exists (eg by azuredeploy_subnet.json)"
             }
@@ -43,15 +43,15 @@
             "value": {
                 "publisher": "MicrosoftWindowsServer",
                 "offer": "WindowsServer",
-                "sku": "2012-R2-Datacenter",
+                "sku": "2008-R2-SP1",
                 "version": "latest"
             }
         },
         "vmCount": {
-            "value": 3
+            "value": 4
         },
         "vmSize": {
-            "value": "Standard_DS13_v2"
+            "value": "Standard_DS3_v2"
         }
     }
 }
