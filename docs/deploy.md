@@ -1,5 +1,16 @@
 # Deployment Walk-Through
 
+see prereqs
+
+## 1. Automation Account and Desired State Configuration
+
+## 2. Network
+
+## 3. Domain Controller and Active Directory Forest 
+
+
+
+
 Assumes empty Azure subscription.
 
 A "workload" is a set to related functionalities:

@@ -1,0 +1,33 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "dcType": {
+            "value": "FirstDC"
+        },
+        "adminUsername": {
+            "value": "adFloater1"
+        },
+        "adminPassword": {
+            "value": "Floater1"
+        },
+        "vmPrefix": {
+            "value": "dc-"
+        },
+        "existingVirtualNetworkName": {
+            "value": "vchds-sp-test-vnet"
+        },
+        "existingVirtualNetworkResourceGroup": {
+            "value": "vchds-sp-test-rg"
+        },
+        "subnetName": {
+            "value": "ad-subnet"
+        },
+        "dscRegistrationKey": {
+            "value": "gC13+hOGB9yZroixa7fVxL67XTjvzvTaVkA5f8ehR0/ypa2lIVElkzP/RnCknTKY/BmmZPXJvDID6HV0CzJD5Q=="
+        },
+        "dscRegistrationUrl": {
+            "value": "https://cc-agentservice-prod-1.azure-automation.net/accounts/c6f88ce4-35e7-4343-8eb3-59222d59adba"
+        }
+    }
+}
