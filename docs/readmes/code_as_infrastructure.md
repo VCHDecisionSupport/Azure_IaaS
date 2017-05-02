@@ -7,14 +7,15 @@
 
 ## Code as Infrastructure
 
-**benefits of code**
+### benefits of code
+
 - versioned
-    - creates check points that can be restored, reused, and branched
+  - creates check points that can be restored, reused, and branched
 - testable
-    - test it before it's deployed
+  - test it before it's deployed
 - repeatable/transferrable
-    - encapsulates logic/knowledge 
-    - doesn't matter who runs it
+  - encapsulates logic/knowledge
+  - doesn't matter who runs it
 
 
 

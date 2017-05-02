@@ -1,20 +1,25 @@
 # Lunch and Learn Outline
 
 ## Motivation and requirements
+
 Dev/test environment for SharePoint
 
-### Dev/test sharepoint environment. 
+### Dev/test sharepoint environment
+
 - Active directory with equivalent confirmation config as on premises 
-- Sharepoint farm with topology and config as on premises 
+- SharePoint farm with topology and config as on premises 
 - Mock data warehouse with same schema as DSDW and simulated data
 - Turn key deployment from code
-- Schedule automatic deallocation of vms
+- Schedule automatic deallocation (ie stop) of vms
 
-### Cloud service model 
-- SaaS vs paas vs iaas 
-- Aws vs azure
+### Cloud service model
 
-### Azure deployment. 
+- SaaS vs PaaS vs IaaS
+
+
+
+### Azure deployment
+
 - Classic vs ARM 
 - PowerShell vs json vs cli
 
