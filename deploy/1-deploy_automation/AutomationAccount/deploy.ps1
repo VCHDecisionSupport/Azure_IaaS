@@ -1,7 +1,5 @@
 Set-Location -Path $PSScriptRoot
-$resource_group_name = "vchds-auto-rg"
-
-# Login-AzureRmAccount
+$resource_group_name = "vchds-sharepoint-rg"
 
 # deploy resources declared in $template_path
 $template_path = "azuredeploy.json"

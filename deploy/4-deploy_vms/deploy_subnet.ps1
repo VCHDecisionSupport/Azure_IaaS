@@ -3,7 +3,7 @@
 
 # set current working directory
 Set-Location -Path $PSScriptRoot
-$resource_group_name = "vchds-sp-test-rg"
+$resource_group_name = "vch-sharepoint-rg"
 $location = "canadacentral"
 
 # Azure login; only need to login once per powershell session

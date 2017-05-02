@@ -3,11 +3,11 @@
 Set-Location -Path $PSScriptRoot
 
 
-$resource_group_name = "vchds-sp-test-rg"
+$resource_group_name = "vch-sharepoint-rg"
 
 
 # Azure login; only need to login once per powershell session
-Login-AzureRmAccount
+# Login-AzureRmAccount
 
 # deploy resources declared in $template_path
 $template_path = "azuredeploy.json"

@@ -18,7 +18,7 @@
             "value": "vchds-sp-test-vnet"
         },
         "existingVirtualNetworkResourceGroup": {
-            "value": "vchds-sp-test-rg"
+            "value": "vch-sharepoint-rg"
         },
         "subnetName": {
             "value": "ad-subnet"
