@@ -37,27 +37,20 @@ deployment code located in [json_deployment_templates](json_deployment_templates
 
 [![](https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/docs/network_diagram.png "2 tier Architecture with Jumpbox by Renee Fung (click for docs)")](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/virtual-machines-windows/n-tier)
 
-### Post-deployment server configuration
-
-- Active Directory
-  - install active directory and DNS server roles
-  - create new domain forest with VM as domain controller
-  - set vnet dns server
-  - join other vms to domain
-
 ## IaaS resources docs
 
 [Full IaaS walk through](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/infrastructure-example?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 - [resource group](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/infrastructure-resource-groups-guidelines#resource-groups)
 - [storage account](https://docs.microsoft.com/en-us/azure/storage/storage-introduction#blob-storage)
+- [automation account](https://kvaes.wordpress.com/2017/04/29/azure-deploying-a-domain-controller-via-dsc-pull/)
 - [virtual network](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview)
-- [subnets](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/#subnets)
-  - [network security groups](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-nsg)
-- [virtual machines](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/)
-  - [network interface cards](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview#a-namewithin-vnetaconnect-azure-resources)
-  - [public static ips](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-public-ip-address)
-  - [private static ips](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-static-private-ip-arm-pportal)
+  - [subnets](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/#subnets)
+    - [network security groups](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-nsg)
+    - [virtual machines](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/)
+      - [network interface cards](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview#a-namewithin-vnetaconnect-azure-resources)
+        - [public static ips](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-public-ip-address)
+        - [private static ips](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-static-private-ip-arm-pportal)
 
 ## Other useful documentation
 
@@ -86,8 +79,23 @@ Also see [devtestlab templates](https://github.com/Azure/azure-devtestlab/tree/m
 
 ### Active Directory Domain Services
 
-- [**xActiveDirectory Desired State Configuration for Azure Automation**](https://www.powershellgallery.com/packages/xActiveDirectory)
-- [Walk through Active Directory on Azure via DSC](https://kvaes.wordpress.com/2017/04/29/azure-deploying-a-domain-controller-via-dsc-pull/)
+- [xActiveDirectory Desired State Configuration for Azure Automation](https://www.powershellgallery.com/packages/xActiveDirectory)
+- [**Walk through Active Directory on Azure via DSC**](https://kvaes.wordpress.com/2017/04/29/azure-deploying-a-domain-controller-via-dsc-pull/)
+
+### PowerShell for Azure
+
+- [Manage VMs with PowerShell](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-windows-ps-manage/)
+- [Configure Remote Azure VM PowerShell Access with PowerShell](http://fabriccontroller.net/automatically-configuring-remote-powershell-for-windows-azure-virtual-machines-on-your-machine/)
+- [Configure Remote Azure VM PowerShell Access](https://blogs.msdn.microsoft.com/mariok/2011/08/08/command-line-access-to-azure-vms-powershell-remoting/)
+- [PowerShell script to Configure Secure Remote PowerShell Access to Windows Azure Virtual Machines](https://gallery.technet.microsoft.com/scriptcenter/Configures-Secure-Remote-b137f2fe)
+- [Introduction to Remote PowerShell with Windows Azure](https://www.opsgility.com/blog/windows-azure-powershell-reference-guide/introduction-remote-powershell-with-windows-azure/)
+
+### misc
+
+- [Azure VM sizing](https://azure.microsoft.com/en-us/documentation/articles/cloud-services-sizes-specs/)
+- [IP Calculator for calculating CIDR notation network prefixes](http://jodies.de/ipcalc)
+
+#### On-premises Active Directory Domain Controller install/config
 
 These explain local (on premises) new forest install well
 
@@ -107,23 +115,3 @@ DHCP server role is not needed but just in case...
 - [Azure Name Resolution](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances)
 - [Installing and Configuring DHCP role on Windows Server 2012](https://blogs.technet.microsoft.com/teamdhcp/2012/08/31/installing-and-configuring-dhcp-role-on-windows-server-2012/)
 - [Bringing PowerShell to DHCP Server](https://blogs.technet.microsoft.com/teamdhcp/2012/07/15/bringing-powershell-to-dhcp-server/)
-
-### PowerShell for Azure
-
-[Manage VMs with PowerShell](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-windows-ps-manage/)
-
-[Configure Remote Azure VM PowerShell Access with PowerShell](http://fabriccontroller.net/automatically-configuring-remote-powershell-for-windows-azure-virtual-machines-on-your-machine/)
-
-[Configure Remote Azure VM PowerShell Access](https://blogs.msdn.microsoft.com/mariok/2011/08/08/command-line-access-to-azure-vms-powershell-remoting/)
-
-[PowerShell script to Configure Secure Remote PowerShell Access to Windows Azure Virtual Machines](https://gallery.technet.microsoft.com/scriptcenter/Configures-Secure-Remote-b137f2fe)
-
-[Introduction to Remote PowerShell with Windows Azure](https://www.opsgility.com/blog/windows-azure-powershell-reference-guide/introduction-remote-powershell-with-windows-azure/)
-
-### misc
-
-[Azure VM sizing](https://azure.microsoft.com/en-us/documentation/articles/cloud-services-sizes-specs/)
-
-[Create DNS Zone](https://azure.microsoft.com/en-us/documentation/articles/dns-getstarted-create-dnszone/)
-
-[IP Calculator for calculating CIDR notation network prefixes](http://jodies.de/ipcalc)
