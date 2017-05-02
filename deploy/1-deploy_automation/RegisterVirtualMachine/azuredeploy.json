@@ -10,7 +10,7 @@
         },
         "modulesUrl": {
             "type": "string",
-            "defaultValue": "https://github.com/kvaes/TasmanianTraders-IaC-AzureAutomationDSC/raw/master/RegisterVirtualMachine/UpdateLCMforAAPull.zip",
+            "defaultValue": "https://github.com/VCHDecisionSupport/Azure_IaaS/raw/consolidate-repos/deploy/1-deploy_automation/RegisterVirtualMachine/UpdateLCMforAAPull.zip",
             "metadata": {
                 "description": "URL for the DSC configuration package. NOTE: Can be a Github url(raw) to the zip file (this is the default value)"
             }
@@ -102,8 +102,7 @@
     "variables": {
 
     },
-    "resources": [
-    {
+    "resources": [{
         "type": "Microsoft.Compute/virtualMachines/extensions",
         "name": "[concat(parameters('vmName'),'/Microsoft.Powershell.DSC')]",
         "apiVersion": "2015-06-15",
@@ -122,8 +121,7 @@
                 "ModulesUrl": "[parameters('modulesUrl')]",
                 "SasToken": "",
                 "ConfigurationFunction": "[parameters('configurationFunction')]",
-                "Properties": [
-                    {
+                "Properties": [{
                         "Name": "RegistrationKey",
                         "Value": {
                             "UserName": "PLACEHOLDER_DONOTUSE",

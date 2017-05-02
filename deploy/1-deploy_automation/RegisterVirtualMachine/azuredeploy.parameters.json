@@ -6,7 +6,7 @@
             "value": "myVM001"
         },
         "modulesUrl": {
-            "value": "https://github.com/kvaes/TasmanianTraders-IaC-AzureAutomationDSC/raw/master/RegisterVirtualMachine/UpdateLCMforAAPull.zip?raw=true"
+            "value": "https://github.com/VCHDecisionSupport/Azure_IaaS/raw/consolidate-repos/deploy/1-deploy_automation/RegisterVirtualMachine/UpdateLCMforAAPull.zip"
         },
         "configurationFunction": {
             "value": "UpdateLCMforAAPull.ps1\\ConfigureLCMforAAPull"
