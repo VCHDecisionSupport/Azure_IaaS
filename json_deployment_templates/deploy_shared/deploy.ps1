@@ -1,13 +1,16 @@
 # ppbuak
 # set current working directory
 Set-Location -Path $PSScriptRoot
-$resource_group_name = "vchdsrgwork"
-$location = "canadacentral"
+
+
+$resource_group_name = "vchds-sp-test-rg"
+
 
 # Azure login; only need to login once per powershell session
 Login-AzureRmAccount
 
 # # create new resource group
+$location = "canadacentral"
 New-AzureRmResourceGroup -Name $resource_group_name -Location $location
 
 # deploy resources declared in $template_path
