@@ -1,10 +1,22 @@
-# Azure Resource Manager Templates
+# Azure Resource Manager Deployments
 
-- Azure "resources" are specified using "templates"
+## Templates
+
+Templates typically provision empty/unconfigured infracture: vnet, factory default vm.
+
+- Azure infrastructure "resources" (eg vnet, vm) are specified (eg vnet ip range, vm os) using "templates"
 - template files are written in declarative JSON syntax
 - templates can define input parameters whose values are set in separate "parameter files"
-- PowerShell commands send templates to the "Azure Resource Manager" service
+- PowerShell cmdlet `New-AzureRmResourceGroupDeployment` sends templates to the "Azure Resource Manager" service
 - Azure Resource Manager provisions the resources
+
+Azure **virtual machine extensions** are small applications that provide post-deployment configuration and automation tasks on Azure virtual machines.
+
+## Desired State Configuration
+
+
+
+Desired state configuraton allows you declare a desired server configuration (eg install DC server role with domain vch.ca) for one or more servers under your administration.  In Azure, configuration files (and the module required to realize them) are uploaded to an Automation Account.  Then VMs are registered to the account.  Any changes to a server's Desired State Configuation are applied automatically.
 
 ## Deployment steps
 

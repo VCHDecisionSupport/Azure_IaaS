@@ -6,11 +6,11 @@ Param(
     [string] $dscConfigFile,
 	[Parameter(Mandatory=$true)]
     [string] $dscDataConfigFile,
-	[string] $dscAutomationAccount = "tasmaniantradersautomation",
-	[string] $dscResourceGroup = "tt-automation",
+	[string] $dscAutomationAccount,
+	[string] $dscResourceGroup,
 	[bool] $Force = $false
 )
-
+# import a configuration into Azure Automation account
 Function Import-DscConfiguration ($dscConfigFile, $dscDataConfigFile, $dscAutomationAccount, $dscResourceGroup) {
 	$dscConfigFileFull = (Get-Item $dscConfigFile).FullName
 	$dscDataConfigFileFull = (Get-Item $dscDataConfigFile).FullName
