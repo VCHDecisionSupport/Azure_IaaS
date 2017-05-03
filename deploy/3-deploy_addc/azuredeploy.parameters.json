@@ -12,7 +12,7 @@
             "value": "Floater1"
         },
         "vmPrefix": {
-            "value": "dc-"
+            "value": "ad-"
         },
         "existingVirtualNetworkName": {
             "value": "vchds-sp-test-vnet"
