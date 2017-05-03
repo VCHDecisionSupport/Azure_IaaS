@@ -52,6 +52,70 @@
         },
         "vmSize": {
             "value": "Standard_DS3_v2"
+        },
+        "dataDisks": {
+            "value": [
+                [{
+                        "diskSizeGB": 120,
+                        "lun": 0,
+                        "createOption": "Attach"
+                    },
+                    {
+                        "diskSizeGB": 50,
+                        "lun": 1,
+                        "createOption": "Attach"
+                    }
+                ],
+                [{
+                        "diskSizeGB": 120,
+                        "lun": 0,
+                        "createOption": "Attach"
+                    },
+                    {
+                        "diskSizeGB": 50,
+                        "lun": 1,
+                        "createOption": "Attach"
+                    }
+                ],
+                [{
+                        "diskSizeGB": 60,
+                        "lun": 0,
+                        "createOption": "Attach"
+                    },
+                    {
+                        "diskSizeGB": 100,
+                        "lun": 1,
+                        "createOption": "Attach"
+                    }
+                ],
+                [{
+                        "diskSizeGB": 50,
+                        "lun": 0,
+                        "createOption": "Attach"
+                    },
+                    {
+                        "diskSizeGB": 250,
+                        "lun": 1,
+                        "createOption": "Attach"
+                    },
+                    {
+                        "diskSizeGB": 100,
+                        "lun": 2,
+                        "createOption": "Attach"
+                    },
+                    {
+                        "diskSizeGB": 100,
+                        "lun": 3,
+                        "createOption": "Attach"
+                    },
+                    {
+                        "diskSizeGB": 200,
+                        "lun": 3,
+                        "createOption": "Attach"
+                    }
+
+                ]
+            ]
         }
     }
 }
