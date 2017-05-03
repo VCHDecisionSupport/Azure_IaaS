@@ -1,5 +1,5 @@
 Set-Location -Path $PSScriptRoot
-$resource_group_name = "vchds-sharepoint-rg"
+$resource_group_name = "vchds-sp-test-rg"
 
 # deploy resources declared in $template_path
 $template_path = "azuredeploy.json"
