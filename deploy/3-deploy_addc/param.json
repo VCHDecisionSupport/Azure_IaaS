@@ -1,0 +1,33 @@
+{
+    "$schema":  "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion":  "1.0.0.0",
+    "parameters":  {
+                       "dcType":  {
+                                      "value":  "FirstDC"
+                                  },
+                       "adminUsername":  {
+                                             "value":  "adFloater1"
+                                         },
+                       "adminPassword":  {
+                                             "value":  "Floater1"
+                                         },
+                       "vmPrefix":  {
+                                        "value":  "dc-"
+                                    },
+                       "existingVirtualNetworkName":  {
+                                                          "value":  "vchds-sp-test-vnet"
+                                                      },
+                       "existingVirtualNetworkResourceGroup":  {
+                                                                   "value":  "vchds-sp-test-rg"
+                                                               },
+                       "subnetName":  {
+                                          "value":  "ad-subnet"
+                                      },
+                       "dscRegistrationKey":  {
+                                                  "value":  "bob"
+                                              },
+                       "dscRegistrationUrl":  {
+                                                  "value":  "jim"
+                                              }
+                   }
+}
