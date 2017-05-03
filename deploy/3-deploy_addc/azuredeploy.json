@@ -80,11 +80,11 @@
         "subnetRef": "[concat(variables('vnetID'),'/subnets/', variables('vnetSubnet'))]",
         "apiVersion": "2015-06-15",
         "apiVersionManagedDisks": "2016-04-30-preview",
-        "dscLinkedTemplateUri": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/deploy/1-deploy_automation/RegisterVirtualMachine/azuredeploy.json",
+        "dscLinkedTemplateUri": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/deploy/2-deploy_automation/RegisterVirtualMachine/azuredeploy.json",
         "dscRegistrationKey": "[parameters('dscRegistrationKey')]",
         "dscRegistrationUrl": "[parameters('dscRegistrationUrl')]",
         "dscNodeConfigurationName": "[concat('DscConfDomainController.',parameters('dcType'))]",
-        "updateip_templateUri": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/deploy/3-deploy_addc/update-nic.json"
+        "updateip_templateUri": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/deploy/2-deploy_addc/update-nic.json"
     },
     "resources": [{
             "type": "Microsoft.Compute/disks",
