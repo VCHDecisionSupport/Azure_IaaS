@@ -13,7 +13,7 @@ $resource_group_name = "vchds-sp-test-rg"
 Write-Host "`n`nattempting to automatically update parameter file: dscRegistrationKey and dscRegistrationUrl"
 Write-Host "connecting to automation account"
 $automation_account_name = "vchds-auto"
-$automation_account_info = Get-AzureRmAutomationRegistrationInfo -ResourceGroupName $resource_group_name -AutomationAccountName 
+$automation_account_info = Get-AzureRmAutomationRegistrationInfo -ResourceGroupName $resource_group_name -AutomationAccountName $automation_account_name
 $pathToJson = "azuredeploy.parameters.json"
 Write-Host "editting json file: ${pathToJson} in ${PSScriptRoot}"
 $json = Get-Content $pathToJson | ConvertFrom-Json
