@@ -2,7 +2,7 @@ Set-Location -Path $PSScriptRoot
 
 # Login-AzureRmAccount
 
-$resource_group_name = "vch-sharepoint-rg"
+$resource_group_name = "vchds-sp-test-rg"
 $auto_account = "vchds-auto"
 
 Write-Host "importAllModules..."
