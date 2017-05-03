@@ -1,0 +1,21 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "canadacentral"
+        },
+        "vmList": {
+            "value": "sp-subnetVm0,sp-subnetVm1,sp-subnetVm2,sp-subnetVm3"
+        },
+        "domainJoinUserName": {
+            "value": "vch\\adFloater1"
+        },
+        "domainJoinUserPassword": {
+            "value": "Floater1"
+        },
+        "domainFQDN": {
+            "value": "vch.tt"
+        }
+    }
+}
