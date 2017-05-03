@@ -10,7 +10,7 @@
         },
         "modulesUrl": {
             "type": "string",
-            "defaultValue": "https://github.com/VCHDecisionSupport/Azure_IaaS/raw/consolidate-repos/deploy/1-deploy_automation/RegisterVirtualMachine/UpdateLCMforAAPull.zip",
+            "defaultValue": "https://github.com/VCHDecisionSupport/Azure_IaaS/raw/master/deploy/2-deploy_automation/RegisterVirtualMachine/UpdateLCMforAAPull.zip",
             "metadata": {
                 "description": "URL for the DSC configuration package. NOTE: Can be a Github url(raw) to the zip file (this is the default value)"
             }

@@ -84,7 +84,7 @@
         "dscRegistrationKey": "[parameters('dscRegistrationKey')]",
         "dscRegistrationUrl": "[parameters('dscRegistrationUrl')]",
         "dscNodeConfigurationName": "[concat('DscConfDomainController.',parameters('dcType'))]",
-        "updateip_templateUri": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/deploy/2-deploy_addc/update-nic.json"
+        "updateip_templateUri": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/deploy/3-deploy_addc/update-nic.json"
     },
     "resources": [{
             "type": "Microsoft.Compute/disks",

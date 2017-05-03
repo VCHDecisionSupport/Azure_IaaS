@@ -30,4 +30,4 @@ $deployment_name = "addcDeployment"
 Write-Host ("Testing deployment of template:`n`t{0}" -f $template_path)
 Test-AzureRmResourceGroupDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path -TemplateParameterFile $parameter_path
 Write-Host ("Deploying of template:`n`t{0}" -f $template_path)
-# New-AzureRmResourceGroupDeployment -Name $deployment_name -ResourceGroupName $resource_group_name -TemplateFile $template_path -TemplateParameterFile $parameter_path
+New-AzureRmResourceGroupDeployment -Name $deployment_name -ResourceGroupName $resource_group_name -TemplateFile $template_path -TemplateParameterFile $parameter_path

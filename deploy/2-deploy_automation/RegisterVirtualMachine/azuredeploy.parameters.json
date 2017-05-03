@@ -6,7 +6,7 @@
             "value": "myVM001"
         },
         "modulesUrl": {
-            "value": "https://github.com/VCHDecisionSupport/Azure_IaaS/raw/consolidate-repos/deploy/1-deploy_automation/RegisterVirtualMachine/UpdateLCMforAAPull.zip"
+            "value": "https://github.com/VCHDecisionSupport/Azure_IaaS/raw/master/deploy/2-deploy_automation/RegisterVirtualMachine/UpdateLCMforAAPull.zip"
         },
         "configurationFunction": {
             "value": "UpdateLCMforAAPull.ps1\\ConfigureLCMforAAPull"
