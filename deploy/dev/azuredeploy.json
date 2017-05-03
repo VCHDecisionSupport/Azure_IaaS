@@ -1,0 +1,93 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "adminUsername": {
+            "type": "string",
+            "metadata": {
+                "description": "User name for the Virtual Machine."
+            }
+        },
+        "adminPassword": {
+            "type": "securestring",
+            "metadata": {
+                "description": "Password for the Virtual Machine."
+            }
+        },
+        "vmPrefix": {
+            "type": "string",
+            "metadata": {
+                "description": "The prefix that will be used for the vm name"
+            }
+        },
+        "vmSuffix": {
+            "type": "string",
+            "metadata": {
+                "description": "The suffix that will be used for the vm name"
+            }
+        },
+        "existingVirtualNetworkName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the existing VNET"
+            }
+        },
+        "existingVirtualNetworkResourceGroup": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the existing VNET resource group"
+            }
+        },
+        "subnetName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the subnet in the virtual network you want to use"
+            }
+        }
+    },
+    "variables": {
+        "vmName": "vm",
+        "vmFullName": "[concat(parameters('vmPrefix'),variables('vmName'),parameters('vmSuffix'))]",
+        "vmSize": "Standard_D1_v2",
+        "imagePublisher": "MicrosoftWindowsServer",
+        "imageOffer": "WindowsServer",
+        "windowsOSVersion": "2016-Datacenter",
+        "OSDiskName": "[concat('disk-',variables('vmFullName'),'-os')]",
+        "dataDisk1VhdName": "[concat('disk-',variables('vmFullName'),'-data01')]",
+        "storageAccountType": "Standard_LRS",
+        "nicName": "[concat('nic-',variables('vmFullName'))]",
+        "vnetName": "[parameters('existingVirtualNetworkName')]",
+        "vnetRG": "[parameters('existingVirtualNetworkResourceGroup')]",
+        "vnetSubnet": "[parameters('subnetName')]",
+        "vnetID": "[resourceId(variables('vnetRG'), 'Microsoft.Network/virtualNetworks', variables('vnetName'))]",
+        "subnetRef": "[concat(variables('vnetID'),'/subnets/', variables('vnetSubnet'))]",
+        "apiVersion": "2015-06-15",
+        "apiVersionManagedDisks": "2016-04-30-preview"
+    },
+    "resources": [{
+        "type": "Microsoft.Resources/deployments",
+        "name": "linkedTemplateUpdateIp",
+        "apiVersion": "2015-01-01",
+        "dependsOn": [
+            "[concat('Microsoft.Network/networkInterfaces/', variables('nicName'))]"
+        ],
+        "properties": {
+            "mode": "Incremental",
+            "templateLink": {
+                "uri": "[variables('updateip_templateUri')]",
+                "contentVersion": "1.0.0.0"
+            },
+            "parameters": {
+                "nicName": {
+                    "value": "[variables('nicName')]"
+                },
+                "SubnetRef": {
+                    "value": "[variables('SubnetRef')]"
+                },
+                "privateIp": {
+                    "value": "[reference(concat('Microsoft.Network/networkInterfaces/', variables('nicName'))).ipConfigurations[0].properties.privateIPAddress]"
+                }
+            }
+        }
+    }]
+}

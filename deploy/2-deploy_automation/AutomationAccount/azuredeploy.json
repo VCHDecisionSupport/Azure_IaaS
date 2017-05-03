@@ -1,0 +1,109 @@
+{
+    "$schema": "http://schemas.microsoft.org/azure/deploymentTemplate?api-version=2015-01-01#",
+    "contentVersion": "1.0",
+    "parameters": {
+        "adAdminUsername": {
+            "type": "string",
+            "metadata": {
+                "description": "The username for the Azure Automation credential."
+            }
+        },
+        "adAdminPassword": {
+            "type": "securestring",
+            "metadata": {
+                "description": "The password for the Azure Automation credential."
+            }
+        },
+        "adDomainName": {
+            "type": "string",
+            "metadata": {
+                "description": "The domain name used for the AD domain user."
+            }
+        },
+        "adDomainNetbiosName": {
+            "type": "string",
+            "metadata": {
+                "description": "The netbios name used for the AD domain."
+            }
+        },
+        "autoAccountName": {
+            "type": "string",
+            "metadata": {
+                "description": "The account name must not be empty, and must not exceed 50 characters in length.  The account name must start with a letter or number.  The account name can contain letters, numbers, and dashes.  The final character must be a letter or a number."
+            }
+        }
+    },
+    "variables": {
+        "sku": "Free",
+        "adAdminCedentialName": "addcDomainAdmin",
+        "adAdminUsername": "[parameters('adAdminUsername')]",
+        "adAdminPassword": "[parameters('adAdminPassword')]",
+        "adDomainVariableName": "addcDomainName",
+        "adDomainName": "[parameters('adDomainName')]",
+        "adDomainDescription": "The domain name",
+        "adDomainNetbiosVariableName": "addcDomainNetbiosName",
+        "adDomainNetbiosName": "[parameters('adDomainNetbiosName')]",
+        "adDomainNetbiosDescription": "The netbios name for the domain"
+    },
+    "resources": [{
+        "name": "[parameters('autoAccountName')]",
+        "type": "Microsoft.Automation/automationAccounts",
+        "apiVersion": "2015-10-31",
+        "location": "[resourceGroup().location]",
+        "dependsOn": [],
+        "tags": {},
+        "properties": {
+            "sku": {
+                "name": "[variables('sku')]"
+            }
+        },
+        "resources": [{
+                "name": "[variables('adAdminCedentialName')]",
+                "type": "credentials",
+                "apiVersion": "2015-10-31",
+                "location": "[resourceGroup().location]",
+                "dependsOn": [
+                    "[concat('Microsoft.Automation/automationAccounts/', parameters('autoAccountName'))]"
+                ],
+                "tags": {},
+                "properties": {
+                    "userName": "[variables('adAdminUsername')]",
+                    "password": "[variables('adAdminPassword')]"
+                }
+            },
+            {
+                "name": "[variables('adDomainVariableName')]",
+                "type": "variables",
+                "apiVersion": "2015-10-31",
+                "location": "[resourceGroup().location]",
+                "dependsOn": [
+                    "[concat('Microsoft.Automation/automationAccounts/', parameters('autoAccountName'))]"
+                ],
+                "tags": {},
+                "properties": {
+                    "isEncrypted": false,
+                    "type": "String",
+                    "value": "[concat('\"',variables('adDomainName'),'\"')]",
+                    "description": "[variables('adDomainDescription')]"
+                }
+            },
+            {
+                "name": "[variables('adDomainNetbiosVariableName')]",
+                "type": "variables",
+                "apiVersion": "2015-10-31",
+                "location": "[resourceGroup().location]",
+                "dependsOn": [
+                    "[concat('Microsoft.Automation/automationAccounts/', parameters('autoAccountName'))]"
+                ],
+                "tags": {},
+                "properties": {
+                    "isEncrypted": false,
+                    "type": "String",
+                    "value": "[concat('\"',variables('adDomainNetbiosName'),'\"')]",
+                    "description": "[variables('adDomainNetbiosDescription')]"
+                }
+            }
+        ]
+    }],
+    "outputs": {}
+}

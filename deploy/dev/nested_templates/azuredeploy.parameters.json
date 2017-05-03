@@ -1,0 +1,27 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "adminUsername": {
+            "value": "admin"
+        },
+        "adminPassword": {
+            "value": "Floater1"
+        },
+        "vmPrefix": {
+            "value": "sp"
+        },
+        "vmSuffix": {
+            "value": "01"
+        },
+        "existingVirtualNetworkName": {
+            "value": "vchds-sp-test-vnet"
+        },
+        "existingVirtualNetworkResourceGroup": {
+            "value": "vchds-sp-test-rg"
+        },
+        "subnetName": {
+            "value": "sp-subnet"
+        }
+    }
+}

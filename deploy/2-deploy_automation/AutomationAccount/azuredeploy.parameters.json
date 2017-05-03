@@ -1,0 +1,21 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "adAdminUsername": {
+            "value": "adFloater1"
+        },
+        "adAdminPassword": {
+            "value": "Floater1"
+        },
+        "adDomainName": {
+            "value": "vch.ca"
+        },
+        "adDomainNetbiosName": {
+            "value": "vch"
+        },
+        "autoAccountName": {
+            "value": "vchds-auto"
+        }
+    }
+}

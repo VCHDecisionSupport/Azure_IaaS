@@ -72,6 +72,10 @@ Also see [devtestlab templates](https://github.com/Azure/azure-devtestlab/tree/m
 - [xActiveDirectory Desired State Configuration for Azure Automation](https://www.powershellgallery.com/packages/xActiveDirectory)
 - [**Walk through Active Directory on Azure via DSC**](https://kvaes.wordpress.com/2017/04/29/azure-deploying-a-domain-controller-via-dsc-pull/)
 
+### Desired State Configuration
+
+- [List of learning resources](http://dille.name/blog/2014/12/10/useful-resources-to-teach-yourself-powershell-dsc/)
+
 ### PowerShell for Azure
 
 - [Manage VMs with PowerShell](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-windows-ps-manage/)
