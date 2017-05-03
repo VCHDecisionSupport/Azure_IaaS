@@ -2,17 +2,6 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "dcType": {
-            "type": "string",
-            "allowedValues": [
-                "FirstDC",
-                "AdditionalDC"
-            ],
-            "defaultValue": "AdditionalDC",
-            "metadata": {
-                "description": "Is it the first domain controller (new domain/forest) or will you be adding one?"
-            }
-        },
         "adminUsername": {
             "type": "string",
             "metadata": {
@@ -29,6 +18,12 @@
             "type": "string",
             "metadata": {
                 "description": "The prefix that will be used for the vm name"
+            }
+        },
+        "vmSuffix": {
+            "type": "string",
+            "metadata": {
+                "description": "The suffix that will be used for the vm name"
             }
         },
         "existingVirtualNetworkName": {
@@ -48,23 +43,11 @@
             "metadata": {
                 "description": "Name of the subnet in the virtual network you want to use"
             }
-        },
-        "dscRegistrationKey": {
-            "type": "string",
-            "metadata": {
-                "description": "Registration key to use to onboard to the Azure Automation DSC pull/reporting server"
-            }
-        },
-        "dscRegistrationUrl": {
-            "type": "string",
-            "metadata": {
-                "description": "Registration url of the Azure Automation DSC pull/reporting server"
-            }
         }
     },
     "variables": {
-        "vmName": "addc01",
-        "vmFullName": "[concat(parameters('vmPrefix'),variables('vmName'))]",
+        "vmName": "vm",
+        "vmFullName": "[concat(parameters('vmPrefix'),variables('vmName'),parameters('vmSuffix'))]",
         "vmSize": "Standard_D1_v2",
         "imagePublisher": "MicrosoftWindowsServer",
         "imageOffer": "WindowsServer",
@@ -79,12 +62,7 @@
         "vnetID": "[resourceId(variables('vnetRG'), 'Microsoft.Network/virtualNetworks', variables('vnetName'))]",
         "subnetRef": "[concat(variables('vnetID'),'/subnets/', variables('vnetSubnet'))]",
         "apiVersion": "2015-06-15",
-        "apiVersionManagedDisks": "2016-04-30-preview",
-        "dscLinkedTemplateUri": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/deploy/1-deploy_automation/RegisterVirtualMachine/azuredeploy.json",
-        "dscRegistrationKey": "[parameters('dscRegistrationKey')]",
-        "dscRegistrationUrl": "[parameters('dscRegistrationUrl')]",
-        "dscNodeConfigurationName": "[concat('DscConfDomainController.',parameters('dcType'))]",
-        "updateip_templateUri": "https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/deploy/3-deploy_addc/update-nic.json"
+        "apiVersionManagedDisks": "2016-04-30-preview"
     },
     "resources": [{
             "type": "Microsoft.Compute/disks",
@@ -158,61 +136,6 @@
                     "networkInterfaces": [{
                         "id": "[resourceId('Microsoft.Network/networkInterfaces',variables('nicName'))]"
                     }]
-                }
-            }
-        },
-        {
-            "apiVersion": "2015-01-01",
-            "name": "linkedTemplateDscPullServer",
-            "type": "Microsoft.Resources/deployments",
-            "dependsOn": [
-                "[concat('Microsoft.Compute/virtualMachines/', variables('vmFullName'))]"
-            ],
-            "properties": {
-                "mode": "incremental",
-                "templateLink": {
-                    "uri": "[variables('dscLinkedTemplateUri')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "vmName": {
-                        "value": "[variables('vmFullName')]"
-                    },
-                    "registrationKey": {
-                        "value": "[variables('dscRegistrationKey')]"
-                    },
-                    "registrationUrl": {
-                        "value": "[variables('dscRegistrationUrl')]"
-                    },
-                    "nodeConfigurationName": {
-                        "value": "[variables('dscNodeConfigurationName')]"
-                    }
-                }
-            }
-        },
-        {
-            "type": "Microsoft.Resources/deployments",
-            "name": "linkedTemplateUpdateIp",
-            "apiVersion": "2015-01-01",
-            "dependsOn": [
-                "[concat('Microsoft.Network/networkInterfaces/', variables('nicName'))]"
-            ],
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[variables('updateip_templateUri')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "nicName": {
-                        "value": "[variables('nicName')]"
-                    },
-                    "SubnetRef": {
-                        "value": "[variables('SubnetRef')]"
-                    },
-                    "privateIp": {
-                        "value": "[reference(concat('Microsoft.Network/networkInterfaces/', variables('nicName'))).ipConfigurations[0].properties.privateIPAddress]"
-                    }
                 }
             }
         }

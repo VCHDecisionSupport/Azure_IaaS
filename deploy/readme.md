@@ -1,5 +1,8 @@
 # Azure Resource Manager Deployments
 
+static vs dynamic ips
+
+
 ## Templates
 
 Templates typically provision empty/unconfigured infracture: vnet, factory default vm.

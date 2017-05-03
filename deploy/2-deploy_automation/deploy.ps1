@@ -5,11 +5,7 @@ $resource_group_name = "vchds-sp-test-rg"
 
 
 # Azure login; only need to login once per powershell session
-Login-AzureRmAccount
-
-# create new resource group
-$location = "canadacentral"
-New-AzureRmResourceGroup -Name $resource_group_name -Location $location
+# Login-AzureRmAccount
 
 # create automation account and import resources
 Write-Host "Automation Account"

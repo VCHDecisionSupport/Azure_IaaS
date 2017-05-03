@@ -3,13 +3,16 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "adminUsername": {
-            "value": "adFloater1"
+            "value": "admin"
         },
         "adminPassword": {
             "value": "Floater1"
         },
         "vmPrefix": {
-            "value": "sp-"
+            "value": "sp"
+        },
+        "vmSuffix": {
+            "value": "01"
         },
         "existingVirtualNetworkName": {
             "value": "vchds-sp-test-vnet"
@@ -18,7 +21,7 @@
             "value": "vchds-sp-test-rg"
         },
         "subnetName": {
-            "value": "ad-subnet"
+            "value": "sp-subnet"
         }
     }
 }
