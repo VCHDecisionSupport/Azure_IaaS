@@ -51,7 +51,6 @@
         "pipNameStub": "[concat(parameters('subnetName'),'Pip')]",
         "nicNameStub": "[concat(parameters('subnetName'),'Nic')]",
         "OsDiskNameStub": "[concat(parameters('subnetName'),'OsDisk')]",
-        "apiVersion": "2015-06-15",
         "apiVersionManagedDisks": "2016-04-30-preview"
     },
     "resources": [
