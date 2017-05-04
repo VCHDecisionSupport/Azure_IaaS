@@ -12,14 +12,11 @@
         "subnetName": {
             "type": "string"
         },
-        "addressStub": {
+        "workloadName": {
             "type": "string"
         },
-        "adminName": {
-            "type": "string",
-            "metadata": {
-                "description": "VM admin user name."
-            }
+        "addressStub": {
+            "type": "string"
         },
         "adminPassword": {
             "type": "string",
@@ -44,10 +41,10 @@
         }
     },
     "variables": {
-        "vmNameStub": "[concat(parameters('subnetName'),'Vm')]",
-        "pipNameStub": "[concat(parameters('subnetName'),'Pip')]",
-        "nicNameStub": "[concat(parameters('subnetName'),'Nic')]",
-        "OsDiskNameStub": "[concat(parameters('subnetName'),'OsDisk')]",
+        "vmNameStub": "[concat(parameters('workloadName'),'Vm')]",
+        "pipNameStub": "[concat(parameters('workloadName'),'Pip')]",
+        "nicNameStub": "[concat(parameters('workloadName'),'Nic')]",
+        "OsDiskNameStub": "[concat(parameters('workloadName'),'OsDisk')]",
         "apiVersionManagedDisks": "2016-04-30-preview"
     },
     "resources": [
@@ -76,7 +73,7 @@
                 },
                 "osProfile": {
                     "computerName": "[concat(variables('vmNameStub'), copyIndex())]",
-                    "adminUsername": "[parameters('adminName')]",
+                    "adminUsername": "[concat(variables('vmNameStub'), copyIndex())]",
                     "adminPassword": "[parameters('adminPassword')]",
                     "windowsConfiguration": {
                         "provisionVMAgent": true,

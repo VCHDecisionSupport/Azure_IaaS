@@ -21,16 +21,13 @@
                 "description": "assumes already exists (eg by azuredeploy_subnet.json)"
             }
         },
+        "workloadName": {
+            "value": "sp"
+        },
         "addressStub": {
             "value": "10.0.1.",
             "metadata": {
                 "description": "assumes already exists (eg by azuredeploy_subnet.json)"
-            }
-        },
-        "adminName": {
-            "value": "Floater1",
-            "metadata": {
-                "description": "VM admin user name."
             }
         },
         "adminPassword": {

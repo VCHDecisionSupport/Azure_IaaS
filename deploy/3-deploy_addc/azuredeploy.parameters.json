@@ -1,35 +1,32 @@
 {
-    "$schema":  "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-    "contentVersion":  "1.0.0.0",
-    "parameters":  {
-                       "dcType":  {
-                                      "value":  "FirstDC"
-                                  },
-                       "adminUsername":  {
-                                             "value":  "adFloater1"
-                                         },
-                       "adminPassword":  {
-                                             "value":  "Floater1"
-                                         },
-                       "vmPrefix":  {
-                                        "value":  "ad-"
-                                    },
-                       "existingVirtualNetworkName":  {
-                                                          "value":  "vchds-sp-test-vnet"
-                                                      },
-                       "existingVirtualNetworkResourceGroup":  {
-                                                                   "value":  "vchds-sp-test-rg"
-                                                               },
-                       "subnetName":  {
-                                          "value":  "ad-subnet"
-                                      },
-                       "dscRegistrationKey":  {
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "dcType": {
+            "value": "FirstDC"
+        },
+        "adminUsername": {
+            "value": "adFloater1"
+        },
+        "vmPrefix": {
+            "value": "dc"
+        },
+        "existingVirtualNetworkName": {
+            "value": "vchds-sp-test-vnet"
+        },
+        "existingVirtualNetworkResourceGroup": {
+            "value": "vchds-sp-test-rg"
+        },
+        "subnetName": {
+            "value": "ad-subnet"
+        },
+        "dscRegistrationKey": {
 
-                                                  "value":  "FjRhN58xnUI7pgngIRQ1V3z/wLfz0H6pOxiWx00bg0w6F74EnguXxPqGUQCAUgT7jwDKeGSkgAQudUb6Lgy0xA=="
-                                              },
-                       "dscRegistrationUrl":  {
-                                                  "value":  "https://cc-agentservice-prod-1.azure-automation.net/accounts/9b8f0fde-0680-4338-98d1-168b3f263e26"
+            "value": "FjRhN58xnUI7pgngIRQ1V3z/wLfz0H6pOxiWx00bg0w6F74EnguXxPqGUQCAUgT7jwDKeGSkgAQudUb6Lgy0xA=="
+        },
+        "dscRegistrationUrl": {
+            "value": "https://cc-agentservice-prod-1.azure-automation.net/accounts/9b8f0fde-0680-4338-98d1-168b3f263e26"
 
-                                              }
-                   }
+        }
+    }
 }

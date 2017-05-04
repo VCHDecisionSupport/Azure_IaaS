@@ -29,6 +29,26 @@
                 "properties": {
                     "addressPrefix": "10.0.0.0/24"
                 }
+            }, {
+                "name": "sp-subnet",
+                "properties": {
+                    "addressPrefix": "10.0.1.0/24"
+                }
+            }, {
+                "name": "dw-subnet",
+                "properties": {
+                    "addressPrefix": "10.0.2.0/24"
+                }
+            }, {
+                "name": "ui-subnet",
+                "properties": {
+                    "addressPrefix": "10.0.3.0/24"
+                }
+            }, {
+                "name": "dev-subnet",
+                "properties": {
+                    "addressPrefix": "10.0.10.0/24"
+                }
             }]
         }
     }]

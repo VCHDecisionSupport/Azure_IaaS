@@ -13,12 +13,6 @@
                 "description": "Is it the first domain controller (new domain/forest) or will you be adding one?"
             }
         },
-        "adminUsername": {
-            "type": "string",
-            "metadata": {
-                "description": "User name for the Virtual Machine."
-            }
-        },
         "adminPassword": {
             "type": "securestring",
             "metadata": {
@@ -63,7 +57,7 @@
         }
     },
     "variables": {
-        "vmName": "addc01",
+        "vmName": "Vm0",
         "vmFullName": "[concat(parameters('vmPrefix'),variables('vmName'))]",
         "vmSize": "Standard_D1_v2",
         "imagePublisher": "MicrosoftWindowsServer",
@@ -131,7 +125,7 @@
                 },
                 "osProfile": {
                     "computerName": "[variables('vmFullName')]",
-                    "adminUsername": "[parameters('adminUsername')]",
+                    "adminUsername": "[variables('vmFullName')]",
                     "adminPassword": "[parameters('adminPassword')]"
                 },
                 "storageProfile": {
