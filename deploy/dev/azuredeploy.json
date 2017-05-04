@@ -2,6 +2,14 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "dscNodeConfig": {
+            "type": "string",
+
+            "defaultValue": "General",
+            "metadata": {
+                "description": "Is it the first domain controller (new domain/forest) or will you be adding one?"
+            }
+        },
         "adminUsername": {
             "type": "string",
             "metadata": {
@@ -18,12 +26,6 @@
             "type": "string",
             "metadata": {
                 "description": "The prefix that will be used for the vm name"
-            }
-        },
-        "vmSuffix": {
-            "type": "string",
-            "metadata": {
-                "description": "The suffix that will be used for the vm name"
             }
         },
         "existingVirtualNetworkName": {
@@ -43,11 +45,23 @@
             "metadata": {
                 "description": "Name of the subnet in the virtual network you want to use"
             }
+        },
+        "dscRegistrationKey": {
+            "type": "string",
+            "metadata": {
+                "description": "Registration key to use to onboard to the Azure Automation DSC pull/reporting server"
+            }
+        },
+        "dscRegistrationUrl": {
+            "type": "string",
+            "metadata": {
+                "description": "Registration url of the Azure Automation DSC pull/reporting server"
+            }
         }
     },
     "variables": {
         "vmName": "vm",
-        "vmFullName": "[concat(parameters('vmPrefix'),variables('vmName'),parameters('vmSuffix'))]",
+        "vmFullName": "[concat(parameters('vmPrefix'),variables('vmName'))]",
         "vmSize": "Standard_D1_v2",
         "imagePublisher": "MicrosoftWindowsServer",
         "imageOffer": "WindowsServer",
@@ -64,30 +78,69 @@
         "apiVersion": "2015-06-15",
         "apiVersionManagedDisks": "2016-04-30-preview"
     },
-    "resources": [{
-        "type": "Microsoft.Resources/deployments",
-        "name": "linkedTemplateUpdateIp",
-        "apiVersion": "2015-01-01",
-        "dependsOn": [
-            "[concat('Microsoft.Network/networkInterfaces/', variables('nicName'))]"
-        ],
-        "properties": {
-            "mode": "Incremental",
-            "templateLink": {
-                "uri": "[variables('updateip_templateUri')]",
-                "contentVersion": "1.0.0.0"
-            },
-            "parameters": {
-                "nicName": {
-                    "value": "[variables('nicName')]"
+    "resources": [
+
+        {
+            "apiVersion": "[variables('apiVersion')]",
+            "type": "Microsoft.Network/networkInterfaces",
+            "name": "[variables('nicName')]",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "ipConfigurations": [{
+                    "name": "ipconfig1",
+                    "properties": {
+                        "privateIPAllocationMethod": "Dynamic",
+                        "subnet": {
+                            "id": "[variables('subnetRef')]"
+                        }
+                    }
+                }]
+            }
+        },
+        {
+            "apiVersion": "[variables('apiVersionManagedDisks')]",
+            "type": "Microsoft.Compute/virtualMachines",
+            "name": "[variables('vmFullName')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[concat('Microsoft.Network/networkInterfaces/', variables('nicName'))]",
+                "[concat('Microsoft.Compute/disks/', variables('dataDisk1VhdName'))]"
+            ],
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "[variables('vmSize')]"
                 },
-                "SubnetRef": {
-                    "value": "[variables('SubnetRef')]"
+                "osProfile": {
+                    "computerName": "[variables('vmFullName')]",
+                    "adminUsername": "[parameters('adminUsername')]",
+                    "adminPassword": "[parameters('adminPassword')]"
                 },
-                "privateIp": {
-                    "value": "[reference(concat('Microsoft.Network/networkInterfaces/', variables('nicName'))).ipConfigurations[0].properties.privateIPAddress]"
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "[variables('imagePublisher')]",
+                        "offer": "[variables('imageOffer')]",
+                        "sku": "[variables('windowsOSVersion')]",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "name": "[variables('OSDiskName')]",
+                        "createOption": "FromImage"
+                    },
+                    "dataDisks": [{
+                        "lun": 2,
+                        "name": "[variables('dataDisk1VhdName')]",
+                        "createOption": "attach",
+                        "managedDisk": {
+                            "id": "[resourceId('Microsoft.Compute/disks', variables('dataDisk1VhdName'))]"
+                        }
+                    }]
+                },
+                "networkProfile": {
+                    "networkInterfaces": [{
+                        "id": "[resourceId('Microsoft.Network/networkInterfaces',variables('nicName'))]"
+                    }]
                 }
             }
         }
-    }]
+    ]
 }

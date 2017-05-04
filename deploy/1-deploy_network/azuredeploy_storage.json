@@ -10,7 +10,7 @@
     "resources": [{
         "type": "Microsoft.Storage/storageAccounts",
         "sku": {
-            "name": "Standard_GRS",
+            "name": "Standard_LRS",
             "tier": "Standard"
         },
         "kind": "Storage",
