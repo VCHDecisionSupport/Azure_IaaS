@@ -50,9 +50,13 @@
         "vmNameStub": "[concat(parameters('subnetName'),'Vm')]",
         "pipNameStub": "[concat(parameters('subnetName'),'Pip')]",
         "nicNameStub": "[concat(parameters('subnetName'),'Nic')]",
-        "OsDiskNameStub": "[concat(parameters('subnetName'),'OsDisk')]"
+        "OsDiskNameStub": "[concat(parameters('subnetName'),'OsDisk')]",
+        "apiVersion": "2015-06-15",
+        "apiVersionManagedDisks": "2016-04-30-preview"
     },
-    "resources": [{
+    "resources": [
+
+        {
             "comments": "creates virtual machine according to given parameters above.  depends on creation of other resources: ip address",
             "type": "Microsoft.Compute/virtualMachines",
             "name": "[concat(variables('vmNameStub'), copyIndex())]",
@@ -60,7 +64,7 @@
                 "name": "vmsCopy",
                 "count": "[parameters('vmCount')]"
             },
-            "apiVersion": "2016-04-30-preview",
+            "apiVersion": "[variables('apiVersionManagedDisks')]",
             "location": "[resourceGroup().location]",
             "properties": {
                 "hardwareProfile": {
@@ -69,15 +73,10 @@
                 "storageProfile": {
                     "imageReference": "[parameters('imageReference')]",
                     "osDisk": {
-                        "osType": "Windows",
                         "name": "[concat(variables('OsDiskNameStub'), copyIndex())]",
-                        "createOption": "FromImage",
-                        "vhd": {
-                            "uri": "[concat('https', '://', parameters('storageAccountName'), '.blob.core.windows.net', concat('/vhds/', concat(variables('OsDiskNameStub'), copyIndex()),'.vhd'))]"
-                        },
-                        "caching": "ReadWrite"
+                        "createOption": "FromImage"
                     },
-                    "dataDisks": "[parameters('dataDisks')[copyIndex()]]"
+                    "dataDisks": []
                 },
                 "osProfile": {
                     "computerName": "[concat(variables('vmNameStub'), copyIndex())]",
@@ -93,12 +92,6 @@
                     "networkInterfaces": [{
                         "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nicNameStub'), copyIndex()))]"
                     }]
-                },
-                "diagnosticsProfile": {
-                    "bootDiagnostics": {
-                        "enabled": true,
-                        "storageUri": "[concat('https', '://', parameters('storageAccountName'), '.blob.core.windows.net', '/')]"
-                    }
                 }
             },
             "dependsOn": [
