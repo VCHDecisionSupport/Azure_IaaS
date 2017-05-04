@@ -41,9 +41,6 @@
         },
         "vmSize": {
             "type": "string"
-        },
-        "dataDisks": {
-            "type": "array"
         }
     },
     "variables": {
@@ -77,7 +74,7 @@
                         },
                         "caching": "ReadWrite"
                     },
-                    "dataDisks": "[parameters('dataDisks')[copyIndex()]]"
+                    "dataDisks": []
                 },
                 "osProfile": {
                     "computerName": "[concat(variables('vmNameStub'), copyIndex())]",

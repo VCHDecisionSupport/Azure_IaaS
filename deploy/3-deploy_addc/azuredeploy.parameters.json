@@ -1,33 +1,33 @@
 {
-    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "dcType": {
-            "value": "FirstDC"
-        },
-        "adminUsername": {
-            "value": "adFloater1"
-        },
-        "adminPassword": {
-            "value": "Floater1"
-        },
-        "vmPrefix": {
-            "value": "ad-"
-        },
-        "existingVirtualNetworkName": {
-            "value": "vchds-sp-test-vnet"
-        },
-        "existingVirtualNetworkResourceGroup": {
-            "value": "vchds-sp-test-rg"
-        },
-        "subnetName": {
-            "value": "ad-subnet"
-        },
-        "dscRegistrationKey": {
-            "value": "8kvbbD7DBlv8+zpp41OLEcpDSEVnwxwCbwuMg9gr599r227n4cfM6DMiRO4UF0IReCbTCYYs/+nXW2gjEi7RzA=="
-        },
-        "dscRegistrationUrl": {
-            "value": "https://cc-agentservice-prod-1.azure-automation.net/accounts/603e7501-106b-4b17-b4f3-23c5ddd52a0e"
-        }
-    }
+    "$schema":  "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion":  "1.0.0.0",
+    "parameters":  {
+                       "dcType":  {
+                                      "value":  "FirstDC"
+                                  },
+                       "adminUsername":  {
+                                             "value":  "adFloater1"
+                                         },
+                       "adminPassword":  {
+                                             "value":  "Floater1"
+                                         },
+                       "vmPrefix":  {
+                                        "value":  "ad-"
+                                    },
+                       "existingVirtualNetworkName":  {
+                                                          "value":  "vchds-sp-test-vnet"
+                                                      },
+                       "existingVirtualNetworkResourceGroup":  {
+                                                                   "value":  "vchds-sp-test-rg"
+                                                               },
+                       "subnetName":  {
+                                          "value":  "ad-subnet"
+                                      },
+                       "dscRegistrationKey":  {
+                                                  "value":  "op0SqVXAMbBXVpaZPIClggJH+i4Yyunl2pxX5FFUDPKOtxXNaPnU8ikXFQFVD9Lx3YSBbHm1h3HZGUm27JTXmQ=="
+                                              },
+                       "dscRegistrationUrl":  {
+                                                  "value":  "https://cc-agentservice-prod-1.azure-automation.net/accounts/c05a4f0f-2f78-4076-b233-fe7648ee9bfa"
+                                              }
+                   }
 }
