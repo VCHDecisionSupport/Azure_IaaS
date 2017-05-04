@@ -31,3 +31,9 @@ Write-Host ("Testing deployment of template:`n`t{0}" -f $template_path)
 Test-AzureRmResourceGroupDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path -TemplateParameterFile $parameter_path
 Write-Host ("Deploying of template:`n`t{0}" -f $template_path)
 New-AzureRmResourceGroupDeployment -Name $deployment_name -ResourceGroupName $resource_group_name -TemplateFile $template_path -TemplateParameterFile $parameter_path
+
+$resource_group_name = "vchds-sp-test-rg"
+$vnet_name = "vchds-sp-test-vnet"
+$vnet = Get-AzureRmVirtualNetwork -ResourceGroupName $resource_group_name -Name $vnet_name
+$vnet.DhcpOptions.DnsServers = @("10.0.0.4")
+Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
