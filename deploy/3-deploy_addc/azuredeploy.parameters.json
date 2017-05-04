@@ -24,10 +24,10 @@
                                           "value":  "ad-subnet"
                                       },
                        "dscRegistrationKey":  {
-                                                  "value":  "jhI733wXcJ0K1RJefw8eE0EtnWsIAZ6qhmVHqePr4Orzkn9txANkPFqGmoZUJy4P82TJ6uF8EgD+hI4E6pcHfQ=="
+                                                  "value":  "xRrqIb3nvjPgt/HhU2j88ZhRgOX1Yj1p3b5+TP65TpIG2+BsSZZVOPUchq1UuZP6Hjgwj3mpnCXGlX7dCm+7rQ=="
                                               },
                        "dscRegistrationUrl":  {
-                                                  "value":  "https://cc-agentservice-prod-1.azure-automation.net/accounts/c14f2ff5-e5ce-44fd-a86c-edb834f0dc5d"
+                                                  "value":  "https://cc-agentservice-prod-1.azure-automation.net/accounts/f34a3a33-7fc5-45bb-b43a-94b354b35d68"
                                               }
                    }
 }

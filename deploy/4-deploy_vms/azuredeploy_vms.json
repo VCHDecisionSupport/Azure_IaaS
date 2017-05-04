@@ -41,9 +41,6 @@
         },
         "vmSize": {
             "type": "string"
-        },
-        "dataDisks": {
-            "type": "array"
         }
     },
     "variables": {
