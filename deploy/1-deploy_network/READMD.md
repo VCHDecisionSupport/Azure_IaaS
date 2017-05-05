@@ -7,6 +7,7 @@ to deploy execute `deploy.ps1`
 1. new resource group
 1. new storage account
 1. new virtual network
+    1. subnets in vnet
 
 ## Logic walk through
 
