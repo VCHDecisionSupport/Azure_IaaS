@@ -66,8 +66,14 @@
                 "storageProfile": {
                     "imageReference": "[parameters('imageReference')]",
                     "osDisk": {
+                        "osType": "Windows",
                         "name": "[concat(variables('OsDiskNameStub'), copyIndex())]",
-                        "createOption": "FromImage"
+                        "createOption": "FromImage",
+                        "vhd": {
+                            "uri": "[concat('https', '://', parameters('storageAccountName'), '.blob.core.windows.net', concat('/vhds/', concat(variables('OsDiskNameStub'), copyIndex()),'.vhd'))]"
+                        },
+                        "caching": "ReadWrite",
+                        "diskSizeGB": 100
                     },
                     "dataDisks": []
                 },
