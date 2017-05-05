@@ -44,7 +44,4 @@ Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
 
 $dc_vm_name = "dcVm0"
 Write-Host "restarting active directory domain controller vm: $dc_vm_name"
-# Restart-AzureRmVM -ResourceGroupName $resource_group_name -Name "spVm0"
-# Restart-AzureRmVM -ResourceGroupName $resource_group_name -Name "spVm1"
-# Restart-AzureRmVM -ResourceGroupName $resource_group_name -Name "spVm2"
-# Restart-AzureRmVM -ResourceGroupName $resource_group_name -Name "spVm3"
+Restart-AzureRmVM -ResourceGroupName $resource_group_name -Name $dc_vm_name

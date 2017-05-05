@@ -1,4 +1,4 @@
-# 1-deploy_automation
+# 2****-deploy_automation
 
 Provisions an Automation Account (in a new Resource Group) which will be used to apply **Descired State Configuration**s to VMs.
 
@@ -11,7 +11,7 @@ execute PowerShell script: 1-deploy_automation\deploy.ps1
 based on [AD via DSC tutorial](https://kvaes.wordpress.com/2017/04/29/azure-deploying-a-domain-controller-via-dsc-pull/).
 
 
-### 1-deploy_automation\deploy.ps1
+### 2-deploy_automation\deploy.ps1
 
 1. **executes:** 1-deploy_automation\AutomationAccount\deploy.ps1
     1. **creates:** Resource Group

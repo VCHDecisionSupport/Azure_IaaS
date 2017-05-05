@@ -21,10 +21,10 @@ Function Import-DscConfiguration ($dscConfigFile, $dscDataConfigFile, $dscAutoma
 		Write-Information -MessageData  "Configuration $dscConfigFileName Already Exists"
 	} else {
 		Write-Information -MessageData  "Importing & compiling configuration $dscConfigFileName with config data $dscDataConfigFileName"
-		Import-AzureRmAutomationDscConfiguration -AutomationAccountName $dscAutomationAccount -ResourceGroupName $dscResourceGroup -Published -SourcePath $dscConfigFileFull -Force
+		Import-AzureRmAutomationDscConfiguration -AutomationAccountName $dscAutomationAccount -ResourceGroupName $dscResourceGroup -Published -SourcePath $dscConfigFileFull -Force -Verbose
         $dscDataConfigFileFullContent = (Get-Content $dscDataConfigFileFull | Out-String)
         Invoke-Expression $dscDataConfigFileFullContent
-		$CompilationJob = Start-AzureRmAutomationDscCompilationJob -ResourceGroupName $dscResourceGroup -AutomationAccountName $dscAutomationAccount -ConfigurationName $dscConfigFileName -ConfigurationData $ConfigData
+		$CompilationJob = Start-AzureRmAutomationDscCompilationJob -ResourceGroupName $dscResourceGroup -AutomationAccountName $dscAutomationAccount -ConfigurationName $dscConfigFileName -ConfigurationData $ConfigData -Verbose
 		while($null -eq $CompilationJob.EndTime -and $null -eq $CompilationJob.Exception)           
 		{
 			$CompilationJob = $CompilationJob | Get-AzureRmAutomationDscCompilationJob

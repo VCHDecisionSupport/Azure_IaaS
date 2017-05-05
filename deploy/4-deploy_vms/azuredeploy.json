@@ -72,8 +72,7 @@
                         "vhd": {
                             "uri": "[concat('https', '://', parameters('storageAccountName'), '.blob.core.windows.net', concat('/vhds/', concat(variables('OsDiskNameStub'), copyIndex()),'.vhd'))]"
                         },
-                        "caching": "ReadWrite",
-                        "diskSizeGB": 100
+                        "caching": "ReadWrite"
                     },
                     "dataDisks": []
                 },
