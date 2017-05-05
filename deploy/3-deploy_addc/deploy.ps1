@@ -10,7 +10,7 @@ $resource_group_name = "vchds-sp-test-rg"
 # Login-AzureRmAccount
 
 # update parameter file with Automation Account info
-Write-Host "`n`nattempting to automatically update parameter file: dscRegistrationKey and dscRegistrationUrl"
+Write-Host "`n`nattempting to update parameter file: dscRegistrationKey and dscRegistrationUrl"
 Write-Host "connecting to automation account"
 $automation_account_name = "vchds-auto"
 $automation_account_info = Get-AzureRmAutomationRegistrationInfo -ResourceGroupName $resource_group_name -AutomationAccountName $automation_account_name
@@ -40,3 +40,11 @@ $vnet_name = "vchds-sp-test-vnet"
 $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName $resource_group_name -Name $vnet_name
 $vnet.DhcpOptions.DnsServers = @("10.0.0.4")
 Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
+
+
+$dc_vm_name = "dcVm0"
+Write-Host "restarting active directory domain controller vm: $dc_vm_name"
+# Restart-AzureRmVM -ResourceGroupName $resource_group_name -Name "spVm0"
+# Restart-AzureRmVM -ResourceGroupName $resource_group_name -Name "spVm1"
+# Restart-AzureRmVM -ResourceGroupName $resource_group_name -Name "spVm2"
+# Restart-AzureRmVM -ResourceGroupName $resource_group_name -Name "spVm3"
