@@ -1,4 +1,4 @@
-# 2****-deploy_automation
+# 2-deploy_automation
 
 Provisions an Automation Account (in a new Resource Group) which will be used to apply **Descired State Configuration**s to VMs.
 

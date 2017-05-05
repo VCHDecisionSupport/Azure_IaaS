@@ -1,29 +1,26 @@
 # 3-deploy_addc
 
-creates resources that will be used by all other resources
+Provisions a VM then registers it to the already existing **Descired State Configuration** in the Automation Account.
 
-to deploy execute `deploy.ps1`
+## Deployment
 
-1. new resource group
-1. new storage account
-1. new virtual network
+execute PowerShell script: 3-deploy_addc\deploy.ps1
+
+## Code explanation
+
+based on [AD via DSC tutorial](https://kvaes.wordpress.com/2017/04/29/azure-deploying-a-domain-controller-via-dsc-pull/).
 
 ## Logic walk through
 
-1. `deploy.ps1`
-    1. Azure subscription login
-    1. Create new resource group
-    1. Deploy template `azuredeploy_storage.json` using parameter values from `azuredeploy_storage.parameters.json`
-    1. Deploy template `azuredeploy_vnet.json` using parameter values from `azuredeploy_vnet.parameters.json`
 
-`azuredeploy_storage.json` creates new storage account in resource group.
+### 3-deploy_addc\deploy.ps1
 
-`azuredeploy_vnet.json` creates new vnet account in resource group.
-
-`azuredeploy_storage.json` and `azuredeploy_vnet.json` can be reconfigured by changing parameter files `azuredeploy_storage.parameters.json` and `azuredeploy_vnet.parameters.json`.
-
-## IMPORTANT: Resource dependencies
-
-Most other resources (eg subnets, VMs) depend on these resources and their specific configuration which is set by the parameter files: `azuredeploy_storage.parameters.json` and `azuredeploy_vnet.parameters.json`.
-
-Therefore, parameter values most be consistent through out Azure environment.
+1. **deploys:** 3-deploy_addc\azuredeploy.json
+    1. **creates:** Managed data disk
+    1. **creates:** Network interface card (nic)
+    1. **creates:** virtual machine (vm)
+        1. **attachs:** vm to nic
+        1. **attachs (doesn't mount):** data disk to vm
+    1. **registers:** vm to Desired State Configuration in Automation Account
+        1. *the frequency of syncronization of vm to the pull server (ie. Automation Account) is specified in a **zipped** PowerShell file that downloaded from the url (github repo) specified*
+    1. **deploys nested template:** 3-deploy_addc\update-nic.json
