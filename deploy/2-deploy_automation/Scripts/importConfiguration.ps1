@@ -16,7 +16,7 @@ Function Import-DscConfiguration ($dscConfigFile, $dscDataConfigFile, $dscAutoma
 	$dscDataConfigFileFull = (Get-Item $dscDataConfigFile).FullName
 	$dscConfigFileName = [io.path]::GetFileNameWithoutExtension($dscConfigFile)
 	$dscDataConfigFileName = [io.path]::GetFileNameWithoutExtension($dscDataConfigFile)
-	$dsc = Get-AzureRmAutomationDscConfiguration -ResourceGroupName $dscResourceGroup -AutomationAccountName -Verbose $dscAutomationAccount -Name $dscConfigFileName -erroraction 'silentlycontinue'
+	$dsc = Get-AzureRmAutomationDscConfiguration -ResourceGroupName $dscResourceGroup -AutomationAccountName $dscAutomationAccount -Name $dscConfigFileName -ErrorAction 'silentlycontinue' -Verbose 
 	if ($dsc -and !$Force) { 
 		Write-Information -MessageData  "Configuration $dscConfigFileName Already Exists"
 	} else {
