@@ -32,7 +32,6 @@ based on [AD via DSC tutorial](https://kvaes.wordpress.com/2017/04/29/azure-depl
             1. **import:** each module into Automation Account
             1. *These (experimental - "x" prefix) PowerShell modules are used by the Automation Account (ie DSC Pull Server for Azure) to apply the configurations that each VM is registered to.*
 
-## Important Dependancy Note
+## 2-deploy_automation/RegisterVirtualMachine
 
-In order for a VM to register to a DSC the Automation Account's **key** and **url** are required.
-The PowerShell script deploy.ps1 attempts to update these parameter values.
+This is a general purpose template is used later (in 3-deploy_addc) on to register a VM to a DSC.  Once registered the VM becomes a "Configuration Node".
