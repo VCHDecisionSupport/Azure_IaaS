@@ -24,3 +24,4 @@ based on [AD via DSC tutorial](https://kvaes.wordpress.com/2017/04/29/azure-depl
     1. **registers:** vm to Desired State Configuration in Automation Account
         1. *the frequency of syncronization of vm to the pull server (ie. Automation Account) is specified in a **zipped** PowerShell file that downloaded from the url (github repo) specified*
     1. **deploys nested template:** 3-deploy_addc\update-nic.json
+        1. *downloaded by Azure from given template uri (github repo)*

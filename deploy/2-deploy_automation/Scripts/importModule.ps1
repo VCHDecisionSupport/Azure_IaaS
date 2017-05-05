@@ -29,7 +29,8 @@ Function Import-DscModule ($moduleName, $moduleVersion, $moduleAutomationAccount
             -ResourceGroupName $moduleResourceGroup `
             -AutomationAccountName $moduleAutomationAccountName `
             -Name $moduleName `
-            -ContentLink $ActualUrl
+            -ContentLink $ActualUrl `
+			-Verbose
 
 		$importDone = ""
 		while(!$importDone)           

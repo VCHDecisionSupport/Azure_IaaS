@@ -42,6 +42,7 @@ $vnet.DhcpOptions.DnsServers = @("10.0.0.4")
 Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
 
 
-$dc_vm_name = "dcVm0"
 Write-Host "restarting active directory domain controller vm: $dc_vm_name"
+
+$dc_vm_name = "dcVm0"
 Restart-AzureRmVM -ResourceGroupName $resource_group_name -Name $dc_vm_name
