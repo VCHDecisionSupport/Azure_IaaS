@@ -6,7 +6,7 @@
             "value": "canadacentral"
         },
         "vmList": {
-            "value": "sp-subnetVm0,sp-subnetVm1,sp-subnetVm2,sp-subnetVm3"
+            "value": "spVm0,spVm1,spVm2,spVm3"
         },
         "domainJoinUserName": {
             "value": "vch\\adFloater1"
