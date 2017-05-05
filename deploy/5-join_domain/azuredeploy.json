@@ -43,35 +43,33 @@
     },
     "variables": {
         "domainJoinOptions": 3,
-        "vmListArray" : "[split(parameters('vmList'),',')]"
+        "vmListArray": "[split(parameters('vmList'),',')]"
     },
-    "resources": [
-            {
-            "comments": "Join domain - JsonADDomainExtension",
-            "apiVersion": "2015-06-15",
-            "type": "Microsoft.Compute/virtualMachines/extensions",
-            "name": "[concat(variables('vmListArray')[copyIndex()],'/joindomain')]",
-            "location": "[parameters('location')]",
-            "copy": {
-                "name": "vmDomainJoinCopy",
-                "count": "[length(variables('vmListArray'))]"
+    "resources": [{
+        "comments": "Join domain - JsonADDomainExtension",
+        "apiVersion": "2015-06-15",
+        "type": "Microsoft.Compute/virtualMachines/extensions",
+        "name": "[concat(variables('vmListArray')[copyIndex()],'/joindomain')]",
+        "location": "[parameters('location')]",
+        "copy": {
+            "name": "vmDomainJoinCopy",
+            "count": "[length(variables('vmListArray'))]"
+        },
+        "properties": {
+            "publisher": "Microsoft.Compute",
+            "type": "JsonADDomainExtension",
+            "typeHandlerVersion": "1.3",
+            "autoUpgradeMinorVersion": true,
+            "settings": {
+                "Name": "[parameters('domainFQDN')]",
+                "User": "[parameters('domainJoinUserName')]",
+                "Restart": "true",
+                "Options": "[variables('domainJoinOptions')]",
+                "OUPath": "[parameters('ouPath')]"
             },
-            "properties": {
-                "publisher": "Microsoft.Compute",
-                "type": "JsonADDomainExtension",
-                "typeHandlerVersion": "1.3",
-                "autoUpgradeMinorVersion": true,
-                "settings": {
-                    "Name": "[parameters('domainFQDN')]",
-                    "User": "[parameters('domainJoinUserName')]",
-                    "Restart": "true",
-                    "Options": "[variables('domainJoinOptions')]",
-                    "OUPath": "[parameters('ouPath')]"
-                },
-                "protectedSettings": {
-                    "Password": "[parameters('domainJoinUserPassword')]"
-                }
+            "protectedSettings": {
+                "Password": "[parameters('domainJoinUserPassword')]"
             }
         }
-    ]
+    }]
 }
