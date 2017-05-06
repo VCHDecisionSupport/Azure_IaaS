@@ -1,8 +1,5 @@
 # Azure Resource Manager Deployments
 
-static vs dynamic ips
-
-
 ## Templates
 
 Templates typically provision empty/unconfigured infracture: vnet, factory default vm.
@@ -13,13 +10,15 @@ Templates typically provision empty/unconfigured infracture: vnet, factory defau
 - PowerShell cmdlet `New-AzureRmResourceGroupDeployment` sends templates to the "Azure Resource Manager" service
 - Azure Resource Manager provisions the resources
 
+## Virtual Machine Extensions
+
 Azure **virtual machine extensions** are small applications that provide post-deployment configuration and automation tasks on Azure virtual machines.
 
-## Desired State Configuration
-
-
+### Desired State Configuration
 
 Desired state configuraton allows you declare a desired server configuration (eg install DC server role with domain vch.ca) for one or more servers under your administration.  In Azure, configuration files (and the module required to realize them) are uploaded to an Automation Account.  Then VMs are registered to the account.  Any changes to a server's Desired State Configuation are applied automatically.
+
+VMs subscribe to a Desired State Configuration using the `Microsoft.Powershell.DSC` extension which is applied to VMs using code in [.\2-deploy_automation\](.\2-deploy_automation\)
 
 ## Deployment steps
 
@@ -51,8 +50,6 @@ Each work load consists of:
     - network interface card
     - public static ip
     - private/local static ip
-
-### 3. configure vm server roles (todo)
 
 ## Azure deployment using JSON templates
 
