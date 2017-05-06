@@ -1,4 +1,4 @@
-# 2-deploy_network
+# 1-deploy_network
 
 creates resources that will be used by all other resources
 

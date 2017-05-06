@@ -18,7 +18,7 @@
         "domainJoinUserName": {
             "type": "string",
             "metadata": {
-                "description": "Domain NetBiosName plus User name of a domain user with sufficient rights to perfom domain join operation. E.g. domain\\username"
+                "description": "Local admin (domain admin) of DC (not joining) VM.  Domain NetBiosName plus User name of a domain user with sufficient rights to perfom domain join operation. E.g. domain\\username"
             }
         },
         "domainJoinUserPassword": {
