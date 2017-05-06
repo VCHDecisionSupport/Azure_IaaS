@@ -1,42 +1,29 @@
-# Deploy_workload
+# 4-deploy_vms
 
-- VMs are organized into logical "workloads" (ie SharePoint, Active Directory, Data warehouse, etc)
-- each workload is deployed into a separate subnet within the virtual network
+Deploys factory default VMs to an already existing subnet.
 
-to deploy a new workload
+## Deployment
 
-1. execute `deploy_subnet.ps1` (creates new subnet in vnet)
-1. execute `deploy_vms.ps1` (creates VM(s) in subnet)
+execute PowerShell script: 4-deploy_vms\deploy.ps1
 
-## `deploy_subnet.ps1`
+## Code explanation
 
-**Depends on**
 
-- virtual network
-    - subnet ip range must be in ip range of vnet
 
 ### Logic work through
 
-1. `deploy_subnet.ps1`
-    - creates new subnet in virtual network
-    - creates new network security group (nsg) for subnet
-
-## `deploy_vms.ps1`
-
-**Depends on**
-
-- subnet
-    - private ip must be in ip range of subnet
-- storage account
-    - OS and storage disks are provisioned to a storage account
-
-### Logic work through
-
-1. `deploy_vms.ps1` deploys `azuredeploy_vms.json` using parameter file 
+1. `deploy_vms.ps1` deploys `azuredeploy_vms.json` using parameter file
     - creates 1 new public static ip (pip) for each VM
     - creates 1 new network interface card (nic) for each VM
-        - associates nics to pips and private ips
+        - associates nics to public ips (pip) and private ips
     - creates new VM(s)
         - create virtual hard disks (vhd) for OS and data
         - copy OS image (set in parameter file) to OS vhd
         - associates each vm to a nic
+
+## Dependancies
+
+- subnet
+  - private ip must be in ip range of subnet
+- storage account
+  - OS and storage disks are provisioned to a storage account
