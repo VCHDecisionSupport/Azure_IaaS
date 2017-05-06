@@ -2,15 +2,13 @@
 # set current working directory
 Set-Location -Path $PSScriptRoot
 
-
 $resource_group_name = "vchds-sp-test-rg"
 
-
 # Azure login; only need to login once per powershell session
-# Login-AzureRmAccount
+Login-AzureRmAccount
 
 # update parameter file with Automation Account info
-Write-Host "`n`nattempting to update parameter file: dscRegistrationKey and dscRegistrationUrl"
+Write-Host "`n`nattempting to update parameter file values from Azure: dscRegistrationKey and dscRegistrationUrl"
 Write-Host "connecting to automation account"
 $automation_account_name = "vchds-auto"
 $automation_account_info = Get-AzureRmAutomationRegistrationInfo -ResourceGroupName $resource_group_name -AutomationAccountName $automation_account_name
