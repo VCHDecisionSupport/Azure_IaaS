@@ -1,14 +1,29 @@
 # Azure_IaaS
 
+In [Azure Resource Manager](#azure-resource-manager-and-template-docs), deploy-able objects (eg virtual network, virtual machine) are called _resources_.  Each resource has a name (eg "vchds-sp-test-vnet", "dcVm0") and belongs to a [_resource group_](#resource-specific-documentation) which also has a name.  Resources can be declared using [JSON deployment templates](#azure-resource-manager-and-template-docs) and deployed into an Azure resource group with the PowerShell cmdlet [`New-AzureRmResourceGroupDeployment`](#azure-resource-manager-and-template-docs).
 
-Azure resources (eg VMs, subnets, storage account etc) are configured/deployed using JSON template files and JSON parameter files.
+## Table of Contents
 
-- use parameter files to change what it deployed (do not edit templates)
-- template files are not meant to change
+- [Deployment steps](#deployment-steps)
+    - [Network diagram](#network-diagram)
+- [IaaS resources docs](#iaas-resources-docs)
+    - [Comparison and cloud service models](#comparison-and-cloud-service-models)
+    - [Resource Specific Documentation](#resource-specific-documentation)
+- [Other useful documentation](#other-useful-documentation)
+    - [Azure quick start templates examples (GitHub)](#azure-quick-start-templates-examples-github)
+    - [Azure Resource Manager and template docs](#azure-resource-manager-and-template-docs)
+    - [Backup/restore](#backuprestore)
+    - [Active Directory Domain Services](#active-directory-domain-services)
+    - [Desired State Configuration](#desired-state-configuration)
+    - [PowerShell for Azure](#powershell-for-azure)
+    - [misc](#misc)
+        - [On-premises Active Directory Domain Controller install/config](#on-premises-active-directory-domain-controller-installconfig)
+
+<!-- /TOC -->
 
 ## Deployment steps
 
-see folder: deploy
+see folder: [deploy](\deploy\readme.md)
 
 ### Network diagram
 
