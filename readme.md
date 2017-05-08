@@ -16,13 +16,13 @@ see folder: deploy
 
 ### Network diagram
 
-[![](https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/docs/network_diagram.png "2 tier Architecture with Jumpbox by Renee Fung (click for docs)")](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/virtual-machines-windows/n-tier)
+[![](https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/docs/CloudPlatforms2.png "2 tier Architecture with Jumpbox by Renee Fung (click for docs)")](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/virtual-machines-windows/n-tier)
 
 ## IaaS resources docs
 
 - [Start Azure IaaS Learning Here](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview)
 
-[![](https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/docs/CloudPlatforms.png "2 tier Architecture with Jumpbox by Renee Fung (click for docs)")](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/virtual-machines-windows/n-tier)
+[![](https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/docs/network_diagram.png "2 tier Architecture with Jumpbox by Renee Fung (click for docs)")](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/virtual-machines-windows/n-tier)
 
 - [Full IaaS walk through](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/infrastructure-example?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
