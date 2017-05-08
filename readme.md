@@ -12,14 +12,7 @@ Azure resources (eg VMs, subnets, storage account etc) are configured/deployed u
 
 ## Deployment steps
 
-1. setup automation account
-1. create vnet and subnets
-1. deploy and configure AD and DC
-
-deployment code located in [json_deployment_templates](json_deployment_templates) folder in repo root
-
-1. deploy shared resources (see [deploy_shared](json_deployment_templates/deploy_shared) folder)
-1. deploy work load resources (see [deploy_workload](json_deployment_templates/deploy_workload) folder)
+see folder: deploy
 
 ### Network diagram
 

@@ -22,45 +22,7 @@ VMs subscribe to a Desired State Configuration using the `Microsoft.Powershell.D
 
 ## Deployment steps
 
-### 1. deploy shared resources (see [deploy_shared](deploy_shared) folder)
-
-deploys these resources into the given resource group
-
-- virtual network
-- storage account
-
-### 2. deploy work load resources (see [deploy_workload](deploy_workload) folder)
-
-There are 5 workloads deployed into the given resource group.  each deployed into it's own subnet within the vnet.
-
-- active directory
-- share point
-- data warehouse
-- jumpbox
-- end users
-
-Each work load consists of:
-
-- subnet
-  - network security group
-  - virtual machine(s)
-    - hard drives
-      - os disk
-      - data disk(s)
-    - network interface card
-    - public static ip
-    - private/local static ip
-
-## Azure deployment using JSON templates
-
-let you declare what resources are to be deployed
-
-- templates parameters reduce configuration effort
-- templates can be nested and execute one another
-- templates follow [infrastructure as code](https://en.wikipedia.org/wiki/Infrastructure_as_Code)
-  - version-able
-  - repeatable
-  - scalable
+see readmes in subfolders
 
 ### resource hierarchy
 
