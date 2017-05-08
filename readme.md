@@ -20,7 +20,12 @@ see folder: deploy
 
 ## IaaS resources docs
 
-[Full IaaS walk through](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/infrastructure-example?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+- [Start Azure IaaS Learning Here](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview)
+
+[![](https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/docs/CloudPlatforms.png "2 tier Architecture with Jumpbox by Renee Fung (click for docs)")](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/virtual-machines-windows/n-tier)
+
+- [Full IaaS walk through](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/infrastructure-example?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+
 
 - [resource group](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/infrastructure-resource-groups-guidelines#resource-groups)
 - [storage account](https://docs.microsoft.com/en-us/azure/storage/storage-introduction#blob-storage)
@@ -60,8 +65,8 @@ Also see [devtestlab templates](https://github.com/Azure/azure-devtestlab/tree/m
 
 ### Active Directory Domain Services
 
-- [xActiveDirectory Desired State Configuration for Azure Automation](https://www.powershellgallery.com/packages/xActiveDirectory)
 - [**Walk through Active Directory on Azure via DSC**](https://kvaes.wordpress.com/2017/04/29/azure-deploying-a-domain-controller-via-dsc-pull/)
+- [xActiveDirectory Desired State Configuration for Azure Automation](https://www.powershellgallery.com/packages/xActiveDirectory)
 
 ### Desired State Configuration
 
