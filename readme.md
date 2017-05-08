@@ -6,10 +6,6 @@ Azure resources (eg VMs, subnets, storage account etc) are configured/deployed u
 - use parameter files to change what it deployed (do not edit templates)
 - template files are not meant to change
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FVCHDecisionSupport%2FAzure_IaaS%2Fmaster%2Fjson_deployment_templates%2Fdeploy_sharepoint%2Fazuredeploy.json" target="_blank">
-    <img src="http://azuredeploy.net/deploybutton.png"/>
-</a>
-
 ## Deployment steps
 
 see folder: deploy
@@ -21,11 +17,13 @@ see folder: deploy
 ## IaaS resources docs
 
 - [Start Azure IaaS Learning Here](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview)
+- [Full IaaS walk through](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/infrastructure-example?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+
+### Comparison and cloud service models
 
 [![](https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/docs/CloudPlatforms.png "2 tier Architecture with Jumpbox by Renee Fung (click for docs)")](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/virtual-machines-windows/n-tier)
 
-- [Full IaaS walk through](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/infrastructure-example?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-
+### Resource Specific Documentation
 
 - [resource group](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/infrastructure-resource-groups-guidelines#resource-groups)
 - [storage account](https://docs.microsoft.com/en-us/azure/storage/storage-introduction#blob-storage)
