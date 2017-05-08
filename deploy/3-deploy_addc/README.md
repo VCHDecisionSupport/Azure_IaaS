@@ -12,7 +12,6 @@ based on [AD via DSC tutorial](https://kvaes.wordpress.com/2017/04/29/azure-depl
 
 ## Logic walk through
 
-
 ### 3-deploy_addc\deploy.ps1
 
 1. **deploys:** 3-deploy_addc\azuredeploy.json

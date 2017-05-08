@@ -2,14 +2,18 @@
 
 Provisions an Automation Account (in a new Resource Group) which will be used to apply **Descired State Configuration**s to VMs.
 
+## Resources Deployed
+
+1. [Automation Account](https://docs.microsoft.com/en-us/azure/automation/automation-intro#automating-configuration-management-with-desired-state-configuration)
+    1. [Desired State Configurations and Modules](https://msdn.microsoft.com/en-us/powershell/dsc/overview#key-concepts)
+
 ## Deployment
 
-execute PowerShell script: 1-deploy_automation\deploy.ps1
+execute PowerShell script: 2-deploy_automation\deploy.ps1
 
 ## Code explanation
 
 based on [AD via DSC tutorial](https://kvaes.wordpress.com/2017/04/29/azure-deploying-a-domain-controller-via-dsc-pull/).
-
 
 ### 2-deploy_automation\deploy.ps1
 
@@ -34,4 +38,6 @@ based on [AD via DSC tutorial](https://kvaes.wordpress.com/2017/04/29/azure-depl
 
 ## 2-deploy_automation/RegisterVirtualMachine
 
-This is a general purpose template is used later (in 3-deploy_addc) on to register a VM to a DSC.  Once registered the VM becomes a "Configuration Node".
+RegisterVirtualMachine/azuredeploy.json is a general purpose template that is used later (in 3-deploy_addc) to register a VM to a DSC.  Once registered the VM becomes a "Configuration Node".  A VM registered when it's "Local Configuration Manager" is setup poll an Azure Automation Account (which act as a "pull server") on a schedule (which is called a "policy") specified in the zip file: UpdateLCMForAAPull.zip (ie update local configuration manager for automation account pull).
+
+For more understanding watch [PluralSight course](https://app.pluralsight.com/library/courses/powershell-desired-state-configuration-fundamentals/table-of-contents)
