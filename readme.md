@@ -23,7 +23,7 @@ In [Azure Resource Manager](#azure-resource-manager-and-template-docs), deploy-a
 
 ## Deployment steps
 
-see folder: [deploy](\deploy\readme.md)
+see folder: [deploy](https://github.com/VCHDecisionSupport/Azure_IaaS/tree/master/deploy#azure-resource-manager-deployments)
 
 ### Network diagram
 
