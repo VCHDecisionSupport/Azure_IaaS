@@ -1,7 +1,8 @@
 # set current working directory
 Set-Location -Path $PSScriptRoot
 
-$resource_group_name = "vchds-sp-test-rg"
+$resource_group_name = "vchds-sp-rg"
+$auto_account = "vchds-auto"
 
 
 # Azure login; only need to login once per powershell session
@@ -23,7 +24,6 @@ New-AzureRmResourceGroupDeployment -Name $deployment_name -ResourceGroupName $re
 
 
 # import configurations and modules
-$auto_account = "vchds-auto"
 Set-Location -Path $PSScriptRoot\Scripts
 Write-Host "Automation configurations and modules: "
 Get-Location

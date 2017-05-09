@@ -7,6 +7,8 @@ Provisions an Automation Account (in a new Resource Group) which will be used to
 1. [Automation Account](https://docs.microsoft.com/en-us/azure/automation/automation-intro#automating-configuration-management-with-desired-state-configuration)
     1. [Desired State Configurations and Modules](https://msdn.microsoft.com/en-us/powershell/dsc/overview#key-concepts)
 
+Once deployed, Automation Account should have **3 DSC Configurations** and **21 Assets** (18 modules, 2 variables, 1 credential)
+
 ## Deployment
 
 execute PowerShell script: 2-deploy_automation\deploy.ps1

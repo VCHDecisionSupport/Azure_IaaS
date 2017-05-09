@@ -2,7 +2,7 @@
 # set current working directory
 Set-Location -Path $PSScriptRoot
 
-$resource_group_name = "vchds-sp-test-rg"
+$resource_group_name = "vchds-sp-rg"
 $tenant_id = (Get-AzureRMSubscription | Where-Object { $_.State -eq "Enabled"})[0].TenantId
 
 # Azure login; only need to login once per powershell session

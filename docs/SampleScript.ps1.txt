@@ -1,0 +1,57 @@
+# Azure ARM template sample available at https://github.com/Azure/azure-quickstart-templates/blob/master/201-vm-domain-join/azuredeploy.json: #
+
+$string1 = '{ 
+   "Name": "igordom.local", 
+   "User": "igordom.local\\igorpag", 
+   "Restart": "true", 
+   "Options": "3" 
+        }'
+$string2 = '{ "Password": << INSERT DOMAIN USER PASSWORD HERE" }'
+
+Set-AzureRmVMExtension -ResourceGroupName $rgname -ExtensionType "JsonADDomainExtension" `
+    -Name "joindomain" -Publisher "Microsoft.Compute" -TypeHandlerVersion "1.0" `
+    -VMName $VMName -Location $PrimaryLocation -SettingString $string1 `
+    -ProtectedSettingString $string2
+
+# OUTPUT Sample: #
+Status              : Succeeded
+StatusCode          : OK
+RequestId           : 4644b7d5-27d3-4b8a-8d00-6fb60e1a5a2a
+Output              : 
+Error               : 
+StartTime           : 21/01/2016 11:43:45 +01:00
+EndTime             : 21/01/2016 11:45:19 +01:00
+TrackingOperationId : 7872b842-49ee-4593-8e75-bc2f5863b759
+
+# Check VM extension status: #
+Get-AzureRmVMExtension -Name "joindomain" -ResourceGroupName $rgname -VMName $VMName -Status
+
+# OUTPUT Sample: #
+ResourceGroupName  : igor-rg4
+Name               : joindomain
+Location           : *****
+Etag               : 
+Publisher          : Microsoft.Compute
+ExtensionType      : JsonADDomainExtension
+TypeHandlerVersion : 1.0
+Id                 : /subscriptions/*******/resourceGroups/igor-rg4/providers/Microsoft.Compute/virtualMachines/igor-witness/extensions/joindomain
+PublicSettings     : {
+                       "Name": "igordom.local",
+                       "User": "igordom.local\\igorpag",
+                       "Restart": "true",
+                       "Options": "3"
+                     }
+ProtectedSettings  : 
+ProvisioningState  : Succeeded
+Statuses           : {Microsoft.Azure.Management.Compute.Models.InstanceViewStatus}
+StatusesText       : [
+                       {
+                         "Code": "ProvisioningState/succeeded",
+                         "DisplayStatus": "Provisioning succeeded",
+                         "Level": "Info",
+                         "Message": "Join completed for Domain 'igordom.local'",
+                         "Time": null
+                       }
+                     ]
+SubStatuses        : {}
+SubStatusesText    : []

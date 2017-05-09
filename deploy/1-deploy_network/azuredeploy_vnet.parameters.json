@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "virtualNetworkName": {
-            "value": "vchds-sp-test-vnet",
+            "value": "vchds-sp-vnet",
             "metadata": {
                 "description": "see https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview"
             }
