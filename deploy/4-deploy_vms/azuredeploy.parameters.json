@@ -38,7 +38,7 @@
             "value": {
                 "publisher": "MicrosoftWindowsServer",
                 "offer": "WindowsServer",
-                "sku": "2008-R2-SP1",
+                "sku": "2012-R2-Datacenter",
                 "version": "latest"
             }
         },
