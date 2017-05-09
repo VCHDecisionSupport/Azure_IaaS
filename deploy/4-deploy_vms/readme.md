@@ -8,7 +8,7 @@ execute PowerShell script: 4-deploy_vms\deploy.ps1
 
 ## Code explanation
 
-
+see issue #55
 
 ### Logic work through
 

@@ -48,18 +48,44 @@
         "dataDisks": {
             "value": [
                 [{
+                    "diskSizeGB": "50",
+                    "createOption": "Empty",
+                    "lun": 2
+                }],
+                [{
+                    "diskSizeGB": "50",
+                    "createOption": "Empty",
+                    "lun": 2
+                }],
+                [{
                     "diskSizeGB": "100",
                     "createOption": "Empty",
                     "lun": 2
-                }, {
-                    "diskSizeGB": "80",
-                    "createOption": "Empty",
-                    "lun": 3
                 }],
                 [{
-                    "diskSizeGB": "120",
+                    "diskSizeGB": "50",
                     "createOption": "Empty",
                     "lun": 2
+                }, {
+                    "diskSizeGB": "50",
+                    "createOption": "Empty",
+                    "lun": 2
+                }, {
+                    "diskSizeGB": "250",
+                    "createOption": "Empty",
+                    "lun": 3
+                }, {
+                    "diskSizeGB": "100",
+                    "createOption": "Empty",
+                    "lun": 4
+                }, {
+                    "diskSizeGB": "100",
+                    "createOption": "Empty",
+                    "lun": 5
+                }, {
+                    "diskSizeGB": "200",
+                    "createOption": "Empty",
+                    "lun": 6
                 }]
             ]
         }
