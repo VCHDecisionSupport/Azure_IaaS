@@ -12,7 +12,15 @@
             "value": "vch\\dcVm0"
         },
         "domainJoinUserPassword": {
-            "value": "Floater1"
+            "reference": {
+                "keyVault": {
+                    "id": "/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.KeyVault/vaults/vchDsKeyVault"
+                },
+                "secretName": "VmAdminPassword"
+            },
+            "metadata": {
+                "description": "VM admin password. id: /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.KeyVault/vaults/{key-vault-name}   see https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-keyvault-parameter#reference-a-secret-with-static-id"
+            }
         },
         "domainFQDN": {
             "value": "vch.ca"

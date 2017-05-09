@@ -10,6 +10,8 @@ Templates typically provision empty/unconfigured infracture: vnet, factory defau
 - PowerShell cmdlet `New-AzureRmResourceGroupDeployment` sends templates to the "Azure Resource Manager" service
 - Azure Resource Manager provisions the resources
 
+Note: To monitor deployment progress/status/history of a resource group [see here](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-deployment-operations)
+
 ## Virtual Machine Extensions
 
 Azure **virtual machine extensions** are small applications that provide post-deployment configuration and automation tasks on Azure virtual machines.

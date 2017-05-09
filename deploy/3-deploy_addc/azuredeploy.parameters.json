@@ -1,30 +1,38 @@
 {
-    "$schema":  "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-    "contentVersion":  "1.0.0.0",
-    "parameters":  {
-                       "dcType":  {
-                                      "value":  "FirstDC"
-                                  },
-                       "adminPassword":  {
-                                             "value":  "Floater1"
-                                         },
-                       "vmPrefix":  {
-                                        "value":  "dc"
-                                    },
-                       "existingVirtualNetworkName":  {
-                                                          "value":  "vchds-sp-test-vnet"
-                                                      },
-                       "existingVirtualNetworkResourceGroup":  {
-                                                                   "value":  "vchds-sp-test-rg"
-                                                               },
-                       "subnetName":  {
-                                          "value":  "ad-subnet"
-                                      },
-                       "dscRegistrationKey":  {
-                                                  "value":  "QYskphi/eweYU6gepo8OFgXiblITrvatNuuY3e+mb543ekjHi0W6zzJjdl0NjyZnSXpQo3KOP+7cxRnzUmyBTg=="
-                                              },
-                       "dscRegistrationUrl":  {
-                                                  "value":  "https://cc-agentservice-prod-1.azure-automation.net/accounts/3163980f-9eaa-4458-bacb-ab3b9f566283"
-                                              }
-                   }
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "dcType": {
+            "value": "FirstDC"
+        },
+        "adminPassword": {
+            "reference": {
+                "keyVault": {
+                    "id": "/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.KeyVault/vaults/vchDsKeyVault"
+                },
+                "secretName": "VmAdminPassword"
+            },
+            "metadata": {
+                "description": "VM admin password. id: /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.KeyVault/vaults/{key-vault-name}   see https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-keyvault-parameter#reference-a-secret-with-static-id"
+            }
+        },
+        "vmPrefix": {
+            "value": "dc"
+        },
+        "existingVirtualNetworkName": {
+            "value": "vchds-sp-test-vnet"
+        },
+        "existingVirtualNetworkResourceGroup": {
+            "value": "vchds-sp-test-rg"
+        },
+        "subnetName": {
+            "value": "ad-subnet"
+        },
+        "dscRegistrationKey": {
+            "value": "9prn4Q2aygKLMGBgyFaz86/BzdoJrIP0/ZEBeRawnrKnFLBVvmvrkdmghAIOHO8m02HXirhHYI8JFFgsp3LPGg=="
+        },
+        "dscRegistrationUrl": {
+            "value": "https://cc-agentservice-prod-1.azure-automation.net/accounts/a52e8277-dbe3-4b3e-aa37-7bebb3640851"
+        }
+    }
 }

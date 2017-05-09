@@ -53,7 +53,7 @@ $dst_root_folder = "install_media"
 
 $src_file = "SW_DVD5_SharePoint_Server_2013_64Bit_English_MLF_X18-55474.ISO"
 $src_file = "sql2012.zip"
-# $src_file = "test_file.iso"
+$src_file = "test_file.iso"
 $dst_path = Join-Path -Path $dst_root_folder -ChildPath $src_file
 
 Set-AzureStorageFileContent -ShareName $share_name -Source $src_file -Path $dst_path -Context $storage_account.Context

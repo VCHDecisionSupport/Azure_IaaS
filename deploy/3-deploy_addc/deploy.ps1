@@ -3,14 +3,16 @@
 Set-Location -Path $PSScriptRoot
 
 $resource_group_name = "vchds-sp-test-rg"
+$automation_account_name = "vchds-auto"
+$vnet_name = "vchds-sp-test-vnet"
+$dc_vm_name = "dcVm0"
 
 # Azure login; only need to login once per powershell session
-Login-AzureRmAccount
+# Add-AzureRmAccount
 
 # update parameter file with Automation Account info
 Write-Host "`n`nattempting to update parameter file values from Azure: dscRegistrationKey and dscRegistrationUrl"
 Write-Host "connecting to automation account"
-$automation_account_name = "vchds-auto"
 $automation_account_info = Get-AzureRmAutomationRegistrationInfo -ResourceGroupName $resource_group_name -AutomationAccountName $automation_account_name
 $pathToJson = "azuredeploy.parameters.json"
 Write-Host "editting json file: ${pathToJson} in ${PSScriptRoot}"
@@ -34,7 +36,6 @@ New-AzureRmResourceGroupDeployment -Name $deployment_name -ResourceGroupName $re
 Write-Host ("changing vnet DNS server to IP address of DC")
 
 $resource_group_name = "vchds-sp-test-rg"
-$vnet_name = "vchds-sp-test-vnet"
 $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName $resource_group_name -Name $vnet_name
 $vnet.DhcpOptions.DnsServers = @("10.0.0.4")
 Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
@@ -42,5 +43,4 @@ Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
 
 Write-Host "restarting active directory domain controller vm: $dc_vm_name"
 
-$dc_vm_name = "dcVm0"
 Restart-AzureRmVM -ResourceGroupName $resource_group_name -Name $dc_vm_name

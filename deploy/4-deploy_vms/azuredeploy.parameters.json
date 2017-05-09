@@ -2,19 +2,12 @@
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "storageAccountName": {
-            "value": "vchdsvmdiskstorage",
-            "metadata": {
-                "description": "assumes already exists (eg by azuredeploy_shared.json)"
-            }
-        },
         "virtualNetworkName": {
             "value": "vchds-sp-test-vnet",
             "metadata": {
                 "description": "assumes already exists (eg by azuredeploy_shared.json)"
             }
         },
-
         "subnetName": {
             "value": "sp-subnet",
             "metadata": {
@@ -25,15 +18,20 @@
             "value": "sp"
         },
         "addressStub": {
-            "value": "10.0.1.",
+            "value": "192.168.12.",
             "metadata": {
                 "description": "assumes already exists (eg by azuredeploy_subnet.json)"
             }
         },
         "adminPassword": {
-            "value": "Floater1",
+            "reference": {
+                "keyVault": {
+                    "id": "/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-root-rg/providers/Microsoft.KeyVault/vaults/vchDsKeyVault"
+                },
+                "secretName": "VmAdminPassword"
+            },
             "metadata": {
-                "description": "VM admin password."
+                "description": "VM admin password. id: /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.KeyVault/vaults/{key-vault-name}   see https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-keyvault-parameter#reference-a-secret-with-static-id"
             }
         },
         "imageReference": {
@@ -44,11 +42,26 @@
                 "version": "latest"
             }
         },
-        "vmCount": {
-            "value": 4
-        },
         "vmSize": {
             "value": "Standard_DS3_v2"
+        },
+        "dataDisks": {
+            "value": [
+                [{
+                    "diskSizeGB": "100",
+                    "createOption": "Empty",
+                    "lun": 2
+                }, {
+                    "diskSizeGB": "80",
+                    "createOption": "Empty",
+                    "lun": 3
+                }],
+                [{
+                    "diskSizeGB": "120",
+                    "createOption": "Empty",
+                    "lun": 2
+                }]
+            ]
         }
     }
 }

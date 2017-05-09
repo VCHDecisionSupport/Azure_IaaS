@@ -4,10 +4,9 @@ $resource_group_name = "vchds-sp-test-rg"
 $location = "canadacentral"
 
 # Azure login; only need to login once per powershell session
-# Login-AzureRmAccount
+# Add-AzureRmAccount
 
 # deploy resources declared in $template_path
-$template_path = "azuredeploy.json"
 $parameter_path = "azuredeploy.parameters.json"
 $deployment_name = "vmDeployment"
 Write-Host ("Testing deployment of template:`n`t{0}" -f $template_path)

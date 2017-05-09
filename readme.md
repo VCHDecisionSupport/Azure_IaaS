@@ -68,6 +68,7 @@ Also see [devtestlab templates](https://github.com/Azure/azure-devtestlab/tree/m
 - [Resource Manager templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-authoring-templates)
 - [Deploy template with PowerShell](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-template-deploy#deploy-local-template)
 - [Template design patterns](https://docs.microsoft.com/en-us/azure/azure-resource-manager/best-practices-resource-manager-design-templates)
+- [Template functions](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-template-functions)
 - [Custom script extension](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/extensions-customscript)
 - [Single template vs nested templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-template-best-practices#single-template-vs-nested-templates)
 
@@ -93,6 +94,11 @@ Also see [devtestlab templates](https://github.com/Azure/azure-devtestlab/tree/m
 - [Configure Remote Azure VM PowerShell Access](https://blogs.msdn.microsoft.com/mariok/2011/08/08/command-line-access-to-azure-vms-powershell-remoting/)
 - [PowerShell script to Configure Secure Remote PowerShell Access to Windows Azure Virtual Machines](https://gallery.technet.microsoft.com/scriptcenter/Configures-Secure-Remote-b137f2fe)
 - [Introduction to Remote PowerShell with Windows Azure](https://www.opsgility.com/blog/windows-azure-powershell-reference-guide/introduction-remote-powershell-with-windows-azure/)
+
+### PluralSight Courses:
+
+- [Managing Infrastructure with Microsoft Azure - Getting Started](https://www.pluralsight.com/courses/managing-infrastructure-microsoft-azure-getting-started)
+- [Microsoft Azure Virtual Machines - Getting Started](https://www.pluralsight.com/courses/azure-vms-getting-started)
 
 ### misc
 

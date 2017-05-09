@@ -3,25 +3,34 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "storageAccountName": {
-            "type": "string"
-        },
         "virtualNetworkName": {
-            "type": "string"
-        },
-        "subnetName": {
-            "type": "string"
-        },
-        "workloadName": {
-            "type": "string"
-        },
-        "addressStub": {
-            "type": "string"
-        },
-        "adminPassword": {
             "type": "string",
             "metadata": {
-                "description": "VM admin password."
+                "description": "must already exist."
+            }
+        },
+        "subnetName": {
+            "type": "string",
+            "metadata": {
+                "description": "must already exist."
+            }
+        },
+        "workloadName": {
+            "type": "string",
+            "metadata": {
+                "description": "used as prefix for resource names.  see variables."
+            }
+        },
+        "addressStub": {
+            "type": "string",
+            "metadata": {
+                "description": "eg '10.0.0.' last number generated in loop."
+            }
+        },
+        "adminPassword": {
+            "type": "securestring",
+            "metadata": {
+                "description": "VM local admin password.  Key Vault with secret 'VmAdminPassword' (see parameter file) must already exist."
             }
         },
         "imageReference": {
@@ -31,31 +40,56 @@
                 "sku": "2012-R2-Datacenter",
                 "version": "latest"
             },
-            "type": "object"
-        },
-        "vmCount": {
-            "type": "int"
+            "type": "object",
+            "metadata": {
+                "description": "image for OS disk.  for available options use GetAvailableVmImages.ps1 in powershell_utils folder"
+            }
         },
         "vmSize": {
-            "type": "string"
+            "type": "string",
+            "metadata": {
+                "description": "hardware profile for VM (CPU, RAM, etc).  for available options use GetAvailableVmImages.ps1 in powershell_utils folder"
+            }
+        },
+        "dataDisks": {
+            "type": "array",
+            "defaultValue": [
+                [{
+                    "diskSizeGB": "100",
+                    "createOption": "Empty",
+                    "lun": 2
+                }, {
+                    "diskSizeGB": "80",
+                    "createOption": "Empty",
+                    "lun": 3
+                }],
+                [{
+                    "diskSizeGB": "120",
+                    "createOption": "Empty",
+                    "lun": 2
+                }]
+            ],
+            "metadata": {
+                "description": "array of arrays.  size of outer array determines number of VMs to be created.  outer array sets value for properties -> storageProfile -> dataDisks specifies array of dataDisks of each VM created by template.  inner array repersents a single data disk."
+            }
         }
     },
     "variables": {
+        "vmCount": "[length(parameters('dataDisks'))]",
         "vmNameStub": "[concat(parameters('workloadName'),'Vm')]",
         "pipNameStub": "[concat(parameters('workloadName'),'Pip')]",
         "nicNameStub": "[concat(parameters('workloadName'),'Nic')]",
         "OsDiskNameStub": "[concat(parameters('workloadName'),'OsDisk')]",
+        "AutoShutDownNameStub": "[concat(parameters('workloadName'),'AutoShutDown')]",
         "apiVersionManagedDisks": "2016-04-30-preview"
     },
-    "resources": [
-
-        {
+    "resources": [{
             "comments": "creates virtual machine according to given parameters above.  depends on creation of other resources: ip address",
             "type": "Microsoft.Compute/virtualMachines",
             "name": "[concat(variables('vmNameStub'), copyIndex())]",
             "copy": {
                 "name": "vmsCopy",
-                "count": "[parameters('vmCount')]"
+                "count": "[variables('vmCount')]"
             },
             "apiVersion": "[variables('apiVersionManagedDisks')]",
             "location": "[resourceGroup().location]",
@@ -66,15 +100,10 @@
                 "storageProfile": {
                     "imageReference": "[parameters('imageReference')]",
                     "osDisk": {
-                        "osType": "Windows",
                         "name": "[concat(variables('OsDiskNameStub'), copyIndex())]",
-                        "createOption": "FromImage",
-                        "vhd": {
-                            "uri": "[concat('https', '://', parameters('storageAccountName'), '.blob.core.windows.net', concat('/vhds/', concat(variables('OsDiskNameStub'), copyIndex()),'.vhd'))]"
-                        },
-                        "caching": "ReadWrite"
+                        "createOption": "FromImage"
                     },
-                    "dataDisks": []
+                    "dataDisks": "[parameters('dataDisks')[copyIndex()]]"
                 },
                 "osProfile": {
                     "computerName": "[concat(variables('vmNameStub'), copyIndex())]",
@@ -101,7 +130,7 @@
             "type": "Microsoft.Network/networkInterfaces",
             "copy": {
                 "name": "vmsCopy",
-                "count": "[parameters('vmCount')]"
+                "count": "[variables('vmCount')]"
             },
             "name": "[concat(variables('nicNameStub'), copyIndex())]",
             "apiVersion": "2016-03-30",
@@ -135,7 +164,7 @@
             "name": "[concat(variables('pipNameStub'), copyIndex())]",
             "copy": {
                 "name": "vmsCopy",
-                "count": "[parameters('vmCount')]"
+                "count": "[variables('vmCount')]"
             },
 
             "apiVersion": "2016-03-30",
