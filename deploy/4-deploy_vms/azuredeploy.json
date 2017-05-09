@@ -101,7 +101,8 @@
                     "imageReference": "[parameters('imageReference')]",
                     "osDisk": {
                         "name": "[concat(variables('OsDiskNameStub'), copyIndex())]",
-                        "createOption": "FromImage"
+                        "createOption": "FromImage",
+                        "diskSizeGB": 120
                     },
                     "dataDisks": "[parameters('dataDisks')[copyIndex()]]"
                 },

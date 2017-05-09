@@ -8,7 +8,7 @@ execute PowerShell script: 4-deploy_vms\deploy.ps1
 
 ## Code explanation
 
-see issue #55
+see [issue #55: List of on prem harddrives](https://github.com/VCHDecisionSupport/Azure_IaaS/issues/55)
 
 ### Logic work through
 
