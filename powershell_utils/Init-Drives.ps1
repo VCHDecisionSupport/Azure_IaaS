@@ -6,9 +6,10 @@ $disks = Get-Disk | Where partitionstyle -Like 'raw' | sort number
 $disks
 
 # setup up config dict: {lun,{letter, label}}
+# for spVm0, spVm1, 
 $lun2drive = @{
-    2 = @{"letter" = "F"; 
-        "label" = "data disk"
+    2 = @{"letter" = "E"; 
+        "label" = ""
     }
 }
 
