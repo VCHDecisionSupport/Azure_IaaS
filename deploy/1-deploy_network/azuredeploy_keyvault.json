@@ -1,0 +1,69 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "keyVaultName": {
+            "type": "string",
+            "metadata": {
+                "description": "name of new key vault resource."
+            }
+        },
+        "secretName": {
+            "type": "string",
+            "metadata": {
+                "description": "name for 'secret' that stores VM local admin password"
+            }
+        },
+        "vmAdminPassword": {
+            "type": "securestring",
+            "metadata": {
+                "description": "value of secret."
+            }
+        },
+        "tenantId": {
+            "type": "string",
+            "metadata": {
+                "description": "name of new key vault resource."
+            }
+        }
+    },
+    "variables": {
+        "accessPolicies": {
+            "tenantId": "[parameters('tenantId')]",
+            "objectId": "bb477c97-0855-4e92-a036-fde603596191",
+            "permissions": {
+                "keys": ["all"],
+                "secrets": ["all"]
+            }
+        }
+    },
+    "resources": [{
+            "type": "Microsoft.KeyVault/vaults",
+            "name": "[parameters('keyVaultName')]",
+            "apiVersion": "2015-06-01",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "enabledForDeployment": true,
+                "enabledForTemplateDeployment": true,
+                "enabledForVolumeEncryption": false,
+                "tenantId": "[parameters('tenantId')]",
+                "accessPolicies": "[variables('accessPolicies')]",
+                "sku": {
+                    "family": "A",
+                    "name": "standard"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.KeyVault/vaults/secrets",
+            "name": "[concat(parameters('keyVaultName'), '/', parameters('secretName'))]",
+            "apiVersion": "2015-06-01",
+            "properties": {
+                "value": "[parameters('secretValue')]"
+            },
+            "dependsOn": [
+                "[concat('Microsoft.KeyVault/vaults/', parameters('keyVaultName'))]"
+            ]
+        }
+    ]
+}

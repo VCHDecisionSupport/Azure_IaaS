@@ -1,0 +1,15 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "keyVaultName": {
+            "value": "vchds-sp-test-keyvault"
+        },
+        "secretName": {
+            "value": "VmLocalAdminPassword"
+        },
+        "tenantId": {
+            "value": "ae1889e5-edc5-42cf-a525-11f41dc4f8a8"
+        }
+    }
+}
