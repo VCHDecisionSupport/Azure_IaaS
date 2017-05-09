@@ -1,7 +1,7 @@
 # set current working directory
 Set-Location -Path $PSScriptRoot
 
-$resource_group_name = "vchds-sp-test-rg"
+$resource_group_name = "vchds-sp-rg"
 $auto_account = "vchds-auto"
 
 

@@ -1,38 +1,38 @@
 {
-    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "dcType": {
-            "value": "FirstDC"
-        },
-        "adminPassword": {
-            "reference": {
-                "keyVault": {
-                    "id": "/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-key-vault-rg/providers/Microsoft.KeyVault/vaults/vchds-key-vault"
-                },
-                "secretName": "vmLocalAdminPassword"
-            },
-            "metadata": {
-                "description": "VM admin password. id: /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.KeyVault/vaults/{key-vault-name}   see https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-keyvault-parameter#reference-a-secret-with-static-id"
-            }
-        },
-        "vmPrefix": {
-            "value": "dc"
-        },
-        "existingVirtualNetworkName": {
-            "value": "vchds-sp-test-vnet"
-        },
-        "existingVirtualNetworkResourceGroup": {
-            "value": "vchds-sp-test-rg"
-        },
-        "subnetName": {
-            "value": "ad-subnet"
-        },
-        "dscRegistrationKey": {
-            "value": "9prn4Q2aygKLMGBgyFaz86/BzdoJrIP0/ZEBeRawnrKnFLBVvmvrkdmghAIOHO8m02HXirhHYI8JFFgsp3LPGg=="
-        },
-        "dscRegistrationUrl": {
-            "value": "https://cc-agentservice-prod-1.azure-automation.net/accounts/a52e8277-dbe3-4b3e-aa37-7bebb3640851"
-        }
-    }
+    "$schema":  "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion":  "1.0.0.0",
+    "parameters":  {
+                       "dcType":  {
+                                      "value":  "FirstDC"
+                                  },
+                       "adminPassword":  {
+                                             "reference":  {
+                                                               "keyVault":  {
+                                                                                "id":  "/subscriptions/4830d36a-e5da-4f38-8647-b8ca702c1b1d/resourceGroups/vchds-key-vault-rg/providers/Microsoft.KeyVault/vaults/vchds-key-vault"
+                                                                            },
+                                                               "secretName":  "vmLocalAdminPassword"
+                                                           },
+                                             "metadata":  {
+                                                              "description":  "VM admin password. id: /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.KeyVault/vaults/{key-vault-name}   see https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-keyvault-parameter#reference-a-secret-with-static-id"
+                                                          }
+                                         },
+                       "vmPrefix":  {
+                                        "value":  "dc"
+                                    },
+                       "existingVirtualNetworkName":  {
+                                                          "value":  "vchds-sp-vnet"
+                                                      },
+                       "existingVirtualNetworkResourceGroup":  {
+                                                                   "value":  "vchds-sp-rg"
+                                                               },
+                       "subnetName":  {
+                                          "value":  "ad-subnet"
+                                      },
+                       "dscRegistrationKey":  {
+                                                  "value":  "GC7uBy8pezyPiZ5bMZlH3OhGUHr9loB+V+kh3UkLn3D3NpVvcpMppNrkKiuccGun/DER+gBzUH/uzRUbdfmWzg=="
+                                              },
+                       "dscRegistrationUrl":  {
+                                                  "value":  "https://cc-agentservice-prod-1.azure-automation.net/accounts/841f12ae-6d8a-4f0d-815b-a0081a64d784"
+                                              }
+                   }
 }

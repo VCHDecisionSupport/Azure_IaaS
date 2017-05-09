@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "virtualNetworkName": {
-            "value": "vchds-sp-test-vnet",
+            "value": "vchds-sp-dev-vnet",
             "metadata": {
                 "description": "assumes already exists (eg by azuredeploy_shared.json)"
             }
@@ -48,7 +48,7 @@
         "dataDisks": {
             "value": [
                 [{
-                    "name": "spVm0DataDisk0",
+                    "name": "devVm0DataDisk0",
                     "diskSizeGB": "50",
                     "createOption": "Empty",
                     "lun": 0,
@@ -57,7 +57,7 @@
                     }
                 }],
                 [{
-                    "name": "spVm1DataDisk0",
+                    "name": "devVm1DataDisk0",
                     "diskSizeGB": "50",
                     "createOption": "Empty",
                     "lun": 0,
@@ -66,7 +66,7 @@
                     }
                 }],
                 [{
-                    "name": "spVm2DataDisk0",
+                    "name": "devVm2DataDisk0",
                     "diskSizeGB": "100",
                     "createOption": "Empty",
                     "lun": 0,
@@ -75,7 +75,7 @@
                     }
                 }],
                 [{
-                    "name": "spVm3DataDisk0",
+                    "name": "devVm3DataDisk0",
                     "diskSizeGB": "50",
                     "createOption": "Empty",
                     "lun": 0,
@@ -83,7 +83,7 @@
                         "storageAccountType": "Standard_LRS"
                     }
                 }, {
-                    "name": "spVm3DataDisk1",
+                    "name": "devVm3DataDisk1",
                     "diskSizeGB": "250",
                     "createOption": "Empty",
                     "lun": 1,
@@ -91,7 +91,7 @@
                         "storageAccountType": "Standard_LRS"
                     }
                 }, {
-                    "name": "spVm3DataDisk2",
+                    "name": "devVm3DataDisk2",
                     "diskSizeGB": "100",
                     "createOption": "Empty",
                     "lun": 2,
@@ -99,7 +99,7 @@
                         "storageAccountType": "Standard_LRS"
                     }
                 }, {
-                    "name": "spVm3DataDisk3",
+                    "name": "devVm3DataDisk3",
                     "diskSizeGB": "100",
                     "createOption": "Empty",
                     "lun": 3,
@@ -107,7 +107,7 @@
                         "storageAccountType": "Standard_LRS"
                     }
                 }, {
-                    "name": "spVm3DataDisk4",
+                    "name": "devVm3DataDisk4",
                     "diskSizeGB": "200",
                     "createOption": "Empty",
                     "lun": 4,
