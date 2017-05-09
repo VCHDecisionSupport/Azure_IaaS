@@ -142,3 +142,5 @@ readme.html
 *.ISO
 *.zip
 *.exe
+*.ica
+powershell_utils/New-FileShare/devVm0.rdp
