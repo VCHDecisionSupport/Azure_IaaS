@@ -172,10 +172,7 @@
             "location": "[resourceGroup().location]",
             "properties": {
                 "publicIPAllocationMethod": "Static",
-                "idleTimeoutInMinutes": 4,
-                "dnsSettings": {
-                    "domainNameLabel": "[toLower(concat(variables('vmNameStub'), copyIndex()))]"
-                }
+                "idleTimeoutInMinutes": 4
             },
             "dependsOn": []
         }

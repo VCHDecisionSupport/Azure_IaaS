@@ -9,16 +9,16 @@
             }
         },
         "subnetName": {
-            "value": "sp-subnet",
+            "value": "dev-subnet",
             "metadata": {
                 "description": "assumes already exists (eg by azuredeploy_subnet.json)"
             }
         },
         "workloadName": {
-            "value": "sp"
+            "value": "dev"
         },
         "addressStub": {
-            "value": "10.0.1.",
+            "value": "10.0.10.",
             "metadata": {
                 "description": "assumes already exists (eg by azuredeploy_subnet.json)"
             }
@@ -48,44 +48,72 @@
         "dataDisks": {
             "value": [
                 [{
+                    "name": "spVm0DataDisk0",
                     "diskSizeGB": "50",
                     "createOption": "Empty",
-                    "lun": 2
+                    "lun": 0,
+                    "managedDisk": {
+                        "storageAccountType": "Standard_LRS"
+                    }
                 }],
                 [{
+                    "name": "spVm1DataDisk0",
                     "diskSizeGB": "50",
                     "createOption": "Empty",
-                    "lun": 2
+                    "lun": 0,
+                    "managedDisk": {
+                        "storageAccountType": "Standard_LRS"
+                    }
                 }],
                 [{
+                    "name": "spVm2DataDisk0",
                     "diskSizeGB": "100",
                     "createOption": "Empty",
-                    "lun": 2
+                    "lun": 0,
+                    "managedDisk": {
+                        "storageAccountType": "Standard_LRS"
+                    }
                 }],
                 [{
+                    "name": "spVm3DataDisk0",
                     "diskSizeGB": "50",
                     "createOption": "Empty",
-                    "lun": 2
+                    "lun": 0,
+                    "managedDisk": {
+                        "storageAccountType": "Standard_LRS"
+                    }
                 }, {
-                    "diskSizeGB": "50",
-                    "createOption": "Empty",
-                    "lun": 2
-                }, {
+                    "name": "spVm3DataDisk1",
                     "diskSizeGB": "250",
                     "createOption": "Empty",
-                    "lun": 3
+                    "lun": 1,
+                    "managedDisk": {
+                        "storageAccountType": "Standard_LRS"
+                    }
                 }, {
+                    "name": "spVm3DataDisk2",
                     "diskSizeGB": "100",
                     "createOption": "Empty",
-                    "lun": 4
+                    "lun": 2,
+                    "managedDisk": {
+                        "storageAccountType": "Standard_LRS"
+                    }
                 }, {
+                    "name": "spVm3DataDisk3",
                     "diskSizeGB": "100",
                     "createOption": "Empty",
-                    "lun": 5
+                    "lun": 3,
+                    "managedDisk": {
+                        "storageAccountType": "Standard_LRS"
+                    }
                 }, {
+                    "name": "spVm3DataDisk4",
                     "diskSizeGB": "200",
                     "createOption": "Empty",
-                    "lun": 6
+                    "lun": 4,
+                    "managedDisk": {
+                        "storageAccountType": "Standard_LRS"
+                    }
                 }]
             ]
         }
