@@ -3,7 +3,7 @@
 Set-Location -Path $PSScriptRoot
 
 $resource_group_name = "vchds-sp-rg"
-$automation_account_name = "vchds-auto"
+$automation_account_name = "vchds-sp-auto"
 $vnet_name = "vchds-sp-vnet"
 $dc_vm_name = "dcVm0"
 
@@ -30,7 +30,7 @@ $deployment_name = "dcDeployment"
 Write-Host ("Testing deployment of template:`n`t{0}" -f $template_path)
 Test-AzureRmResourceGroupDeployment -ResourceGroupName $resource_group_name -TemplateFile $template_path -TemplateParameterFile $parameter_path
 Write-Host ("Deploying of template:`n`t{0}" -f $template_path)
-New-AzureRmResourceGroupDeployment -Name $deployment_name -ResourceGroupName $resource_group_name -TemplateFile $template_path -TemplateParameterFile $parameter_path
+# New-AzureRmResourceGroupDeployment -Name $deployment_name -ResourceGroupName $resource_group_name -TemplateFile $template_path -TemplateParameterFile $parameter_path
 
 
 
