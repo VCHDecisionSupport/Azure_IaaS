@@ -15,3 +15,5 @@ $cmd = {
         Write-Host "$share_display_root is ALREADY mounted to ${ps_drive}:"
     }
 }
+
+Invoke-Command -ScriptBlock $cmd
