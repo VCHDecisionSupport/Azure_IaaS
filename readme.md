@@ -74,6 +74,8 @@ Also see [devtestlab templates](https://github.com/Azure/azure-devtestlab/tree/m
 
 ### Backup/restore
 
+- [Mount Azure File Share As Network Drive](https://docs.microsoft.com/en-us/azure/storage/storage-dotnet-how-to-use-files#mount-the-file-share)
+ -[Attach and initialize data disk to a drive letter on VM](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/attach-disk-ps#add-an-empty-data-disk-to-a-virtual-machine)
 - [How to capture a VM image](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/capture-image)
 - [Domain controller VMs cannot be captured (`sysprep` not supported)](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)
 

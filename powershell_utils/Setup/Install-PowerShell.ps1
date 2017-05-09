@@ -37,3 +37,5 @@ if ($powershell_azurerm -eq $null) {
 else {
     Write-Host "`n`nPowerShell seems configured to manage Azure"
 }
+
+Install-Module AzureAD
