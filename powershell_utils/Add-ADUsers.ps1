@@ -2,6 +2,7 @@ $pass = ConvertTo-SecureString "Floater1" -AsPlainText -Force
 $user = "vch\dcVm0"
 $cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $user, $pass
 
+
 # Connect-PSSession -ComputerName "dcvm0" -Credential $cred -Name "helo"
 # Import-Module ServerManager
 # Add-WindowsFeature RSAT-AD-PowerShell
