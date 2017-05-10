@@ -27,7 +27,6 @@ Invoke-Command -ScriptBlock $cmd
 
 # https://docs.microsoft.com/en-us/azure/virtual-machines/windows/attach-disk-ps#add-an-empty-data-disk-to-a-virtual-machine
 
-
 # 1. 
 # see uninit disks
 
@@ -88,20 +87,21 @@ $lun2drive
 
 foreach ($lun in ($lun2drive.root | Get-Member * -MemberType NoteProperty).Name) {
     Write-Output "$lun = $($lun2drive.root.$lun)"
-    Write-Host "mapping ${lun2drive.$lun}"
+    Write-Host $($lun2drive.root.$lun)
     $drive_letter = $lun2drive.root.$lun.letter
     $drive_label = $lun2drive.root.$lun.label
     Write-Host "mapping ${drive_letter}"
     Write-Host "mapping ${drive_label}"
     
     $disk = Get-Disk -Number $lun
+    $disk
     $disk |
         Initialize-Disk -PartitionStyle MBR -PassThru |
         New-Partition -UseMaximumSize -DriveLetter $drive_letter |
         Format-Volume -FileSystem NTFS -NewFileSystemLabel $drive_label -Confirm:$false -Force
-    New-Partition -UseMaximumSize -DriveLetter $drive_letter -DiskNumber $lun |
-        Format-Volume -FileSystem NTFS -NewFileSystemLabel $drive_label -Confirm:$false -Force
-    Format-Volume -DriveLetter $drive_letter -Force
+    # New-Partition -UseMaximumSize -DriveLetter $drive_letter -DiskNumber $lun |
+    #     Format-Volume -FileSystem NTFS -NewFileSystemLabel $drive_label -Confirm:$false -Force
+    # Format-Volume -DriveLetter $drive_letter -Force
 }
 
 Get-PSDrive -PSProvider "FileSystem"
