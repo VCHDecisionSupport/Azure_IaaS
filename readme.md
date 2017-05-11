@@ -4,28 +4,74 @@ In [Azure Resource Manager](#azure-resource-manager-and-template-docs), deploy-a
 
 ## Table of Contents
 
-- [Deployment steps](#deployment-steps)
-    - [Network diagram](#network-diagram)
-- [IaaS resources docs](#iaas-resources-docs)
-    - [Comparison and cloud service models](#comparison-and-cloud-service-models)
-    - [Resource Specific Documentation](#resource-specific-documentation)
-- [Other useful documentation](#other-useful-documentation)
-    - [Azure quick start templates examples (GitHub)](#azure-quick-start-templates-examples-github)
-    - [Azure Resource Manager and template docs](#azure-resource-manager-and-template-docs)
-    - [Backup/restore](#backuprestore)
-    - [Active Directory Domain Services](#active-directory-domain-services)
-    - [Desired State Configuration](#desired-state-configuration)
-    - [PowerShell for Azure](#powershell-for-azure)
-    - [misc](#misc)
-        - [On-premises Active Directory Domain Controller install/config](#on-premises-active-directory-domain-controller-installconfig)
+<!-- TOC -->
 
-<!-- /TOC -->
+- [Azure_IaaS](#azure_iaas)
+    - [Table of Contents](#table-of-contents)
+    - [Adminstration](#adminstration)
+        - [Overview of Azure management websites](#overview-of-azure-management-websites)
+        - [Azure Admin/Dev Prerequisites](#azure-admindev-prerequisites)
+            - [Accounts and permissions](#accounts-and-permissions)
+            - [Workstation upgrades and software](#workstation-upgrades-and-software)
+    - [Deployment steps](#deployment-steps)
+    - [VCH Azure Infrastructure](#vch-azure-infrastructure)
+    - [IaaS resources docs](#iaas-resources-docs)
+        - [Comparison and cloud service models](#comparison-and-cloud-service-models)
+        - [Resource Specific Documentation](#resource-specific-documentation)
+    - [Other useful documentation](#other-useful-documentation)
+        - [Azure quick start templates examples (GitHub)](#azure-quick-start-templates-examples-github)
+        - [Azure Resource Manager and template docs](#azure-resource-manager-and-template-docs)
+        - [Backup/restore](#backuprestore)
+        - [Active Directory Domain Services](#active-directory-domain-services)
+        - [Desired State Configuration](#desired-state-configuration)
+        - [PowerShell for Azure](#powershell-for-azure)
+        - [PluralSight Courses:](#pluralsight-courses)
+        - [misc](#misc)
+            - [On-premises Active Directory Domain Controller install/config](#on-premises-active-directory-domain-controller-installconfig)
+
+<!-- TOC -->
+
+
+## Adminstration
+
+### Overview of Azure management websites
+
+see here for the hierarchy of [Azure Enterprise management](https://marckean.com/2016/06/03/azure-enterprise-enrollment-hierarchy/)
+
+- [ea.azure.com](https://ea.azure.com/): **Enterprise Portal**
+  - Alan is (Enterprise) Account Administrator
+  - create new subscription and assign "Service Administrator" to manage/administer it
+- [portal.azure.com](https://portal.azure.com/)  **Azure Portal**
+  - provision new resources to Azure
+    - resource group, vnet, VMs
+  - manage existing resources
+    - stop/start VMs
+    - backup/restore VMs
+  - manage permissions to your subscriptions
+- [account.windowsazure.com](https://account.windowsazure.com/)
+  - review subscription fees and bills
+  - manage your azure login/profile
+
+### Azure Admin/Dev Prerequisites
+
+#### Accounts and permissions
+
+- [Microsoft Live account](https://signup.live.com) with permission on [Azure subscription](https://portal.azure.com/)
+  - Subscription administrator (ie "Service Administrator") must grant this permission
+- [Github account](https://github.com/join) with membership in [VCHDecisionSupport](https://github.com/orgs/VCHDecisionSupport/people)
+
+#### Workstation upgrades and software
+
+- [Azure PowerShell Upgrade (Windows Management Framework 5.0)](https://docs.microsoft.com/en-us/powershell/azure/install-azurerm-ps?view=azurermps-3.8.0) extension installed 
+- [Github Client for Windows](https://desktop.github.com/) 
+- [VS Code IDE](https://code.visualstudio.com/) 
+
 
 ## Deployment steps
 
 see folder: [deploy](https://github.com/VCHDecisionSupport/Azure_IaaS/tree/master/deploy#azure-resource-manager-deployments)
 
-### Network diagram
+## VCH Azure Infrastructure
 
 [![](https://raw.githubusercontent.com/VCHDecisionSupport/Azure_IaaS/master/docs/network_diagram.png "2 tier Architecture with Jumpbox by Renee Fung (click for docs)")](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/virtual-machines-windows/n-tier)
 
