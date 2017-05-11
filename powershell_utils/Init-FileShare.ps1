@@ -23,3 +23,9 @@ $cmd = {
 }
 
 Invoke-Command -ScriptBlock $cmd
+
+# Unblock-SmbShareAccess -Name "vchdsgeneralstorage.file.core.windows.net"
+# $share_display_root = "vchdsgeneralstorage.file.core.windows.net\vchdsfileshare"
+# Unblock-SmbShareAccess -Name $share_display_root -AccountName "vch\Domain Users" -Force
+
+# Get-SmbConnection 

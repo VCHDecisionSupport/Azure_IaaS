@@ -1,12 +1,13 @@
-﻿# Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force -Confirm:$false
-# Import-Module ActiveDirectory
+﻿# Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force -Confirm:$false -Scope LocalMachine
+Import-Module ActiveDirectory
 Set-Location -Path $PSScriptRoot
 $pass = ConvertTo-SecureString "#DrainTheSwamp" -AsPlainText -Force
-$user = "SVC_SPDBSSPS008_SQL"
+$user = "SVC_DS_ SP_SPInstall"
 
 $aduser = Get-ADUser -Filter "Name -like '$user'" -Properties *
 if($aduser -eq $null)
 {
+    Write-Host "`n`nCreating new AD User: $user"
     New-ADUser -Name $user `
         -AccountExpirationDate $null `
         -AccountNotDelegated $false `
@@ -17,14 +18,9 @@ if($aduser -eq $null)
         -Enabled $true `
         -SamAccountName $user `
         -TrustedForDelegation $false # if kyperors then this is true on webapp account
-    
-    $aduser = Get-ADUser -Filter "Name -like '$user'" -Properties *
-    .\Set-ADAccountasLocalAdministrator.ps1 -Computer 'spVm3' -Trustee "vch\$user"
-    
 }
-
-$aduser
-#.\Set-ADAccountasLocalAdministrator.ps1 -Computer 'spVm0,spVm1,spVm2,spVm3,dcVm0,devVm0' -Trustee vch\overlord
-# New-ADGroup -Name service -DisplayName service -SamAccountName service
-Get-ADGroup -Filter "CanonicalName -like '*HealthBC.org/Health/HSSBC/User Accounts/Service*'"
-Get-ADUser -Filter "Name -like 'overlord'" -Properties *
+else 
+{
+    Write-Host "`n`nAD User: $user already exists"
+}
+Get-ADUser -Filter "Name -like '$user'"

@@ -3,6 +3,6 @@
 $pass = ConvertTo-SecureString "#DrainTheSwamp" -AsPlainText -Force
 $user = "overlord"
 $cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $user, $pass
-$target = "spVm2"
-Enter-PSSession -ComputerName $target -Credential $cred
+$targets = "spVm0","spVm1","spVm2","spVm3"
 
+Invoke-Command -ComputerName $targets -Credential $cred -ScriptBlock { net localgroup administrators vch\zombie /add }

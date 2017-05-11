@@ -57,3 +57,6 @@ $src_file = "test_file.iso"
 $dst_path = Join-Path -Path $dst_root_folder -ChildPath $src_file
 
 Set-AzureStorageFileContent -ShareName $share_name -Source $src_file -Path $dst_path -Context $storage_account.Context
+
+
+# See Init-FileShare.ps1
