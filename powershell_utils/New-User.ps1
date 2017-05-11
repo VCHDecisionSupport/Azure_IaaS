@@ -2,7 +2,7 @@
 Import-Module ActiveDirectory
 Set-Location -Path $PSScriptRoot
 $pass = ConvertTo-SecureString "#DrainTheSwamp" -AsPlainText -Force
-$user = "SVC_DS_ SP_SPInstall"
+$user = "SVC_DS_SP_Farm"
 
 $aduser = Get-ADUser -Filter "Name -like '$user'" -Properties *
 if($aduser -eq $null)
@@ -24,3 +24,4 @@ else
     Write-Host "`n`nAD User: $user already exists"
 }
 Get-ADUser -Filter "Name -like '$user'"
+

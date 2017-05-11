@@ -6,3 +6,4 @@ $cred = New-Object -TypeName "System.Management.Automation.PSCredential" -Argume
 $targets = "spVm0","spVm1","spVm2","spVm3"
 
 Invoke-Command -ComputerName $targets -Credential $cred -ScriptBlock { net localgroup administrators vch\zombie /add }
+Get-ADGroup -Filter "Name -like 'zombie'"
