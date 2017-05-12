@@ -5,5 +5,5 @@ $user = "overlord"
 $cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $user, $pass
 $targets = "spVm0","spVm1","spVm2","spVm3"
 
-Invoke-Command -ComputerName $targets -Credential $cred -ScriptBlock { net localgroup administrators vch\zombie /add }
-Get-ADGroup -Filter "Name -like 'zombie'"
+Invoke-Command -ComputerName $targets -Credential $cred -ScriptBlock { net localgroup administrators vch\svc_ds_sp_farm /add }
+Get-ADGroup -Filter "Name -like 'svc_ds_sp_farm'"

@@ -31,6 +31,11 @@ In [Azure Resource Manager](#azure-resource-manager-and-template-docs), deploy-a
 
 <!-- TOC -->
 
+## On-Prem to Azure Mappings
+
+### Servers
+
+#### SPSPSFE11 ()
 
 ## Adminstration
 
@@ -65,7 +70,6 @@ see here for the hierarchy of [Azure Enterprise management](https://marckean.com
 - [Azure PowerShell Upgrade (Windows Management Framework 5.0)](https://docs.microsoft.com/en-us/powershell/azure/install-azurerm-ps?view=azurermps-3.8.0) extension installed 
 - [Github Client for Windows](https://desktop.github.com/) 
 - [VS Code IDE](https://code.visualstudio.com/) 
-
 
 ## Deployment steps
 
