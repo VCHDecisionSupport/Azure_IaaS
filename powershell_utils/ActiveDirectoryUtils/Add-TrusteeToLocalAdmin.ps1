@@ -6,4 +6,6 @@ $cred = New-Object -TypeName "System.Management.Automation.PSCredential" -Argume
 $targets = "spVm0","spVm1","spVm2","spVm3"
 
 Invoke-Command -ComputerName $targets -Credential $cred -ScriptBlock { net localgroup administrators vch\svc_ds_sp_farm /add }
-Get-ADGroup -Filter "Name -like 'svc_ds_sp_farm'"
+
+
+Invoke-Command -ComputerName $targets -Credential $cred -ScriptBlock { Invoke-Expression -Command "Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine" }

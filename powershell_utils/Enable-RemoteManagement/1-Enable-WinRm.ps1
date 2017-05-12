@@ -1,5 +1,7 @@
 # https://www.howtogeek.com/117192/how-to-run-powershell-commands-on-remote-computers/
 
+# run on target VM that you want to remotley run powershell
+
 Set-Location -Path $PSScriptRoot
 
 Enable-PSRemoting -Force
